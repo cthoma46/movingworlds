@@ -1,0 +1,125 @@
+nav#steps 
+	width: 750px
+	margin: 0 auto default_margin
+	font-weight: bold
+	color: #cdcdcd
+	padding-top: 20px
+	li 
+		position: relative
+		width: 237px
+		height: 41px
+		background: transparent url('/images/spt_signup_progress.png') 0 bottom no-repeat
+		span 
+			display: block
+			position: absolute
+			text-align: center
+			width: 200px
+			top: -20px
+			left: -80px
+	li.on
+		color: blue
+	li.step1 
+		background-position: 0 0
+	li.step2 
+		background-position: -237px 0
+	li.step3 
+		background-position: -474px 0
+	li.step4 
+		width: 39px
+		background-position: -711px 0
+	li.step1.on 
+		background-position: 0 bottom
+	li.step2.on 
+		background-position: -237px bottom
+	li.step3.on 
+		background-position: -474px bottom
+	li.step4.on 
+		width: 39px
+		color: red
+		background-position: -711px bottom
+
+.role_boxes
+	padding: 30px 30px 30px 53px
+	background: #FFF url('../images/bg_crosshatch.png') 0 0 repeat
+	border-left: 1px solid #bfbfbf
+	border-right: 1px solid #bfbfbf
+	border-bottom: 1px solid #bfbfbf
+	bxsh( 0 1px 0 #fff)
+	.icon 
+		background: transparent url('/images/spt_user_icons.png') 0 0 no-repeat
+		float: left
+		width: 32px
+		height: 90px
+		margin-right: 10px
+	.experteer_box, .se_box 
+		float: left;
+		width: 350px
+		height: 75px
+		padding: 20px 30px
+		bdrz(5px)
+		grad(#fff, #f0f0f0)
+		bxsh(0 1px 1px rgba(0,0,0,.55))
+		border: 1px solid gray
+		cursor: pointer
+		p 
+			font-weight: bold
+			color: dark_gray
+			padding: 0
+			margin: 0
+	.experteer_box.on, .experteer_box:hover 
+		bxsh(0 1px 1px rgba(0,0,0,.55)\, 0 1px 0 rgba(255,255,255,.75) inset)		
+		background: blue
+		border: 1px solid dark_blue	
+		color: #FFF
+		h4 
+			color: #FFF
+			text-shadow: none
+		p
+			color: #FFF
+	.se_box.on, .se_box:hover 
+		bxsh(0 1px 1px rgba(0,0,0,.55)\, 0 1px 0 rgba(255,255,255,.75) inset)
+		background: red
+		border: 1px solid dark_red	
+		h4 
+			color: #FFF
+			text-shadow: none
+		p
+			color: #FFF
+	h4 
+		font-weight: 900
+	.experteer_box
+		margin-right: 50px
+		h4 
+			color: blue
+		.icon 
+			background-position: 0 0
+	.se_box 
+		h4 
+			color: red
+		.icon 
+			background-position: -35px 0
+			
+nav#progress
+	clear: both
+	text-align: center
+	a+a
+		margin-left: default_margin
+
+#upload_avatar
+	text-align: center
+	padding-bottom: 43px
+	height: auto;
+	.avatar
+		margin: 0 auto 10px
+
+#register 
+	.social_connects 
+		margin: 20px auto
+		padding: 0
+		width: 587px
+		ul
+			height: auto
+			margin: 0
+			padding: 0
+			border: none
+

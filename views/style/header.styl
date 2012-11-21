@@ -1,0 +1,127 @@
+header#page_head
+	height: 72px
+	margin-bottom: default_margin
+	background: transparent url("../images/bg_page_head.png") 0 0 repeat-x
+	a.logo
+		display: block
+		background: transparent url("../images/spt_page_head.png") 0 0 no-repeat
+		width: 280px
+		height: 26px
+		text-indent: -9999px
+		float: left
+		margin-top: 23px
+		&:hover
+			background-position: 0 -26px
+		&.center
+			margin-left: 340px
+	nav
+		height: 26px
+		margin-top: 22px
+		float: right
+		li+li
+			margin-left: 10px
+		a, button
+			display: block
+			font-family: default_fonts
+			font-size: 11px
+			font-weight: 900
+			text-transform: uppercase
+			color: #FFF
+			text-shadow: 0 1px 0 #1264b5
+			padding: 6px 13px 0 13px
+			height: 17px
+			text-decoration: none
+			grad(#6cc2e9,#2194ca)
+			border: 1px solid #3c89ad
+			bdrz(3px)
+			bxsh(0 1px 0 rgba(255,255,255,.60)\, 0 1px 0 rgba(255,255,255,.60) inset)
+			letter-spacing: 1px
+			&:hover
+				bxsh(0 1px 0 rgba(255,255,255,.60)\, 0 1px 3px rgba(0,0,0,.40) inset)
+				padding-top: 6px
+				height: 17px
+				grad(#2194ca, #208fc3)
+		li
+			position: relative
+			ul
+				display:none
+				z-index: 100
+				position: absolute
+				top: 35px
+				background-color: #FFF
+				padding: 10px 0
+				bdrz(3px)
+				bxsh(0 10px 20px rgba(0, 0, 0, .50))
+				// overflow: hidden
+				.arrow
+					display: block
+					position: absolute
+					top: -7px
+					left: 10px
+					border-left: 10px solid transparent
+					border-right: 10px solid transparent
+					border-bottom: 10px solid #FFF
+					width: 0
+					height: 0
+					z-index: 200
+
+				li+li
+					margin: 0
+					a
+						border-top: 1px solid blue
+				li
+					float: none;
+					a
+						display: block
+						text-align: center !important
+						width: auto
+						height: auto
+						padding: 8px 20px
+						background: none !important;
+						border: none !important
+						text-shadow: none !important
+						color: blue
+						bxsh(none !important)
+						&:hover
+							bxsh(none)
+							color: red
+							padding: 8px 20px
+							height: auto
+							// grad(none)
+					
+				
+				
+		form, button
+			padding: 0
+			width: 26px
+			height: 25px
+			bdrz(0 3px 3px 0)
+			border-left: none
+			background: transparent url("../images/spt_page_head.png") -290px -1px no-repeat
+			text-indent: -99999px
+			display: inline
+		button
+			&:hover
+				padding-top: 0
+				height: 25px
+				background: transparent url("../images/spt_page_head.png") -290px -26px no-repeat
+		input
+			vertical-align: top
+			font-family: Helvetica, Arial, sans-serif
+			font-size: 11px
+			font-weight: 400
+			color: #808080
+			width: 220px
+			height: 23px
+			line-height: 0
+			text-indent: 5px
+			padding: 0
+			display: inline
+			text-decoration: none
+			grad(#e8e8e8, #ffffff)
+			border: 1px solid #3c89ad
+			bdrz(3px 0 0 3px)
+			bxsh(0 1px 0 rgba(255,255,255,.60)\, 0 1px 3px rgba(0,0,0,.40) inset)
+			letter-spacing: 1px
+		&:focus
+			background: #ffffff

@@ -1,0 +1,62 @@
+extends layouts/layout
+
+block append scripts
+
+block content
+	div.layout_960
+		h1 Finalization Proceess for 
+			span Africa Now 
+			| and 
+			span Ozzie Smith
+		section.stack_960
+			header.clearfix
+				h2 1. Housing
+				select(id="step_select")
+					option(value="") Jump to another topic
+					option(value="housing") Housing
+					option(value="pets") Pets
+			section.intro.clearfix
+				p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			section.stack_body.clearfix
+				ul.comments
+					li
+						div.avatar
+							img(src="images/icn_avatar_se.png", width="80", height="80")
+						article
+							h3 Africa Now
+							p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					li
+						div.avatar
+							img(src="images/tmp_avatar1.png", width="80", height="80")
+						article
+							h3 Ozzie Smith
+							p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					li.comment_box
+						div.avatar
+							img(src="images/tmp_avatar1.png", width="80", height="80")
+						article
+							form( action="", type="post")
+								p
+									textarea( id="comment", name="comment")
+								p
+									button(type="submit").chunky_btn.round Post Comment
+				nav.agree_to_terms
+					ul
+						li
+							a.smooth_btn.blue 
+								span.check
+								| I, %name%, hereby agree to the details discussed above and agree to the MovingWorlds terms of use, which includes a release of liability.
+						li
+							div.smooth_btn.gray 
+								span.check.on
+								| I, %name%, hereby agree to the details discussed above and agree to the MovingWorlds terms of use, which includes a release of liability.
+			footer
+		nav.pagination
+			ul
+				li
+					a.previous(href="", class="") Left
+				li.page_info 1 
+					em of 
+					| 10
+				li
+					a.next(href="", class="") Right

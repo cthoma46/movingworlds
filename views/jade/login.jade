@@ -1,0 +1,44 @@
+extends layouts/layout
+
+block append scripts
+
+block content
+	div.layout_630
+		if ('undefined' !== typeof errors && errors.length)
+			ul.error
+				each error in errors
+					li= error
+		h2.center Login to MovingWorlds
+		hr
+		section#login_area.col1of2.split
+			form( action="/login", method="post")
+				-if(typeof redirect != 'undefined')
+					input(type="hidden", name="redirect", value= redirect)
+				fieldset
+					ul
+						li
+							label(for="email") Email
+							input( type="email", id="email", name="email" )
+						li
+							label(for="password") Password
+							input( type="password", id="password", name="password" )
+						li
+							button(type="submit").chunky_btn.round Sign In
+							span.check.right
+								input( type="checkbox", id="remember", name="remember", value="true" )
+								label(for="remember") Remember me
+		section.social_connects.col2of2.split
+			ul.no_style
+				li
+					a(href="/auth/linkedin").linkedin_connect Connect with LinkedIn
+				//- li
+				//- 	a(href="/auth/google").google_plus_connect Connect with Google_plus
+				li
+					a(href="/auth/facebook").facebook_connect Connect with Facebook
+		hr.clear
+		h2.center Not a Member?
+		p.center Sign-up for an invite to MovingWorlds
+		form( action="/invite", method="post")#invite
+			fieldset
+				input( type="text", id="email", name="email", placeholder="email" )
+				button(type="submit").chunky_btn.blue Get Invite

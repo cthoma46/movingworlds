@@ -1,0 +1,156 @@
+extends ../../layouts/layout
+
+block append scripts
+		script( src='/javascript/plugins/jquery-ui.min.js')
+		script( src='/javascript/plugins/jquery.mw_combo.js')
+		script( src='/javascript/plugins/jquery.tag-it.js')
+		script( src='/javascript/plugins/jquery.mw_modal.js')
+		script( src='/javascript/plugins/jquery.mw_fieldcloner.js')
+		script( src='/javascript/plugins/jquery.validate.min.js')
+		script( src='/javascript/register.js')
+			
+block content
+	#{user}
+	div.layout_960
+		nav#steps.clearfix
+			ul
+				li.step1.on 
+					span Basic Information
+				li.step2.on 
+					span Company Information
+				li.step3 
+					span First Opportunity
+				li.step4 
+					span Review
+		section.stack_960
+			header
+				h2 2. Company Information
+			div.stack_body.clearfix
+				form( action="/register/2/representative", method="post")
+					input(type="hidden", name="rep_id", value=user.userId)
+					fieldset.col1of2.split
+						ul
+							li
+								label(for="name") Organization Name
+								input( type="text", id="name", name="name", tabindex="1" )
+							li
+								label(for="size") Organization Size
+								select( id="size", name="size", tabindex="2", class="combobox"  )
+									option(value="")
+									option(value="0") Start-Up (no employees yet)
+									option(value="1") Small company (1- 10 employees, with revenues)
+									option(value="2") Medium sized company (10 - 100 employees)
+									option(value="3") Large company (100+ employees)
+							li
+								label(for="type") Organization Type
+								select( id="last_name", name="type", tabindex="3", class="combobox"  )
+									option(value="")
+									option(value="profit") For Profit
+									option(value="non-profit") Non-profit (Social) Enterprise / NGO
+									option(value="cooperative") Cooperative
+									option(value="educational") Educational Institute
+									option(value="research_institute") Research Institute 
+									option(value="government_agency") Government Agency 
+									option(value="other") Other 
+							li
+								label Is your company legally registered?
+								ul
+									li
+										input( type="radio", id="registered[is_registered]", name="registered[is_registered]", value="true", tabindex="4"  )
+										label(for="yes") Yes
+									li
+										input( type="radio", id="registered[is_registered]", name="registered[is_registered]", value="false", tabindex="5"  )
+										label(for="no") No
+							li#registered_options.hidden
+								ul
+									li.half
+										label(for="registered[location]") Location Registered
+										input( type="text", id="registered[location]", name="registered[location]", tabindex="6"  )
+									li.half
+										label(for="registered.year") Year Registered
+										input( type="text", id="registered[year]", name="registered[year]", tabindex="7"  )
+							li
+								label(for="representative_type") I represent this organization as a
+								select( id="representative_type", name="representative_type", tabindex="8", class="combobox"  )
+									option(value="")
+									option(value="founder") Founder
+									option(value="director") Director
+									option(value="manager") Manager
+									option(value="employee") Employee (other)
+									option(value="legal_rep") Legal representative
+									option(value="other") Other
+							li
+								label(for="url") Website Url
+									span example: http://www.mywebsite.com
+								input( type="text", id="url", name="url", tabindex="9" )
+							li
+								include ../../includes/industry_combo
+							li
+								label(for="partner_relations") Partner Organization
+								input( type="text", id="partner_relations", name="partner_relations", tabindex="10", class="tags"  )
+							li
+								label(for="partner_org_relation") Partner Organization Relation
+								select( id="partner_org_relation", name="partner_org_relation", tabindex="11", class="combobox"  )
+									option(value="")
+									option(value="financiers") Financiers
+									option(value="commissioners") Commissioners
+									option(value="clients") Clients
+									option(value="suppliers") Suppliers
+									option(value="supporting_organizations") Supporting Organizations
+									option(value="other") Other References
+							li
+								label(for="city") City
+								input( type="text", id="city", name="city", tabindex="12" )
+							li
+								label(for="country") Country
+								select( id="country", name="country", tabindex="13", class="combobox"  )
+									include ../../includes/countries_combo
+					fieldset.col2of2.split
+						ul
+							li#upload_avatar
+								div.avatar
+									.av_img_container
+										img(src="/images/icn_avatar_se.png", width="80", height="80")
+								input( type="file", id="avatar", name="avatar", tabindex="14", value="upload image"  )
+							li
+								label(for="introduction") Introduction 
+									span max 100 characters
+								textarea(id="introduction", name="introduction")
+							li
+								label Development impact
+								select( id="impact", name="impact", tabindex="15", class="combobox"  )
+									option(value="")
+									option(value="health") Health
+									option(value="civil_right") Civil Rights
+									option(value="animal_rights") Animal Rights 
+									option(value="arts_culture") Arts and Culture 
+									option(value="children") Children 
+									option(value="civil_rights") Civil Rights 
+									option(value="community_service") Community and Service 
+									option(value="democracy_politics") Democracy and Politics 
+									option(value="economic_empowerment") Economic Empowerment 
+									option(value="education") Education
+									option(value="environment") Environment 
+									option(value="food") Food 
+									option(value="health") Health 
+									option(value="housing_homelessness") Housing & Homelessness 
+									option(value="human_rights") Human Rights 
+									option(value="humanitarian_relief") Humanitarian Relief 
+									option(value="international_affairs") International Affairs
+									option(value="job_creation") Job Creation
+									option(value="media_public_debate") Media and Public Debate 
+									option(value="microfinance") Microfinance 
+									option(value="poverty_alleviation") Poverty Alleviation 
+									option(value="religion") Religion 
+									option(value="science_technology") Science & Technology 
+									option(value="senior_citizens_issues") Senior Citizens Issues 
+									option(value="transfer_of_knowledge") Transfer of Knowledge
+									option(value="womens_issues") Women's Issues
+							li
+								label(for="video") Video Pitch
+									span paste your <a href="http://www.youtube.com" target="_blank">YouTube</a> embed code
+								input( type="text", id="video", name="video", tabindex="16" )
+					nav#progress
+						a(href="/landing/")#skip.big.smooth_btn.gray Skip
+						button(type="submit")#next.big.smooth_btn Next
+			footer

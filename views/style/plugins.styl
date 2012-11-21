@@ -1,0 +1,339 @@
+// MODAL
+.modal
+	position: fixed
+	top: -25%
+	left: 50%
+	z-index: 1050
+	overflow: auto
+	width: 500px
+	margin: -250px 0 0 -250px
+	opacity: 0
+	background-color: rgba(23, 28, 38, .75)
+	border: 1px solid #171c26
+	bdrz(5px)
+	bxsh(0 2px 5px rgba(0,0,0,.40))
+
+	header
+		position: relative
+		height: 29px
+		border-bottom: 1px solid #171c26
+		background-color: rgba(23, 28, 38, .75)
+		bdrz(5px 5px 0 0)
+		// bxsh(0 1px 0 rgba(255,255,255,.20) inset\, 0 1px 0 rgba(255,255,255,.20))
+		padding: 9px 10px 0 20px
+		h2
+			color: #FFF
+			text-shadow: 0 1px 0 #000000
+		.modal_close_btn
+			position: absolute
+			right: 10px
+			top: 10px
+			display: block
+			width: 20px
+			height: 20px
+			text-indent: -9999px
+			background: transparent url('/images/spt_aux_icons.png') -16px 0 no-repeat
+			float: right
+			&:hover
+				background-position: -16px -20px
+
+	.modal_body
+		text-align: center
+		overflow-y: auto
+		max-height: 400px
+		padding: 30px
+		color: #FFF
+		h3
+			text-transform: none
+			text-shadow: none
+			font-size: 16px
+			color: #6cc2e9
+		p
+			color: #FFF
+			font-size: 12px
+			font-weight: bold
+
+	footer
+		padding: 14px 15px 15px
+		margin-bottom: 0
+		text-align: right
+		bdrz(0 0 5px 5px)
+		bxsh(0 1px 0 rgba(255,255,255,.40) inset)
+		*zoom: 1
+		&:before, &:after
+			display: table
+			content: ""
+		&:after
+			clear: both
+
+	
+	.col1of2, .modal .col2of2
+		width: 250px
+
+	.col1of2
+		margin-left: -1px
+
+	nav.socials
+		text-align: center
+		margin: 20px auto 20px
+		padding-bottom: 20px
+		border-bottom: 1px solid rgba(255,255,255,.40)
+	
+.modal_backdrop
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	z-index: 1040
+	background-color: #171c26
+	filter: unquote('alpha(opacity=0)')
+	opacity: 0
+	
+// Datepicker
+.ui-datepicker 
+	display: none
+	width: 165px
+	padding: 20px
+	background-color: rgba(23, 28, 38, .9)
+	border: 1px solid #171c26
+	bdrz(5px)
+	bxsh(0 2px 5px rgba(0,0,0,.40))
+	select+select 
+		margin-left: 5px
+	select 
+		width: 80px
+		float: left;
+	.ui-datepicker-header 
+		margin: -20px 0 10px -20px
+		width: 175px
+		height: 29px
+		border-bottom: 1px solid #171c26
+		background-color: rgba(23, 28, 38, .75)
+		bdrz(5px 5px 0 0)
+		box-shadow: 0 1px 0 rgba(255,255,255,.40) inset, 0 1px 0 rgba(255,255,255,.40)
+		padding: 9px 10px 0 20px
+	.ui-datepicker-next,.ui-datepicker-prev
+		display: none
+	.ui-datepicker-calendar 
+		width: 165px
+		th
+			color: white
+		td 
+			text-align: center
+			a 
+				text-decoration: none
+				font-weight: bold
+
+// Tabs
+.ui-tabs-hide
+	display:none;
+.ui-tabs-panel
+	padding: 10px	
+
+.tab_widget
+	border: 1px solid #bfbfbf
+	bdrz(3px)
+	nav
+		width: 278px
+		border-bottom: 1px solid #bfbfbf
+		// height: 50px
+		padding: 10px
+		bdrz(3px 3px 0 0)
+		grad(#FFF, #ededed)
+		li+li
+			margin-left: 10px
+	.ui-state-default a
+		display: inline-block
+		height: 11px
+		padding: 7px 15px
+		border: 1px solid #bfbfbf
+		bdrz(3px)
+		background: #FFF url('/images/bg_chunky_btn.png') 0 0 repeat-x
+		bxsh(0 1px 1px rgba(0,0,0,.55))
+		font-family: default_fonts
+		font-weight: 700
+		text-transform: uppercase
+		text-shadow: 0 1px 0 #FFFFFF
+		font-size: 11px
+		color: #808080
+		letter-spacing: 1px
+		text-decoration: none
+		max-height: 28px
+		cursor: pointer
+		line-height: 1em
+	.ui-state-hover a, .ui-tabs-selected a
+		background-position: 0 -26px
+		padding: 8px 15px 6px
+		color: #808080
+		bxsh(0 1px 3px rgba(0,0,0,.45) inset\, 0 1px 0px #FFFFFF)
+	.ui-tabs-panel
+		width: 278px
+		ul
+			margin: 0
+.tabs 
+	header
+		position: relative
+		border: none
+		border-bottom: 1px solid gray
+		padding: 0
+		ul
+			position: relative
+			margin-bottom: -1px
+			margin: 0
+			padding: 0
+			list-style: none
+			li+li
+				margin-left: 1px
+			li.right
+				float: right
+			li
+				float: left
+				a
+					z-index: -1
+					display: inline-block;
+					height: 15px
+					bdrz(5px 5px 0 0)
+					font-family: default_fonts
+					font-weight: 900
+					text-transform: uppercase
+					padding: 12px 20px 10px
+					text-decoration: none
+					cursor: pointer
+					line-height: 1em
+					highlight(.75)
+					text-align: center
+					width: 130px
+					z-index: 10
+					text-shadow: 0 1px 0 rgba(255, 255, 255, .75)
+				.section_strip
+					position: absolute
+					top: 38px
+					z-index: 0
+					left: 0
+					width: 628px
+					height: 10px
+					highlight(.75)
+					
+		.ui-state-default a
+			background-color: #ebebeb
+			border: 1px solid gray
+			border-bottom: none;
+			color: gray
+		.ui-state-hover a, .ui-tabs-selected a
+			height: 17px
+			margin-bottom: -2px
+			background-color: blue
+			border: 1px solid #3c89ad
+			color: white
+			text-shadow: 0 1px 0 rgba(0,0,0,.30)
+			border-bottom: none;
+		.ui-state-default .section_strip
+			z-index: 9
+			background-color: blue
+			border: 1px solid #3c89ad
+		.ui-state-hover .section_strip, .ui-tabs-selected .section_strip
+			z-index: 10
+			
+		.yellow.ui-state-default a
+				background-color: yellow
+				border: 1px solid dark_yellow
+				color: dark_yellow
+		.yellow.ui-state-hover a, .yellow.ui-tabs-selected a
+				color: white
+				background-color: yellow
+				color: white
+		.yellow .section_strip
+				background-color: yellow
+				border: 1px solid dark_yellow
+				
+		.green.ui-state-default a
+			background-color: green
+			border: 1px solid dark_green
+			color: dark_green
+		.green.ui-state-hover a, .green.ui-tabs-selected a
+			background-color: green
+			color: white
+		.green .section_strip
+			background-color: green
+			border: 1px solid dark_green
+				
+		.red.ui-state-default a
+			background-color: red
+			border: 1px solid dark_red
+			color: dark_red
+		.red.ui-state-hover a, .red.ui-tabs-selected a
+			background-color: #d15656
+			color: white
+		.red .section_strip
+			background-color: red
+			border: 1px solid dark_red
+
+.tabs.stack_960 header .section_strip
+	width: 958px !important
+	
+	
+// ULOADIFY
+
+.uploadifive-queue-item 
+	background-color: #F5F5F5;
+	border-bottom: 1px dotted #D5D5D5;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	font: 12px Arial, Helvetica, Sans-serif;
+	margin-top: 3px;
+	padding: 15px;
+
+.uploadifive-queue-item .close 
+	background: url('/images/uploadifive-cancel.png') 0 0 no-repeat;
+	display: block;
+	float: right;
+	height: 16px;
+	text-indent: -9999px;
+	width: 16px;
+
+.uploadifive-queue-item .progress 
+	border: 1px solid #D0D0D0;
+	height: 3px;
+	margin-top: 5px;
+	width: 100%;
+
+.uploadifive-queue-item .progress-bar 
+	background-color: #0072BC;
+	height: 3px;
+	width: 0;
+
+// FIELD CLONER
+.clone_container	
+	nav
+		clear:both
+		width: 62px
+		float: right
+		ul
+			li+li
+				margin-left: 10px
+			li
+				clear: none
+				margin: 0
+				padding: 0
+				min-height: 100%  !important
+				a
+					display: block
+					width: 26px
+					height: 26px
+					padding: 0px 0 0 
+					line-height: 22px
+					text-align: center
+					background-color: gray
+					bdrz( 30px )
+					text-decoration: none
+					color:	#FFF
+					font-size: 25px
+					&:hover
+						background-color: blue
+					&.disabled
+						background: #ECECEC						
+	fieldset+fieldset
+		border-top: 1px solid gray
+		padding-top: 20px

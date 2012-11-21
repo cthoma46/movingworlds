@@ -1,0 +1,117 @@
+extends ../layouts/layout
+
+block append scripts
+		script( src='/javascript/plugins/jquery-ui.min.js')
+		script( src='/javascript/plugins/jquery.mw_combo.js')
+		script( src='/javascript/plugins/jquery.tag-it.js')
+		script( src='/javascript/plugins/jquery.mw_modal.js')
+		script( src='/javascript/plugins/jquery.mw_fieldcloner.js')
+		script( src='/javascript/plugins/jquery.validate.min.js')
+		script( src='/javascript/register.js')
+
+block content
+	- var expBoxClass = '';
+	- var seBoxClass = '';
+	- var step2Label = '???';
+	- var step3Label = '???';
+	if ('undefined' !== typeof user && user.type === 'experteer')
+		- expBoxClass = 'on'
+		- step2Label = 'Personal Information'
+		- step3Label = 'Work &amp; Education'
+	if ('undefined' !== typeof user && user.type === 'representative')
+		- seBoxClass = 'on'
+		- step2Label = 'Company Information'
+		- step3Label = 'First Opportunity'
+
+	div.layout_960
+		- if ('undefined' !== typeof errors && errors.length)
+			ul.error
+				- each error in errors
+					li= error
+		nav#steps.clearfix
+			ul
+				li.step1.on 
+					span Basic information
+				li.step2 
+					span= step2Label
+				li.step3 
+					span= step3Label
+				li.step4 
+					span Review
+		section.stack_960
+			header
+				h2 1. Basic Information
+			section.role_boxes.clearfix
+				div( class="experteer_box "+expBoxClass )
+					div.icon
+					h4 I want to go Experteering
+					p I am a professional and I want to donate my expertise to make the world a better place
+				div( class="se_box "+seBoxClass )
+					div.icon
+					h4 I want support for my organization 
+					p I am representing an organization that is looking for a professional to support our work.
+
+			section(class="stack_body clearfix step1")
+				nav.social_connects.clearfix
+					ul.no_style
+						li
+							a(href="/auth/linkedin").linkedin_connect Connect with LinkedIn
+						//- li
+						//- 	a(href="/auth/google").google_plus_connect Connect with Google_plus
+						li
+							a(href="/auth/facebook").facebook_connect Connect with facebook
+
+				form( action="/register", method="post")
+					-if( typeof user !== 'undefined' )
+						input(type="hidden", name="_id", value=user._id)
+						input(type="hidden", name="coupon", value=user.invite.coupon)
+						input(type="hidden", name="type", value=user.type)
+						input(type="hidden", name="email", value=user.email)
+					fieldset.col1of2.split
+						ul
+							li
+								label(for="first_name") First Name
+								input( type="text", id="first_name", name="first_name", tabindex="1", value=user.first_name)
+							li
+								label(for="city") City
+								input( type="text", id="city", name="city", tabindex="5", value=user.city )
+							li
+								label Gender
+								ul
+									li
+										input( type="radio", id="male", name="gender", value="male", tabindex="9", checked=user.gender=='male'  )
+										label(for="male") Male
+									li
+										input( type="radio", id="female", name="gender", value="female", tabindex="10", checked=user.gender=='female'  )
+										label(for="female") Female
+							li
+								label(for="password") Password
+								input( type="password", id="password", name="password", tabindex="7" )
+							li
+								input( type="checkbox", id="notify", name="notify", value="true", tabindex="12")
+								label(for="notify") Send me notification about movingworlds
+
+					fieldset.col2of2.split
+						ul
+							li
+								label(for="last_name") Last Name
+								input( type="text", id="last_name", name="last_name", tabindex="2", value=user.last_name )
+							li
+								label(for="country") Country
+								select( id="country", name="country", tabindex="6", class="combobox")
+									include ../includes/countries_combo
+							li.datepicker
+								label(for="birthday") Birthday
+								-bday = (typeof user.birthday !== 'undefined') ? settings.moment(user.birthday).format('MM/DD/YYYY') : ""
+								input( type="text", id="birthday", name="birthday", tabindex="4", data-months="1", data-years="2", value=bday  )
+							li
+								label(for="confirm") Confirm Password
+								input( type="password", id="confirm", name="confirm", tabindex="8"  )
+							li
+								input( type="checkbox", id="agree", name="agree", value="true", tabindex="11")
+								label(for="agree")
+									| I agree to MovingWorlds 
+									a(href="/terms_conditions") terms and conditions
+					nav.progress.center.clear
+						button(type="submit")#next.big.smooth_btn Next
+			footer

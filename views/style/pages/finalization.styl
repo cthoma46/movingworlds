@@ -1,0 +1,57 @@
+#finalization
+	h1
+		span
+			color: dark_blue
+	header
+		h2
+			float: left
+		select
+			float: right
+			margin-right: 30px
+	.intro
+		padding: 30px
+		background: #FFF url('../images/bg_crosshatch.png') 0 0 repeat
+		bxsh(0 1px 0 #fff)
+		border-bottom: 1px solid #bfbfbf
+		p
+			font-weight: bold
+			color: dark_blue
+	ul.comments
+		list-style: none
+		padding-bottom: 20px
+		li+li
+			margin-top: default_margin
+			border-top: 1px solid gray
+			bxsh(0 1px 0 #fff inset)
+		li
+			padding-top: default_margin
+			.avatar
+				float: left
+			article
+				padding-left: 110px
+		li.comment_box
+			margin-left: -50px
+			padding: default_margin 50px
+			width: 858px
+			background: #FFF url('../images/bg_crosshatch.png') 0 0 repeat
+			bxsh(0 1px 0 #fff)
+			border-bottom: 1px solid #bfbfbf
+	.agree_to_terms
+		width: 714px
+		height: 60px
+		margin: 0 auto
+		li+li
+			margin-left: 30px
+		.smooth_btn
+			// display: block
+			width: 300px
+			height: auto
+			.check
+				display:block
+				background: url('/images/spt_form.png') 0 0 no-repeat
+				width: 18px;
+				height: 18px;
+				float: left;
+				margin: 0 10px 5px 0
+				&.on
+					background-position: 0 -36px

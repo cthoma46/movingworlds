@@ -1,0 +1,161 @@
+extends layouts/layout
+
+block append scripts
+
+block content
+	div.layout_960
+		h1= title
+		aside.col1of2
+			menu(style="text-align: right")
+				ul
+					li
+						a(href='#experteer').chunky_btn Experteer
+					li
+						a(href='#se').chunky_btn Social Enterprise
+					li
+						a(href='#page').chunky_btn Page
+		div.col2of2
+			h2#experteer Experteers
+			hr
+			h4 Global Search
+			p The following url will produce all the Experteers in the database
+				pre
+					code http://movingworlds.nodester.com/api/experteer
+			h4 Id Search
+			p Adding and id will output the Experteer with that id.
+				pre
+					code http://movingworlds.nodester.com/api/experteer/4fcae73b460da48f66000055
+			h4 Field Search
+			p You can search for an Experteers by adding <code>search</code> and <code>fields</code> to the query string like so:
+				pre
+					code http://movingworlds.nodester.com/api/experteer?search=india&field=country
+			p The above url will produce only Experteers from India. 
+			p Multiple search terms can be seperated by colon (:), pipe (|) or comma (,) like so: <code>search=india|china</code>. If you leave of the <code>fields</code> parameter off a default set of perimeters will be used: 
+				code
+					| first_name,
+					| last_name,
+					| city,
+					| country,
+					| professions,
+					| industry
+			p To search nested documents use dot notation. For instance if you wanted to search for Experteers who majored in engineering you might try a seach like this:
+				pre
+					code http://movingworlds.nodester.com/api/experteer?search=engineer&field=education.major
+			p You can search from the following fields
+				pre
+					code
+						| first_name
+						| last_name
+						| birthday
+						| city
+						| country
+						| gender\:'male' | 'female'
+						| skills
+						| interests
+						| lived
+						| visited
+						| languages
+						| support_type\:'management' | 'technical'
+						| avatar
+						| bio
+						| links
+						| status
+						| professions
+						| industry
+						| career_started
+						| employment
+						| employment.title
+						| employment.start
+						| employment.end
+						| employment.employer
+						| employment.city
+						| education
+						| education.school
+						| education.major
+						| education.degree:'diploma' | 'certificate' | 'AA' | 'AS' | 'BA' | 'BS' | 'MA' | 'MS' | 'PhD'
+						| education.start
+						| education.end
+						| profile
+						| profile.availability
+						| profile.availability.start
+						| profile.availability.end
+						| profile.value
+						| profile.video
+						| profile.field:'management' | 'development' | 'technical' | 'education'
+						| profile.countries
+						| profile.industry
+						| profile.goals
+						| profile.motivation 
+			h2#se Social Enterprise
+			hr
+			h4 Global Search
+			p The following url will produce all the Social Enterprises in the database
+			pre
+				code http://movingworlds.nodester.com/api/social_enterprise
+			h4 Id Search
+			p Adding and id will output the single Social Enterprise with that id.
+			pre
+				code http://movingworlds.nodester.com/api/social_enterprise/4fcae73b460da48f66000055
+			h4 Field Search
+			p You can search for a Social Enterprise by adding <code>search</code> and <code>fields</code> to the query string like so:
+			pre
+				code http://movingworlds.nodester.com/api/social_enterprise?search=india&field=country
+			p The above url will produce only Social Enterprises from India. 
+			p Multiple search terms can be seperated by colon (:), pipe (|) or comma (,) like so: <code>search=india|china</code>. If you leave of the <code>fields</code> parameter off a default set of perimeters will be used: 
+				code
+					| name,
+					| city,
+					| country,
+					| opportunities.title,
+					| opportunities.profession,
+					| opportunities.details,
+					| opportunities.field,
+					| opportunities.skills
+			p To search nested documents use dot notation. For instance if you wanted to search for Social Enterprises who majored in engineering you might try a seach like this:
+				pre
+					code http://movingworlds.nodester.com/api/social_enterprise?search=engineer&field=education.major
+			p You can search from the following fields
+				pre
+					code
+					| name
+					| rep_id
+					| city
+					| country
+					| type: 'profit' | 'non-profit' | 'hybrid' | 'other'
+					| size
+					| avatar
+					| registered
+					| links
+					| industry
+					| partner_relations
+					| partner_org_relation
+					| introduction
+					| impact
+					| conduct
+					| video
+					| opportunities
+					| opportunities.title
+					| opportunities.city
+					| opportunities.country
+					| opportunities.details
+					| opportunities.start
+					| opportunities.end
+					| opportunities.deadline
+					| opportunities.professions
+					| opportunities.min_experience
+					| opportunities.field: 'management' | 'development' | 'technical' | 'education'
+					| opportunities.skills
+					| opportunities.languages
+					| opportunities.impact
+					| opportunities.room_board
+					| opportunities.compensation
+					| opportunities.benefits
+					| opportunities.learn
+					| opportunities.placement_partner
+					| opportunities.post_engagement
+			h2#page Page
+			hr
+			h4 Find a single page
+			p Add <code>page/[slug]</code> to the end of the api url. The following will retieve the "About" page.
+			pre
+				code http://movingworlds.nodester.com/api/page/about

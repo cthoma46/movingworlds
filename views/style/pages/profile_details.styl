@@ -1,0 +1,120 @@
+.credentials{
+	clear: both
+	text-shadow: 0 1px 0 #FFFFFF
+	// margin-bottom: 10px
+	a {
+		color: blue
+		font-weight: bold
+		text-decoration: none
+	}
+	.invited_btn, .friends_btn{
+		display: inline-block
+		height: 37px
+		padding: 7px 5px
+		margin-right: 10px
+		border: 1px solid #bfbfbf
+		bdrz(3px)
+		background: #FFF url(../images/bg_chunky_btn.png) 0 27px repeat-x
+		bxsh(0 1px 1px rgba(0,0,0,.55))
+		font-family: default_fonts
+		font-weight: 900
+		text-transform: uppercase
+		font-size: 21px
+		color: blue
+		letter-spacing: 1px
+		cursor: pointer
+		text-align: center
+		span {
+			font-size: 11px
+			font-weight: bold
+			display: block
+			color: gray
+		}
+	}
+	.invited_by, .represented_by{
+		padding-top: 9px
+		span {
+			display: block
+			color: gray
+		}
+		a:hover{
+			color: red
+		}
+	}
+}
+.profile_links{
+	clear: both
+	li{
+		margin: 10px 10px 0 0
+		a {
+			color: blue
+			font-weight: bold
+			text-decoration: none
+		}
+		a:hover{
+			color: red
+		}
+	}
+}
+#personal_details{
+	// margin: 0
+	ul{
+		list-style: none
+		margin: 0
+		padding: 0
+		margin-bottom: 10px
+	}
+	.detail+.detail{
+		clear: both;
+		border-top: 1px solid gray
+		padding-top: 20px
+		margin-top: 20px
+	}
+}
+
+#exp_profile{
+
+	.status_bar {
+		bdrz(5px)
+		border: 1px solid #bfbfbf
+		height: 54px
+		padding: 0 20px;
+		margin-bottom: 10px;
+		
+		.status {
+			margin-top: 16px
+		}
+		
+		nav {
+			margin-top: 7px
+			float: right
+			li+li {
+				margin-left: 10px
+			}
+		}
+	}	
+}
+
+.profile_video, .opportunity_map {
+	padding: 30px 0
+	background: #FFF url('../images/bg_crosshatch.png') 0 0 repeat
+	border-right: 1px solid #bfbfbf
+	border-left: 1px solid #bfbfbf
+	border-bottom: 1px solid #bfbfbf
+	bxsh( 0 1px 0 #fff)
+	.video_container, .map_container {
+		width: 560px
+		height: 315px
+		margin: 0 auto
+		background: #222
+		// border: 8px solid #FFF
+		bxsh( 0 0 8px rgba(0,0,0,.5))
+	}
+	.map_container {
+		border: 6px solid #fff
+	}
+	h3 {
+		text-align: center
+		margin-top: 15px
+	}
+}

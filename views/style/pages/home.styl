@@ -1,0 +1,275 @@
+#feature
+	background: #FFF url('/images/bg_feature.png') 0 0 repeat
+	margin-top: -30px
+	height: 530px
+	h1
+		font-size: 39px
+		text-align: center
+		color: #245b75
+		padding-top: 20px
+		font-weight: 900
+		text-shadow: 0 1px 0 #FFFFFF
+		border: none
+		bxsh(none)
+	#dotmap
+		position: relative
+		background: transparent url('/images/gfx_dotmap.png') 50% -60px repeat
+		width: 1160px
+		height: 530px
+		margin: 0 auto
+		.marker
+			opacity: 0
+			position: absolute
+			background: transparent url('/images/spt_aux_icons.png') 0 0 no-repeat
+			width: 16px
+			height: 20px
+			cursor: pointer
+			&.experteer_icn
+				background-position: 0 0
+			&.se_icn
+				background-position: 0 -21px
+#se_home #feature h1
+	font-size: 32px
+.testemonial_popup
+	display: none
+	position: absolute
+	left: 30px
+	bxsh(0 2px 5px rgba(0,0,0,.40))
+	color: #FFF
+	width: 425px
+	max-height: 455px
+	background-color: rgba(23, 28, 38, .75)
+	border: 1px solid #171c26
+	bdrz(5px)
+	padding: 10px
+	z-index: 99
+	
+	header
+		width: 415px
+		height: 28px
+		background-color: rgba(23, 28, 38, .75)
+		bdrz(5px 5px 0 0)
+		bxsh(0 1px 0 rgba(255,255,255,.40) inset\, 0 1px 0 rgba(255,255,255,.40))
+		margin: -10px 0 10px -10px
+		padding: 9px 10px 0 20px
+		h2
+			color: #FFF
+			text-shadow: 0 1px 0 #000000
+			float: left
+		.close_btn
+			display: block
+			width: 20px
+			height: 20px
+			text-indent: -9999px
+			background: transparent url('/images/spt_aux_icons.png') -16px 0 no-repeat
+			float: right
+			&:hover
+				background-position: -16px -20px
+
+	.video_testimony
+		width: 425px
+		height: 216px
+		background-color: #000
+		margin-bottom: 10px
+
+	.avatar
+		background-color: transparent
+		float: left
+		border: none
+		bxsh(0 1px 0 rgba(255,255,255,.4))
+		border-top: 1px solid rgba(0,0,0,.8)
+		background-color: #FFF
+
+	.profile_info
+		width: 335px
+		padding-left: 10px
+		float: left
+		max-height: 190px
+		overflow: hidden
+		hgroup
+			color: #FFF
+			h3
+				color: #FFF
+				text-shadow: 0 1px 0 #000000
+			h4
+				color: #6dc2e9
+				text-shadow: 0 1px 0 rgba(255,255,255,0)
+		p
+			color: #FFF
+			max-height: 50px
+			font-size: 13px
+			line-height: 16px
+
+	.popup_arrow
+		position: absolute
+		width: 13px
+		height: 20px
+		background: transparent url('/images/spt_aux_icons.png') -36px 0 no-repeat
+
+.testemonial_popup.left_side .popup_arrow
+	background-position: -36px -20px
+
+#invite_wrapper
+	position: relative
+	top: -70px
+	width: 678px
+	margin: 0 auto -30px
+	label
+		display: block
+		font-family: 'Lato', sans-serif
+		text-transform: none
+		color: #3c82a2
+		font-size: 22px
+		letter-spacing: 0
+		font-weight: 900
+		line-height: 20px
+		margin-bottom: 10px
+		text-indent: 40px
+		&.error
+			display: none !important
+			// position: absolute
+			// top: 15px
+			// left: 60px
+			// color: #FFF
+			// // padding: 0
+			// text-indent: 0
+			// font-size: 12px
+		
+		
+	.field_wrap
+		width: 678px
+		height: 72px
+		background: transparent url('/images/spt_invite_form.png') 0 -94px no-repeat
+		padding: 12px 46px 0
+		line-height: 0
+		input[type="email"]
+			color: #4d4d4d
+			display: block
+			float: left
+			background: transparent url('/images/spt_invite_form.png') -37px 0px no-repeat !important
+			width: 451px
+			height: 45px
+			border: none
+			padding: 0 0 0 20px
+			margin-right: 10px
+			font-size: 20px
+			&:focus
+				background-position: -37px -47px !important
+				outline: none
+		button
+			display: block
+			float: left
+			background: transparent url('/images/spt_invite_form.png') -493px 0px no-repeat
+			width: 128px
+			height: 45px
+			border: none
+			font-family: 'Lato', sans-serif
+			color: #FFF
+			font-size: 19px
+			text-transform: uppercase
+			font-weight: 400
+			text-shadow: 0 1px 0 #226889
+			&:hover
+				padding-top: 7px
+				height: 45px
+				color: #E6E6E6
+				background-position: -493px -47px
+
+#intro_video
+	background: transparent url('/images/bg_intro_video.png') 0 0 no-repeat
+	width: 439px
+	height: 253px
+	padding: 13px
+	margin-bottom: default_margin
+#welcome
+	position: relative
+	p
+		position: relative
+		z-index: 1
+	#welcome_bg_gfx
+		position: absolute
+		top: -60px
+		right: -80px
+		z-index: 0
+		width: 225px
+		height: 316px
+		background: transparent url('/images/bg_welcome_par.png') top right no-repeat
+
+#se_cta
+	position: relative
+	clear: both
+	padding: 15px 0 12px
+	margin: default_margin 0
+	background: #f1f1f1 url('/images/icn_opportunity.png') 51% 16px no-repeat
+	bdrz(5px)
+	bxsh( 0 2px 5px rgba(0, 0, 0, .25) inset)
+	p
+		color: dark_gray
+		font: 700 13px default_fonts
+		letter-spacing: 1px
+		text-transform: uppercase
+		text-align: right
+		// padding-left: 60px
+		margin: 0
+	.chunky_btn
+		font-size: 12px
+		margin-left: 23px
+		width: 390px
+		text-align: center
+		// margin-top: 4px
+		
+#mw_steps
+	margin-bottom: default_margin
+	ul
+		li
+			width: 240px
+			float: left
+		hgroup
+			text-align: center
+			h4
+				font-size: 21px
+			h5
+				font-size: 17px
+				text-transform: none;
+				color: text_color
+		p
+			margin: 10px
+	ul.step_icons
+		height: 80px
+		margin-bottom: default_margin
+		li
+			background: url('/images/spt_steps.png') 0 0 no-repeat
+			width: 80px
+			height: 80px
+			margin: 0 17px
+		li.arrow
+			margin: 0
+			width: 125px
+			background-position: -160px -80px
+		li:first-child
+			margin-left: 80px
+	li.invite_step
+		background-position: 0 0
+		h4
+			color: red
+	li.profile_step
+		background-position: -81px 0!important
+		h4
+			color: green
+	li.match_step
+		background-position: -162px 0!important
+		h4
+			color: yellow
+	li.impact_step
+		background-position: -242px 0!important
+		h4
+			color: blue
+	li.opportunity_step
+		background-position: 0 -80px !important
+		h4
+			color: yellow
+	li.support_step
+		background-position: -80px -80px !important
+		h4
+			color: blue
+		

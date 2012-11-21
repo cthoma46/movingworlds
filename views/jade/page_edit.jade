@@ -1,0 +1,42 @@
+extends layouts/layout
+
+block append scripts
+
+block content
+	div.layout_960
+		aside.col1of2
+			menu(style="text-align: right")
+				ul
+					li
+						a(href='page_edit').chunky_btn.blue 
+							\Create New Page
+					each page in pages
+						-var className = ( page._id == fs.getValue('_id') ) ? 'on' : ''
+						li
+							a(href='page_edit?id='+page._id, class="chunky_btn "+className) 
+								=page.title
+							//- a(href='page_edit?id='+page._id).chunky_btn X
+		div.col2of2
+			h1 Edit Page
+			form(action="page_edit", method="post")
+				input(type="hidden", id="_id", name="_id", value=fs.getValue('_id'))
+				ul
+					li
+						label(for="title") Title
+						input(type="text", id="title", name="title", value=fs.getValue('title'))
+					li
+						label(for="body") Body
+						textarea(id="body", name="body", style="height: 200px") 
+							=fs.getValue('body');
+					li
+						ul.clearfix
+							li
+								button(type="submit").smooth_btn.big Save Page
+							li.right
+								a(href="http://daringfireball.net/projects/markdown/syntax", target="_blank").chunky_btn.small Markdown Syntax
+							if value=fs.getValue('_id')
+								li
+									button(type="submit", name="remove", id="remove", value="true").smooth_btn.red.big Delete Page
+								li.right
+									a(href="/"+fs.getValue('slug'), target="_blank").chunky_btn.small Visit this page
+			br.clear

@@ -1,0 +1,28 @@
+div.widget.se(class=className)
+	header
+		div.icon
+		h3= se.name || 'Undefined'
+	section.widget_body
+		div.avatar
+			.av_img_container
+				if se.img || se.type
+					img(src= se.img || "/images/icn_avatar_"+se.type+".png", width="80", height="80")
+				if se.verified
+					div.verified
+		ul
+			li
+				h3= se.city+", "+se.country
+			li
+				strong Status: 
+				=se.type
+			li
+				- var size = se.interpretSize()
+				strong Size: 
+				span( title=size.desc )= size.title
+			li
+				strong Field: 
+				=se.opportunities[0].field
+		nav
+			ul
+				li
+					a(href="/social_enterprise/"+se.id+"/").chunky_btn Details

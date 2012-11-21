@@ -1,0 +1,240 @@
+// AVATAR
+.avatar
+	position: relative
+	display: block
+	width: 80px
+	height: 79px
+	// overflow: hidden
+	bdrz(5px)
+	bxsh(0 1px 0 #FFF)
+	border-top: 1px solid rgba(0,0,0,.30)
+	background-color: #FFF
+	.av_img_container
+		width: 80px
+		height: 79px
+		overflow: hidden
+		bdrz(5px)
+	.verified
+		background: transparent url('/images/spt_verified.png') 0 0 no-repeat
+		position: absolute
+		display: block
+		top: -8px
+		right: -8px
+		width: 24px
+		height: 26px
+		
+// PROFILE STATUS
+.status
+	float: left;
+	height: 22px
+	padding: 2px 0 0 30px;
+	background: transparent url('../images/spt_lights.png') 0 0 no-repeat
+	font-weight: bold
+	line-height: 21px
+	text-shadow: 0 1px 0 #FFF
+	text-transform: capitalize
+	span{
+		background-color: green
+		color: #fff
+		font-size: 14px
+		bdrz(10px)
+		padding: 3px 10px
+		text-shadow: none
+	}
+	&.green, &.on
+		background-position: 0 0;
+		color: dark_green
+	&.off
+		background-position: 0 -72px;
+		color: dark_gray
+	&.red
+		background-position: 0 -23px;
+		color: dark_red
+	&.yellow
+		background-position: 0 -48px;
+		color: dark_yellow
+
+//PAGINATION
+.pagination 
+	width: 144px;
+	height: 37px;
+	margin: 0 auto default_margin;
+	font-weight: bold
+	font-size: 13px;
+	color: #808080
+	text-shadow: 0 1px 0 #fff
+	li+li 
+		padding-left: 10px
+	.page_info
+		width: 50px
+		text-align: center
+		padding-top: 12px
+		em 
+			font-weight: normal
+			font-family: Georgia, serif;
+	a
+		display: block
+		width: 37px;
+		height: 38px;
+		background: transparent url('/images/spt_pagination_btns.png') 0 0 no-repeat
+		text-indent: -9999px
+		&.next 
+			background-position: -37px 0
+			&:hover 
+				background-position: -37px -38px
+			&.disabled 
+				background-position: -37px -76px !important
+		&.previous 
+			background-position: 0 0
+			&:hover 
+				background-position: 0px -38px
+			&.disabled 
+				background-position: 0 -76px !important
+
+// PAPER STACK
+.stack_960, .stack_630 
+	background-color: #f8f9fa
+	margin-bottom: default_margin
+	bdrz(5px 5px 0 0)
+	header 
+		position: relative
+		padding: 15px 0 11px 30px
+		border: 1px solid gray;
+		bxsh(0 0	8px #fff inset)
+		bdrz(5px 5px 0 0)
+		bxsh(0 1px 0 rgb(255,255,255))
+		&.yellow
+			bxsh(0 1px 0 rgb(255,255,255)\, 0 1px 0 rgba(255,255,255, .75) inset)
+			background-color: yellow
+			border: 1px solid dark_yellow
+			margin: -1px 0 0 -1px
+			width: 928px
+			 h2
+				color: dark_yellow
+	.stack_body 
+		padding: 20px
+		border-left: 1px solid gray
+		border-right: 1px solid gray
+	
+
+.stack_960
+	.col1of2, .col2of2
+		width: 444px !important
+	footer
+		width: 960px
+		height: 25px
+		background: transparent url('/images/bg_stack960_bottom.png') 0 bottom no-repeat
+
+.stack_630
+	.col1of2, .col2of2
+		width: 268px
+	footer
+		width: 630px
+		height: 25px
+		background: transparent url('/images/bg_stack630_bottom.png') 0 bottom no-repeat
+
+// SE / EXPERTEER WIDGET
+.widget
+	position: relative
+	width: 298px
+	height: 172px
+	bdrz(5px)
+	background: linear-gradient(top,	#e8e8e8 0%,#ffffff 100%)
+	filter: unquote('progid:DXImageTransform.Microsoft.gradient( startColorstr="#e8e8e8", endColorstr="#ffffff",GradientType=0 )')
+	bxsh(0 1px 0 #ffffff)
+	border: 1px solid #bfbfbf
+	float: left
+	margin: 0 30px 30px 0
+
+	&.last
+		margin-right: 0
+		
+	header
+		position: relative
+		width: 253px
+		bdrz(5px 5px 0 0)
+		margin: -1px 0 0 -1px
+		padding: 8px 0 6px 45px
+		bxsh(0 1px 0 rgba(255,255,255, .40) inset)
+		border-width: 1px
+		border-style: solid
+		h3
+			color: #FFF
+			font-size: 15px
+	&.experteer header
+		background-color: #3f9fe9
+		border-color: #327fba
+		h3
+			text-shadow: 0 1px 1px #1e4b6e
+	&.se header
+		background-color: #e96c6c
+		border-color: #bb4141
+		h3
+			text-shadow: 0 1px 1px #6d0c0c
+			
+	.icon
+		display: block
+		float: left
+		width: 32px
+		height: 38px
+		position: absolute
+		top: 5px
+		left: 5px
+		background: transparent url('/images/spt_user_icons.png') 0 0 no-repeat
+	&.experteer .icon
+		background-position: 0 0
+	&.se .icon
+		background-position: -35px 0
+	
+	.widget_body
+		padding: 10px
+		.avatar
+			float: left
+			margin-right: 20px
+		ul
+			list-style: none
+			margin: 0
+			padding: 0
+			font-size: 13px
+			text-shadow: 0 1px 0 #ffffff
+			line-height: 16px
+		h3
+			font-size: 13px
+		li
+			color: #808080
+			margin: 0!important
+			strong
+				color: #404040
+		nav
+			position: absolute
+			bottom: 10px
+			right: 10px
+			li+li
+				margin-left: 10px!important
+
+.opportunity+.opportunity
+	margin-top: 10px
+.opportunity
+	position: relative
+	clear: both
+	font-size: 12px
+	line-height: 14px
+	.avatar
+		float: left
+	ul.opp_info
+		margin:0 0 0
+		padding: 0
+		list-style: none
+		hgroup
+			// line-height: 14px
+			h3
+				font-size: 13px
+				border: none!important
+				bxsh(none!important) 
+			h4
+				font-size: 12px
+	.x_btn
+		position: absolute
+		top: 5px
+		right: 0px
+

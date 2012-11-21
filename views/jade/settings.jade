@@ -1,0 +1,202 @@
+extends layouts/layout
+
+block append scripts
+
+block content
+	div.layout_960
+		section.stack_960.tabs
+			header.clearfix
+				ul
+					li
+						a(href="#basic") Basic Info
+						div.section_strip
+					li
+						a(href="#personal") Personal Info
+						div.section_strip
+					li
+						a(href="#work_edu") Work & Edu
+						div.section_strip
+					li
+						a(href="#password") Password
+						div.section_strip
+					li.green.right
+						a(href="#verified") Get Verified
+						div.section_strip
+			section.stack_body.clearfix
+				div#basic
+					form( action="", type="post")
+						fieldset.col1of2.split
+							ul
+								li
+									label(for="first_name") First Name
+									input( type="text", id="first_name", name="first_name", tabindex="1" )
+								li
+									label(for="email") Email
+									input( type="email", id="email", name="email", tabindex="3" )
+								li
+									label(for="city") City
+									input( type="text", id="city", name="city", tabindex="8"  )
+								li
+									label Gender
+									ul
+										li
+											input( type="radio", id="male", name="gender", value="male", tabindex="5"  )
+											label(for="male") Male
+										li
+											input( type="radio", id="female", name="gender", value="female", tabindex="6"  )
+											label(for="female") Female
+							
+						fieldset.col2of2.split
+							ul
+								li
+									label(for="last_name") Last Name
+									input( type="text", id="last_name", name="last_name", tabindex="2"  )
+								li.datepicker
+									label(for="dob") Birthday
+									input( type="date", id="dob", name="dob", tabindex="7", data-months="1", data-years="2"  )
+								li
+									include includes/countries_combo
+								li
+									input( type="checkbox", id="agree", name="agree", tabindex="13")
+									label(for="agree") I agree to MovingWorlds 
+										a(href="/terms_conditions") terms and conditions
+								li
+									input( type="checkbox", id="nofity", name="nofity", tabindex="12")
+									label(for="nofity") Send me notification about movingworlds
+				div#personal
+					form( action="", type="post")
+						fieldset.col1of2.split
+							ul
+								li
+									label(for="skills") Skills & Expertise
+									input( type="text", id="skills", name="skills", tabindex="1", class="tags" )
+								li
+									label(for="interests") Interests
+									input( type="text", id="interests", name="interests", tabindex="2", class="tags"  )
+								li
+									label(for="languages") Languages
+									input( type="text", id="languages", name="languages", tabindex="7", class="tags"  )
+								li
+									label(for="lived") Countries lived
+									input( type="text", id="lived", name="lived", tabindex="3", class="tags" )
+								li
+									label(for="visited") Countries visited
+									input( type="text", id="visited", name="visited", tabindex="4", class="tags" )
+								li
+									label Type of support I can offer
+									ul
+										li
+											input( type="radio", id="management", name="support", value="management", tabindex="5"  )
+											label(for="management") Management
+										li
+											input( type="radio", id="technical", name="support", value="technical", tabindex="6"  )
+											label(for="technical") Technical
+						fieldset.col2of2.split
+							ul
+								li#upload_avatar
+									div.avatar
+										img(src="/images/icn_exp_avatar.png", width="80", height="80")
+									input( type="file", id="avatar", name="avatar", tabindex="2"  )
+								li
+									label(for="bio") Bio
+									textarea( id="bio", name="bio", tabindex="1" )
+						h3.clear Networks
+						hr
+						fieldset.col1of2.split
+							ul
+								li
+									label(for="url") Blog / Website
+									input( type="text", id="url", name="url", tabindex="1" )
+								li
+									label(for="twitter") Twitter
+									input( type="text", id="twitter", name="twitter", tabindex="1" )
+						fieldset.col2of2.split
+							ul
+								li
+									label(for="linkedin") LinkedIn
+									input( type="text", id="linkedin", name="linkedin", tabindex="1" )
+								li
+									label(for="facebook") Facebook
+									input( type="text", id="facebook", name="facebook", tabindex="1" )
+					nav#progress
+						a(href="")#next.big.smooth_btn Save
+				div#password
+					form( action="", type="post")
+						fieldset.col1of2.split
+							ul
+								li
+									label(for="password") Password
+									input( type="password", id="password", name="password", tabindex="10"  )
+						fieldset.col2of2.split
+							ul
+								li
+									label(for="confim") Confirm Password
+									input( type="password", id="confim", name="confim", tabindex="11"  )
+				div#work_edu
+					form( action="", type="post")
+						fieldset.col1of2.split
+							ul
+								li
+									label(for="profession") Profession(s)
+										span max 2
+									input( type="text", id="profession", name="profession", tabindex="1", class="tags", data-max="2" )
+								li.slider_container.clearfix
+									label(for="experience").slider_label 
+										\Years of work experience
+										span 0
+									div(data-min="0", data-max="30").slider#experience
+									input( type="hidden", id="experience", name="experience", value="0", tabindex="3" )
+						fieldset.col2of2.split
+							ul
+								li
+									label(for="industry") Industry
+									input( type="text", id="industry", name="industry", tabindex="2"  )
+						h3.clear Work History
+						hr
+						fieldset.work_history.clear
+							div.col1of2.split
+								ul
+									li
+										label(for="employer") Employer
+										input( type="text", id="employer", name="employer", tabindex="1" )
+									li
+										label(for="city") City
+										input( type="text", id="city", name="city", tabindex="1" )
+							div.col2of2.split
+								ul
+									li
+										label(for="position") Position
+										input( type="text", id="position", name="position", tabindex="2"  )
+									li
+										include includes/countries_combo
+						h3.clear Education
+						hr
+						fieldset.school_history.clear
+							div.col1of2.split
+								ul
+									li
+										label(for="school") School Name
+										input( type="text", id="school", name="school", tabindex="1" )
+									li.half
+										input( type="checkbox", id="graduated", name="graduated", value="graduated", tabindex="1")
+										label(for="graduated") Graduated
+									li.half.hidden
+										label(for="degree") Degree
+										input( type="text", id="degree", name="degree", tabindex="1" )
+							div.col2of2.split
+								ul
+									li
+										label(for="field") Field of study
+											span.form_help max 3
+										input( type="text", id="field", name="field", class="tags", tabindex="2", data-max="3"  )
+									li.half.datepicker
+										label(for="start") Start Date
+										input( type="date", id="start", name="start", tabindex="2"  )
+									li.half.datepicker
+										label(for="end") End Date
+										input( type="date", id="end", name="end", tabindex="2"  )
+					nav#progress
+						a(href="")#next.big.smooth_btn Save
+				div#verified
+					h2 Get Verified!
+			footer

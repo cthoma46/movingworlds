@@ -1,0 +1,83 @@
+extends ../../layouts/layout
+
+block append scripts
+		script( src='/javascript/plugins/jquery-ui.min.js')
+		script( src='/javascript/plugins/jquery.mw_combo.js')
+		script( src='/javascript/plugins/jquery.tag-it.js')
+		script( src='/javascript/plugins/jquery.mw_modal.js')
+		script( src='/javascript/plugins/jquery.mw_fieldcloner.js')
+		script( src='/javascript/plugins/jquery.validate.min.js')
+		script( src='/javascript/register.js')
+			
+block content
+	div.layout_960
+		nav#steps.clearfix
+			ul
+				li.step1.on 
+					span Basic Information
+				li.step2.on 
+					span Company Information
+				li.step3.on
+					span First Opportunity
+				li.step4 
+					span Review
+		section.stack_960
+			header
+				h2 3. Your First Opportunity
+			div.stack_body.clearfix
+				form( action="/register/3/representative", method="post")
+					fieldset.col1of2.split
+						ul
+							li
+								label(for="name") Project Title
+								input( type="text", id="name", name="opportunity[name]", tabindex="1" )
+							li.datepicker
+								label(for="deadline") Apply Before
+								input( type="date", id="deadline", name="opportunity[deadline]", tabindex="2"  )
+							li
+								label(for="details") Project Details 
+									span max 1000 characters
+								textarea(id="details", name="opportunity[details]")
+							li
+								label(for="details") Desired Impact
+									span max 1000 characters
+								textarea(id="impact", name="opportunity[impact]")
+					fieldset.col2of2.split
+						ul
+							li.half.datepicker
+								label(for="start") Start Date
+								input( type="date", id="start", name="opportunity[start]", tabindex="2"  )
+							li.half.datepicker
+								label(for="end") End Date
+								input( type="date", id="end", name="opportunity[end]", tabindex="2"  )
+							li
+								label(for="professions") Preferred profession(s)
+									span max 3
+								input( type="text", id="professions", name="opportunity[professions]", tabindex="2", class="tags", data-max="3")
+							li.slider_container.clearfix
+								label(for="experience").slider_label 
+									\Years of work experience
+									span 0
+								div(data-min="0", data-max="30").slider#experience
+								input( type="hidden", id="experience", name="opportunity[experience]", value="0", tabindex="3" )
+							li
+								label(for="skills") Preferred  Skills & Expertise
+									span max 3
+								input( type="text", id="skills", name="opportunity[skills]", tabindex="2", class="tags", data-max="3")
+							li
+								label(for="language") Preferred  Language
+									span max 3
+								input( type="text", id="language", name="opportunity[language]", tabindex="2", class="tags", data-max="3")
+							li
+								label Type of support needed
+								ul
+									li
+										input( type="radio", id="management", name="opportunity[support]", value="management", tabindex="5"  )
+										label(for="management") Management
+									li
+										input( type="radio", id="technical", name="opportunity[support]", value="technical", tabindex="6"  )
+										label(for="technical") Technical
+					nav#progress
+						a(href="/landing")#skip.big.smooth_btn.gray Skip
+						button(type="submit")#next.big.smooth_btn Next
+			footer

@@ -1,0 +1,123 @@
+extends layouts/layout
+block append scripts
+block content
+	div.layout_960
+		
+		-var opp_id = (isNaN(Number(opp_id)) || !opp_id ) ? 0 : Number(opp_id)
+		-var status = se.interpretStatus()
+
+		aside#personal_details.col1of2
+			div.widget.se
+				header
+					div.icon
+					h3= se.name || 'Undefined'
+				section.widget_body
+					div.avatar
+						.av_img_container
+							img(src= se.avatar || "/images/icn_avatar_se.png", width="80", height="80")
+							if se.verified
+								div.verified
+					ul
+						li
+							h3= se.city+", "+se.country
+						li
+							strong Status: 
+							=se.type
+						li
+							- var size = se.interpretSize()
+							strong Size: 
+							span( title=size.desc )= size.title
+						li
+							strong Field: 
+							=se.opportunities[0].field
+					nav
+						ul
+							li
+								a(href="/social_enterprise/"+se.id+"/").chunky_btn Details
+
+			div.detail.clearfix
+				nav.credentials.clearfix
+					ul
+						li
+							a.friends_btn(href="/explore") 101
+								span Friends
+						li
+							a.invited_btn(href="/explore") 5
+								span invited
+						li.represented_by 
+							span represented by 
+							a(href="#")= se.rep_id || "Nobody"
+				nav.profile_links
+					ul
+						each link, key in se.links
+							-var display = (key == 'url') ? link : key
+							li
+								a(href=link, class=key+'_link', )= display
+			div.detail
+				h4 Introduction
+				p=se.introduction
+			div.detail
+				h4 Impact
+				p=se.impact
+			div.detail
+				h4 conduct
+				p=se.conduct
+			div.detail
+				p !{se.video}
+
+		//- Opportunities
+		div#exp_profile.col2of2
+			section.status_bar
+				div(class="status "+status.class)!= status.label
+				nav
+					ul
+						li
+							a.smooth_btn.green(href="/finalization") Apply
+						li
+							a.smooth_btn.red Favorite
+			//- each opp in se.opportunities
+			section.stack_630
+				header
+					h2.opportunity_icon= se.opportunities[opp_id].title
+				div.opportunity_map 
+					div.map_container
+						- var icon = escape('http://movingworlds.nodester.com/images/spt_app_icons.png')
+						img( src= escape("http://maps.googleapis.com/maps/api/staticmap?center="+se.opportunities[opp_id].city+","+se.opportunities[opp_id].country+"&zoom=10&size=560x315&zoom=1&sensor=false&markers=icon:http://movingworlds.nodester.com/images/icn_map_marker.png%7C"+se.opportunities[opp_id].city+","+se.opportunities[opp_id].country) )
+					h3= se.opportunities[opp_id].city+", "+se.opportunities[opp_id].country
+				div.stack_body.clearfix
+					div.col1of2
+						h4 Dates
+						p!= moment( se.opportunities[opp_id].start ).format('MMMM D, YYYY')+" <em>to</em> "+moment( se.opportunities[opp_id].end ).format('MMMM D, YYYY')
+						h4 Details
+						p= se.opportunities[opp_id].details
+						h4 Field
+						p= se.opportunities[opp_id].field
+					div.col2of2
+						h4 3 Year Impact
+						p= se.opportunities[opp_id].impact
+						h4 Post Engagement
+						p= se.opportunities[opp_id].post_engagement
+						h4 Years Experience
+						p= se.opportunities[opp_id].min_experience + ' Years'
+				footer
+			-var prevOpp = opp_id-1;
+			-var nextOpp = opp_id+1
+			-var prevClass = "";
+			-var nextClass = "";
+			-if(opp_id === 0){
+				-prevOpp = 0;
+				-prevClass = "disabled";
+			-}
+			-if(opp_id === status.total-1){
+				-nextOpp = status.total-1;
+				-nextClass = "disabled"
+			-}
+			nav.pagination
+				ul
+					li
+						a.previous(href="/social_enterprise/"+se.id+"/"+prevOpp, class=prevClass) Left
+					li.page_info= (opp_id+1)+" " 
+						em of 
+						=status.total
+					li
+						a.next(href="/social_enterprise/"+se.id+"/"+nextOpp, class=nextClass) Right

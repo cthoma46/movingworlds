@@ -1,0 +1,6 @@
+div.avatar
+	.av_img_container
+		if img || type
+			img(src= img || "/images/icn_avatar_"+type+".png", width="80", height="80")
+		if verified
+			div.verified

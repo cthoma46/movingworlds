@@ -1,0 +1,132 @@
+extends ../../layouts/layout
+
+block append scripts
+		script( src='/javascript/plugins/jquery-ui.min.js')
+		script( src='/javascript/plugins/jquery.mw_combo.js')
+		script( src='/javascript/plugins/jquery.tag-it.js')
+		script( src='/javascript/plugins/jquery.mw_modal.js')
+		script( src='/javascript/plugins/jquery.mw_fieldcloner.js')
+		script( src='/javascript/plugins/jquery.validate.min.js')
+		script( src='/javascript/register.js')
+
+block content
+	div.layout_960
+
+		nav#steps.clearfix
+			ul
+				li.step1.on 
+					span Basic Information
+				li.step2.on 
+					span Personal Information
+				li.step3.on 
+					span Work &amp; Education
+				li.step4 
+					span Review
+		section.stack_960
+			header
+				h2 3. Work &amp; Education
+			section(class="stack_body clearfix step3")
+				form( action="", method="post")
+					fieldset.col1of2.split
+						ul
+							li
+								label(for="professions") Profession(s)
+									span max 2
+								input( type="text", id="professions", name="professions", tabindex="1", class="tags", data-max="2", value=user.professions )
+							li.slider_container.clearfix
+								label(for="career_started").slider_label Years of work experience
+									span 0
+								div(data-min="0", data-max="30").slider#experience
+								input( type="hidden", id="career_started", name="career_started", value="0", tabindex="3", value=user.career_started )
+					fieldset.col2of2.split
+						ul
+							li
+								label(for="industry") Industry
+								input( type="text", id="industry", name="industry", tabindex="2", value=user.industry  )
+					h3.clear Work History
+					hr
+					div#work_history.clone_container(data-template="work_template")				
+						each emp, i in user.employment
+							fieldset.clearfix
+								input(type="hidden", name="_id["+i+"]", value=emp._id)
+								ul.col1of2.split
+									li
+										label(for="employer["+i+"]") Employer
+										input( type="text", id="employer["+i+"]", name="employer["+i+"]", value=emp.employer )
+									li
+										label(for="city["+i+"]") City
+										input( type="text", id="city["+i+"]", name="city["+i+"]", value=emp.city )
+								ul.col2of2.split
+									li
+										label(for="title["+i+"]") Position
+										input( type="text", id="title["+i+"]", name="title["+i+"]", value=emp.title  )
+									li.half
+										input( type="checkbox", id="is_current["+i+"]", name="is_current["+i+"]", value="true", checked=emp.is_current)
+										label(for="is_current["+i+"]") I currently work here
+									li.half
+										a(href="").delete_btn.chunky_btn.small.right delete
+
+					h3.clear Education
+					hr
+					div#education_history.clone_container(data-template="education_template")
+						each edu, i in user.education
+							fieldset.clearfix
+								ul.col1of2.split
+										li
+											label(for="school["+i+"]") School Name
+											input( type="text", id="school["+i+"]", name="school["+i+"]", value=edu.school )
+										li.half
+											input( type="checkbox", id="graduated["+i+"]", name="graduated["+i+"]", value="true", checked=edu.graduated)
+											label(for="graduated["+i+"]") Graduated
+										li.half
+											label(for="degree["+i+"]") Degree
+											input( type="text", id="degree["+i+"]", name="degree["+i+"]", value=edu.degree)
+								ul.col2of2.split
+									li
+										label(for="major["+i+"]") Field of study
+											span seperate multiple values with commas
+										input( type="text", id="major["+i+"]", name="major["+i+"]", class="tags", value=edu.major  )
+									li.half.datepicker
+										label(for="start["+i+"]") Start Date
+										-var start = (edu.start) ? settings.moment( edu.start ).format('MMMM D, YYYY') : ''
+										input( type="text", id="start["+i+"]", name="start["+i+"]", value=start )
+									li.half.datepicker
+										label(for="end["+i+"]") End Date
+										-var end = (edu.end) ? settings.moment( edu.end ).format('MMMM D, YYYY') : ''
+										input( type="text", id="end["+i+"]", name="end["+i+"]", value=end  )
+								p
+									a(href="").delete_btn.chunky_btn.small.right delete
+						
+					nav#progress
+						a(href="/landing/")#skip.big.smooth_btn.gray Skip
+						button(type="submit")#next.big.smooth_btn Next
+			footer
+
+
+	script#work_template(type="text/template")
+		| <fieldset class="clearfix">
+		|	<ul class="col1of2 split">
+		|		<li><label for="employer[##]">Employer</label><input type="text" id="employer[##]" name="employer[##]"></li>
+		|		<li><label for="city[##]">City</label><input type="text" id="city[##]" name="city[##]"></li>
+		|	</ul>
+		|	<ul class="col2of2 split">
+		|		<li><label for="position[##]">Position</label><input type="text" id="position[##]" name="position[##]"></li>
+		|		<li class="half"><input type="checkbox" id="is_current[##]" name="is_current[##]" value="true" ><label for="is_current[##]">I currently work here</label></li>
+		|		<li class="half"><a href="#" class="delete_btn chunky_btn small right hidden">delete</a></li>
+		|	</ul>
+		|	</fieldset>
+
+	script#education_template(type="text/template")
+		| <fieldset class="clearfix">
+		|	<ul class="col1of2 split">
+		|		<li><label for="school[##]">School Name</label><input type="text" id="school[##]" name="school[##]" ></li>
+		|		<li class="half"><input type="checkbox" id="graduated[##]" name="graduated[##]" value="true" ><label for="graduated[##]">Graduated</label></li>
+		|		<li class="half"><label for="degree[##]">Degree</label><input type="text" id="degree[##]" name="degree[##]"></li>
+		|	</ul>
+		|	<ul class="col2of2 split">
+		|		<li><label for="major[##]">Field of study<span>seperate multiple values with commas</span></label><input type="text" id="major[##]" name="major[##]" class="tags"></li>
+		|		<li class="half datepicker"><label for="start[##]">Start Date</label><input type="text" id="start[##]" name="start[##]"></li>
+		|		<li class="half datepicker"><label for="end[##]">End Date</label><input type="text" id="end[##]" name="end[##]"></li>
+		|	</ul>
+		|	<p class=""><a href="#" class="delete_btn chunky_btn small right hidden">delete</a></p>
+		|	</fieldset>

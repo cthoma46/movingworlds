@@ -1,0 +1,55 @@
+extends layouts/layout
+
+block append scripts
+
+block content
+	div.layout_630.clearfix
+		h2.center= headline
+		p.center= body
+		section#invite_area
+			//- hr
+			//- nav.social_connects.clearfix
+			//- 	ul
+			//- 		li
+			//- 			a(href="/auth/linkedin").linkedin_connect Connect with LinkedIn
+			//- 		li
+			//- 			a(href="/auth/google").google_plus_connect Connect with Google_plus
+			//- 		li
+			//- 			a(href="/auth/facebook").facebook_connect Connect with LinkedIn
+			hr.clear
+			form( action="/invite_extras", method="post" )#invite_extras.validate
+				input(type="hidden", id="email", name="email", value=newUser.email)
+				fildeset.col1of2
+					ul
+						li
+							label(for="type") How do you plan to use MovingWorlds?
+							select( id="type", name="type", class="combobox", tabindex="1").required
+								option( value="" ) Choose One
+								option( value="experteer" ) I'd like to go Experteering
+								option( value="representative" ) I'd like to find an Experteer
+						li
+							label(for="first_name") First Name
+							-fname = ('undefined' !== typeof newUser) ? newUser.first_name : ""
+							input( type="text", id="first_name", name="first_name", value=fname, tabindex="3", minlength="2" ).required
+						li
+							button(type="submit", data-toggle="modal", data-target="#modal").chunky_btn.round Invite Me
+				fildeset.col2of2
+					ul
+						li
+							label(for="recommended_by") How did you hear about us?
+							select( id="recommended_by", name="recommended_by", class="combobox", tabindex="2").required
+								option( value="" ) Choose One
+								option( value="search" ) Search
+								option( value="press" ) Press
+								option( value="email" ) Friend \(Email\)
+								option( value="facebook" ) Friend \(Facebook\)
+								option( value="twitter" ) Twitter
+								option( value="another website" ) Another website
+								option( value="other" ) Other
+						li
+							label(for="last_name") Last Name
+							-lname = (typeof newUser !== 'undefined') ? newUser.last_name : ""
+							input( type="text", id="last_name", name="last_name", value=lname, tabindex="4", minlength="2"  ).required
+						//- li.experteer_only.hidden
+						//- 	label(for="availability") When do you want to go Experteering?
+						//- 	input( type="text", id="availability", name="availability" )
