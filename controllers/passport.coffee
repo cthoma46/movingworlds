@@ -30,15 +30,15 @@ passport.use new LocalStrategy( usernameField: "email", (email, password, done) 
     return done null, false, message: "please provide a password"
 
   User.findOne email: email, (err, user) ->
-    
+
     if err
       return done null, false, message: err
 
     unless user
       return done null, false, message: "User with email <" + email + "> does not exist."
-    
+
     # if(!user.type || user.type == 'invitee'){
-    # 	return done(null, false, { message:'MovingWorlds is an invite only site.'}); 
+    # 	return done(null, false, { message:'MovingWorlds is an invite only site.'});
     # }
     bcrypt.compare password, user.hash, (err, didSucceed) ->
       if err
@@ -75,7 +75,7 @@ passport.use new LocalStrategy( usernameField: "email", (email, password, done) 
 
 # ));
 
-# app.get('/auth/facebook', 
+# app.get('/auth/facebook',
 #   	passport.authenticate('facebook'
 # 	, {
 # 			successRedirect: 'back'
@@ -87,7 +87,7 @@ passport.use new LocalStrategy( usernameField: "email", (email, password, done) 
 #             LINKEDIN                   //
 #/////////////////////////////////////////
 
-# Override userPrifile
+# Override userProfile
 LinkedInStrategy::userProfile = (token, tokenSecret, params, done) ->
   @_oauth.get "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,headline,location:(name,country:(code)),industry,num-connections,num-connections-capped,summary,specialties,proposal-comments,associations,honors,interests,positions,publications,patents,languages,skills,certifications,educations,three-current-positions,three-past-positions,num-recommenders,recommendations-received,phone-numbers,im-accounts,twitter-accounts,date-of-birth,main-address,member-url-resources,picture-url,site-standard-profile-request:(url),api-standard-profile-request:(url,headers),public-profile-url)?format=json", token, tokenSecret, (err, body, res) ->
     return done(new InternalOAuthError("failed to fetch user profile", err))  if err
@@ -101,14 +101,14 @@ LinkedInStrategy::userProfile = (token, tokenSecret, params, done) ->
 passport.use new LinkedInStrategy(
   consumerKey: settings.apiKeys.linkedin.key
   consumerSecret: settings.apiKeys.linkedin.secret
-  callbackURL: "http://dev.mw:17127/auth/linkedin/callback"
+  callbackURL: "http://dev.mw:3000/auth/linkedin/callback"
   passReqToCallback: true
 , (req, token, tokenSecret, profile, done) ->
-  
+
   # console.log("LINKEDIN CONNECTING.... ", req.user ,profile );
   # console.log( utils.inspect(profile, true, 10) );
   email = (if (typeof req.user isnt "undefined") then req.user.email else null)
-  User.upsertLikedInUser profile, email, (err, user) ->
+  User.upsertLinkedInUser profile, email, (err, user) ->
     return done(err)  if err
     done err, user
 

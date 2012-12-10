@@ -1,19 +1,11 @@
 passport = require("passport")
 
+module.exports = (app) ->
 
-module.exports = [
-	
+  app.get "/auth/linkedin", passport.authenticate('linkedin'), (req, res) ->
+    console.log "LinkedIn: ", req.url
 
-]
-
-
-# app.get "/auth/linkedin", passport.authenticate("linkedin"), (req, res) ->
-#   console.log "LinkedIn: ", req.url
-
-# # The request will be redirected to LinkedIn for authentication, so this function will not be called.
-# app.get "/auth/linkedin/callback", passport.authenticate("linkedin",
-#   failureRedirect: "/login"
-# ), (req, res) ->
-#   console.log "LinkedIn Success"
-#   res.redirect req.session.redirect or "/landing"
-
+  # The request will be redirected to LinkedIn for authentication, so this function will not be called.
+  app.get "/auth/linkedin/callback", passport.authenticate("linkedin", failureRedirect: "/login"), (req, res) ->
+    console.log "LinkedIn Success"
+    res.redirect req.session.redirect or "/landing"

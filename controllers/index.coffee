@@ -1,11 +1,10 @@
 _ = require('underscore')
 
-
 loginCheck =
 	all : (req, res, next) ->
 		# 'login required'
 		user = req.user
-		if user? 
+		if user?
 			if user.type is "experteer" or user.type is "representative" or user.type is "admin"
 				next()
 		else
@@ -43,7 +42,7 @@ loginCheck =
 
 
 routes = []
-excluded = ['index.coffee', 'passport.coffee', 'page.coffee']
+excluded = ['index.coffee', 'passport.coffee', 'page.coffee', 'social_networks.coffee']
 
 require("fs").readdirSync(__dirname).forEach (file) ->
 	routes = routes.concat(require "./" + file) if file.split(".").pop() is "coffee" and !_.contains(excluded, file)
@@ -51,3 +50,4 @@ require("fs").readdirSync(__dirname).forEach (file) ->
 module.exports = (app) ->
 	routes.forEach (route) ->
 		app[ route.type.toLowerCase() ](route.path, loginCheck[route.login or 'none'], route.action)
+	require('./social_networks')(app)

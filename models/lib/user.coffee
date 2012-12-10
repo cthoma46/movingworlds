@@ -4,6 +4,7 @@ ObjectId = Schema.ObjectId
 utils = require("./utils")
 util = require("util")
 collection_name = "mw_users"
+inspect = require('eyes').inspector({maxLength: false})
 
 educationSchema = new Schema(
   school: String
@@ -119,7 +120,7 @@ userSchema.methods.interpretStatus = interpretStatus = ->
     label: "Status Unavailable"
     class: "off"
 
-  
+
   # console.log(this.status);
   switch Number(@status)
     when 0
@@ -192,7 +193,7 @@ userSchema.statics.upsertFacebookUser = upsertFacebookUser = (fbUserData, callba
       user.links["facebook"] = fbUserData.link
       user.links["url"] = fbUserData.website
       user.bio = fbUserData.bio
-      
+
       # user.professions  = fbUserData.headline;
       # user.industry  = fbUserData.industry;
       user.employment = (if (typeof user.employment is "undefined") then new Array() else user.employment)
@@ -201,7 +202,7 @@ userSchema.statics.upsertFacebookUser = upsertFacebookUser = (fbUserData, callba
           title: fbUserData.work[i].position
           start: new Date(fbUserData.work[i].start_date)
           end: new Date(fbUserData.work[i].endDate)
-          
+
           # ,	is_current : fbUserData.work[i]
           employer: fbUserData.work[i].employer
           city: fbUserData.work[i].location
@@ -212,7 +213,7 @@ userSchema.statics.upsertFacebookUser = upsertFacebookUser = (fbUserData, callba
           school: fbUserData.education[i].school.name
           major: fbUserData.education[i].concentration
           degree: fbUserData.education[i].degree
-          
+
           # ,	start : start
           end: fbUserData.education[i].year
 
@@ -222,8 +223,8 @@ userSchema.statics.upsertFacebookUser = upsertFacebookUser = (fbUserData, callba
 
 
 
-userSchema.statics.upsertLikedInUser = upsertLikedInUser = (linkedInUserData, email, callback) ->
-  
+userSchema.statics.upsertLinkedInUser = upsertLinkedInUser = (linkedInUserData, email, callback) ->
+
   # console.log( util.inspect(linkedInUserData, true, 10) );
   User.findOne
     $or: [
@@ -233,7 +234,7 @@ userSchema.statics.upsertLikedInUser = upsertLikedInUser = (linkedInUserData, em
     ]
   , (err, user) ->
     if err or not user
-      
+
       # console.log('Could not find user', err, user);
       callback new Error("Moving Worlds is an invite only community")
     else if user
@@ -243,7 +244,7 @@ userSchema.statics.upsertLikedInUser = upsertLikedInUser = (linkedInUserData, em
         callback null, user
       else
         console.log "Syncing linkedin data with existing user"
-        
+
         # var user = new User()
         user.connections.linkedin.id = linkedInUserData.id
         user.connections.linkedin.link = linkedInUserData.publicProfileUrl
@@ -254,23 +255,23 @@ userSchema.statics.upsertLikedInUser = upsertLikedInUser = (linkedInUserData, em
           user.country = user.country or linkedInUserData.location.country.code
         user.avatar = user.avatar or linkedInUserData.pictureUrl
         user.birthday = user.birthday or new Date(linkedInUserData.dateOfBirth.year, linkedInUserData.dateOfBirth.month, linkedInUserData.dateOfBirth.day)  if linkedInUserData.dateOfBirth
-        user.skills = user.skills or new Array()
-        for skill of linkedInUserData.skills
-          user.skills.push skill.skill
-        user.interests = user.interests or new Array()
+        user.skills = user.skills or []
+        for skill in linkedInUserData.skills.values
+          user.skills.push skill.skill.name
+        user.interests = user.interests or []
         for interest of linkedInUserData.interests.split(",")
           user.interests.push interest
-        user.languages = user.languages or new Array()
-        for lang of linkedInUserData.languages
-          user.languages.push lang
-        user.links = user.links or new Object()
+        user.languages = user.languages or []
+        for lang in linkedInUserData.languages.values
+          user.languages.push lang.language.name
+        user.links = user.links or {}
         user.links["twitter"] = linkedInUserData.primaryTwitterAccount
-        user.links["linkedin"] = linkedinkedInUserData.publicProfileUrl
+        user.links["linkedin"] = linkedInUserData.publicProfileUrl
         user.bio = user.bio or linkedInUserData.summary
-        
+
         # user.professions  = user.professions || linkedInUserData.headline;
         user.industry = user.industry or linkedInUserData.industry
-        user.employment = user.employment or new Array()
+        user.employment = user.employment or []
         for i of linkedInUserData.positions.values
           start = (if (typeof linkedInUserData.positions.values[i].startDate isnt "undefined") then new Date(linkedInUserData.positions.values[i].startDate.year, linkedInUserData.positions.values[i].startDate.month, 1) else null)
           end = (if (typeof linkedInUserData.positions.values[i].endDate isnt "undefined") then new Date(linkedInUserData.positions.values[i].endDate.year, linkedInUserData.positions.values[i].endDate.month, 1) else null)

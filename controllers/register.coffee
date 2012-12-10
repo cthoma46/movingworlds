@@ -22,20 +22,21 @@ module.exports = [
             req.logIn user, (err) ->
 
               console.log 'Register login:', user.email;
-              
+
               next err if err
-              
-              res.render 'register', 
+
+              res.render 'register',
                 title: 'register'
+                user: user,
                 headtype: 'nonav'
                 warning: req.flash 'warning'
                 error: req.flash 'error'
-                
+
           else
             next( new Error('MovingWorlds is an invite only community') );
 
           return
-        
+
         return
 
       )(req, res, next)
@@ -47,7 +48,7 @@ module.exports = [
     action: (req, res, next) ->
       User.findById req.body._id, (err, user) ->
         return new Error("There was a problem saving your information.")  if err or not user
-        
+
         # delete user.invite.coupon;
         user.type = req.body.type
         user.first_name = req.body.first_name
@@ -60,17 +61,17 @@ module.exports = [
         user.gender = req.body.gender
         user.agree = req.body.agree
         user.notify = req.body.notify
-        
+
 
         if not user.type or not user.first_name or not user.last_name or not user.birthday or not user.city or not user.country or not user.password or not user.confirm or not user.gender or not user.agree
           req.flash "error", "All fields are required"
           return res.redirect("back")
-        
+
         #2. check passwords and confirm if they are the same
         unless user.password is user.confirm
           req.flash "error", "Your passwords did not match"
           return res.redirect("back")
-        
+
         #3. ensure validation code corresponds with email address
         # TODO:
 
@@ -136,14 +137,14 @@ module.exports = [
           user.industry = req.body.industry
           user.career_started = (if (req.body.career_started > 0) then moment().subtract("years", req.body.career_started).toDate().getFullYear() else null)
           user.employment = new Array()
-          
+
           for item of req.body.employer
             job = new Object()
             job["employer"] = req.body.employer[item] or ""
             job["city"] = req.body.city[item] or ""
             job["position"] = req.body.position[item] or ""
             user.employment.push job  if job.employer.length > 0 or job.city.length > 0 or job.position.length > 0
-          
+
           user.education = new Array()
           for item of req.body.school
             edu = new Object()
@@ -154,7 +155,7 @@ module.exports = [
             edu["start"] = req.body.start[item] or ""
             edu["end"] = req.body.end[item] or ""
             user.education.push edu  if edu.school.length > 0 or edu.degree.length > 0 or edu.graduted or edu.degree.start > 0 or edu.degree.end > 0
-          
+
           user.save (err) ->
             unless err
               console.log user
