@@ -263,31 +263,30 @@ userSchema.statics.upsertLinkedInUser = upsertLinkedInUser = (linkedInUserData, 
         for lang in linkedInUserData.languages.values
           user.languages.push lang.language.name
         user.links = user.links or {}
+        user.links["url"] = linkedInUserData.memberUrlResources.values[0].url if linkedInUserData.memberUrlResources._total > 0
         user.links["twitter"] = "http://www.twitter.com/" + linkedInUserData.twitterAccounts.values[0].providerAccountName if linkedInUserData.twitterAccounts._total > 0
         user.links["linkedin"] = linkedInUserData.publicProfileUrl
         user.bio = user.bio or linkedInUserData.summary
-
-        # user.professions  = user.professions || linkedInUserData.headline;
         user.industry = user.industry or linkedInUserData.industry
         user.employment = user.employment or []
-        for i of linkedInUserData.positions.values
-          start = (if (typeof linkedInUserData.positions.values[i].startDate isnt "undefined") then new Date(linkedInUserData.positions.values[i].startDate.year, linkedInUserData.positions.values[i].startDate.month, 1) else null)
-          end = (if (typeof linkedInUserData.positions.values[i].endDate isnt "undefined") then new Date(linkedInUserData.positions.values[i].endDate.year, linkedInUserData.positions.values[i].endDate.month, 1) else null)
+        for position in linkedInUserData.positions.values
+          start = (if (typeof position.startDate isnt "undefined") then new Date(position.startDate.year, position.startDate.month, 1) else null)
+          end = (if (typeof position.endDate isnt "undefined") then new Date(position.endDate.year, position.endDate.month, 1) else null)
           user.employment.push
-            title: linkedInUserData.positions.values[i].title
+            title: position.title
             start: start
             end: end
-            is_current: linkedInUserData.positions.values[i].isCurrent
-            employer: linkedInUserData.positions.values[i].company.name
+            is_current: position.isCurrent
+            employer: position.company.name
 
         user.education = user.education or new Array()
-        for i of linkedInUserData.educations.values
-          start = (if (typeof linkedInUserData.educations.values[i].startDate.year isnt "undefined" and typeof linkedInUserData.educations.values[i].startDate.month isnt "undefined") then new Date(linkedInUserData.educations.values[i].startDate.year, linkedInUserData.educations.values[i].startDate.month, 1) else null)
-          end = (if (typeof linkedInUserData.educations.values[i].endDate.year isnt "undefined" and typeof linkedInUserData.educations.values[i].endDate.month isnt "undefined") then new Date(linkedInUserData.educations.values[i].endDate.year, linkedInUserData.educations.values[i].endDate.month, 1) else null)
+        for education in linkedInUserData.educations.values
+          start = (if (typeof education.startDate.year isnt "undefined" and typeof education.startDate.month isnt "undefined") then new Date(education.startDate.year, education.startDate.month, 1) else null)
+          end = (if (typeof education.endDate.year isnt "undefined" and typeof education.endDate.month isnt "undefined") then new Date(education.endDate.year, education.endDate.month, 1) else null)
           user.education.push
-            school: linkedInUserData.educations.values[i].schoolName
-            major: linkedInUserData.educations.values[i].fieldOfStudy
-            degree: linkedInUserData.educations.values[i].degree
+            school: education.schoolName
+            major: education.fieldOfStudy
+            degree: education.degree
             start: start
             end: end
 
