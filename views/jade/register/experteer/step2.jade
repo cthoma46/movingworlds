@@ -9,19 +9,19 @@ block append scripts
 		script( src='/javascript/plugins/jquery.validate.min.js')
 		script( src='/javascript/register.js')
 
-			
+
 block content
 	div.layout_960
-		
+
 		nav#steps.clearfix
 			ul
-				li.step1.on 
+				li.step1.on
 					span Basic Information
-				li.step2.on 
+				li.step2.on
 					span Personal Information
-				li.step3 
+				li.step3
 					span Work &amp; Education
-				li.step4 
+				li.step4
 					span Review
 		section.stack_960
 			header
@@ -41,7 +41,7 @@ block content
 								input( type="text", id="interests", name="interests", tabindex="2", class="tags", value=user.interests  )
 							li
 								label(for="bio") Bio
-								textarea( id="bio", name="bio", tabindex="3", value=user.bio )
+								textarea( id="bio", name="bio", tabindex="3" ) user.bio
 							li
 								label(for="lived") Countries lived
 									span Not including current country or residence

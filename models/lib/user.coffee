@@ -244,8 +244,6 @@ userSchema.statics.upsertLinkedInUser = upsertLinkedInUser = (linkedInUserData, 
         callback null, user
       else
         console.log "Syncing linkedin data with existing user"
-
-        # var user = new User()
         user.connections.linkedin.id = linkedInUserData.id
         user.connections.linkedin.link = linkedInUserData.publicProfileUrl
         user.first_name = user.first_name or linkedInUserData.firstName
@@ -259,13 +257,13 @@ userSchema.statics.upsertLinkedInUser = upsertLinkedInUser = (linkedInUserData, 
         for skill in linkedInUserData.skills.values
           user.skills.push skill.skill.name
         user.interests = user.interests or []
-        for interest of linkedInUserData.interests.split(",")
+        for interest in linkedInUserData.interests.split(",")
           user.interests.push interest
         user.languages = user.languages or []
         for lang in linkedInUserData.languages.values
           user.languages.push lang.language.name
         user.links = user.links or {}
-        user.links["twitter"] = linkedInUserData.primaryTwitterAccount
+        user.links["twitter"] = "http://www.twitter.com/" + linkedInUserData.twitterAccounts.values[0].providerAccountName if linkedInUserData.twitterAccounts._total > 0
         user.links["linkedin"] = linkedInUserData.publicProfileUrl
         user.bio = user.bio or linkedInUserData.summary
 
