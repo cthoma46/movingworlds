@@ -1,9 +1,12 @@
 $(document).ready ->
 
+  # Set country value before create combobox
+  $('#country').val($('#country_value').val());
+
   $(".combobox").combobox {}
 
   $(".modal.autoplay").MwModal {}  if $(".modal.autoplay").length > 0
-  
+
   $("#work_history, #education_history").MwFieldCloner()
 
   # display extra fields if experteer is chosen.
@@ -16,7 +19,6 @@ $(document).ready ->
   # 	}
   # });
   #
-
 
   $('.tags').tagit
 			availableTags: ["Option 1","Option 2","Option 3","Option 4"]

@@ -250,7 +250,7 @@ userSchema.statics.upsertLinkedInUser = upsertLinkedInUser = (linkedInUserData, 
         user.last_name = user.last_name or linkedInUserData.lastName
         if typeof linkedInUserData.location isnt "undefined"
           user.city = user.city or linkedInUserData.location.name
-          user.country = user.country or linkedInUserData.location.country.code
+          user.country = user.country or linkedInUserData.location.country.code.toUpperCase()
         user.avatar = user.avatar or linkedInUserData.pictureUrl
         user.birthday = user.birthday or new Date(linkedInUserData.dateOfBirth.year, linkedInUserData.dateOfBirth.month, linkedInUserData.dateOfBirth.day)  if linkedInUserData.dateOfBirth
         user.skills = user.skills or []

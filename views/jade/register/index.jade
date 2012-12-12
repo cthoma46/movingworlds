@@ -30,13 +30,13 @@ block content
 					li= error
 		nav#steps.clearfix
 			ul
-				li.step1.on 
+				li.step1.on
 					span Basic information
-				li.step2 
+				li.step2
 					span= step2Label
-				li.step3 
+				li.step3
 					span= step3Label
-				li.step4 
+				li.step4
 					span Review
 		section.stack_960
 			header
@@ -48,7 +48,7 @@ block content
 					p I am a professional and I want to donate my expertise to make the world a better place
 				div( class="se_box "+seBoxClass )
 					div.icon
-					h4 I want support for my organization 
+					h4 I want support for my organization
 					p I am representing an organization that is looking for a professional to support our work.
 
 			section(class="stack_body clearfix step1")
@@ -100,6 +100,7 @@ block content
 								label(for="country") Country
 								select( id="country", name="country", tabindex="6", class="combobox")
 									include ../includes/countries_combo
+								input(type='hidden', id='country_value', value=user.country)
 							li.datepicker
 								label(for="birthday") Birthday
 								-bday = (typeof user.birthday !== 'undefined') ? settings.moment(user.birthday).format('MM/DD/YYYY') : ""
@@ -110,7 +111,7 @@ block content
 							li
 								input( type="checkbox", id="agree", name="agree", value="true", tabindex="11")
 								label(for="agree")
-									| I agree to MovingWorlds 
+									| I agree to MovingWorlds
 									a(href="/terms_conditions") terms and conditions
 					nav.progress.center.clear
 						button(type="submit")#next.big.smooth_btn Next
