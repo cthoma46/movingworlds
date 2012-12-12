@@ -4,7 +4,6 @@ ObjectId = Schema.ObjectId
 utils = require("./utils")
 util = require("util")
 collection_name = "mw_users"
-inspect = require('eyes').inspector({maxLength: false})
 
 educationSchema = new Schema(
   school: String
@@ -225,7 +224,6 @@ userSchema.statics.upsertFacebookUser = upsertFacebookUser = (fbUserData, callba
 
 userSchema.statics.upsertLinkedInUser = upsertLinkedInUser = (linkedInUserData, email, callback) ->
 
-  # console.log( util.inspect(linkedInUserData, true, 10) );
   User.findOne
     $or: [
       "connections.linkedin.id": linkedInUserData.id

@@ -2,7 +2,6 @@ settings = require("./movingworlds").SETTINGS.mail
 email = require("emailjs")
 fs = require("fs")
 
-
 Mail = (to, subject, body) ->
   @to = to or ""
   @subject = subject or ""
@@ -23,12 +22,12 @@ Mail::send = ->
 Mail::sendHTML = (html, replace) ->
   _this = this
   fs.readFile html, "utf8", (err, fd) ->
-    
+
     console.warn "ERROR locating email: " + html, err  if err
 
     for value of replace
       fd = fd.replace(new RegExp("##" + value + "##", "gim"), replace[value])
-    
+
 
     message =
       from: settings.from
@@ -39,9 +38,9 @@ Mail::sendHTML = (html, replace) ->
       attachment: [
         data: fd
         alternative: true
-      ]    
+      ]
     _this.server.send message, (err, message) ->
-      # console.log err or message; 
+      # console.log err or message;
 
 
 
