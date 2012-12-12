@@ -37,7 +37,7 @@ module.exports = [
           else
             req.flash "warning", "You've already requested an invite."
             res.redirect "back"
-  ,    
+  ,
 
     path: "/invite_extras"
     type: "POST"
@@ -51,8 +51,8 @@ module.exports = [
 
       User.update
         email: email
-      , update,
-        mulit: false
+      , update
+      , { multi: false }
       , (err) ->
         unless err
           User.findOne
@@ -68,7 +68,7 @@ module.exports = [
 
               req.flash "modal", "Thank you for your interest"
               req.flash "modal", "Your information has been submitted"
-              req.flash "modal", "<p>We are working as hard as we can to get you access to the Global Experteering Network. Stay tuned. In the mean time consider telling your friends about us and check out our blog.</p><nav class=\"socials\"><ul><li><a href=\"http://www.facebook.com/movingworlds\" class=\"facebook\">Facebook</a></li><li><a href=\"http://twitter.com/markhoroszowski\" class=\"twitter\">Twitter</a></li><li><a href=\"http://plus.google.com/u/0/108922624586110967899/posts\" class=\"googleplus\">Google+</a></li><li><a href=\"http://www.linkedin.com/company/movingworlds\" class=\"linkedin\">LinkedIn</a></li></ul></nav><p class=\"clear\"><a href=\"/blog\" class=\"movingforward\">Moving Forward</a></p>"
+              req.flash "modal", "<p>We are working as hard as we can to get you access to the Global Experteering Network. Stay tuned. In the mean time consider telling your friends about us and check out our blog.</p><nav class=\"socials\"><ul><li><a href=\"http://www.facebook.com/movingworlds\" class=\"facebook\">Facebook</a></li><li><a href=\"http://twitter.com/experteering\" class=\"twitter\">Twitter</a></li><li><a href=\"http://plus.google.com/u/0/108922624586110967899/posts\" class=\"googleplus\">Google+</a></li><li><a href=\"http://www.linkedin.com/company/movingworlds\" class=\"linkedin\">LinkedIn</a></li></ul></nav><p class=\"clear\"><a href=\"/blog\" class=\"movingforward\">Moving Forward</a></p>"
 
               renderInvitePage req, res, user
 
@@ -76,6 +76,3 @@ module.exports = [
           req.flash "message", "There was a problem saving your information."
           renderInvitePage req, res, user
 ]
-
-
-

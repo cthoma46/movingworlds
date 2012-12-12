@@ -1,5 +1,5 @@
 (($) ->
-  
+
   setting = undefined
   $backdrop = undefined
   $modal = undefined
@@ -44,9 +44,9 @@
 
   $.fn.MwModal = (method) ->
     if methods[method]
-      methods[method].apply this, Array::slice.call(arguments_, 1)
+      methods[method].apply this, Array::slice.call(arguments, 1)
     else if typeof method is "object" or not method
-      methods.init.apply this, arguments_
+      methods.init.apply this, arguments
     else
       $.error "The method: " + method + " does not exist"
 ) jQuery

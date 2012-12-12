@@ -1,6 +1,10 @@
 extends layouts/layout
 
 block append scripts
+		script( src='/javascript/plugins/jquery-ui.min.js')
+		script( src='/javascript/plugins/jquery.mw_modal.js')
+		script( src='/javascript/plugins/jquery.validate.min.js')
+		script( src='/javascript/invite.js')
 
 block content
 	div.layout_630.clearfix
@@ -41,8 +45,8 @@ block content
 								option( value="" ) Choose One
 								option( value="search" ) Search
 								option( value="press" ) Press
-								option( value="email" ) Friend \(Email\)
-								option( value="facebook" ) Friend \(Facebook\)
+								option( value="email" ) Friend (Email)
+								option( value="facebook" ) Friend (Facebook)
 								option( value="twitter" ) Twitter
 								option( value="another website" ) Another website
 								option( value="other" ) Other
