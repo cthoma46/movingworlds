@@ -8,19 +8,18 @@ block append scripts
 		script( src='/javascript/plugins/jquery.mw_fieldcloner.js')
 		script( src='/javascript/plugins/jquery.validate.min.js')
 		script( src='/javascript/register.js')
-			
+
 block content
-	#{user}
 	div.layout_960
 		nav#steps.clearfix
 			ul
-				li.step1.on 
+				li.step1.on
 					span Basic Information
-				li.step2.on 
+				li.step2.on
 					span Company Information
-				li.step3 
+				li.step3
 					span First Opportunity
-				li.step4 
+				li.step4
 					span Review
 		section.stack_960
 			header
@@ -49,9 +48,9 @@ block content
 									option(value="non-profit") Non-profit (Social) Enterprise / NGO
 									option(value="cooperative") Cooperative
 									option(value="educational") Educational Institute
-									option(value="research_institute") Research Institute 
-									option(value="government_agency") Government Agency 
-									option(value="other") Other 
+									option(value="research_institute") Research Institute
+									option(value="government_agency") Government Agency
+									option(value="other") Other
 							li
 								label Is your company legally registered?
 								ul
@@ -113,7 +112,7 @@ block content
 										img(src="/images/icn_avatar_se.png", width="80", height="80")
 								input( type="file", id="avatar", name="avatar", tabindex="14", value="upload image"  )
 							li
-								label(for="introduction") Introduction 
+								label(for="introduction") Introduction
 									span max 100 characters
 								textarea(id="introduction", name="introduction")
 							li
@@ -122,28 +121,28 @@ block content
 									option(value="")
 									option(value="health") Health
 									option(value="civil_right") Civil Rights
-									option(value="animal_rights") Animal Rights 
-									option(value="arts_culture") Arts and Culture 
-									option(value="children") Children 
-									option(value="civil_rights") Civil Rights 
-									option(value="community_service") Community and Service 
-									option(value="democracy_politics") Democracy and Politics 
-									option(value="economic_empowerment") Economic Empowerment 
+									option(value="animal_rights") Animal Rights
+									option(value="arts_culture") Arts and Culture
+									option(value="children") Children
+									option(value="civil_rights") Civil Rights
+									option(value="community_service") Community and Service
+									option(value="democracy_politics") Democracy and Politics
+									option(value="economic_empowerment") Economic Empowerment
 									option(value="education") Education
-									option(value="environment") Environment 
-									option(value="food") Food 
-									option(value="health") Health 
-									option(value="housing_homelessness") Housing & Homelessness 
-									option(value="human_rights") Human Rights 
-									option(value="humanitarian_relief") Humanitarian Relief 
+									option(value="environment") Environment
+									option(value="food") Food
+									option(value="health") Health
+									option(value="housing_homelessness") Housing & Homelessness
+									option(value="human_rights") Human Rights
+									option(value="humanitarian_relief") Humanitarian Relief
 									option(value="international_affairs") International Affairs
 									option(value="job_creation") Job Creation
-									option(value="media_public_debate") Media and Public Debate 
-									option(value="microfinance") Microfinance 
-									option(value="poverty_alleviation") Poverty Alleviation 
-									option(value="religion") Religion 
-									option(value="science_technology") Science & Technology 
-									option(value="senior_citizens_issues") Senior Citizens Issues 
+									option(value="media_public_debate") Media and Public Debate
+									option(value="microfinance") Microfinance
+									option(value="poverty_alleviation") Poverty Alleviation
+									option(value="religion") Religion
+									option(value="science_technology") Science & Technology
+									option(value="senior_citizens_issues") Senior Citizens Issues
 									option(value="transfer_of_knowledge") Transfer of Knowledge
 									option(value="womens_issues") Women's Issues
 							li

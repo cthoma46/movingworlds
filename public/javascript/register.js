@@ -40,7 +40,7 @@ $(document).ready(function() {
       return $("#registered_options").hide();
     }
   });
-  return $(".slider").slider({
+  $(".slider").slider({
     range: "min",
     value: 0,
     min: 1,
@@ -57,22 +57,36 @@ $(document).ready(function() {
       return $(".slider_label span").text(ui.value);
     }
   });
+  $("#graduated").change(function() {
+    if ($(this).is(":checked")) {
+      return $("#degree").focus().parents("li").first().removeClass("hidden");
+    } else {
+      return $("#degree").val("").parents("li").first().addClass("hidden");
+    }
+  });
+  $(".datepicker input").datepicker({
+    showOn: "both",
+    changeMonth: true,
+    changeYear: true,
+    buttonImage: "/images/btn_datepicker.png",
+    buttonImageOnly: true
+  });
+  return $("form#step1").validate({
+    rules: {
+      first_name: "required",
+      last_name: "required",
+      city: "required",
+      country: "required",
+      birthday: "required",
+      password: {
+        required: true,
+        minlength: 6
+      },
+      confirm: {
+        required: true,
+        minlength: 6,
+        equalTo: "#password"
+      }
+    }
+  });
 });
-
-$("#graduated").change(function() {
-  if ($(this).is(":checked")) {
-    return $("#degree").focus().parents("li").first().removeClass("hidden");
-  } else {
-    return $("#degree").val("").parents("li").first().addClass("hidden");
-  }
-});
-
-$(".datepicker input").datepicker({
-  showOn: "both",
-  changeMonth: true,
-  changeYear: true,
-  buttonImage: "/images/btn_datepicker.png",
-  buttonImageOnly: true
-});
-
-$("form.validate").validate();

@@ -65,11 +65,11 @@ $(document).ready ->
       $(".slider + input[type='hidden']").val ui.value
       $(".slider_label span").text ui.value
 
-	$("#graduated").change ->
-	  if $(this).is(":checked")
-	    $("#degree").focus().parents("li").first().removeClass "hidden"
-	  else
-	    $("#degree").val("").parents("li").first().addClass "hidden"
+  $("#graduated").change ->
+    if $(this).is(":checked")
+      $("#degree").focus().parents("li").first().removeClass "hidden"
+    else
+      $("#degree").val("").parents("li").first().addClass "hidden"
 
   $(".datepicker input").datepicker
     showOn: "both"
@@ -78,4 +78,17 @@ $(document).ready ->
     buttonImage: "/images/btn_datepicker.png"
     buttonImageOnly: true
 
-  $("form.validate").validate()
+  $("form#step1").validate
+    rules:
+      first_name: "required"
+      last_name: "required"
+      city: "required"
+      country: "required"
+      birthday: "required"
+      password:
+        required: true
+        minlength: 6
+      confirm:
+        required: true
+        minlength: 6
+        equalTo: "#password"

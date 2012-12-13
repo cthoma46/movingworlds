@@ -58,10 +58,10 @@ block content
 							a(href="/auth/linkedin").linkedin_connect Connect with LinkedIn
 						//- li
 						//- 	a(href="/auth/google").google_plus_connect Connect with Google_plus
-						li
-							a(href="/auth/facebook").facebook_connect Connect with facebook
+						//-li
+						//-	a(href="/auth/facebook").facebook_connect Connect with facebook
 
-				form( action="/register", method="post")
+				form( action="/register", method="post")#step1
 					-if( typeof user !== 'undefined' )
 						input(type="hidden", name="_id", value=user._id)
 						input(type="hidden", name="coupon", value=user.invite.coupon)
@@ -74,21 +74,21 @@ block content
 								input( type="text", id="first_name", name="first_name", tabindex="1", value=user.first_name)
 							li
 								label(for="city") City
-								input( type="text", id="city", name="city", tabindex="5", value=user.city )
+								input( type="text", id="city", name="city", tabindex="3", value=user.city )
 							li
 								label Gender
 								ul
 									li
-										input( type="radio", id="male", name="gender", value="male", tabindex="9", checked=user.gender=='male'  )
+										input( type="radio", id="male", name="gender", value="male", tabindex="5", checked=user.gender=='male'  )
 										label(for="male") Male
 									li
-										input( type="radio", id="female", name="gender", value="female", tabindex="10", checked=user.gender=='female'  )
+										input( type="radio", id="female", name="gender", value="female", tabindex="6", checked=user.gender=='female'  )
 										label(for="female") Female
 							li
 								label(for="password") Password
-								input( type="password", id="password", name="password", tabindex="7" )
+								input( type="password", id="password", name="password", tabindex="8" )
 							li
-								input( type="checkbox", id="notify", name="notify", value="true", tabindex="12")
+								input( type="checkbox", id="notify", name="notify", value="true", tabindex="10")
 								label(for="notify") Send me notification about movingworlds
 
 					fieldset.col2of2.split
@@ -98,16 +98,16 @@ block content
 								input( type="text", id="last_name", name="last_name", tabindex="2", value=user.last_name )
 							li
 								label(for="country") Country
-								select( id="country", name="country", tabindex="6", class="combobox")
+								select( id="country", name="country", tabindex="4", class="combobox")
 									include ../includes/countries_combo
 								input(type='hidden', id='country_value', value=user.country)
 							li.datepicker
 								label(for="birthday") Birthday
 								-bday = (typeof user.birthday !== 'undefined') ? settings.moment(user.birthday).format('MM/DD/YYYY') : ""
-								input( type="text", id="birthday", name="birthday", tabindex="4", data-months="1", data-years="2", value=bday  )
+								input( type="text", id="birthday", name="birthday", tabindex="7", data-months="1", data-years="2", value=bday  )
 							li
 								label(for="confirm") Confirm Password
-								input( type="password", id="confirm", name="confirm", tabindex="8"  )
+								input( type="password", id="confirm", name="confirm", tabindex="9"  )
 							li
 								input( type="checkbox", id="agree", name="agree", value="true", tabindex="11")
 								label(for="agree")
