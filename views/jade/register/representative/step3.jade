@@ -8,18 +8,18 @@ block append scripts
 		script( src='/javascript/plugins/jquery.mw_fieldcloner.js')
 		script( src='/javascript/plugins/jquery.validate.min.js')
 		script( src='/javascript/register.js')
-			
+
 block content
 	div.layout_960
 		nav#steps.clearfix
 			ul
-				li.step1.on 
+				li.step1.on
 					span Basic Information
-				li.step2.on 
+				li.step2.on
 					span Company Information
 				li.step3.on
 					span First Opportunity
-				li.step4 
+				li.step4
 					span Review
 		section.stack_960
 			header
@@ -33,9 +33,9 @@ block content
 								input( type="text", id="name", name="opportunity[name]", tabindex="1" )
 							li.datepicker
 								label(for="deadline") Apply Before
-								input( type="date", id="deadline", name="opportunity[deadline]", tabindex="2"  )
+								input( type="text", id="deadline", name="opportunity[deadline]", tabindex="2", data-months="1", data-years="2" )
 							li
-								label(for="details") Project Details 
+								label(for="details") Project Details
 									span max 1000 characters
 								textarea(id="details", name="opportunity[details]")
 							li
@@ -46,17 +46,17 @@ block content
 						ul
 							li.half.datepicker
 								label(for="start") Start Date
-								input( type="date", id="start", name="opportunity[start]", tabindex="2"  )
+								input( type="text", id="start", name="opportunity[start]", tabindex="2", data-months="1", data-years="2"  )
 							li.half.datepicker
 								label(for="end") End Date
-								input( type="date", id="end", name="opportunity[end]", tabindex="2"  )
+								input( type="text", id="end", name="opportunity[end]", tabindex="2", data-months="1", data-years="2" )
 							li
 								label(for="professions") Preferred profession(s)
 									span max 3
 								input( type="text", id="professions", name="opportunity[professions]", tabindex="2", class="tags", data-max="3")
 							li.slider_container.clearfix
-								label(for="experience").slider_label 
-									\Years of work experience
+								label(for="experience").slider_label
+									| Years of work experience
 									span 0
 								div(data-min="0", data-max="30").slider#experience
 								input( type="hidden", id="experience", name="opportunity[experience]", value="0", tabindex="3" )

@@ -7,7 +7,7 @@
       selected = select.children(":selected")
       value = (if selected.val() then selected.text() else "")
       wrapper = $("<span>").addClass("ui_combobox").insertAfter(select)
-      input = $("<input>").appendTo(wrapper).val(value).autocomplete(
+      input = $("<input>").attr("tabindex", $(select).attr("tabindex")).appendTo(wrapper).val(value).autocomplete(
         delay: 0
         minLength: 0
         source: (request, response) ->
@@ -36,7 +36,7 @@
                 false
 
             unless valid
-              
+
               # remove invalid value, as it didn't match anything
               $(this).val ""
               select.val ""
@@ -47,15 +47,15 @@
         $("<li></li>").data("item.autocomplete", item).append("<a>" + item.label + "</a>").appendTo ul
 
       $("<a>").attr("tabIndex", -1).attr("title", "Show Available Items").addClass("combo_trigger").appendTo(wrapper).button(text: false).click ->
-        
+
         # close if already visible
         if input.autocomplete("widget").is(":visible")
           input.autocomplete "close"
           return
-        
+
         # work around a bug (likely same cause as #5265)
         $(this).blur()
-        
+
         # pass empty string as value to search for, displaying all results
         input.autocomplete "search", ""
         input.focus()

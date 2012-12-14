@@ -10,7 +10,7 @@
       selected = select.children(":selected");
       value = (selected.val() ? selected.text() : "");
       wrapper = $("<span>").addClass("ui_combobox").insertAfter(select);
-      input = $("<input>").appendTo(wrapper).val(value).autocomplete({
+      input = $("<input>").attr("tabindex", $(select).attr("tabindex")).appendTo(wrapper).val(value).autocomplete({
         delay: 0,
         minLength: 0,
         source: function(request, response) {

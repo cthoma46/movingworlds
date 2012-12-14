@@ -63,7 +63,6 @@ block content
 
 				form( action="/register", method="post")#step1
 					-if( typeof user !== 'undefined' )
-						input(type="hidden", name="_id", value=user._id)
 						input(type="hidden", name="coupon", value=user.invite.coupon)
 						input(type="hidden", name="type", value=user.type)
 						input(type="hidden", name="email", value=user.email)

@@ -14,19 +14,19 @@ block content
 
 		nav#steps.clearfix
 			ul
-				li.step1.on 
+				li.step1.on
 					span Basic Information
-				li.step2.on 
+				li.step2.on
 					span Personal Information
-				li.step3.on 
+				li.step3.on
 					span Work &amp; Education
-				li.step4 
+				li.step4
 					span Review
 		section.stack_960
 			header
 				h2 3. Work &amp; Education
 			section(class="stack_body clearfix step3")
-				form( action="", method="post")
+				form( action="/register/3/experteer", method="post")
 					fieldset.col1of2.split
 						ul
 							li
@@ -45,7 +45,7 @@ block content
 								input( type="text", id="industry", name="industry", tabindex="2", value=user.industry  )
 					h3.clear Work History
 					hr
-					div#work_history.clone_container(data-template="work_template")				
+					div#work_history.clone_container(data-template="work_template")
 						each emp, i in user.employment
 							fieldset.clearfix
 								input(type="hidden", name="_id["+i+"]", value=emp._id)
@@ -96,7 +96,7 @@ block content
 										input( type="text", id="end["+i+"]", name="end["+i+"]", value=end  )
 								p
 									a(href="").delete_btn.chunky_btn.small.right delete
-						
+
 					nav#progress
 						a(href="/landing/")#skip.big.smooth_btn.gray Skip
 						button(type="submit")#next.big.smooth_btn Next

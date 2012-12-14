@@ -46,7 +46,7 @@ module.exports = [
     path: "/register"
     type: "POST"
     action: (req, res, next) ->
-      User.findById req.body._id, (err, user) ->
+      User.findById req.user._id, (err, user) ->
         return new Error("There was a problem saving your information.")  if err or not user
 
         # delete user.invite.coupon;
@@ -131,7 +131,6 @@ module.exports = [
     login: 'experteer'
     action: (req, res) ->
       User.findById req.user._id, (err, user) ->
-        console.log req.body
         unless err
           user.professions = String(req.body.professions).split(",")
           user.industry = req.body.industry
@@ -183,7 +182,7 @@ module.exports = [
     action: (req, res) ->
       rep_id = req.user._id
       SE.update
-        rep_id: req.session.auth.userId
+        rep_id: req.user._id
       , req.body,
         multi: false
         upsert: true
@@ -199,15 +198,18 @@ module.exports = [
     login: "se"
     action: (req, res) ->
       rep_id = req.user._id
-      console.log SE, req.body
-      SE.update
-        rep_id: rep_id
-      , req.body,
-        multi: false
-        upsert: false
-      , (err, numAffected) ->
+
+      SE.findOne rep_id: rep_id, (err, se) ->
         unless err
-          res.redirect "/register/4/representative"
+          se.opportunities.push req.body.opportunity
+
+          se.save (err) ->
+            unless err
+              res.redirect "/register/4/representative"
+            else
+              console.log err
+              req.flash "message", err
+              res.redirect "/register/3/representative"
         else
           req.flash "message", err
           res.redirect "/register/3/representative"

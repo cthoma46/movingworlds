@@ -12,7 +12,7 @@ opportunitySchema = new Schema(
   deadline: Date
   professions: [String]
   min_experience: Number
-  field:
+  support:
     type: String
     enum: ["management", "development", "technical", "education"]
 
@@ -37,7 +37,7 @@ socialEnterpriseSchema = new Schema(
   country: String
   type:
     type: String
-    enum: ["profit", "non-profit", "hybrid", "other"]
+    enum: ["profit", "non-profit", "cooperative", "educational", "research_institute", "government_agency", "other"]
 
   size: Number
   avatar: String
@@ -106,12 +106,5 @@ socialEnterpriseSchema.method.recommendations = recommendations = () ->
   recomendations: 2
 
 
-# socialEnterpriseSchema.statics.createOpportunity = function createOpportunity(oppData) {
-# 	console.log('User::findOrCreateFacebookUser()');	
-# 	
-# 	SocialEnterprise.update({'opportunities._id':oppData._id}, {upsert: true, multi:false}, function(err, numAffected){
-# 		
-# 	});
-# });
 SocialEnterprise = mongoose.model(collection_name, socialEnterpriseSchema)
 module.exports = SocialEnterprise

@@ -58,11 +58,11 @@ block content
 								if(item.professions)
 									li
 										h3=item.professions[0]
-								li 
+								li
 									strong= item.city+", "+item.country
 								if(item.birthday)
-									li 
-										strong Age: 
+									li
+										strong Age:
 										=item.age()
 							nav
 								ul
@@ -86,15 +86,15 @@ block content
 								li
 									h3= item.city+", "+item.country
 								li
-									strong Status: 
+									strong Status:
 									=item.type
 								li
 									- var size = item.interpretSize()
-									strong Size: 
+									strong Size:
 									span( title=size.desc )= size.title
 								li
-									strong Field: 
-									=item.opportunities[0].field
+									strong Field:
+									//-=item.opportunities[0].field
 							nav
 								ul
 									li
