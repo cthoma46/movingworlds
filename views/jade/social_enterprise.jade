@@ -29,7 +29,7 @@ block content
 							span( title=size.desc )= size.title
 						li
 							strong Field:
-							//-=se.opportunities[0].field
+							=se.opportunities[0].field
 					nav
 						ul
 							li
@@ -49,7 +49,7 @@ block content
 							a(href="#")= se.rep_id || "Nobody"
 				nav.profile_links
 					ul
-						each link, key in se.links
+						//-each link, key in se.links
 							-var display = (key == 'url') ? link : key
 							li
 								a(href=link, class=key+'_link', )= display
