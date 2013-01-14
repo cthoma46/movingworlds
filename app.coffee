@@ -9,10 +9,11 @@ utils = require("util")
 flash = require("connect-flash")
 passport = require("passport")
 settings = require("./models").SETTINGS
+youtube = require("youtube")
 
 require('nodetime').profile()
 
-# console.log(process.versions);	
+# console.log(process.versions);
 #/////////////////////////////////////////
 #              GLOBAL                   //
 #/////////////////////////////////////////
@@ -35,6 +36,14 @@ require "./controllers/passport"
 app.configure ->
   app.locals settings.locals
   app.locals.pretty = false
+  app.locals.youtube = youtube
+  app.locals.extractYoutubeId = (url) ->
+    regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/
+    match = url.match(regExp);
+    if match && match[2].length == 11
+      return match[2]
+    else
+      return null
   app.set "moment", moment
   app.set "port", process.env.PORT or settings.port
   app.set "view engine", "jade"

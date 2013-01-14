@@ -113,8 +113,9 @@ block content
 			section.stack_630
 				header
 					h2.experteering_icon= experteer.employment[0].title
-				div.profile_video
-					div.video_container!= experteer.profile.video
+				- if(experteer.profile.video)
+					div.profile_video
+						div.video_container!= youtube.embed(extractYoutubeId(experteer.profile.video), 558, 314);
 				div.stack_body.clearfix
 					div.col1of2
 						h4 Motivation
