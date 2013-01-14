@@ -18,8 +18,8 @@ block content
 				div.completeness
 					div.progress_bar(data-percentage="80")
 						p
-							| You're profile is 
-							strong.profile_percent 80% 
+							| You're profile is
+							strong.profile_percent 80%
 							| complete
 					div.bar
 						div.bar_inner
@@ -66,8 +66,8 @@ block content
 						a(href="/auth/linkedin").linkedin_connect Connect with LinkedIn
 					//- li
 					//- 	a(href="/auth/google").google_plus_connect Connect with Google_plus
-					li
-						a(href="/auth/facebook").facebook_connect Connect with Facebook
+					//-li
+					//-	a(href="/auth/facebook").facebook_connect Connect with Facebook
 
 		div.col2of2
 			section#recommendations
@@ -90,14 +90,14 @@ block content
 									li
 										h3= recommend.city+", "+recommend.country
 									li
-										strong Status: 
+										strong Status:
 										=recommend.type
 									li
 										-var size = recommend.interpretSize()
-										strong Size: 
+										strong Size:
 										span( title=size.desc )= size.title
 									li
-										strong Field: 
+										strong Field:
 										=recommend.opportunities[0].field
 								nav
 									ul
@@ -106,11 +106,11 @@ block content
 				else
 					div.warning Sorry, we don't have any recommendations for you.
 
-			section#email.stack_630.clear.tabs	
+			section#email.stack_630.clear.tabs
 				header.clearfix
 					ul
 						li
-							a(href="#inbox") 
+							a(href="#inbox")
 								| inbox
 								if(inbox.length)
 									span.inbox_alert= inbox.length
@@ -134,25 +134,25 @@ block content
 												div.verified
 								hgroup
 									h3= msg.subject
-									h4 
+									h4
 										a(href="profile/"+msg.from.userId)= msg.from.fullName
 									time(datetime="")= settings.moment( msg.sent_on ).format('MMMM D, YYYY')
 								div.msg_body= msg.body
 								nav.clearfix
 									ul
 										li.reply_btn: a(href="", data-uid=msg.from.userId, data-name=msg.from.fullName).chunky_btn
-											span.send_icn.gray &nbsp; 
+											span.send_icn.gray &nbsp;
 											| reply
 										li.delete_msg_btn: a(href="").x_btn X
 						nav.email_options.clearfix
 							ul
 								li.load_more_btn: a(href="").chunky_btn
-									span.refresh_icn.gray &nbsp; 
+									span.refresh_icn.gray &nbsp;
 									| Load More
 								li.right.delete_btn
 									label(for="delete_all") Delete all unread messages
 									a(href="", id="delete_all").x_btn.right X
-						
+
 					div#sent.ui-tabs-hide
 						each msg in sent
 							div.email
@@ -165,7 +165,7 @@ block content
 												div.verified
 								hgroup
 									h3= msg.subject
-									h4 
+									h4
 										a(href="profile/"+msg.to.userId)= msg.to.fullName
 									time(datetime="")= settings.moment( msg.sent_on ).format('MMMM D, YYYY')
 								div.msg_body= msg.body
