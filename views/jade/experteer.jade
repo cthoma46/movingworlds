@@ -20,11 +20,11 @@ block content
 						if experteer.professions
 							li
 								h3=experteer.professions[0]
-						li 
+						li
 							strong= experteer.city+", "+experteer.country
 						if experteer.birthday
-							li 
-								strong Age: 
+							li
+								strong Age:
 								=experteer.age()
 					nav
 						ul
@@ -39,8 +39,8 @@ block content
 						li
 							a.invited_btn(href="/explore") 5
 								span invited
-						li.invited_by 
-							span invited by 
+						li.invited_by
+							span invited by
 							a(href="#") Ryan Sandburg
 				nav.profile_links
 					ul
@@ -49,7 +49,7 @@ block content
 							li
 								a(href=link, class=key+'_link', )= display
 
-			if experteer.bio && experteer.bio.length		
+			if experteer.bio && experteer.bio.length
 				div.detail
 					h4 Biography
 					=experteer.bio
@@ -81,8 +81,7 @@ block content
 					h4 Languages
 					ul
 						each lang in experteer.languages
-							li= lang.language+" "
-								strong= lang.proficiency
+							li= lang
 
 			if experteer.skills && experteer.skills.length
 				div.detail
@@ -93,7 +92,7 @@ block content
 				div.detail
 					h4 Lived
 					=experteer.lived.join(', ');
-					
+
 			if experteer.visited && experteer.visited.length
 				div.detail
 					h4 Visited
@@ -113,7 +112,7 @@ block content
 			section.stack_630
 				header
 					h2.experteering_icon= experteer.employment[0].title
-				div.profile_video 
+				div.profile_video
 					div.video_container!= experteer.profile.video
 				div.stack_body.clearfix
 					div.col1of2
