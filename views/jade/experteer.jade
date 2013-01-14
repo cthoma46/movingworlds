@@ -24,8 +24,9 @@ block content
 							strong= experteer.city+", "+experteer.country
 						if experteer.birthday
 							li
-								strong Age:
+								strong Age:&nbsp;
 								=experteer.age()
+
 					nav
 						ul
 							li
@@ -47,8 +48,9 @@ block content
 					ul
 						each link, key in experteer.links
 							-var display = (key == 'url') ? link : key
-							li
-								a(href=link, class=key+'_link', )= display
+							if link !== ''
+								li
+									a(href=link, class=key+'_link', )= display
 
 			if experteer.bio && experteer.bio.length
 				div.detail
@@ -73,7 +75,7 @@ block content
 						ul
 							li
 								strong= emp.title
-							li= emp.employer+", "+emp.city
+							li= emp.employer
 							if emp.start && emp.end
 								li= emp.start.getFullYear()+" to "+emp.end.getFullYear();
 
@@ -89,12 +91,12 @@ block content
 					h4 Skills
 					=experteer.skills.join(', ');
 
-			if experteer.lived && experteer.lived.length
+			//- if experteer.lived && experteer.lived.length
 				div.detail
 					h4 Lived
 					=experteer.lived.join(', ');
 
-			if experteer.visited && experteer.visited.length
+			if experteer.visited && experteer.visited.length > 0
 				div.detail
 					h4 Visited
 					=experteer.visited.join(', ');
@@ -118,19 +120,26 @@ block content
 						div.video_container!= youtube.embed(extractYoutubeId(experteer.profile.video), 558, 314);
 				div.stack_body.clearfix
 					div.col1of2
-						h4 Motivation
-						p= experteer.profile.motivation
-						h4 Availablity
-						p!= moment( experteer.profile.availability.start ).format('MMMM D, YYYY')+" <em>to</em> "+moment( experteer.profile.availability.end ).format('MMMM D, YYYY')
-						h4 Field
-						p= experteer.profile.field
+						if experteer.profile.motivation
+							h4 Motivation
+							p= experteer.profile.motivation
+						if experteer.profile.availability && experteer.profile.availability.start && experteer.profile.availability.end
+							h4 Availablity
+							p!= moment( experteer.profile.availability.start ).format('MMMM D, YYYY')+" <em>to</em> "+moment( experteer.profile.availability.end ).format('MMMM D, YYYY')
+						if experteer.profile.field
+							h4 Field
+							p= experteer.profile.field
 					div.col2of2
-						h4 Personal Learning Goals
-						p= experteer.profile.goals
-						h4 Regions of Interest
-						p= experteer.profile.countries.join(', ')
-						h4 Value
-						p= "$"+experteer.profile.value+" per hour"
-						h4 Industry
-						p= experteer.profile.industry
+						if experteer.profile.goals && experteer.profile.goals.length > 0
+							h4 Personal Learning Goals
+							p= experteer.profile.goals.join(', ')
+						if experteer.profile.countries && experteer.profile.countries.length > 0
+							h4 Regions of Interest
+							p= experteer.profile.countries.join(', ')
+						if experteer.profile.value
+							h4 Value
+							p= "$"+experteer.profile.value+" per hour"
+						if experteer.profile.industry && experteer.profile.industry.length > 0
+							h4 Industry
+							p= experteer.profile.industry.join(', ')
 				footer
