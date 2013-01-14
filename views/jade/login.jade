@@ -33,12 +33,12 @@ block content
 					a(href="/auth/linkedin").linkedin_connect Connect with LinkedIn
 				//- li
 				//- 	a(href="/auth/google").google_plus_connect Connect with Google_plus
-				li
-					a(href="/auth/facebook").facebook_connect Connect with Facebook
+				//- li
+				//-	a(href="/auth/facebook").facebook_connect Connect with Facebook
 		hr.clear
 		h2.center Not a Member?
 		p.center Sign-up for an invite to MovingWorlds
 		form( action="/invite", method="post")#invite
-			fieldset
+			.field-wrap
 				input( type="text", id="email", name="email", placeholder="email" )
 				button(type="submit").chunky_btn.blue Get Invite

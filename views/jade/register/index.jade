@@ -31,7 +31,7 @@ block content
 		nav#steps.clearfix
 			ul
 				li.step1.on
-					span Basic information
+					span Basic Information
 				li.step2
 					span= step2Label
 				li.step3
@@ -44,12 +44,12 @@ block content
 			section.role_boxes.clearfix
 				div( class="experteer_box "+expBoxClass )
 					div.icon
-					h4 I want to go Experteering
-					p I am a professional and I want to donate my expertise to make the world a better place
+					h4 I want to go Experteering:
+					p travel & donate my expertise at an organization abroad
 				div( class="se_box "+seBoxClass )
 					div.icon
-					h4 I want support for my organization
-					p I am representing an organization that is looking for a professional to support our work.
+					h4 I want to be connected to an Experteer
+					p and receive free professional support for my organization
 
 			section(class="stack_body clearfix step1")
 				nav.social_connects.clearfix
@@ -86,9 +86,9 @@ block content
 							li
 								label(for="password") Password
 								input( type="password", id="password", name="password", tabindex="8" )
-							li
-								input( type="checkbox", id="notify", name="notify", value="true", tabindex="10")
-								label(for="notify") Send me notification about movingworlds
+							//-li
+								//-input( type="checkbox", id="notify", name="notify", value="true", tabindex="10")
+								//-label(for="notify") Send me notification about movingworlds
 
 					fieldset.col2of2.split
 						ul
@@ -108,10 +108,10 @@ block content
 								label(for="confirm") Confirm Password
 								input( type="password", id="confirm", name="confirm", tabindex="9"  )
 							li
-								input( type="checkbox", id="agree", name="agree", value="true", tabindex="11")
+								input( type="checkbox", id="agree", name="agree", value="true", tabindex="11").required
 								label(for="agree")
 									| I agree to MovingWorlds
-									a(href="/terms_conditions") terms and conditions
+									a(href="/terms_conditions", target="_blank")  terms and conditions
 					nav.progress.center.clear
-						button(type="submit")#next.big.smooth_btn Next
+						button(type="submit")#next.big.smooth_btn Create my Account
 			footer

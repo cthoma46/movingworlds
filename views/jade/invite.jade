@@ -11,15 +11,6 @@ block content
 		h2.center= headline
 		p.center= body
 		section#invite_area
-			//- hr
-			//- nav.social_connects.clearfix
-			//- 	ul
-			//- 		li
-			//- 			a(href="/auth/linkedin").linkedin_connect Connect with LinkedIn
-			//- 		li
-			//- 			a(href="/auth/google").google_plus_connect Connect with Google_plus
-			//- 		li
-			//- 			a(href="/auth/facebook").facebook_connect Connect with LinkedIn
 			hr.clear
 			form( action="/invite_extras", method="post" )#invite_extras.validate
 				input(type="hidden", id="email", name="email", value=newUser.email)

@@ -26,8 +26,10 @@ module.exports = [
       User.find(email: email).count().exec (err, total) ->
         unless err
           if total is 0
-            mail = new Mail(email, "Thank you for your interest in MovingWorlds", "We are working as hard as we can to get you access to the Global Experteering Network. Stay tuned.")
-            mail.send()
+            mail = new Mail(email, "You requested an invitation to MovingWorlds")
+            file = "./views/email_templates/invitation_request.html"
+            mail.sendHTML file
+
             user = new User()
             user.email = email
             user.created = new Date()
@@ -59,16 +61,15 @@ module.exports = [
             email: email
           , (err, user) ->
             unless err
-              subject = (if (user.type is "experteer") then "be an experteer" else "represent a social enterprise")
               registerUrl = settings.url + "/register/" + user.invite.coupon
-              file = "./views/email_templates/welcome.html"
-              mail = new Mail(user.fullName() + "<" + user.email + ">", "Invitation from MovingWorlds to " + subject)
+              file = "./views/email_templates/invitation.html"
+              mail = new Mail(user.fullName() + "<" + user.email + ">", "Your invitation from MovingWorlds")
               mail.sendHTML file,
                 url: registerUrl
 
               req.flash "modal", "Thank you for your interest"
-              req.flash "modal", "Your information has been submitted"
-              req.flash "modal", "<p>We are working as hard as we can to get you access to the Global Experteering Network. Stay tuned. In the mean time consider telling your friends about us and check out our blog.</p><nav class=\"socials\"><ul><li><a href=\"http://www.facebook.com/movingworlds\" class=\"facebook\">Facebook</a></li><li><a href=\"http://twitter.com/experteering\" class=\"twitter\">Twitter</a></li><li><a href=\"http://plus.google.com/u/0/108922624586110967899/posts\" class=\"googleplus\">Google+</a></li><li><a href=\"http://www.linkedin.com/company/movingworlds\" class=\"linkedin\">LinkedIn</a></li></ul></nav><p class=\"clear\"><a href=\"/blog\" class=\"movingforward\">Moving Forward</a></p>"
+              req.flash "modal", "We have sent you an email with your personal invitation code. Please follow it's instructions to sign up to MovingWorlds."
+              req.flash "modal", "<nav class=\"socials\"><ul><li><a href=\"http://www.facebook.com/movingworlds\" class=\"facebook\">Facebook</a></li><li><a href=\"http://twitter.com/experteering\" class=\"twitter\">Twitter</a></li><li><a href=\"http://plus.google.com/u/0/108922624586110967899/posts\" class=\"googleplus\">Google+</a></li><li><a href=\"http://www.linkedin.com/company/movingworlds\" class=\"linkedin\">LinkedIn</a></li></ul></nav><p class=\"clear\"><a href=\"/blog\" class=\"movingforward\">Moving Forward</a></p>"
 
               renderInvitePage req, res, user
 
