@@ -8,31 +8,32 @@ block append scripts
 		script( src='/javascript/plugins/jquery.mw_fieldcloner.js')
 		script( src='/javascript/plugins/jquery.validate.min.js')
 		script( src='/javascript/register.js')
-			
+
 block content
 	div.layout_960
-		
+
 		nav#steps.clearfix
 			ul
-				li.step1.on 
+				li.step1.on
 					span Basic Information
-				li.step2.on 
+				li.step2.on
 					span Personal Information
-				li.step3.on 
+				li.step3.on
 					span Work &amp; Education
-				li.step4.on 
+				li.step4.on
 					span Review
 		section.stack_960
-			header.yellow
-				h2 4. Get Verified
+			header
+				h2 4. Welcome to MovingWorlds
 			section.stack_body.clearfix
-				h3 Find better matches and support the MovingWorlds community.
-				p To get verified, we process a $25 transaction so we have proof that you’re real, and more importantly, so that the community knows you are real and CARE about Experteering. This is optional, but it helps support the community and help us deliver better opportunities around the world.
-				hr
-				h4 Earn Trust
-				p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				h4 Stand Out
-				p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				h4 Help Out
-				p MovingWorlds is a social enterprise working to build a better world and every verification fee helps us create a better platform and network. Your verification fee funds vital development and hosting costs. Take a moment to read our mission to see what we’re about. And thanks for supporting us.
+				a(href="/experteer/#{user._id}").big.smooth_btn.blue Go to your profile
+				//- h3 Find better matches and support the MovingWorlds community.
+					p To get verified, we process a $25 transaction so we have proof that you’re real, and more importantly, so that the community knows you are real and CARE about Experteering. This is optional, but it helps support the community and help us deliver better opportunities around the world.
+					hr
+					h4 Earn Trust
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					h4 Stand Out
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					h4 Help Out
+					p MovingWorlds is a social enterprise working to build a better world and every verification fee helps us create a better platform and network. Your verification fee funds vital development and hosting costs. Take a moment to read our mission to see what we’re about. And thanks for supporting us.
 			footer

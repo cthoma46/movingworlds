@@ -71,6 +71,7 @@ userSchema = new Schema(
     enum: ["management", "technical"]
 
   avatar: String
+  video: String
   connections:
     linkedin:
       id: String
