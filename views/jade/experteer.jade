@@ -39,9 +39,10 @@ block content
 						li
 							a.invited_btn(href="/explore") 5
 								span invited
-						li.invited_by
-							span invited by
-							a(href="#") Ryan Sandburg
+							- if(typeof experteer.invite.invited_by !== 'undefined')
+								li.invited_by
+									span invited by
+									a(href="#")= experteer.invite.invited_by
 				nav.profile_links
 					ul
 						each link, key in experteer.links
