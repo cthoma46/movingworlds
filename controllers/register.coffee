@@ -5,6 +5,7 @@ moment = require("moment")
 passport = require("passport")
 bcrypt = require("bcrypt")
 util = require("util")
+ObjectID = require("mongoose/node_modules/mongodb").ObjectID
 
 module.exports = [
 
@@ -135,29 +136,58 @@ module.exports = [
           user.professions = String(req.body.professions).split(",")
           user.industry = req.body.industry
           user.career_started = (if (req.body.career_started > 0) then moment().subtract("years", req.body.career_started).toDate().getFullYear() else null)
-          user.employment = new Array()
+
+          unless user.employment
+            user.employment = []
 
           for item of req.body.employer
             job = new Object()
-            job["employer"] = req.body.employer[item] or ""
-            job["city"] = req.body.city[item] or ""
-            job["position"] = req.body.position[item] or ""
-            user.employment.push job  if job.employer.length > 0 or job.city.length > 0 or job.position.length > 0
 
-          user.education = new Array()
+            for employment in user.employment
+
+              if req.body.employerId[item] == employment._id.toString()
+                employment.employer = req.body.employer[item] or ""
+                employment.city = req.body.city[item] or ""
+                employment.position = req.body.position[item] or ""
+                employment.save (err) ->
+                  if err
+                    console.log(err)
+
+            if req.body.employerId[item] == ""
+              job["employer"] = req.body.employer[item] or ""
+              job["city"] = req.body.city[item] or ""
+              job["position"] = req.body.position[item] or ""
+              user.employment.push job  if job.employer.length > 0 or job.city.length > 0 or job.position.length > 0
+
+          unless user.education
+            user.education = []
+
           for item of req.body.school
             edu = new Object()
-            edu["school"] = req.body.school[item] or ""
-            edu["major"] = String(req.body.major[item]).split(",") or []
-            edu["graduated"] = typeof req.body.graduated[item] isnt "undefined"  if req.body.hasOwnProperty("graduated")
-            edu["degree"] = req.body.degree[item] or ""
-            edu["start"] = req.body.start[item] or ""
-            edu["end"] = req.body.end[item] or ""
-            user.education.push edu  if edu.school.length > 0 or edu.degree.length > 0 or edu.graduted or edu.degree.start > 0 or edu.degree.end > 0
+
+            for education in user.education
+              if req.body.educationId[item] == education._id.toString()
+                education.school = req.body.school[item] or ""
+                education.major = String(req.body.major[item]).split(",") or []
+                education.graduated = typeof req.body.graduated[item] isnt "undefined"  if req.body.hasOwnProperty("graduated")
+                education.degree = req.body.degree[item] or ""
+                education.start = req.body.start[item] or ""
+                education.end = req.body.end[item] or ""
+                education.save (err) ->
+                  if err
+                    console.log(err)
+
+            if req.body.educationId[item] == ""
+              edu["school"] = req.body.school[item] or ""
+              edu["major"] = String(req.body.major[item]).split(",") or []
+              edu["graduated"] = typeof req.body.graduated[item] isnt "undefined"  if req.body.hasOwnProperty("graduated")
+              edu["degree"] = req.body.degree[item] or ""
+              edu["start"] = req.body.start[item] or ""
+              edu["end"] = req.body.end[item] or ""
+              user.education.push edu  if edu.school.length > 0 or edu.degree.length > 0 or edu.graduted or edu.degree.start > 0 or edu.degree.end > 0
 
           user.save (err) ->
             unless err
-              console.log user
               res.redirect "/register/4/experteer"
             else
               req.flash "message", err

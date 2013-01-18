@@ -304,4 +304,5 @@ userSchema.statics.search = search = (name, callback) ->
   @where("name", new RegExp(name, "i")).run callback
 
 User = mongoose.model(collection_name, userSchema)
+
 module.exports = User
