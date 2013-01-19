@@ -57,17 +57,21 @@ block content
 					div#favorites
 						ul.opportunities.no_style
 							// != partial('partials/opportunity', { se: recommendations[0]})
-			section#quick_links.clear
+			//-section#quick_links.clear
 				h3 Quick Links
-			section.social_connects
-				h3 Connect
-				ul.no_style
-					li
-						a(href="/auth/linkedin").linkedin_connect Connect with LinkedIn
-					//- li
-					//- 	a(href="/auth/google").google_plus_connect Connect with Google_plus
-					//-li
-					//-	a(href="/auth/facebook").facebook_connect Connect with Facebook
+			if !user.connections.linkedin && !user.connections.facebook && !user.connections.google
+				section.social_connects
+					h3 Connect
+					ul.no_style
+						if !user.connections.linkedin
+							li
+								a(href="/auth/linkedin").linkedin_connect Connect with LinkedIn
+						//-if !user.connections.google
+							li
+								a(href="/auth/google").google_plus_connect Connect with Google_plus
+						//-if !user.connections.facebook
+							li
+								a(href="/auth/facebook").facebook_connect Connect with Facebook
 
 		div.col2of2
 			section#recommendations
