@@ -1,6 +1,13 @@
 extends layouts/layout
 
 block append scripts
+	script(src="/javascript/plugins/jquery-ui.min.js")
+	script(src="/javascript/plugins/jquery.tag-it.js")
+	script(src="/javascript/plugins/jquery.cookie.js")
+	script( src='/javascript/plugins/jquery.mw_combo.js')
+	script( src='/javascript/plugins/jquery.mw_modal.js')
+	script( src='/javascript/plugins/jquery.validate.min.js')
+	script(src="/javascript/search.js")
 
 block content
 	div.layout_960
@@ -9,7 +16,7 @@ block content
 			section#favs_n_pats.tab_widget
 					nav.clearfix
 						ul.small
-							li: a(href="#experteers") expeteers
+							li: a(href="#experteers") Experteers
 							li: a(href="#ses") SE<small>s</small>
 					div#experteers
 						form
@@ -24,7 +31,9 @@ block content
 											input( type="checkbox", id="female", name="gender", value="female", tabindex="6"  )
 											label(for="female") Female
 								li
-									include includes/countries_combo
+									label Country
+									select(name="country", class="combobox")
+										include includes/countries_combo
 								li
 									label(for="languages") Languages
 									input( type="text", id="languages", name="languages", tabindex="7", class="tags"  )
@@ -32,7 +41,9 @@ block content
 						form
 							ul
 								li
-									include includes/countries_combo
+									label Country
+									select(name="country", class="combobox")
+										include includes/countries_combo
 								li
 									label(for="languages") Languages
 									input( type="text", id="languages", name="languages", tabindex="7", class="tags"  )
@@ -50,8 +61,8 @@ block content
 						section.widget_body
 							div.avatar
 								.av_img_container
-									if(item.img || item.type)
-										img(src= item.img || "/images/icn_avatar_"+item.type+".png", width="80", height="80")
+									if(item.avatar || item.type)
+										img(src= item.avatar || "/images/icn_avatar_"+item.type+".png", width="80", height="80")
 									if(item.verified)
 										div.verified
 							ul
@@ -62,7 +73,7 @@ block content
 									strong= item.city+", "+item.country
 								if(item.birthday)
 									li
-										strong Age:
+										strong Age:&nbsp;
 										=item.age()
 							nav
 								ul

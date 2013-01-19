@@ -11,8 +11,8 @@ block content
 			section#profile_status
 				div.avatar
 					.av_img_container
-						if(user.img || user.type)
-							img(src= user.img || "/images/icn_avatar_"+user.type+".png", width="80", height="80")
+						if(user.avatar || user.type)
+							img(src= user.avatar || "/images/icn_avatar_"+user.type+".png", width="80", height="80")
 						if(user.verified)
 							div.verified
 				div.completeness
@@ -106,7 +106,7 @@ block content
 				else
 					div.warning Sorry, we don't have any recommendations for you.
 
-			section#email.stack_630.clear.tabs
+			//-section#email.stack_630.clear.tabs
 				header.clearfix
 					ul
 						li

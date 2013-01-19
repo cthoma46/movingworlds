@@ -3,24 +3,24 @@ $(document).ready ->
   $(".tabs, .tab_widget").tabs cookie:
     expires: 1
 
-  $("#msg_to").tagit
-    availableTags: ["Option 1", "Option 2", "Option 3", "Option 4"]
-    tagSource: (search, response) ->
-      that = this
-      $.ajax
-        url: "/api/user"
-        data:
-          fields: "first_name|last_name"
-          search: search.term
+  # $("#msg_to").tagit
+  #   availableTags: ["Option 1", "Option 2", "Option 3", "Option 4"]
+  #   tagSource: (search, response) ->
+  #     that = this
+  #     $.ajax
+  #       url: "/api/user"
+  #       data:
+  #         fields: "first_name|last_name"
+  #         search: search.term
 
-        success: (data) ->
-          try
-            response $.map(data, (item) ->
-              value: item._id
-              label: item.first_name + " " + item.last_name
-            )
-            
-    onTagAdded: (event, ui) ->
+  #       success: (data) ->
+  #         try
+  #           response $.map(data, (item) ->
+  #             value: item._id
+  #             label: item.first_name + " " + item.last_name
+  #           )
+
+  #   onTagAdded: (event, ui) ->
 
   $(".reply_btn a").click (e) ->
     e.preventDefault()
