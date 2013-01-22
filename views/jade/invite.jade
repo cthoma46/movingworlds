@@ -17,11 +17,11 @@ block content
 				fildeset.col1of2
 					ul
 						li
-							label(for="type") How do you plan to use MovingWorlds?
+							label(for="type") I'd like to
 							select( id="type", name="type", class="combobox", tabindex="1").required
 								option( value="" ) Choose One
-								option( value="experteer" ) I'd like to go Experteering
-								option( value="representative" ) I'd like to find an Experteer
+								option( value="experteer" ) Go Experteering
+								option( value="representative" ) Be connected to an Experteer (for my organization)
 						li
 							label(for="first_name") First Name
 							-fname = ('undefined' !== typeof newUser) ? newUser.first_name : ""
@@ -34,11 +34,14 @@ block content
 							label(for="recommended_by") How did you hear about us?
 							select( id="recommended_by", name="recommended_by", class="combobox", tabindex="2").required
 								option( value="" ) Choose One
-								option( value="search" ) Search
-								option( value="press" ) Press
-								option( value="email" ) Friend (Email)
-								option( value="facebook" ) Friend (Facebook)
+								option( value="advertisement" )  Advertisement
+								option( value="email" ) Email/Newsletter
+								option( value="facebook" ) Facebook
+								option( value="google" ) Google+
 								option( value="twitter" ) Twitter
+								option( value="friend" ) Family or Friend
+								option( value="press" ) Press
+								option( value="search" ) Search
 								option( value="another website" ) Another website
 								option( value="other" ) Other
 						li

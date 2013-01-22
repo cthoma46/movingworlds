@@ -18,12 +18,12 @@ block content
 				li.step2.on
 					span Company Information
 				li.step3.on
-					span First Opportunity
+					span List Opportunity
 				li.step4
 					span Review
 		section.stack_960
 			header
-				h2 3. Your First Opportunity
+				h2 3. List Opportunity
 			div.stack_body.clearfix
 				form( action="/register/3/representative", method="post")
 					fieldset.col1of2.split
@@ -31,9 +31,9 @@ block content
 							li
 								label(for="name") Project Title
 								input( type="text", id="name", name="opportunity[name]", tabindex="1" )
-							li.datepicker
-								label(for="deadline") Apply Before
-								input( type="text", id="deadline", name="opportunity[deadline]", tabindex="2", data-months="1", data-years="2" )
+							li
+								label(for="city") city
+								input(type="text", id="city", name="opportunity[city]", tabindex="2")
 							li
 								label(for="details") Project Details
 									span max 1000 characters
@@ -42,6 +42,10 @@ block content
 								label(for="details") Desired Impact
 									span max 1000 characters
 								textarea(id="impact", name="opportunity[impact]")
+							li.datepicker
+								label(for="deadline") Apply Before
+									span expiration date for applying to this opportunity
+								input( type="text", id="deadline", name="opportunity[deadline]", tabindex="4", data-months="1", data-years="2" )
 					fieldset.col2of2.split
 						ul
 							li.half.datepicker
@@ -50,6 +54,11 @@ block content
 							li.half.datepicker
 								label(for="end") End Date
 								input( type="text", id="end", name="opportunity[end]", tabindex="2", data-months="1", data-years="2" )
+							li
+								label(for="country") Country
+								select( id="country", name="opportunity[country]", tabindex="4", class="combobox")
+									include ../../includes/countries_combo
+								input(type='hidden', id='country_value')
 							li
 								label(for="professions") Preferred profession(s)
 									span max 3
@@ -60,7 +69,7 @@ block content
 									span 0
 								div(data-min="0", data-max="30").slider#experience
 								input( type="hidden", id="experience", name="opportunity[experience]", value="0", tabindex="3" )
-							li
+							//-li
 								label(for="skills") Preferred  Skills & Expertise
 									span max 3
 								input( type="text", id="skills", name="opportunity[skills]", tabindex="2", class="tags", data-max="3")

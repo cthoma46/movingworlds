@@ -61,6 +61,7 @@ userSchema = new Schema(
 
   agree: Boolean
   notify: Boolean
+  headline: String
   skills: [String]
   interests: [String]
   lived: [String]
@@ -252,6 +253,7 @@ userSchema.statics.upsertLinkedInUser = upsertLinkedInUser = (linkedInUserData, 
           user.country = user.country or linkedInUserData.location.country.code.toUpperCase()
         user.avatar = user.avatar or linkedInUserData.pictureUrl
         user.birthday = user.birthday or new Date(linkedInUserData.dateOfBirth.year, linkedInUserData.dateOfBirth.month, linkedInUserData.dateOfBirth.day)  if linkedInUserData.dateOfBirth
+        user.headline = linkedInUserData.headline
         user.skills = user.skills or []
         for skill in linkedInUserData.skills.values
           user.skills.push skill.skill.name

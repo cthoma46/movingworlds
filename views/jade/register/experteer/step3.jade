@@ -53,7 +53,7 @@ block content
 									li
 										label(for="employer["+i+"]") Employer
 										input( type="text", id="employer["+i+"]", name="employer["+i+"]", value=emp.employer )
-									li
+									//-li
 										label(for="city["+i+"]") City
 										input( type="text", id="city["+i+"]", name="city["+i+"]", value=emp.city )
 								ul.col2of2.split
@@ -108,7 +108,7 @@ block content
 		| <fieldset class="clearfix">
 		|	<ul class="col1of2 split">
 		|		<li><label for="employer[##]">Employer</label><input type="text" id="employer[##]" name="employer[##]"></li>
-		|		<li><label for="city[##]">City</label><input type="text" id="city[##]" name="city[##]"></li>
+		| 	<li style="display:none"><label for="city[##]">City</label><input type="text" id="city[##]" name="city[##]"></li>
 		|	</ul>
 		|	<ul class="col2of2 split">
 		|		<li><label for="position[##]">Position</label><input type="text" id="position[##]" name="position[##]"></li>

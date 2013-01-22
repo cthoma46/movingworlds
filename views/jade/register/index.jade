@@ -21,7 +21,7 @@ block content
 	if ('undefined' !== typeof user && user.type === 'representative')
 		- seBoxClass = 'on'
 		- step2Label = 'Company Information'
-		- step3Label = 'First Opportunity'
+		- step3Label = 'List Opportunity'
 
 	div.layout_960
 		- if ('undefined' !== typeof errors && errors.length)
@@ -55,7 +55,7 @@ block content
 				nav.social_connects.clearfix
 					ul.no_style
 						li
-							a(href="/auth/linkedin").linkedin_connect Connect with LinkedIn
+							a(href="/auth/linkedin").linkedin_signup Sign up with LinkedIn
 						//- li
 						//- 	a(href="/auth/google").google_plus_connect Connect with Google_plus
 						//-li

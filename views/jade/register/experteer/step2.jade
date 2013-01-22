@@ -31,6 +31,9 @@ block content
 					fieldset.col1of2.split
 						ul
 							li
+								label(for="headline") Professional headline
+									input(type="text", id="headline", name="headline", tabindex="0", value=user.headline)
+							li
 								label(for="skills") Skills & Expertise
 									span Input multiple values
 								- var skill = user.skills;
@@ -57,24 +60,24 @@ block content
 										img(src=user.avatar || "/images/icn_avatar_experteer.png", width="80", height="80")
 								input( type="file", id="avatar", name="avatar", tabindex="6"  )
 							li
-								label(for="video") Video url
-									span Youtube url
+								label(for="video") Video
+									span paste your <a href="http://www.youtube.com" target="_blank">YouTube</a> url
 								input( type="text", id="video", name="profile[video]", tabindex="7", value=user.profile.video )
 							li
 								label(for="languages") Languages
 									span Input multiple values
 								input( type="text", id="languages", name="languages", tabindex="8", class="tags", value=user.languages)
-							//-li
-								label Main area of support
+							li
+								label Area of support
 								ul
 									li
-										input( type="radio", id="management", name="support", value="management", tabindex="9"  )
+										input( type="checkbox", id="management", name="support", value="management", tabindex="9"  )
 										label(for="management") Management
 									li
-										input( type="radio", id="technical", name="support", value="technical", tabindex="10"  )
+										input( type="checkbox", id="technical", name="support", value="technical", tabindex="10"  )
 										label(for="technical") Technical
 									li
-										input( type="radio", id="support_other", name="support", value="other", tabindex="11"  )
+										input( type="checkbox", id="support_other", name="support", value="other", tabindex="11"  )
 										label(for="other") Other
 					h3.clear Networks
 					hr

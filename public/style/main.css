@@ -284,7 +284,7 @@ nav#progress{clear:both;text-align:center;}
 nav#progress a+a{margin-left:30px}
 #upload_avatar{text-align:center;padding-bottom:43px;height:auto;}
 #upload_avatar .avatar{margin:0 auto 10px}
-#register .social_connects{margin:20px auto;padding:0;width:587px;}
+#register .social_connects{margin-top:10px;margin-bottom:15px;padding:0;width:587px;}
 #register .social_connects ul{height:auto;margin:0;padding:0;border:none}
 #finalization h1 span{color:#245b76}
 #finalization header h2{float:left}
@@ -440,6 +440,13 @@ button.chunky_btn{height:26px}
 .google_plus_connect:hover{background-position:0 -90px}
 .linkedin_connect:hover{background-position:0 -120px}
 .facebook_connect:hover{background-position:0 -150px}
+.linkedin_signup,.google_plus_signup,.facebook_signup{display:block;width:189px;height:30px;background:transparent url("/images/spt_social_signup.png") 0 0 no-repeat;text-indent:-9999px;cursor:pointer}
+.google_plus_signup{background-position:0 0}
+.linkedin_signup{background-position:0 -30px}
+.facebook_signup{background-position:0 -60px}
+.google_plus_signup:hover{background-position:0 -90px}
+.linkedin_signup:hover{background-position:0 -120px}
+.facebook_signup:hover{background-position:0 -150px}
 .movingforward{text-indent:-9999px;display:inline-block;background:transparent url("/images/logo_movingforward.png") 0 0 no-repeat;width:165px;height:27px}
 nav.socials{height:30px;width:131px}
 nav.socials li+li{margin-left:5px}

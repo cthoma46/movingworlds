@@ -18,7 +18,7 @@ block content
 				li.step2.on
 					span Company Information
 				li.step3
-					span First Opportunity
+					span List Opportunity
 				li.step4
 					span Review
 		section.stack_960
@@ -83,10 +83,10 @@ block content
 								input( type="text", id="url", name="url", tabindex="9" )
 							li
 								include ../../includes/industry_combo
-							li
+							//-li
 								label(for="partner_relations") Partner Organization
 								input( type="text", id="partner_relations", name="partner_relations", tabindex="10", class="tags"  )
-							li
+							//-li
 								label(for="partner_org_relation") Partner Organization Relation
 								select( id="partner_org_relation", name="partner_org_relation", tabindex="11", class="combobox"  )
 									option(value="")
@@ -96,10 +96,10 @@ block content
 									option(value="suppliers") Suppliers
 									option(value="supporting_organizations") Supporting Organizations
 									option(value="other") Other References
-							li
+							//-li
 								label(for="city") City
 								input( type="text", id="city", name="city", tabindex="12" )
-							li
+							//-li
 								label(for="country") Country
 								select( id="country", name="country", tabindex="13", class="combobox"  )
 									include ../../includes/countries_combo
@@ -146,7 +146,7 @@ block content
 									option(value="womens_issues") Women's Issues
 							li
 								label(for="video") Video Pitch
-									span paste your <a href="http://www.youtube.com" target="_blank">YouTube</a> embed code
+									span paste your <a href="http://www.youtube.com" target="_blank">YouTube</a> url
 								input( type="text", id="video", name="video", tabindex="16" )
 					nav#progress
 						a(href="/landing/")#skip.big.smooth_btn.gray Skip
