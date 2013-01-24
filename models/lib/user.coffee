@@ -67,10 +67,7 @@ userSchema = new Schema(
   lived: [String]
   visited: [String]
   languages: [String]
-  support_type:
-    type: String
-    enum: ["management", "technical"]
-
+  area_support: [String]
   avatar: String
   video: String
   connections:
