@@ -16,12 +16,13 @@ header#page_head
 			nav
 				ul
 					li
-						a(href='#') Get Verified
+						//- a(href='#') Get Verified
 						li.subnav
 							a(href='/landing')= user.first_name
 							ul
+									li: a(href='/experteer/' + user.id) Profile
 									li: a(href='/settings') Settings
-									li: a(href='/browse/friends') Friends
+									//- li: a(href='/browse/friends') Friends
 									li: a(href='/logout') Logout
 									span.arrow
 					li
@@ -35,7 +36,7 @@ header#page_head
 			a.logo(href='/') MovingWorlds
 			nav.clearfix
 				ul
-					li: a#get_invite_btn(href='#') Get Invite
+					//- li: a#get_invite_btn(href='#') Get Invite
 					li: a(href='/login') Login
 					li: form(action="/explore", method="get")
 						input(type='search', name='search')

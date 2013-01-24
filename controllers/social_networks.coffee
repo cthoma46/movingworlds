@@ -8,5 +8,5 @@ module.exports = (app) ->
   # The request will be redirected to LinkedIn for authentication, so this function will not be called.
   app.get "/auth/linkedin/callback", passport.authenticate("linkedin", failureRedirect: "/login"), (req, res) ->
     console.log "LinkedIn Success"
-    req.flash "error", "You have successfully connected to LinkedIn"
+    req.flash "success", "You have successfully connected to LinkedIn"
     res.redirect req.session.redirect or "/landing"

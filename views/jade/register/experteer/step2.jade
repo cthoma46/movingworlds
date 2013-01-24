@@ -69,16 +69,9 @@ block content
 								input( type="text", id="languages", name="languages", tabindex="8", class="tags", value=user.languages)
 							li
 								label Area of support
-								ul
-									li
-										input( type="checkbox", id="management", name="support", value="management", tabindex="9"  )
-										label(for="management") Management
-									li
-										input( type="checkbox", id="technical", name="support", value="technical", tabindex="10"  )
-										label(for="technical") Technical
-									li
-										input( type="checkbox", id="support_other", name="support", value="other", tabindex="11"  )
-										label(for="other") Other
+								select(name="area_support", tabindex="9").combobox
+									include ../../includes/area_support_combo
+								a(href="#", style="margin-top: 5px").chunky_btn.small.right Add
 					h3.clear Networks
 					hr
 					fieldset.col1of2.split

@@ -32,7 +32,7 @@ block content
 								a(href="/experteer/"+experteer.id).chunky_btn Details
 			div.detail.clearfix
 				nav.credentials.clearfix
-					ul
+					//-ul
 						li
 							a.friends_btn(href="/explore") 101
 								span Friends
@@ -45,11 +45,12 @@ block content
 									a(href="#")= experteer.invite.invited_by
 				nav.profile_links
 					ul
-						each link, key in experteer.links
-							-var display = (key == 'url') ? link : key
-							if link !== ''
-								li
-									a(href=link, class=key+'_link', )= display
+						if experteer.links
+							each link, key in experteer.links
+								-var display = (key == 'url') ? link : key
+								if link !== ''
+									li
+										a(href=link, class=key+'_link', )= display
 
 			if experteer.bio && experteer.bio.length
 				div.detail
@@ -113,10 +114,11 @@ block content
 							a.smooth_btn.red Favorite
 			section.stack_630
 				header
-					h2.experteering_icon= experteer.employment[0].title
-				- if(experteer.profile.video)
-					div.profile_video
-						div.video_container!= youtube.embed(extractYoutubeId(experteer.profile.video), 558, 314);
+					if experteer.employment[0]
+						h2.experteering_icon= experteer.employment[0].title
+					if experteer.profile.video
+						div.profile_video
+							div.video_container!= youtube.embed(extractYoutubeId(experteer.profile.video), 558, 314);
 				div.stack_body.clearfix
 					div.col1of2
 						if experteer.profile.motivation
