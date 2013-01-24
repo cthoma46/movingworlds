@@ -106,16 +106,16 @@ form label span{text-shadow:none;font:11px Arial,sans-serif;float:right;margin:0
 .slider_container .ui-slider-handle{margin-left:-5px;position:absolute;top:-4px;right:0;z-index:2;background:url("/images/spt_form.png") no-repeat -24px 0;width:17px;height:18px;}
 .slider_container .ui-slider-handle:hover,.slider_container .ui-slider-handle:active{background-position:-24px -18px}
 .slider_container .ui-slider-range{background-color:#d3f1ff;-moz-box-shadow:0 1px 3px rgba(0,0,0,0.4) inset;-webkit-box-shadow:0 1px 3px rgba(0,0,0,0.4) inset;box-shadow:0 1px 3px rgba(0,0,0,0.4) inset;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;height:8px}
-ul.tagit{padding:2px 5px !important;overflow:auto;margin-left:inherit;margin-right:inherit;min-height:28px;}
-ul.tagit li{display:block;float:left;margin:0}
-ul.tagit li.tagit-new{padding:.25em 4px .25em 0}
-ul.tagit li.tagit-choice{position:relative;height:22px;margin:1px 25px 0 0;padding-left:15px;background:transparent url("/images/bg_tag.png") 0 0 no-repeat;font:12px Arial,sans-serif;color:#666;}
-ul.tagit li.tagit-choice .tagit-label{height:22px;line-height:20px;display:inline-block;cursor:pointer;text-decoration:none}
-ul.tagit li.tagit-choice a.close{display:block;position:absolute;width:20px;height:22px;right:-20px;top:0;background:transparent url("/images/bg_tag.png") right 0 no-repeat;text-align:center;text-decoration:none;color:#666;font-weight:900;cursor:pointer;border:none;-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none;padding:0;}
-ul.tagit li.tagit-choice a.close:hover{color:#6cc2e9}
-ul.tagit li.tagit-choice a.close .text-icon{font-size:15px;line-height:21px}
-ul.tagit li.tagit-choice input{display:block;float:left}
-ul.tagit input[type="text"]{-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none;background:#e96c6c;border:none;margin:0;padding:3px 0 0;width:inherit;background-color:inherit;outline:none}
+div.tagit,ul.tagit{padding:2px 5px !important;overflow:auto;margin-left:inherit;margin-right:inherit;min-height:28px;}
+div.tagit li,ul.tagit li{display:block;float:left;margin:0}
+div.tagit li.tagit-new,ul.tagit li.tagit-new{padding:.25em 4px .25em 0}
+div.tagit p.tagit-choice,ul.tagit p.tagit-choice,div.tagit li.tagit-choice,ul.tagit li.tagit-choice{position:relative;height:22px;margin:1px 25px 0 0;padding-left:15px;background:transparent url("/images/bg_tag.png") 0 0 no-repeat;font:12px Arial,sans-serif;color:#666;}
+div.tagit p.tagit-choice .tagit-label,ul.tagit p.tagit-choice .tagit-label,div.tagit li.tagit-choice .tagit-label,ul.tagit li.tagit-choice .tagit-label{height:22px;line-height:20px;display:inline-block;cursor:pointer;text-decoration:none}
+div.tagit p.tagit-choice a.close,ul.tagit p.tagit-choice a.close,div.tagit li.tagit-choice a.close,ul.tagit li.tagit-choice a.close{display:block;position:absolute;width:20px;height:22px;right:-20px;top:0;background:transparent url("/images/bg_tag.png") right 0 no-repeat;text-align:center;text-decoration:none;color:#666;font-weight:900;cursor:pointer;border:none;-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none;padding:0;}
+div.tagit p.tagit-choice a.close:hover,ul.tagit p.tagit-choice a.close:hover,div.tagit li.tagit-choice a.close:hover,ul.tagit li.tagit-choice a.close:hover{color:#6cc2e9}
+div.tagit p.tagit-choice a.close .text-icon,ul.tagit p.tagit-choice a.close .text-icon,div.tagit li.tagit-choice a.close .text-icon,ul.tagit li.tagit-choice a.close .text-icon{font-size:15px;line-height:21px}
+div.tagit p.tagit-choice input,ul.tagit p.tagit-choice input,div.tagit li.tagit-choice input,ul.tagit li.tagit-choice input{display:block;float:left}
+div.tagit input[type="text"],ul.tagit input[type="text"]{-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none;background:#e96c6c;border:none;margin:0;padding:3px 0 0;width:inherit;background-color:inherit;outline:none}
 .ui-autocomplete{-moz-box-shadow:0 3px 5px rgba(0,0,0,0.3);-webkit-box-shadow:0 3px 5px rgba(0,0,0,0.3);box-shadow:0 3px 5px rgba(0,0,0,0.3);list-style:none;padding:0;background-color:#fff;max-width:300px !important;max-height:200px;overflow-y:scroll;-webkit-border-radius:0 0 3px 3px;-moz-border-radius:0 0 3px 3px;border-radius:0 0 3px 3px;border-left:1px solid #bfbfbf;border-right:1px solid #bfbfbf;border-bottom:1px solid #bfbfbf;}
 .ui-autocomplete .ui-menu-item+li.ui-menu-item{border-top:1px solid #bfbfbf}
 .ui-autocomplete .ui-menu-item a{display:block;padding:5px 10px;text-transform:uppercase;text-decoration:none;color:#666;font:700 12px "Lato",Helvetica,Arial,sans-serif}

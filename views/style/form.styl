@@ -1,4 +1,4 @@
-form 
+form
 	margin: 0
 	line-height: 1em
 
@@ -7,26 +7,26 @@ form
 		font-size: 14px
 		legend
 			*margin-left: -7px
-		
+
 	ul
 		list-style: none
 		margin: 0
 		padding: 0
-		li 
+		li
 			position: relative
 			min-height: 45px
 			display: block
 			margin-bottom: 15px
 			clear:both
 			ul
-				li 
+				li
 					min-height: 100% !important
 					display: inline
 					float: left
 					clear:none
-				li+li 
+				li+li
 					margin-left: 10px
-	
+
 	label
 		display: block
 		margin-bottom: 3px
@@ -36,25 +36,25 @@ form
 		text-transform: uppercase
 		text-shadow: 0 1px 0 #FFFFFF
 		vertical-align: bottom
-		a	
+		a
 			color: blue
 			margin: 0
 			padding: 0
-			line-height: 5px !important	
+			line-height: 5px !important
 			vertical-align: text-top;
-	
-	button, input, select, textarea 
+
+	button, input, select, textarea
 		font-family: Arial, sans-serif
 		font-size: 100%
 		margin: 0
 		vertical-align: baseline
 		*vertical-align: middle
 		outline: none
-		
-	button, input 
+
+	button, input
 		line-height: normal
 		*overflow: visible
-	
+
 	input[type="search"],
 	input[type="email"],
 	input[type="date"],
@@ -64,7 +64,7 @@ form
 	input[type="text"],
 	ul.tagit,
 	.ui-autocomplete-input,
-	textarea 
+	textarea
 		margin: 0
 		width: 100%
 		box-sizing: border-box;
@@ -79,31 +79,31 @@ form
 		border: none
 		border-radius: 3px
 		grad(#dddddd, #f0f0f0)
-		&:focus 
+		&:focus
 			grad(#e8e8e8, #ffffff)
 		&.error, &.warning, &.success
 			text-align: left !important
-		
-	.half	
+
+	.half
 		width: 49%
 		float: left
 		clear:none
 	.half+.half
 		margin-left: 2%
-			
-	input[type="search"] 
+
+	input[type="search"]
 		-webkit-appearance: textfield
 		-moz-box-sizing: content-box
 		-webkit-box-sizing: content-box
 		box-sizing: content-box
-		
-	input[type="search"]::-webkit-search-decoration 
+
+	input[type="search"]::-webkit-search-decoration
 		-webkit-appearance: none
-	
-	select, option 
+
+	select, option
 		width: 100%
-			
-	// select 
+
+	// select
 	// 	height: 28px
 	// 	-webkit-appearance: button
 	// 	-webkit-padding-end: 20px
@@ -127,70 +127,70 @@ form
 	// 	color: #808080
 	// 	letter-spacing: 1px
 	// 	text-decoration: none
-	
-	textarea 
+
+	textarea
 		min-height: 45+28+28px
-	
+
 	::-webkit-input-placeholder
 		color: gray
 
 	::-moz-placeholder
 		color: gray
-	
+
 	// RADIOS AND CHECKBOXES
 	input[type="radio"],
-	input[type="checkbox"] 
+	input[type="checkbox"]
 		box-sizing: border-box
 		position: absolute
 		opacity: 0
-	
+
 	input[type="radio"] + label, input[type="radio"] + label a ,
-	input[type="checkbox"] + label, input[type="checkbox"] + label a 
+	input[type="checkbox"] + label, input[type="checkbox"] + label a
 		display: inline
 		line-height: 21px
 		text-indent: 5px
-	
+
 	input[type="radio"] + label::before ,
-	input[type="checkbox"] + label::before 
+	input[type="checkbox"] + label::before
 		content: ""
 		display: inline-block
 		width: 23px
 		height: 18px
 		background: url('/images/spt_form.png') no-repeat 0 0
-	
+
 	input[type="radio"]:focus + label,
-	input[type="checkbox"]:focus + label 
+	input[type="checkbox"]:focus + label
 		outline: dotted 1px
-	
+
 	input[type="radio"]:disabled + label,
-	input[type="checkbox"]:disabled + label 
+	input[type="checkbox"]:disabled + label
 		opacity: .5
 		cursor: default
-	
-	input[type="checkbox"]:not(:checked):hover + label::before 
+
+	input[type="checkbox"]:not(:checked):hover + label::before
 		background-position: 0 -18px
-	
-	input[type="checkbox"]:checked + label::before 
+
+	input[type="checkbox"]:checked + label::before
 		background-position: 0 -36px
-	
-	input[type="radio"] + label::before 
+
+	input[type="radio"] + label::before
 		background-position: -23px 0
-	
-	input[type="radio"]:not(:checked):hover + label::before 
+
+	input[type="radio"]:not(:checked):hover + label::before
 		background-position: -23px -18px
-	
-	input[type="radio"]:checked + label::before 
+
+	input[type="radio"]:checked + label::before
 		background-position: -23px -36px
 
-	button, input[type="button"], input[type="reset"], input[type="submit"] 
+	button, input[type="button"], input[type="reset"], input[type="submit"]
 		cursor: pointer
 		-webkit-appearance: button
 
-	button::-moz-focus-inner, input::-moz-focus-inner 
+	button::-moz-focus-inner, input::-moz-focus-inner
 		border: 0
 		padding: 0
 
-	.form_help, label span 
+	.form_help, label span
 		margin: 5px 0 0 0
 		font-size: 12px
 		color: #999
@@ -208,7 +208,7 @@ UploadiFive
 Copyright (c) 2012 Reactive Apps, Ronnie Garcia
 */
 
-.uploadifive-button 
+.uploadifive-button
 	display: inline-block
 	height: 26px !important
 	border: 1px solid #bfbfbf
@@ -225,31 +225,31 @@ Copyright (c) 2012 Reactive Apps, Ronnie Garcia
 	text-decoration: none
 	max-height: 28px
 	cursor: pointer
-	&:hover 
+	&:hover
 		background-position: 0 -26px
 		color: #808080
 		bxsh(0 1px 3px rgba(0,0,0,.45) inset\, 0 1px 0px #FFFFFF)
 
-.uploadifive-queue-item 
+.uploadifive-queue-item
 	background-color: #F5F5F5;
 	border-bottom: 1px dotted #D5D5D5;
 	bdrz(5px)
 	font: 12px Arial, Helvetica, Sans-serif;
 	margin-top: 3px;
 	padding: 15px;
-	.close 
+	.close
 		background: url('uploadifive-cancel.png') 0 0 no-repeat;
 		display: block;
 		float: right;
 		height: 16px;
 		text-indent: -9999px;
 		width: 16px;
-	.progress 
+	.progress
 		border: 1px solid #D0D0D0;
 		height: 3px;
 		margin-top: 5px;
 		width: 100%;
-	.progress-bar 
+	.progress-bar
 		background-color: #0072BC;
 		height: 3px;
 		width: 0;
@@ -264,7 +264,7 @@ Copyright (c) 2012 Reactive Apps, Ronnie Garcia
 		bottom:0
 		right: -2px;
 
-		
+
 	// SLIDER
 .slider_container
 	label
@@ -274,20 +274,20 @@ Copyright (c) 2012 Reactive Apps, Ronnie Garcia
 			font-size: 14px;
 			font-weight: 900
 			color: blue
-	
-	.ui-slider, .ui-slider-handle 
+
+	.ui-slider, .ui-slider-handle
 		cursor: pointer;
 		outline: none;
-	
-	.ui-slider 
+
+	.ui-slider
 		position: relative;
 		height: 8px;
 		width: 99%;
 		background-color: #eaeaea;
 		bxsh( 0 1px 3px rgba(0,0,0,.4) inset )
 		bdrz(5px)
-	
-	.ui-slider-handle 
+
+	.ui-slider-handle
 		margin-left: -5px;
 		position: absolute;
 		top: -4px;
@@ -303,38 +303,40 @@ Copyright (c) 2012 Reactive Apps, Ronnie Garcia
 		bxsh( 0 1px 3px rgba(0,0,0,.4) inset )
 		bdrz(5px)
 		height: 8px
-			
+
 // TAGIT - UI-AUTOCOMPLETE
-ul.tagit 
+div.tagit,
+ul.tagit
 	padding: 2px 5px!important
 	overflow: auto;
-	margin-left: inherit; 
+	margin-left: inherit;
 	margin-right: inherit;
 	min-height: 28px
-	li 
+	li
 		display: block;
 		float: left;
 		margin: 0
 		// margin: 2px 5px 2px 0;
-	li.tagit-new 
+	li.tagit-new
 		// background-color: red
 		padding: .25em 4px .25em 0;
-	li.tagit-choice 
+	p.tagit-choice,
+	li.tagit-choice
 		position: relative;
 		height: 22px
 		margin: 1px 25px 0 0
-		padding-left: 15px;		
+		padding-left: 15px;
 		background: transparent url('/images/bg_tag.png') 0 0 no-repeat
 		font: 12px Arial, sans-serif
 		txsh(0,1px,0, #FFF)
 		color: dark_gray
-		.tagit-label 
+		.tagit-label
 			height: 22px
 			line-height: 20px;
 			display: inline-block
 			cursor: pointer;
 			text-decoration: none;
-		a.close 
+		a.close
 			display: block
 			position: absolute;
 			width: 20px
@@ -356,12 +358,12 @@ ul.tagit
 				font-size: 15px
 				line-height: 21px;
 				// display: none
-			// .ui-icon-close 
-		input 
+			// .ui-icon-close
+		input
 			display: block;
 			float: left;
 			// margin: 2px 5px 2px 0;
-	input[type="text"] 
+	input[type="text"]
 		bxsh(none)
 		background: red;
 		border: none

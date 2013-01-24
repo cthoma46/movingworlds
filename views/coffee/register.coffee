@@ -25,13 +25,18 @@ $(document).ready ->
 			create: (event, ui) ->
 			onTagAdded: (event, tag) ->
 
-  $(".add_support").click (e) ->
-    $this = $(this)
-    e.preventDefault
+  $("#add_support").click (e) ->
+    e.preventDefault()
 
-    console.log($('#area_support'))
+    value = $('#area_support').val()
+    label = $('#area_support option:selected').text()
 
+    option = "<p class='tagit-choice'><span class='tagit-label'>#{label}</span><a class='close'><span class='text-icon'>×</span><span class='ui-icon ui-icon-close'></span></a></p>"
     $('#areas').append(option);
+
+    $("p.tagit-choice .close").click (e) ->
+      e.preventDefault()
+      $(this).parent().remove()
 
   $(".experteer_box, .se_box").click (e) ->
     $this = $(this)

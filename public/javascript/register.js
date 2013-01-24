@@ -12,12 +12,17 @@ $(document).ready(function() {
     create: function(event, ui) {},
     onTagAdded: function(event, tag) {}
   });
-  $(".add_support").click(function(e) {
-    var $this;
-    $this = $(this);
-    e.preventDefault;
-    console.log($('#area_support'));
-    return $('#areas').append(option);
+  $("#add_support").click(function(e) {
+    var label, option, value;
+    e.preventDefault();
+    value = $('#area_support').val();
+    label = $('#area_support option:selected').text();
+    option = "<p class='tagit-choice'><span class='tagit-label'>" + label + "</span><a class='close'><span class='text-icon'>×</span><span class='ui-icon ui-icon-close'></span></a></p>";
+    $('#areas').append(option);
+    return $("p.tagit-choice .close").click(function(e) {
+      e.preventDefault();
+      return $(this).parent().remove();
+    });
   });
   $(".experteer_box, .se_box").click(function(e) {
     var $this;
