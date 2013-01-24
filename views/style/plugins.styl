@@ -66,7 +66,7 @@
 		&:after
 			clear: both
 
-	
+
 	.col1of2, .modal .col2of2
 		width: 250px
 
@@ -78,7 +78,7 @@
 		margin: 20px auto 20px
 		padding-bottom: 20px
 		border-bottom: 1px solid rgba(255,255,255,.40)
-	
+
 .modal_backdrop
 	position: fixed
 	top: 0
@@ -89,9 +89,9 @@
 	background-color: #171c26
 	filter: unquote('alpha(opacity=0)')
 	opacity: 0
-	
+
 // Datepicker
-.ui-datepicker 
+.ui-datepicker
 	display: none
 	width: 165px
 	padding: 20px
@@ -99,12 +99,12 @@
 	border: 1px solid #171c26
 	bdrz(5px)
 	bxsh(0 2px 5px rgba(0,0,0,.40))
-	select+select 
+	select+select
 		margin-left: 5px
-	select 
+	select
 		width: 80px
 		float: left;
-	.ui-datepicker-header 
+	.ui-datepicker-header
 		margin: -20px 0 10px -20px
 		width: 175px
 		height: 29px
@@ -115,13 +115,13 @@
 		padding: 9px 10px 0 20px
 	.ui-datepicker-next,.ui-datepicker-prev
 		display: none
-	.ui-datepicker-calendar 
+	.ui-datepicker-calendar
 		width: 165px
 		th
 			color: white
-		td 
+		td
 			text-align: center
-			a 
+			a
 				text-decoration: none
 				font-weight: bold
 
@@ -129,7 +129,7 @@
 .ui-tabs-hide
 	display:none;
 .ui-tabs-panel
-	padding: 10px	
+	padding: 10px
 
 .tab_widget
 	border: 1px solid #bfbfbf
@@ -171,7 +171,7 @@
 		width: 278px
 		ul
 			margin: 0
-.tabs 
+.tabs
 	header
 		position: relative
 		border: none
@@ -214,7 +214,7 @@
 					width: 628px
 					height: 10px
 					highlight(.75)
-					
+
 		.ui-state-default a
 			background-color: #ebebeb
 			border: 1px solid gray
@@ -234,7 +234,7 @@
 			border: 1px solid #3c89ad
 		.ui-state-hover .section_strip, .ui-tabs-selected .section_strip
 			z-index: 10
-			
+
 		.yellow.ui-state-default a
 				background-color: yellow
 				border: 1px solid dark_yellow
@@ -246,7 +246,7 @@
 		.yellow .section_strip
 				background-color: yellow
 				border: 1px solid dark_yellow
-				
+
 		.green.ui-state-default a
 			background-color: green
 			border: 1px solid dark_green
@@ -257,7 +257,7 @@
 		.green .section_strip
 			background-color: green
 			border: 1px solid dark_green
-				
+
 		.red.ui-state-default a
 			background-color: red
 			border: 1px solid dark_red
@@ -271,11 +271,11 @@
 
 .tabs.stack_960 header .section_strip
 	width: 958px !important
-	
-	
+
+
 // ULOADIFY
 
-.uploadifive-queue-item 
+.uploadifive-queue-item
 	background-color: #F5F5F5;
 	border-bottom: 1px dotted #D5D5D5;
 	-webkit-border-radius: 5px;
@@ -285,7 +285,7 @@
 	margin-top: 3px;
 	padding: 15px;
 
-.uploadifive-queue-item .close 
+.uploadifive-queue-item .close
 	background: url('/images/uploadifive-cancel.png') 0 0 no-repeat;
 	display: block;
 	float: right;
@@ -293,19 +293,19 @@
 	text-indent: -9999px;
 	width: 16px;
 
-.uploadifive-queue-item .progress 
+.uploadifive-queue-item .progress
 	border: 1px solid #D0D0D0;
 	height: 3px;
 	margin-top: 5px;
 	width: 100%;
 
-.uploadifive-queue-item .progress-bar 
+.uploadifive-queue-item .progress-bar
 	background-color: #0072BC;
 	height: 3px;
 	width: 0;
 
 // FIELD CLONER
-.clone_container	
+.clone_container
 	nav
 		clear:both
 		width: 62px
@@ -322,7 +322,7 @@
 					display: block
 					width: 26px
 					height: 26px
-					padding: 0px 0 0 
+					padding: 0px 0 0
 					line-height: 22px
 					text-align: center
 					background-color: gray
@@ -333,7 +333,11 @@
 					&:hover
 						background-color: blue
 					&.disabled
-						background: #ECECEC						
+						background: #ECECEC
 	fieldset+fieldset
 		border-top: 1px solid gray
 		padding-top: 20px
+
+
+// Hide helpers
+.ui-helper-hidden-accessible { display:none; }

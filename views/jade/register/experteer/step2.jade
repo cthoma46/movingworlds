@@ -69,9 +69,10 @@ block content
 								input( type="text", id="languages", name="languages", tabindex="8", class="tags", value=user.languages)
 							li
 								label Area of support
-								select(name="area_support", tabindex="9").combobox
+								select(id="area_support", name="area_support", tabindex="9").combobox
 									include ../../includes/area_support_combo
 								a(href="#", style="margin-top: 5px").chunky_btn.small.right Add
+								ul#areas
 					h3.clear Networks
 					hr
 					fieldset.col1of2.split

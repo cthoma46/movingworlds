@@ -21,7 +21,7 @@
             text = $(this).text();
             if (this.value && (!request.term || matcher.test(text))) {
               return {
-                label: text.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(request.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>"),
+                label: text.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(request.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "$1"),
                 value: text,
                 option: this
               };
@@ -54,9 +54,6 @@
           }
         }
       });
-      input.data("autocomplete")._renderItem = function(ul, item) {
-        return $("<li></li>").data("item.autocomplete", item).append("<a>" + item.label + "</a>").appendTo(ul);
-      };
       return $("<a>").attr("tabIndex", -1).attr("title", "Show Available Items").addClass("combo_trigger").appendTo(wrapper).button({
         text: false
       }).click(function() {

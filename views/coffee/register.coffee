@@ -25,6 +25,14 @@ $(document).ready ->
 			create: (event, ui) ->
 			onTagAdded: (event, tag) ->
 
+  $(".add_support").click (e) ->
+    $this = $(this)
+    e.preventDefault
+
+    console.log($('#area_support'))
+
+    $('#areas').append(option);
+
   $(".experteer_box, .se_box").click (e) ->
     $this = $(this)
     e.preventDefault

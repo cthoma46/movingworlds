@@ -15,7 +15,7 @@
           response select.children("option").map(->
             text = $(this).text()
             if @value and (not request.term or matcher.test(text))
-              label: text.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(request.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>")
+              label: text.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(request.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "$1")
               value: text
               option: this
           )
@@ -24,7 +24,6 @@
           ui.item.option.selected = true
           self._trigger "selected", event,
             item: ui.item.option
-
 
         change: (event, ui) ->
           unless ui.item
@@ -36,15 +35,12 @@
                 false
 
             unless valid
-
               # remove invalid value, as it didn't match anything
               $(this).val ""
               select.val ""
               input.data("autocomplete").term = ""
               false
       )
-      input.data("autocomplete")._renderItem = (ul, item) ->
-        $("<li></li>").data("item.autocomplete", item).append("<a>" + item.label + "</a>").appendTo ul
 
       $("<a>").attr("tabIndex", -1).attr("title", "Show Available Items").addClass("combo_trigger").appendTo(wrapper).button(text: false).click ->
 

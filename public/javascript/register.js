@@ -12,6 +12,13 @@ $(document).ready(function() {
     create: function(event, ui) {},
     onTagAdded: function(event, tag) {}
   });
+  $(".add_support").click(function(e) {
+    var $this;
+    $this = $(this);
+    e.preventDefault;
+    console.log($('#area_support'));
+    return $('#areas').append(option);
+  });
   $(".experteer_box, .se_box").click(function(e) {
     var $this;
     $this = $(this);
