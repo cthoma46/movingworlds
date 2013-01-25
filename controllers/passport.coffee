@@ -101,12 +101,10 @@ LinkedInStrategy::userProfile = (token, tokenSecret, params, done) ->
 passport.use new LinkedInStrategy(
   consumerKey: settings.apiKeys.linkedin.key
   consumerSecret: settings.apiKeys.linkedin.secret
-  callbackURL: "http://dev.mw:3000/auth/linkedin/callback"
+  callbackURL: settings.apiKeys.linkedin.callback
   passReqToCallback: true
 , (req, token, tokenSecret, profile, done) ->
 
-  # console.log("LINKEDIN CONNECTING.... ", req.user ,profile );
-  # console.log( utils.inspect(profile, true, 10) );
   email = (if (typeof req.user isnt "undefined") then req.user.email else null)
   User.upsertLinkedInUser profile, email, (err, user) ->
     return done(err)  if err

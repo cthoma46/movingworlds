@@ -27,6 +27,11 @@ block content
 			header
 				h2 2. Personal Information
 			section(class="stack_body clearfix step2")
+				- if(!user.connections || !user.connections.linkedin || !user.connections.linkedin.id)
+					nav.social_connects.clearfix
+						ul.no_style
+							li
+								a(href="/auth/linkedin").linkedin_connect Sign up with LinkedIn
 				form( action="/register/2/experteer", method="post")
 					fieldset.col1of2.split
 						ul

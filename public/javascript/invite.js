@@ -4,5 +4,13 @@ $(document).ready(function() {
   if ($(".modal.autoplay").length > 0) {
     $(".modal.autoplay").MwModal({});
   }
-  return $("form.validate").validate();
+  return $("form.validate").validate({
+    errorPlacement: function(error, element) {
+      if (element.closest('.field-container').length > 0) {
+        return error.appendTo(element.closest('.field-container'));
+      } else {
+        return error.insertAfter(element);
+      }
+    }
+  });
 });

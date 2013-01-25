@@ -16,7 +16,7 @@ block content
 				input(type="hidden", id="email", name="email", value=newUser.email)
 				fildeset.col1of2
 					ul
-						li
+						li.field-container
 							label(for="type") I'd like to
 							select( id="type", name="type", class="combobox", tabindex="1").required
 								option( value="" ) Choose One
@@ -30,7 +30,7 @@ block content
 							button(type="submit", data-toggle="modal", data-target="#modal").chunky_btn.round Invite Me
 				fildeset.col2of2
 					ul
-						li
+						li.field-container
 							label(for="recommended_by") How did you hear about us?
 							select( id="recommended_by", name="recommended_by", class="combobox", tabindex="2").required
 								option( value="" ) Choose One

@@ -76,10 +76,7 @@ block content
 										li
 											label(for="school["+i+"]") School Name
 											input( type="text", id="school["+i+"]", name="school["+i+"]", value=edu.school )
-										li.half
-											input( type="checkbox", id="graduated["+i+"]", name="graduated["+i+"]", value="true", checked=edu.graduated)
-											label(for="graduated["+i+"]") Graduated
-										li.half
+										li
 											label(for="degree["+i+"]") Degree
 											input( type="text", id="degree["+i+"]", name="degree["+i+"]", value=edu.degree)
 								ul.col2of2.split
@@ -121,8 +118,7 @@ block content
 		| <fieldset class="clearfix">
 		|	<ul class="col1of2 split">
 		|		<li><label for="school[##]">School Name</label><input type="text" id="school[##]" name="school[##]" ></li>
-		|		<li class="half"><input type="checkbox" id="graduated[##]" name="graduated[##]" value="true" ><label for="graduated[##]">Graduated</label></li>
-		|		<li class="half"><label for="degree[##]">Degree</label><input type="text" id="degree[##]" name="degree[##]"></li>
+		|		<li><label for="degree[##]">Degree</label><input type="text" id="degree[##]" name="degree[##]"></li>
 		|	</ul>
 		|	<ul class="col2of2 split">
 		|		<li><label for="major[##]">Field of study<span>seperate multiple values with commas</span></label><input type="text" id="major[##]" name="major[##]" class="tags"></li>

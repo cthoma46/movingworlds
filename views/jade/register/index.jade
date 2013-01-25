@@ -52,14 +52,11 @@ block content
 					p and receive free professional support for my organization
 
 			section(class="stack_body clearfix step1")
-				nav.social_connects.clearfix
-					ul.no_style
-						li
-							a(href="/auth/linkedin").linkedin_signup Sign up with LinkedIn
-						//- li
-						//- 	a(href="/auth/google").google_plus_connect Connect with Google_plus
-						//-li
-						//-	a(href="/auth/facebook").facebook_connect Connect with facebook
+				- if(!user.connections || !user.connections.linkedin || !user.connections.linkedin.id)
+					nav.social_connects.clearfix
+						ul.no_style
+							li
+								a(href="/auth/linkedin").linkedin_signup Sign up with LinkedIn
 
 				form( action="/register", method="post")#step1
 					-if( typeof user !== 'undefined' )

@@ -16,7 +16,6 @@ employmentSchema = new Schema(
   title: String
   start: Date
   end: Date
-  is_current: Boolean
   employer: String
   city: String
   country: String
@@ -77,6 +76,11 @@ userSchema = new Schema(
       link: String
 
     facebook:
+      id: String
+      username: String
+      link: String
+
+    google:
       id: String
       username: String
       link: String
@@ -220,7 +224,6 @@ userSchema.statics.upsertFacebookUser = upsertFacebookUser = (fbUserData, callba
         callback err
 
 
-
 userSchema.statics.upsertLinkedInUser = upsertLinkedInUser = (linkedInUserData, email, callback) ->
 
   User.findOne
@@ -231,8 +234,6 @@ userSchema.statics.upsertLinkedInUser = upsertLinkedInUser = (linkedInUserData, 
     ]
   , (err, user) ->
     if err or not user
-
-      # console.log('Could not find user', err, user);
       callback new Error("Moving Worlds is an invite only community")
     else if user
       console.log "found existing user. Linkedin ID: ", user.connections.linkedin.id, " Email: " + email
@@ -241,6 +242,7 @@ userSchema.statics.upsertLinkedInUser = upsertLinkedInUser = (linkedInUserData, 
         callback null, user
       else
         console.log "Syncing linkedin data with existing user"
+        console.log(require('util').inspect(linkedInUserData, true, null, true))
         user.connections.linkedin.id = linkedInUserData.id
         user.connections.linkedin.link = linkedInUserData.publicProfileUrl
         user.first_name = user.first_name or linkedInUserData.firstName

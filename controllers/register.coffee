@@ -100,6 +100,7 @@ module.exports = [
     type: "GET"
     login: 'experteer'
     action: (req, res) ->
+      req.session.redirect = "/register/#{req.params.step}/experteer"
       view = "register/experteer/step" + req.params.step
       res.render view,
         title: "register"
@@ -109,6 +110,7 @@ module.exports = [
     type: "ALL"
     login: 'experteer'
     action: (req, res) ->
+
       User.findById req.user._id, (err, user) ->
         unless err
           req.body.skills = String(req.body.skills).split(",")
