@@ -101,6 +101,7 @@ $(document).ready ->
       city: "required"
       country: "required"
       birthday: "required"
+      gender: "required"
       password:
         required: true
         minlength: 6
@@ -108,3 +109,8 @@ $(document).ready ->
         required: true
         minlength: 6
         equalTo: "#password"
+    errorPlacement: (error, element) ->
+      if element.closest('.field-container').length > 0
+        error.appendTo( element.closest('.field-container') )
+      else
+        error.insertAfter(element);

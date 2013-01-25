@@ -93,6 +93,7 @@ $(document).ready(function() {
       city: "required",
       country: "required",
       birthday: "required",
+      gender: "required",
       password: {
         required: true,
         minlength: 6
@@ -101,6 +102,13 @@ $(document).ready(function() {
         required: true,
         minlength: 6,
         equalTo: "#password"
+      }
+    },
+    errorPlacement: function(error, element) {
+      if (element.closest('.field-container').length > 0) {
+        return error.appendTo(element.closest('.field-container'));
+      } else {
+        return error.insertAfter(element);
       }
     }
   });

@@ -74,7 +74,7 @@ block content
 							li
 								label(for="city") City
 								input( type="text", id="city", name="city", tabindex="3", value=user.city )
-							li
+							li.field-container
 								label Gender
 								ul
 									li
@@ -107,7 +107,7 @@ block content
 							li
 								label(for="confirm") Confirm Password
 								input( type="password", id="confirm", name="confirm", tabindex="9"  )
-							li
+							li.field-container
 								input( type="checkbox", id="agree", name="agree", value="true", tabindex="11").required
 								label(for="agree")
 									| I agree to MovingWorlds

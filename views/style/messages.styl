@@ -1,23 +1,36 @@
 ul
 	&.error, &.warning, &.success
 		list-style: none;
+
+// label
+// 	&.error
+// 		position: relative
+// 		top: -15px
+// 		text-shadow: none
+// 		&:before {
+// 			// content: ' ';
+// 			content: url('/images/icn_down_arrow_red.png');
+// 			width: 12px;
+// 			height: 15px;
+// 			position: absolute;
+// 			bottom: -10px
+// 			left: 7px
+// 			// border: 1px solid dark_red;
+// 			overflow:hidden
+// 			// border-bottom-color: red;
+// 		}
+
+
 label
 	&.error
-		position: absolute
-		top: -15px
+		color: dark_red
 		text-shadow: none
-		&:before {
-			// content: ' ';
-			content: url('/images/icn_down_arrow_red.png');
-			width: 12px;
-			height: 15px;
-			position: absolute;
-			bottom: -10px
-			left: 7px
-			// border: 1px solid dark_red;
-			overflow:hidden
-			// border-bottom-color: red;
-		}
+		display: table-cell
+		border: solid 0px dark_red
+		background: none
+		padding: 2px
+		float: right
+
 
 .error, .warning, .success
 	z-index: 9999
