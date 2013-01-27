@@ -29,15 +29,11 @@ block content
 				form( action="/register/3/experteer", method="post")
 					fieldset.col1of2.split
 						ul
-							li
-								label(for="professions") Profession(s)
-									span max 2
-								input( type="text", id="professions", name="professions", tabindex="1", class="tags", data-max="2", value=user.professions )
 							li.slider_container.clearfix
-								label(for="career_started").slider_label Years of work experience
+								label(for="experience").slider_label Years of work experience
 									span 0
 								div(data-min="0", data-max="30").slider#experience
-								input( type="hidden", id="career_started", name="career_started", value="0", tabindex="3", value=user.career_started )
+								input( type="hidden", id="experience", name="experience", value="0", tabindex="3", value=user.experience )
 					fieldset.col2of2.split
 						ul
 							li
@@ -102,6 +98,7 @@ block content
 
 
 	script#work_template(type="text/template")
+		| <input type="hidden", name="employerId[##]", value="" />
 		| <fieldset class="clearfix">
 		|	<ul class="col1of2 split">
 		|		<li><label for="employer[##]">Employer</label><input type="text" id="employer[##]" name="employer[##]"></li>
@@ -115,6 +112,7 @@ block content
 		|	</fieldset>
 
 	script#education_template(type="text/template")
+		| <input type="hidden", name="educationId[##]", value="" />
 		| <fieldset class="clearfix">
 		|	<ul class="col1of2 split">
 		|		<li><label for="school[##]">School Name</label><input type="text" id="school[##]" name="school[##]" ></li>

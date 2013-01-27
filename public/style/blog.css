@@ -122,6 +122,10 @@ div.tagit input[type="text"],ul.tagit input[type="text"]{-moz-box-shadow:none;-w
 .ui-autocomplete .ui-state-hover{background-color:#d3f1ff;color:#6cc2e9 !important}
 .ui_combobox{display:block;position:relative;}
 .ui_combobox .combo_trigger{position:absolute;top:0;right:-2px;display:block;width:33px;height:29px;background:url("/images/spt_form.png") no-repeat 0 -113px}
+.editable:hover{padding:5px;border:dashed 2px #6cc2e9;-webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px;border-radius:5px 5px 5px 5px}
+.editable_area{min-height:100px;}
+.editable_area:hover{min-height:100px;padding:5px;border:dashed 2px #6cc2e9;-webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px;border-radius:5px 5px 5px 5px}
+.editable_empty{display:block;text-transform:none;color:#ccc}
 .experteering_icon{background:transparent url("/images/icn_experteering.png") 0 0 no-repeat;padding-left:30px;padding-top:2px;min-height:24px}
 .opportunity_icon{background:transparent url("/images/icn_opportunity.png") 0 0 no-repeat;padding-left:30px;padding-top:2px;min-height:24px}
 .url_link,.facebook_link,.google_plus_link,.linkedin_link,.twitter_link{display:inline-block;background:url("/images/spt_link_icons.png") 0 0 no-repeat;padding:2px 0 0 22px;height:18px}

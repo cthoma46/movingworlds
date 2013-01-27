@@ -122,6 +122,10 @@ div.tagit input[type="text"],ul.tagit input[type="text"]{-moz-box-shadow:none;-w
 .ui-autocomplete .ui-state-hover{background-color:#d3f1ff;color:#6cc2e9 !important}
 .ui_combobox{display:block;position:relative;}
 .ui_combobox .combo_trigger{position:absolute;top:0;right:-2px;display:block;width:33px;height:29px;background:url("/images/spt_form.png") no-repeat 0 -113px}
+.editable:hover{padding:5px;border:dashed 2px #6cc2e9;-webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px;border-radius:5px 5px 5px 5px}
+.editable_area{min-height:100px;}
+.editable_area:hover{min-height:100px;padding:5px;border:dashed 2px #6cc2e9;-webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px;border-radius:5px 5px 5px 5px}
+.editable_empty{display:block;text-transform:none;color:#ccc}
 .layout_960{margin:0 auto;width:960px;}
 .layout_960 .col1of2.split{width:465px}
 .layout_960 .col2of2.split{width:465px}
@@ -252,6 +256,7 @@ fieldset.inline button{float:left}
 .profile_video .video_container,.opportunity_map .video_container,.profile_video .map_container,.opportunity_map .map_container{width:560px;height:315px;margin:0 auto;background:#222;-moz-box-shadow:0 0 8px rgba(0,0,0,0.5);-webkit-box-shadow:0 0 8px rgba(0,0,0,0.5);box-shadow:0 0 8px rgba(0,0,0,0.5)}
 .profile_video .map_container,.opportunity_map .map_container{border:6px solid #fff}
 .profile_video h3,.opportunity_map h3{text-align:center;margin-top:15px}
+.profile_area{min-height:120px}
 nav#steps{width:750px;margin:0 auto 30px;font-weight:bold;color:#cdcdcd;padding-top:20px;}
 nav#steps li{position:relative;width:237px;height:41px;background:transparent url("/images/spt_signup_progress.png") 0 bottom no-repeat;}
 nav#steps li span{display:block;position:absolute;text-align:center;width:200px;top:-20px;left:-80px}
@@ -547,6 +552,8 @@ nav.socials li+li{margin-left:5px}
 .clearfix{display:block}
 ul.error,ul.warning,ul.success{list-style:none}
 label.error{color:#ae3a3a;text-shadow:none;display:table-cell;border:solid 0 #ae3a3a;background:none;padding:2px;float:right}
+h4.error{text-align:left;color:#ae3a3a;text-shadow:none;display:block;background:none;border:solid 0 #ae3a3a;padding:2px;}
+h4.error:before{content:url("/images/icn_error.png");width:12px;height:15px;overflow:hidden;margin-right:5px}
 .error,.warning,.success{z-index:9999;padding:5px 15px 5px 30px;border-style:solid;border-width:1px;text-align:center;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}
 .error a,.warning a,.success a{color:#fff;font-style:italic;text-decoration:underline}
 .error{background:#e96c6c url("/images/icn_error.png") 10px 50% no-repeat;color:#ae3a3a;border-color:#ae3a3a}

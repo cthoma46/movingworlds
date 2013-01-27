@@ -91,11 +91,10 @@ userSchema = new Schema(
   bio: String
   status:
     type: Number
-    default: 0
+    default: 1
 
-  professions: [String]
   industry: String
-  career_started: Number
+  experience: Number
   employment: [employmentSchema]
   education: [educationSchema]
   profile:
@@ -122,11 +121,9 @@ userSchema.methods.interpretStatus = interpretStatus = ->
     label: "Status Unavailable"
     class: "off"
 
-
-  # console.log(this.status);
   switch Number(@status)
     when 0
-      status.label = "Not Currently Seeking Experteering Opportunity"
+      status.label = "Currently Not Seeking Experteering Opportunity"
       status.class = "off"
     when 1
       status.label = "Seeking Experteering Opportunity"
@@ -145,6 +142,9 @@ userSchema.methods.age = age = ->
   age--  if m < 0 or (m is 0 and today.getDate() < birthDate.getDate())
   age
 
+userSchema.methods.interpretGender = interpretGender = ->
+  return null unless @gender
+  @gender.substr(0, 1).toUpperCase() + @gender.substr(1)
 
 userSchema.statics.authenticate = authenticate = (email, password, callback) ->
   @findOne
@@ -161,19 +161,15 @@ userSchema.statics.authenticate = authenticate = (email, password, callback) ->
       return
     callback null, "There was a problem logging in"
 
-
 userSchema.statics.upsertFacebookUser = upsertFacebookUser = (fbUserData, callback) ->
-  console.log "User::findOrCreateFacebookUser()"
   User.findOne
     "connections.id": fbUserData.id
   , (err, user) ->
     if err
       callback err
     else if user
-      console.log "found existing user"
       callback user
     else
-      console.log "creating new user"
       user = new User()
       user.type = "invitee"
       user.first_name = fbUserData.first_name or ""
@@ -196,8 +192,6 @@ userSchema.statics.upsertFacebookUser = upsertFacebookUser = (fbUserData, callba
       user.links["url"] = fbUserData.website
       user.bio = fbUserData.bio
 
-      # user.professions  = fbUserData.headline;
-      # user.industry  = fbUserData.industry;
       user.employment = (if (typeof user.employment is "undefined") then new Array() else user.employment)
       for i of fbUserData.work
         user.employment.push
@@ -236,9 +230,9 @@ userSchema.statics.upsertLinkedInUser = upsertLinkedInUser = (linkedInUserData, 
     if err or not user
       callback new Error("Moving Worlds is an invite only community")
     else if user
-      console.log "found existing user. Linkedin ID: ", user.connections.linkedin.id, " Email: " + email
+      console.log "Found existing user. Linkedin ID: ", user.connections.linkedin.id, " Email: " + email
       if user.connections.linkedin.id
-        console.log "user already synced linkedIn account"
+        console.log "User already synced linkedIn account"
         callback null, user
       else
         console.log "Syncing linkedin data with existing user"

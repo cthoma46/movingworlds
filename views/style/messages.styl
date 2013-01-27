@@ -2,25 +2,6 @@ ul
 	&.error, &.warning, &.success
 		list-style: none;
 
-// label
-// 	&.error
-// 		position: relative
-// 		top: -15px
-// 		text-shadow: none
-// 		&:before {
-// 			// content: ' ';
-// 			content: url('/images/icn_down_arrow_red.png');
-// 			width: 12px;
-// 			height: 15px;
-// 			position: absolute;
-// 			bottom: -10px
-// 			left: 7px
-// 			// border: 1px solid dark_red;
-// 			overflow:hidden
-// 			// border-bottom-color: red;
-// 		}
-
-
 label
 	&.error
 		color: dark_red
@@ -31,6 +12,22 @@ label
 		padding: 2px
 		float: right
 
+h4
+	&.error
+		text-align: left
+		color: dark_red
+		text-shadow: none
+		display: block
+		background: none
+		border: solid 0px dark_red
+		padding: 2px
+		&:before {
+			content: url('/images/icn_error.png');
+			width: 12px;
+			height: 15px;
+			overflow:hidden
+			margin-right: 5px
+		}
 
 .error, .warning, .success
 	z-index: 9999

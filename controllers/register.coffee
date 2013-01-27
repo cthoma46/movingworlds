@@ -21,9 +21,6 @@ module.exports = [
 
           if !err && user
             req.logIn user, (err) ->
-
-              console.log 'Register login:', user.email;
-
               next err if err
 
               res.render 'register',
@@ -62,7 +59,6 @@ module.exports = [
         user.gender = req.body.gender
         user.agree = req.body.agree
         user.notify = req.body.notify
-
 
         if not user.type or not user.first_name or not user.last_name or not user.birthday or not user.city or not user.country or not user.password or not user.confirm or not user.gender or not user.agree
           req.flash "error", "All fields are required"
@@ -113,11 +109,10 @@ module.exports = [
 
       User.findById req.user._id, (err, user) ->
         unless err
-          req.body.skills = String(req.body.skills).split(",")
-          req.body.interests = String(req.body.interests).split(",")
-          req.body.lived = String(req.body.lived).split(",")
-          req.body.visited = String(req.body.visited).split(",")
-          req.body.languages = String(req.body.languages).split(",")
+          req.body.skills = if String(req.body.skills).length > 0 then String(req.body.skills).split(",") else []
+          req.body.interests = if String(req.body.iterests).length > 0 then String(req.body.iterests).split(",") else []
+          req.body.visited = if String(req.body.visited).length > 0 then String(req.body.visited).split(",") else []
+          req.body.languages = if String(req.body.languages).length > 0 then String(req.body.languages).split(",") else []
           user = _.extend(user, req.body)
           user.save (err) ->
             unless err
@@ -135,9 +130,8 @@ module.exports = [
     action: (req, res) ->
       User.findById req.user._id, (err, user) ->
         unless err
-          user.professions = String(req.body.professions).split(",")
           user.industry = req.body.industry
-          user.career_started = (if (req.body.career_started > 0) then moment().subtract("years", req.body.career_started).toDate().getFullYear() else null)
+          user.experience = req.body.experience
 
           unless user.employment
             user.employment = []
@@ -155,7 +149,7 @@ module.exports = [
                   if err
                     console.log(err)
 
-            if req.body.employerId[item] == ""
+            if req.body.employerId? && req.body.employerId[item] == ""
               job["employer"] = req.body.employer[item] or ""
               job["city"] = req.body.city[item] or ""
               job["position"] = req.body.position[item] or ""
@@ -179,7 +173,7 @@ module.exports = [
                   if err
                     console.log(err)
 
-            if req.body.educationId[item] == ""
+            if req.body.educationId? && req.body.educationId[item] == ""
               edu["school"] = req.body.school[item] or ""
               edu["major"] = String(req.body.major[item]).split(",") or []
               edu["graduated"] = typeof req.body.graduated[item] isnt "undefined"  if req.body.hasOwnProperty("graduated")
