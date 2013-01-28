@@ -32,30 +32,34 @@ block content
 						ul.no_style
 							li
 								a(href="/auth/linkedin").linkedin_connect Sign up with LinkedIn
+								small.disclaimer Recommended for fast Signup
 				form( action="/register/2/experteer", method="post", enctype="multipart/form-data")
 					fieldset.col1of2.split
 						ul
 							li
 								label(for="headline") Professional headline
-									input(type="text", id="headline", name="headline", tabindex="0", value=user.headline)
+									span max 50 characters
+								input(type="text", id="headline", name="headline", tabindex="0", value=user.headline, placeholder="What you do best in few words")
 							li
 								label(for="skills") Skills & Expertise
-									span Input multiple values
+									span Enter your skills, comma-separated
 								- var skill = user.skills;
-								input( type="text", id="skills", name="skills", tabindex="1", class="tags", value=user.skills )
+								input( type="text", id="skills", name="skills", tabindex="1", class="tags", value=user.skills)
 							li
 								label(for="interests") Interests
-									span Input multiple values
+									span Enter your interests, comma-separated
 								input( type="text", id="interests", name="interests", tabindex="2", class="tags", value=user.interests  )
 							li
-								label(for="bio") Bio
-								textarea( id="bio", name="bio", tabindex="3" )= user.bio
+								label(for="bio") Personal Description
+									span max 500 characters
+								textarea( id="bio", name="bio", tabindex="3", placeholder="Describe yourself and your experience. Try to be appealing and concise!" )= user.bio
 							//-li
 								label(for="lived") Countries lived
 									span Not including current country or residence
 								input( type="text", id="lived", name="lived", tabindex="4", class="tags", value=user.lived )
 							li
 								label(for="visited") Countries visited
+									span Enter countries, comma-separated
 								input( type="text", id="visited", name="visited", tabindex="5", class="tags", value=user.visited )
 					fieldset.col2of2.split
 						ul
@@ -67,11 +71,11 @@ block content
 								input( type="file", id="avatar", name="avatar", tabindex="6"  )
 							li
 								label(for="video") Video
-									span paste your <a href="http://www.youtube.com" target="_blank">YouTube</a> url
-								input( type="text", id="video", name="profile[video]", tabindex="7", value=user.profile.video )
+									span Checkout our guide <a href="http://movingworlds.com/videopitch" target="_blank">How to record a video pitch</a>
+								input( type="text", id="video", name="profile[video]", tabindex="7", value=user.profile.video, placeholder="Paste here your YouTube video link" )
 							li
 								label(for="languages") Languages
-									span Input multiple values
+									span Enter your languages, comma-separated
 								input( type="text", id="languages", name="languages", tabindex="8", class="tags", value=user.languages)
 							li
 								label Area of support
@@ -86,18 +90,18 @@ block content
 						ul
 							li
 								label(for="url") Blog / Website
-								input( type="text", id="url", name="links[url]", tabindex="12", value=user.links && user.links.url )
+								input( type="text", id="url", name="links[url]", tabindex="12", value=user.links && user.links.url, placeholder="Your website link here" )
 							li
 								label(for="twitter") Twitter
-								input( type="text", id="twitter", name="links[twitter]", tabindex="14", value=user.links && user.links.twitter )
+								input( type="text", id="twitter", name="links[twitter]", tabindex="14", value=user.links && user.links.twitter, placeholder="Your Twitter profile link here" )
 					fieldset.col2of2.split
 						ul
 							li
 								label(for="linkedin") LinkedIn
-								input( type="text", id="linkedin", name="links[linkedin]", tabindex="13", value=user.links && user.links.linkedin )
+								input( type="text", id="linkedin", name="links[linkedin]", tabindex="13", value=user.links && user.links.linkedin, placeholder="Your Linkedin profile link here" )
 							li
 								label(for="facebook") Facebook
-								input( type="text", id="facebook", name="links[facebook]", tabindex="15", value=user.links && user.links.facebook )
+								input( type="text", id="facebook", name="links[facebook]", tabindex="15", value=user.links && user.links.facebook, placeholder="Your Facebook profile link here" )
 					nav#progress
 						a(href="/landing")#skip.big.smooth_btn.gray Skip
 						button(type="submit")#next.big.smooth_btn Next

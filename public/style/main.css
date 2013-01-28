@@ -63,7 +63,7 @@ form ul li{position:relative;min-height:45px;display:block;margin-bottom:15px;cl
 form ul li ul li{min-height:100% !important;display:inline;float:left;clear:none}
 form ul li ul li+li{margin-left:10px}
 form label{display:block;margin-bottom:3px;font:700 11px "Lato",Helvetica,Arial,sans-serif;color:#808080;letter-spacing:1px;text-transform:uppercase;text-shadow:0 1px 0 #fff;vertical-align:bottom;}
-form label a{color:#6cc2e9;margin:0;padding:0;line-height:5px !important;vertical-align:text-top}
+form label a{color:#6cc2e9;margin:0;padding:0;vertical-align:text-top}
 form button,form input,form select,form textarea{font-family:Arial,sans-serif;font-size:100%;margin:0;vertical-align:baseline;*vertical-align:middle;outline:none}
 form button,form input{line-height:normal;*overflow:visible}
 form input[type="search"],form input[type="email"],form input[type="date"],form input[type="search"],form input[type="email"],form input[type="password"],form input[type="text"],form ul.tagit,form .ui-autocomplete-input,form textarea{margin:0;width:100%;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;display:block;padding:8px 10px 6px;color:#505050;font-size:12px;font-weight:normal;box-shadow:0 1px 3px rgba(0,0,0,0.43) inset;border:none;border-radius:3px;background:#ddd;background:-moz-linear-gradient(top,#ddd 0%,#f0f0f0 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#ddd),color-stop(100%,#f0f0f0));background:-webkit-linear-gradient(top,#ddd 0%,#f0f0f0 100%);background:-o-linear-gradient(top,#ddd 0%,#f0f0f0 100%);background:-ms-linear-gradient(top,#ddd 0%,#f0f0f0 100%);background:linear-gradient(top,#ddd 0%,#f0f0f0 100%);filter:progid:DXImageTransform.Microsoft.gradient( startColorstr=#ddd, endColorstr=#f0f0f0,GradientType=0 );;}
@@ -554,11 +554,12 @@ ul.error,ul.warning,ul.success{list-style:none}
 label.error{color:#ae3a3a;text-shadow:none;display:table-cell;border:solid 0 #ae3a3a;background:none;padding:2px;float:right}
 h4.error{text-align:left;color:#ae3a3a;text-shadow:none;display:block;background:none;border:solid 0 #ae3a3a;padding:2px;}
 h4.error:before{content:url("/images/icn_error.png");width:12px;height:15px;overflow:hidden;margin-right:5px}
-.error,.warning,.success{z-index:9999;padding:5px 15px 5px 30px;border-style:solid;border-width:1px;text-align:center;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}
-.error a,.warning a,.success a{color:#fff;font-style:italic;text-decoration:underline}
+.error,.warning,.success,.info{z-index:9999;padding:5px 15px 5px 30px;border-style:solid;border-width:1px;text-align:center;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}
+.error a,.warning a,.success a,.info a{color:#fff;font-style:italic;text-decoration:underline}
 .error{background:#e96c6c url("/images/icn_error.png") 10px 50% no-repeat;color:#ae3a3a;border-color:#ae3a3a}
 .warning{background:#f8dd72;color:#cba40c;border-color:#cba40c}
 .success{background:#a8e04f;color:#86b23e;border-color:#86b23e}
+.info{background:#6cc2e9;color:#245b76;border-color:#245b76}
 #flash_message{text-align:center;padding:10px 0;border:none;background-image:url("/images/bg_flash_msg.png");background-repeat:repeat;font-weight:bold;color:#fff}
 .disclaimer{color:#bfbfbf;font-family:"Lato",Helvetica,Arial,sans-serif}
 .ie7 img{-ms-interpolation-mode:bicubic}

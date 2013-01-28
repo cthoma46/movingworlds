@@ -57,7 +57,7 @@ block content
 						ul.no_style
 							li
 								a(href="/auth/linkedin").linkedin_signup Sign up with LinkedIn
-
+								small.disclaimer Recommended for fast Signup
 				form( action="/register", method="post")#step1
 					-if( typeof user !== 'undefined' )
 						input(type="hidden", name="coupon", value=user.invite.coupon)

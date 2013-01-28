@@ -37,8 +37,7 @@ block content
 					fieldset.col2of2.split
 						ul
 							li
-								label(for="industry") Industry
-								input( type="text", id="industry", name="industry", tabindex="2", value=user.industry  )
+								include ../../includes/industry_combo
 					h3.clear Work History
 					hr
 					div#work_history.clone_container(data-template="work_template")
@@ -101,11 +100,11 @@ block content
 		| <input type="hidden", name="employerId[##]", value="" />
 		| <fieldset class="clearfix">
 		|	<ul class="col1of2 split">
-		|		<li><label for="employer[##]">Employer</label><input type="text" id="employer[##]" name="employer[##]"></li>
+		|		<li><label for="employer[##]">Employer</label><input type="text" id="employer[##]" name="employer[##]", placeholder="Enter organization name here"></li>
 		| 	<li style="display:none"><label for="city[##]">City</label><input type="text" id="city[##]" name="city[##]"></li>
 		|	</ul>
 		|	<ul class="col2of2 split">
-		|		<li><label for="position[##]">Position</label><input type="text" id="position[##]" name="position[##]"></li>
+		|		<li><label for="position[##]">Position</label><input type="text" id="position[##]" name="position[##]", placeholder="Your title / role in the organization"></li>
 		|		<li class="half"><input type="checkbox" id="is_current[##]" name="is_current[##]" value="true" ><label for="is_current[##]">I currently work here</label></li>
 		|		<li class="half"><a href="#" class="delete_btn chunky_btn small right hidden">delete</a></li>
 		|	</ul>
@@ -116,10 +115,10 @@ block content
 		| <fieldset class="clearfix">
 		|	<ul class="col1of2 split">
 		|		<li><label for="school[##]">School Name</label><input type="text" id="school[##]" name="school[##]" ></li>
-		|		<li><label for="degree[##]">Degree</label><input type="text" id="degree[##]" name="degree[##]"></li>
+		|		<li><label for="degree[##]">Degree</label><input type="text" id="degree[##]" name="degree[##]" placeholder="e.g. Master in Enviromental Management"></li>
 		|	</ul>
 		|	<ul class="col2of2 split">
-		|		<li><label for="major[##]">Field of study<span>seperate multiple values with commas</span></label><input type="text" id="major[##]" name="major[##]" class="tags"></li>
+		|		<li><label for="major[##]">Field of study<span>Enter your fields of study, comma-separated</span></label><input type="text" id="major[##]" name="major[##]" class="tags"></li>
 		|		<li class="half datepicker"><label for="start[##]">Start Date</label><input type="text" id="start[##]" name="start[##]"></li>
 		|		<li class="half datepicker"><label for="end[##]">End Date</label><input type="text" id="end[##]" name="end[##]"></li>
 		|	</ul>
