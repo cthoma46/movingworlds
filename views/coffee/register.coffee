@@ -9,17 +9,6 @@ $(document).ready ->
 
   $("#work_history, #education_history").MwFieldCloner()
 
-  # display extra fields if experteer is chosen.
-  # $('#invite_extras select#type').bind( "autocompletechange", function(event, ui) {
-  # 	console.log( $(this).val() );
-  # 	if($(this).val() == 'experteer') {
-  # 		$('.experteer_only').removeClass('hidden');
-  # 	}else{
-  # 		$('.experteer_only').addClass('hidden').children('input').val('');
-  # 	}
-  # });
-  #
-
   $('.tags').tagit
 			availableTags: ["Option 1","Option 2","Option 3","Option 4"]
 			create: (event, ui) ->
@@ -33,6 +22,22 @@ $(document).ready ->
 
     if value != '' && $("input[name='area_support'][value='#{value}']").length == 0 && $("input[name='area_support']").length < 6
       option = "<p class='tagit-choice'><span class='tagit-label'>#{label}</span><a class='close'><span class='text-icon'>×</span><span class='ui-icon ui-icon-close'></span></a><input type='hidden' name='area_support' value='#{value}' /></p>"
+
+      $('#areas').append(option);
+      $(this).parent().val("")
+
+      $("p.tagit-choice .close").click (e) ->
+        e.preventDefault()
+        $(this).parent().remove()
+
+  $("#add_support_needed").click (e) ->
+    e.preventDefault()
+
+    value = $('#area_support_needed').val()
+    label = $('#area_support_needed option:selected').text()
+
+    if value != '' && $("input[name='opportunity[area_support]'][value='#{value}']").length == 0 && $("input[name='opportunity[area_support]']").length < 6
+      option = "<p class='tagit-choice'><span class='tagit-label'>#{label}</span><a class='close'><span class='text-icon'>×</span><span class='ui-icon ui-icon-close'></span></a><input type='hidden' name='opportunity[area_support]' value='#{value}' /></p>"
 
       $('#areas').append(option);
       $(this).parent().val("")

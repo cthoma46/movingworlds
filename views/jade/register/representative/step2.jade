@@ -25,7 +25,7 @@ block content
 			header
 				h2 2. Company Information
 			div.stack_body.clearfix
-				form( action="/register/2/representative", method="post")
+				form( action="/register/2/representative", method="post", enctype="multipart/form-data")
 					fieldset.col1of2.split
 						ul
 							li
@@ -43,6 +43,7 @@ block content
 									option(value="research_institute") Research Institute
 									option(value="government_agency") Government Agency
 									option(value="other") Other
+
 							li
 								label(for="size") Organization Size
 								select( id="size", name="size", tabindex="3", class="combobox"  )
@@ -108,6 +109,7 @@ block content
 					fieldset.col2of2.split
 						ul
 							li#upload_avatar
+								label Upload your Company Logo
 								div.avatar
 									.av_img_container
 										img(src="/images/icn_avatar_se.png", width="80", height="80")

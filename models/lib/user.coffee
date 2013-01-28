@@ -25,11 +25,9 @@ userSchema = new Schema(
     type: String
     enum: ["invitee", "experteer", "representative", "admin"]
     default: "invitee"
-
   created:
     type: Date
     default: Date.now()
-
   modified: Date
   recommended_by: String
   first_name: String
@@ -101,13 +99,11 @@ userSchema = new Schema(
     availability:
       start: Date
       end: Date
-
     value: Number
     video: String
     field:
       type: String
       enum: ["management", "development", "technical", "education"]
-
     countries: [String]
     industry: [String]
     goals: [String]

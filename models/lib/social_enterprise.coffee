@@ -15,9 +15,10 @@ opportunitySchema = new Schema(
   skills: [String]
   languages: [String]
   desired_result: String
+  impact: String
   accomodation: String
   accomodation_desc: String
-  compensation: Boolean
+  compensation: String
   benefits: String
   learn: String
   created: Date

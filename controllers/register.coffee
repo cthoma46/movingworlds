@@ -5,6 +5,7 @@ moment = require("moment")
 passport = require("passport")
 bcrypt = require("bcrypt")
 util = require("util")
+fs = require("fs")
 ObjectID = require("mongoose/node_modules/mongodb").ObjectID
 
 module.exports = [
@@ -58,7 +59,7 @@ module.exports = [
         user.confirm = req.body.confirm
         user.gender = req.body.gender
         user.agree = req.body.agree
-        user.notify = req.body.notify
+        #user.notify = req.body.notify
 
         if not user.type or not user.first_name or not user.last_name or not user.birthday or not user.city or not user.country or not user.password or not user.confirm or not user.gender or not user.agree
           req.flash "error", "All fields are required"
@@ -109,6 +110,14 @@ module.exports = [
 
       User.findById req.user._id, (err, user) ->
         unless err
+
+          if req.files && req.files.avatar && req.files.avatar.length > 0
+            file = fs.readFileSync(req.files.avatar.path)
+            fileName = user._id + '.' + req.files.avatar.type.split('/')[1]
+            path = __dirname + '/../public/avatars/' + fileName
+            fs.writeFileSync(path, file)
+            user.avatar = '/avatars/' + fileName
+
           req.body.skills = if String(req.body.skills).length > 0 then String(req.body.skills).split(",") else []
           req.body.interests = if String(req.body.iterests).length > 0 then String(req.body.iterests).split(",") else []
           req.body.visited = if String(req.body.visited).length > 0 then String(req.body.visited).split(",") else []
@@ -207,6 +216,16 @@ module.exports = [
     login: "se"
     action: (req, res) ->
       rep_id = req.user._id
+
+      console.log("WAT")
+      console.log(req.files)
+      if req.files && req.files.avatar && req.files.avatar.length > 0
+        file = fs.readFileSync(req.files.avatar.path)
+        fileName = 'logo_' + rep_id + '.' + req.files.avatar.type.split('/')[1]
+        path = __dirname + '/../public/avatars/' + fileName
+        fs.writeFileSync(path, file)
+        req.body.avatar = '/avatars/' + fileName
+
       SE.update
         rep_id: req.user._id
       , req.body,

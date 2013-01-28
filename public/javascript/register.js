@@ -27,6 +27,21 @@ $(document).ready(function() {
       });
     }
   });
+  $("#add_support_needed").click(function(e) {
+    var label, option, value;
+    e.preventDefault();
+    value = $('#area_support_needed').val();
+    label = $('#area_support_needed option:selected').text();
+    if (value !== '' && $("input[name='opportunity[area_support]'][value='" + value + "']").length === 0 && $("input[name='opportunity[area_support]']").length < 6) {
+      option = "<p class='tagit-choice'><span class='tagit-label'>" + label + "</span><a class='close'><span class='text-icon'>×</span><span class='ui-icon ui-icon-close'></span></a><input type='hidden' name='opportunity[area_support]' value='" + value + "' /></p>";
+      $('#areas').append(option);
+      $(this).parent().val("");
+      return $("p.tagit-choice .close").click(function(e) {
+        e.preventDefault();
+        return $(this).parent().remove();
+      });
+    }
+  });
   $(".experteer_box, .se_box").click(function(e) {
     var $this;
     $this = $(this);
