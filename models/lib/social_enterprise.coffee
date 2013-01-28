@@ -10,21 +10,16 @@ opportunitySchema = new Schema(
   start: Date
   end: Date
   deadline: Date
-  professions: [String]
   min_experience: Number
-  support:
-    type: String
-    enum: ["management", "development", "technical", "education"]
-
+  area_support: [String]
   skills: [String]
   languages: [String]
-  impact: String
-  room_board: Boolean
+  desired_result: String
+  accomodation: String
+  accomodation_desc: String
   compensation: Boolean
   benefits: String
   learn: String
-  placement_partner: Boolean
-  post_engagement: Boolean
   created: Date
   modified:
     type: Date
@@ -37,8 +32,7 @@ socialEnterpriseSchema = new Schema(
   country: String
   type:
     type: String
-    enum: ["profit", "non-profit", "cooperative", "educational", "research_institute", "government_agency", "other"]
-
+    enum: ["profit", "profit-se", "non-profit", "cooperative", "educational", "research_institute", "government_agency", "other"]
   size: Number
   avatar: String
   created: Date
@@ -50,7 +44,6 @@ socialEnterpriseSchema = new Schema(
     is_registered:
       type: Boolean
       default: false
-
     location: String
     year: String
 
@@ -58,9 +51,9 @@ socialEnterpriseSchema = new Schema(
   industry: String
   partner_relations: String
   partner_org_relation: String
-  introduction: String
+  description: String
   impact: String
-  conduct: String
+  conduct: Boolean
   video: String
   opportunities: [opportunitySchema]
 )
@@ -69,20 +62,24 @@ socialEnterpriseSchema.methods.interpretSize = interpretSize = ->
   switch Number(@size)
     when 1
       size =
-        title: "Small"
-        desc: "1-10 employees"
+        title: "Startup"
+        desc: "2 - 5 persons"
     when 2
       size =
-        title: "Medium"
-        desc: "10-100 employees"
+        title: "Small enterprise"
+        desc: "5 - 10 persons"
     when 3
       size =
-        title: "Large Company"
-        desc: "100+ employees"
+        title: "Medium sized enterprise"
+        desc: "10 - 100 persons"
+    when 4
+      size =
+        title: "Large enterprise"
+        desc: "100+ persons"
     else
       size =
         title: "Startup"
-        desc: "no employees"
+        desc: "founder(s) only"
   size
 
 socialEnterpriseSchema.methods.interpretStatus = interpretStatus = ->

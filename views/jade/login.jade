@@ -18,10 +18,10 @@ block content
 					ul
 						li
 							label(for="email") Email
-							input( type="email", id="email", name="email" )
+							input(type="email", id="email", name="email")
 						li
 							label(for="password") Password
-							input( type="password", id="password", name="password" )
+							input(type="password", id="password", name="password")
 						li
 							button(type="submit").chunky_btn.round Sign In
 							span.check.right
@@ -40,5 +40,5 @@ block content
 		p.center Sign-up for an invite to MovingWorlds
 		form( action="/invite", method="post")#invite
 			.field-wrap
-				input( type="text", id="email", name="email", placeholder="email" )
+				input( type="email", id="email", name="email", placeholder="Enter your email address" )
 				button(type="submit").chunky_btn.blue Get Invite

@@ -29,23 +29,24 @@ block content
 					fieldset.col1of2.split
 						ul
 							li
-								label(for="name") Project Title
-								input( type="text", id="name", name="opportunity[name]", tabindex="1" )
+								label(for="name") We are looking for
+									span max 50 characters
+								input( type="text", id="name", name="opportunity[name]", tabindex="1", placeholder="What / who you look for" )
 							li
 								label(for="city") city
 								input(type="text", id="city", name="opportunity[city]", tabindex="2")
 							li
 								label(for="details") Project Details
-									span max 1000 characters
-								textarea(id="details", name="opportunity[details]")
+									span max 500 characters
+								textarea(id="details", name="opportunity[details]", placeholder="Describe your opportunity")
 							li
-								label(for="details") Desired Impact
-									span max 1000 characters
-								textarea(id="impact", name="opportunity[impact]")
+								label(for="details") Desired Results
+									span max 500 characters
+								textarea(id="desired_results", name="opportunity[desired_results]", placeholder="What is the ideal output for this project? Please specify to get a clear idea on the deliverables you are looking for")
 							li.datepicker
-								label(for="deadline") Apply Before
-									span expiration date for applying to this opportunity
-								input( type="text", id="deadline", name="opportunity[deadline]", tabindex="4", data-months="1", data-years="2" )
+										label(for="deadline") Apply Before
+											span expiration date for applying to this opportunity
+										input( type="text", id="deadline", name="opportunity[deadline]", tabindex="4", data-months="1", data-years="2" )
 					fieldset.col2of2.split
 						ul
 							li.half.datepicker
@@ -59,40 +60,104 @@ block content
 								select( id="country", name="opportunity[country]", tabindex="4", class="combobox")
 									include ../../includes/countries_combo
 								input(type='hidden', id='country_value')
-							li
-								label(for="professions") Preferred profession(s)
-									span max 3
-								input( type="text", id="professions", name="opportunity[professions]", tabindex="2", class="tags", data-max="3")
 							li.slider_container.clearfix
 								label(for="experience").slider_label
 									| Years of work experience
 									span 0
 								div(data-min="0", data-max="30").slider#experience
 								input( type="hidden", id="experience", name="opportunity[experience]", value="0", tabindex="3" )
-							//-li
-								label(for="skills") Preferred  Skills & Expertise
+							li
+								label Area of support needed
+									span max 6
+								select(id="area_support", tabindex="9").combobox
+									include ../../includes/area_support_combo
+								a(style="margin-top: 5px")#add_support.chunky_btn.small.right Add
+								div#areas.tagit
+							li
+								label(for="skills") Favored Skills & Expertise
 									span max 3
 								input( type="text", id="skills", name="opportunity[skills]", tabindex="2", class="tags", data-max="3")
 							li
-								label(for="language") Preferred  Language
+								label(for="language") Favored Languages
 									span max 3
 								input( type="text", id="language", name="opportunity[language]", tabindex="2", class="tags", data-max="3")
 							li
-								label Type of support needed
+								label Development impact
+								select( id="impact", name="opportunity[impact]", tabindex="15", class="combobox"  )
+									option(value="")
+									option(value="health") Health
+									option(value="civil_right") Civil Rights
+									option(value="animal_rights") Animal Rights
+									option(value="arts_culture") Arts and Culture
+									option(value="children") Children
+									option(value="civil_rights") Civil Rights
+									option(value="community_service") Community and Service
+									option(value="democracy_politics") Democracy and Politics
+									option(value="economic_empowerment") Economic Empowerment
+									option(value="education") Education
+									option(value="environment") Environment
+									option(value="food") Food
+									option(value="health") Health
+									option(value="housing_homelessness") Housing & Homelessness
+									option(value="human_rights") Human Rights
+									option(value="humanitarian_relief") Humanitarian Relief
+									option(value="international_affairs") International Affairs
+									option(value="job_creation") Job Creation
+									option(value="media_public_debate") Media and Public Debate
+									option(value="microfinance") Microfinance
+									option(value="poverty_alleviation") Poverty Alleviation
+									option(value="religion") Religion
+									option(value="science_technology") Science & Technology
+									option(value="senior_citizens_issues") Senior Citizens Issues
+									option(value="transfer_of_knowledge") Transfer of Knowledge
+									option(value="womens_issues") Women's Issues
+							br
+					h2 What we are offering
+					fieldset.col1of2.split
+						ul
+							li
+								label Accomodation provided?
 								ul
 									li
-										input( type="radio", id="management", name="opportunity[support]", value="management", tabindex="5"  )
-										label(for="management") Management
+										input( type="radio", id="accomodation[yes]", name="opportunity[accomodation]", value="yes" )
+										label(for="accomodation[yes]") Yes
 									li
-										input( type="radio", id="technical", name="opportunity[support]", value="technical", tabindex="6"  )
-										label(for="development") Development
+										input( type="radio", id="accomodation[no]", name="opportunity[accomodation]", value="no"  )
+										label(for="accomodation[no]") No
 									li
-										input( type="radio", id="technical", name="opportunity[support]", value="technical", tabindex="6"  )
-										label(for="technical") Technical
+										input( type="radio", id="accomodation[define]", name="opportunity[accomodation]", value="define" )
+										label(for="accomodation[define]") To be defined
+							li#accomodation_options.hidden
+								ul
 									li
-										input( type="radio", id="technical", name="opportunity[support]", value="technical", tabindex="6"  )
-										label(for="education") Education
+										label(for="opportunity[accomodation_desc]") Describe acommodation
+										input( type="text", id="opportunity[accomodation_desc]", name="opportunity[accomodation_desc]")
+							li
+								label(for="opportunity[benefits]") Additional amenities / benefits?
+								textarea(id="opportunity[benefits]", name="opportunity[benefits]")
+					fieldset.col2of2.split
+						ul
+							li
+								label Compensation for travel and/or local cost of living?
+								ul
+									li
+										input( type="radio", id="compensation[yes]", name="opportunity[compensation]", value="yes" )
+										label(for="compensation[yes]") Yes
+									li
+										input( type="radio", name="compensation[no]", name="opportunity[compensation]", value="no"  )
+										label(for="compensation[no]") No
+									li
+										input( type="radio", name="compensation[define]", name="opportunity[compensation]", value="define" )
+										label(for="compensation[define]") To be defined
+							li#accomodation_options.hidden
+								ul
+									li
+										label(for="opportunity[compensation_desc]") Describe compensantion
+										input( type="text", id="opportunity[accomodation_desc]", name="opportunity[accomodation_desc]")
+							li
+								label(for="opportunity[learn]") Learning Opportunity
+								textarea(id="opportunity[learn]", name="opportunity[learn]")
 					nav#progress
-						a(href="/landing")#skip.big.smooth_btn.gray Skip
+						a(href="/register/4/representative")#skip.big.smooth_btn.gray Skip
 						button(type="submit")#next.big.smooth_btn Next
 			footer

@@ -32,24 +32,26 @@ block content
 								label(for="name") Organization Name
 								input( type="text", id="name", name="name", tabindex="1" )
 							li
-								label(for="size") Organization Size
-								select( id="size", name="size", tabindex="2", class="combobox"  )
-									option(value="")
-									option(value="0") Start-Up (no employees yet)
-									option(value="1") Small company (1- 10 employees, with revenues)
-									option(value="2") Medium sized company (10 - 100 employees)
-									option(value="3") Large company (100+ employees)
-							li
 								label(for="type") Organization Type
-								select( id="last_name", name="type", tabindex="3", class="combobox"  )
+								select( id="last_name", name="type", tabindex="2", class="combobox"  )
 									option(value="")
-									option(value="profit") For Profit
+									option(value="profit") For profit company
+									option(value="profit-se") For profit (Social) Enterprise
 									option(value="non-profit") Non-profit (Social) Enterprise / NGO
 									option(value="cooperative") Cooperative
 									option(value="educational") Educational Institute
 									option(value="research_institute") Research Institute
 									option(value="government_agency") Government Agency
 									option(value="other") Other
+							li
+								label(for="size") Organization Size
+								select( id="size", name="size", tabindex="3", class="combobox"  )
+									option(value="")
+									option(value="0") Startup (founder(s) only)
+									option(value="1") Startup (2 - 5 persons)
+									option(value="2") Small enterprise (5 - 10 persons)
+									option(value="3") Medium sized enterprise (10 - 100 persons)
+									option(value="4") Large enterprise (100+ persons)
 							li
 								label Is your company legally registered?
 								ul
@@ -68,10 +70,10 @@ block content
 										label(for="registered.year") Year Registered
 										input( type="text", id="registered[year]", name="registered[year]", tabindex="7"  )
 							li
-								label(for="representative_type") I represent this organization as a
+								label(for="representative_type") I represent this organization as its
 								select( id="representative_type", name="representative_type", tabindex="8", class="combobox"  )
 									option(value="")
-									option(value="founder") Founder
+									option(value="founder") (co) Founder
 									option(value="director") Director
 									option(value="manager") Manager
 									option(value="employee") Employee (other)
@@ -111,44 +113,18 @@ block content
 										img(src="/images/icn_avatar_se.png", width="80", height="80")
 								input( type="file", id="avatar", name="avatar", tabindex="14", value="upload image"  )
 							li
-								label(for="introduction") Introduction
-									span max 100 characters
-								textarea(id="introduction", name="introduction")
-							li
-								label Development impact
-								select( id="impact", name="impact", tabindex="15", class="combobox"  )
-									option(value="")
-									option(value="health") Health
-									option(value="civil_right") Civil Rights
-									option(value="animal_rights") Animal Rights
-									option(value="arts_culture") Arts and Culture
-									option(value="children") Children
-									option(value="civil_rights") Civil Rights
-									option(value="community_service") Community and Service
-									option(value="democracy_politics") Democracy and Politics
-									option(value="economic_empowerment") Economic Empowerment
-									option(value="education") Education
-									option(value="environment") Environment
-									option(value="food") Food
-									option(value="health") Health
-									option(value="housing_homelessness") Housing & Homelessness
-									option(value="human_rights") Human Rights
-									option(value="humanitarian_relief") Humanitarian Relief
-									option(value="international_affairs") International Affairs
-									option(value="job_creation") Job Creation
-									option(value="media_public_debate") Media and Public Debate
-									option(value="microfinance") Microfinance
-									option(value="poverty_alleviation") Poverty Alleviation
-									option(value="religion") Religion
-									option(value="science_technology") Science & Technology
-									option(value="senior_citizens_issues") Senior Citizens Issues
-									option(value="transfer_of_knowledge") Transfer of Knowledge
-									option(value="womens_issues") Women's Issues
+								label(for="introduction") Description
+									span max 500 characters
+								textarea(id="description", name="description", placeholder="What does your Organization do?")
 							li
 								label(for="video") Video Pitch
 									span paste your <a href="http://www.youtube.com" target="_blank">YouTube</a> url
 								input( type="text", id="video", name="video", tabindex="16" )
+							li.field-container
+								input( type="checkbox", id="conduct", name="conduct", value="true", tabindex="11").required
+								label(for="agree")
+									| I agree to the&nbsp;
+									a(href="/rules_conduct", target="_blank") rules of conduct
 					nav#progress
-						a(href="/landing/")#skip.big.smooth_btn.gray Skip
 						button(type="submit")#next.big.smooth_btn Next
 			footer

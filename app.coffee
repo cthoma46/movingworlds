@@ -1,3 +1,9 @@
+# Profile this
+require('nodefly').profile(
+  'f018365b1d056166133f7f19b1123825',
+  'movingworlds'
+);
+
 express = require("express")
 stylus = require("stylus")
 http = require("http")
@@ -10,8 +16,6 @@ flash = require("connect-flash")
 passport = require("passport")
 settings = require("./models").SETTINGS
 youtube = require("youtube")
-
-require('nodetime').profile()
 
 # console.log(process.versions);
 #/////////////////////////////////////////
