@@ -101,12 +101,8 @@ userSchema = new Schema(
       end: Date
     value: Number
     video: String
-    field:
-      type: String
-      enum: ["management", "development", "technical", "education"]
     countries: [String]
     industry: [String]
-    goals: [String]
     motivation: String
 )
 userSchema.methods.fullName = fullName = ->
@@ -128,6 +124,9 @@ userSchema.methods.interpretStatus = interpretStatus = ->
       status.label = "Currently Experteering"
       status.class = "off"
   status
+
+userSchema.methods.isProfileComplete = isProfileComplete = ->
+  false
 
 userSchema.methods.age = age = ->
   return null  unless @birthday

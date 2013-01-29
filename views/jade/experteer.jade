@@ -3,8 +3,9 @@ extends layouts/layout
 block append scripts
 	if mine
 		script(src='/javascript/plugins/jquery-ui.min.js')
+		script( src='/javascript/plugins/jquery.mw_combo.js')
+		script( src='/javascript/plugins/jquery.tag-it.js')
 		script(src='/javascript/plugins/jquery.validate.min.js')
-		script(src='/javascript/plugins/jquery.jeditable.js')
 		script(src='/javascript/experteer.js')
 
 block content
@@ -41,10 +42,10 @@ block content
 						nav
 							ul
 								li
-									a(href="/settings").chunky_btn Edit my Profile
+									a(href="/settings").chunky_btn Edit my profile
 			div.detail.clearfix
-				nav.credentials.clearfix
-					//-ul
+				//- nav.credentials.clearfix
+					ul
 						li
 							a.friends_btn(href="/explore") 101
 								span Friends
@@ -137,63 +138,93 @@ block content
 						h2.experteering_icon= experteer.headline
 					else
 						h2.experteering_icon Your experteer profile
-					if experteer.profile.video
-						div.profile_video
-							div.video_container!= youtube.embed(extractYoutubeId(experteer.profile.video), 558, 314);
+				if experteer.profile.video
+					div.profile_video
+						div.video_container!= youtube.embed(extractYoutubeId(experteer.profile.video), 558, 314);
 				div.stack_body.clearfix
-					if mine
-						div.col1of2
-								h4 Availablity
-								p!= moment( experteer.profile.availability.start ).format('MMMM D, YYYY')+" <em>to</em> "+moment( experteer.profile.availability.end ).format('MMMM D, YYYY')
-
-								div.profile_area
-									- var editable_class = experteer.profile.motivation? "" : "editable_empty"
-									- var title_class = experteer.profile.motivation? "" : "error"
-									h4(class=title_class) Motivation
-
-									div(class=editable_class).editable_area
-										if experteer.profile.motivation
-											= experteer.profile.motivation
-										else
-											| What's your motivation?
-							div.col2of2
-								div
-									- var editable_class = experteer.profile.field? "" : "editable_empty"
-									- var title_class = experteer.profile.field? "" : "error"
-									h4(class=title_class) Field
-
-									div(class=editable_class).editable
-										if experteer.profile.field
-											= experteer.profile.field
-										else
-											| What's your field?
-								h4 Regions of Interest
-								h4 Value
-								div
-									- var editable_class = experteer.profile.industry? "" : "editable_empty"
-									- var title_class = experteer.profile.industry? "" : "error"
-									h4(class=title_class) Industry
-
-									div(class=editable_class).editable
-										if experteer.profile.industry
-											= experteer.profile.industry
-										else
-											| What's your industry?
-					else
-						div.col1of2
-								h4 Availablity
+						- if(mine && !user.isProfileComplete())
+							p.error Your profile is incomplete, please fill the information below
+							br
+						if mine
+							button#edit_profile.small.chunky_btn.right Edit my experteer profile
+						div#profile_info
+							div.clearfix
+							div.col1of2
+								if mine && !user.profile.availabilty
+									klazz = 'error'
+									availabilty = false
+								h4(class=klazz) Availability
 								p
-								h4 Motivation
-								p= experteer.profile.motivation
-								h4 Personal Learning Goals
-								p= experteer.profile.goals.join(', ')
-						div.col2of2
-								h4 Field
-								p= experteer.profile.field
-								h4 Regions of Interest
-								p= experteer.profile.countries.join(', ')
-								h4 Value
-								p= "$" + experteer.profile.value + " per hour"
-								h4 Industry
-								p= experteer.profile.industry.join(', ')
+									if availabilty
+										#{user.profile.availability.start} to #{user.profile.availability.start}
+									else
+										| No information specified
+								if mine && !user.profile.countries
+									klazz = 'error'
+									countries = false
+								h4(class=klazz) I'd like to go to
+								p
+									if countries
+										| user.profile.countries.join(', ')
+									else
+										| No information specified
+								h4 Preferred Industry
+								h4 I'd like to make a positive impact in
+							div.col2of2
+								if mine && !user.profile.value
+									klazz = 'error'
+									value = false
+								h4(class=klazz) Monetized Value
+								p
+									if value
+										#{user.profile.value} USD / hour
+									else
+										| No information specified
+								h4 Preferred Area of Support
+								if mine && !user.profile.motivation
+									klazz = 'error'
+									motivation = false
+								h4(class=klazz) I get motivated & inspired by
+								p
+									if motivation
+										#{user.profile.motivation}
+									else
+										| No information specified
+						if mine
+							div#profile_form.hidden
+								div.clearfix
+								form
+									div.col1of2
+										h4 Availability
+										ul
+											li.datepicker
+												label From
+												input( type="text", name="profile[availability][start]", data-months="1", data-years="2", value=user.profile.availability.start)
+											li.datepicker
+												label To
+												input( type="text", name="profile[availability][end]", data-months="1", data-years="2", value=user.profile.availability.end)
+										h4 I'd like to go to
+										ul
+											li
+												label
+													span Enter countries, comma-separated
+												input( type="text", name="profile[countries]", class="tags", value=user.profile.countries.join(', ') )
+										h4 Preferred Industry
+										h4 I'd like to make a positive impact in
+									div.col2of2
+										h4 Monetized Value
+										ul
+											li
+												label USD/hour
+												input(type="text", name="profile[value]", value=user.profile.value)
+										h4 Preferred Area of Support
+										h4 I get motivated & inspired by
+										ul
+											li
+												label
+													span max 500 characters
+												textarea(name="profile[motivation]", placeholder="E.g: I love to work on musical projects, the combination of music and teaching makes me tick!")
+									div.clearfix
+									button#save_profile.chunky_btn.blue.right Save
+									button#cancel_profile.chunky_btn.right Cancel
 				footer
