@@ -16,7 +16,6 @@
     "markdown": "0.3.x",
     "moment": "1.6.x",
     "mongoose": "3.2.2",
-    "nodefly": "stable",
     "passport": "0.1.x",
     "passport-local": "0.1.x",
     "passport-facebook": "0.1.x",
