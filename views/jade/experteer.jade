@@ -210,7 +210,16 @@ block content
 													span Enter countries, comma-separated
 												input( type="text", name="profile[countries]", class="tags", value=user.profile.countries.join(', ') )
 										h4 Preferred Industry
+										ul
+											li
+												label(for="industry")
+												select( id="industry", name="industry", class="combobox")
+													include includes/industry_combo
 										h4 I'd like to make a positive impact in
+										ul
+											li
+												select( id="impact", name="profile[impact]", tabindex="15", class="combobox"  )
+													include includes/impact_combo.jade
 									div.col2of2
 										h4 Monetized Value
 										ul
@@ -218,6 +227,14 @@ block content
 												label USD/hour
 												input(type="text", name="profile[value]", value=user.profile.value)
 										h4 Preferred Area of Support
+										ul
+											li
+												label
+													span max 6
+												select(id="area_support", tabindex="9").combobox
+													include includes/area_support_combo
+												a(style="margin-top: 5px")#add_support.chunky_btn.small.right Add
+												div#areas.tagit
 										h4 I get motivated & inspired by
 										ul
 											li

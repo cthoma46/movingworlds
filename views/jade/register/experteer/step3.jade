@@ -37,7 +37,9 @@ block content
 					fieldset.col2of2.split
 						ul
 							li
-								include ../../includes/industry_combo
+								label(for="industry") Industry
+								select( id="industry", name="industry", class="combobox")
+									include ../../includes/industry_combo
 					h3.clear Work History
 					hr
 					div#work_history.clone_container(data-template="work_template")
