@@ -15,4 +15,20 @@ module.exports = [
 		      experteer: doc
 		      moment: moment
 		      mine: user.id == id
+	,
+		path: "/experteer/update"
+		type: "POST"
+		action: (req, res) ->
+			user = req.user
+			User.update
+        id: ObjectId(user.id)
+      , req.body,
+        multi: false
+        upsert: true
+      , (err, numAffected) ->
+        unless err
+          res.redirect "/experteer/" + user.id
+        else
+          req.flash "error", err
+          res.redirect "/experteer/" + user.id
 ]
