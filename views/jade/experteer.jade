@@ -151,13 +151,15 @@ block content
 							div.clearfix
 							div.col1of2
 								// Availability
-								- var availability = user.profile.availability
+								- var availability = user.profile.availability && user.profile.availability.start && user.profile.availability.end
 								if !availability && mine
 									availability_class = 'error'
 								h4(class=availability_class) Availability
 								p
 									if availability
-										#{user.profile.availability.start} to #{user.profile.availability.start}
+										dstart = (typeof user.profile.availability.start !== 'undefined') ? settings.moment(user.profile.availability.start).format('MM/DD/YYYY') : ""
+										dend = (typeof user.profile.availability.start !== 'undefined') ? settings.moment(user.profile.availability.start).format('MM/DD/YYYY') : ""
+										| From #{dstart} to #{dend}
 									else
 										| No information specified
 								// Countries
@@ -198,7 +200,7 @@ block content
 								h4(class=value_class) Monetized Value
 								p
 									if value
-										#{user.profile.value} USD / hour
+										| #{user.profile.value} USD / hour
 									else
 										| No information specified
 								// Area Support
@@ -218,7 +220,7 @@ block content
 								h4(class=motivation_class) I get motivated & inspired by
 								p
 									if motivation
-										#{user.profile.motivation}
+										| #{user.profile.motivation}
 									else
 										| No information specified
 						if mine
@@ -272,6 +274,7 @@ block content
 												label
 													span max 500 characters
 												textarea(name="profile[motivation]", placeholder="E.g: I love to work on musical projects, the combination of music and teaching makes me tick!")
+													=user.profile.motivation
 									div.clearfix
 									button(type='submit')#save_profile.chunky_btn.blue.right Save
 									button#cancel_profile.chunky_btn.right Cancel

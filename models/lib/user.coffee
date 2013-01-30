@@ -101,6 +101,7 @@ userSchema = new Schema(
       end: Date
     value: Number
     video: String
+    impact: String
     countries: [String]
     industry: [String]
     motivation: String
@@ -126,7 +127,14 @@ userSchema.methods.interpretStatus = interpretStatus = ->
   status
 
 userSchema.methods.isProfileComplete = isProfileComplete = ->
-  false
+  availability = @profile.availability && @profile.availability.start && @profile.availability.end
+  countries = @profile.countries && @profile.countries.length > 0
+  industry = @industry
+  impact = @profile.impact
+  value = @profile.value
+  support = @area_support && @area_support.length > 0
+  motivation = @profile.motivation
+  return availability && countries && industry && impact && value && support && motivation
 
 userSchema.methods.age = age = ->
   return null  unless @birthday
