@@ -172,7 +172,7 @@ userSchema.methods.interpretStatus = interpretStatus = ->
       status.class = "on"
     when 2
       status.label = "Currently Experteering"
-      status.class = "off"
+      status.class = "yellow"
   status
 
 userSchema.methods.interpretAreaSupport = interpretAreaSupport = ->

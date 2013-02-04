@@ -247,7 +247,7 @@ fieldset.inline button{float:left}
 .profile_links li a{color:#6cc2e9;font-weight:bold;text-decoration:none}
 .profile_links li a:hover{color:#e96c6c}
 #personal_details ul{list-style:none;margin:0;padding:0;margin-bottom:10px}
-#personal_details .detail+.detail{clear:both;border-top:1px solid #bfbfbf;padding-top:20px;margin-top:20px}
+#personal_details .detail+.detail{clear:both;border-top:1px solid #bfbfbf;padding-top:20px;margin-top:10px;margin-bottom:20px}
 #exp_profile .status_bar{-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;border:1px solid #bfbfbf;height:54px;padding:0 20px;margin-bottom:10px;}
 #exp_profile .status_bar .status{margin-top:16px}
 #exp_profile .status_bar nav{margin-top:7px;float:right;}

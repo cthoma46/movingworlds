@@ -4,8 +4,10 @@ module.exports = [
     type: "GET"
     login: 'all'
     action: (req, res) ->
-    	res.render "settings",
-				title: "settings"
-				headtype: "loggedin"
+      user = req.user
+      res.render "settings",
+        title: "settings"
+        headtype: "loggedin"
+        user: user
 
 ]

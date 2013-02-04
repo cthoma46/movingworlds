@@ -1,7 +1,8 @@
 extends layouts/layout
 
 block append scripts
-
+	script(src="/javascript/plugins/jquery-ui.min.js")
+	script(src='/javascript/settings.js')
 block content
 	div.layout_960
 		section.stack_960.tabs
@@ -45,7 +46,7 @@ block content
 										li
 											input( type="radio", id="female", name="gender", value="female", tabindex="6"  )
 											label(for="female") Female
-							
+
 						fieldset.col2of2.split
 							ul
 								li
@@ -58,7 +59,7 @@ block content
 									include includes/countries_combo
 								li
 									input( type="checkbox", id="agree", name="agree", tabindex="13")
-									label(for="agree") I agree to MovingWorlds 
+									label(for="agree") I agree to MovingWorlds
 										a(href="/terms_conditions") terms and conditions
 								li
 									input( type="checkbox", id="nofity", name="nofity", tabindex="12")
@@ -141,7 +142,7 @@ block content
 										span max 2
 									input( type="text", id="profession", name="profession", tabindex="1", class="tags", data-max="2" )
 								li.slider_container.clearfix
-									label(for="experience").slider_label 
+									label(for="experience").slider_label
 										\Years of work experience
 										span 0
 									div(data-min="0", data-max="30").slider#experience
