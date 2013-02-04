@@ -26,6 +26,16 @@ $(document).ready(function() {
     create: function(event, ui) {},
     onTagAdded: function(event, tag) {}
   });
+  $('#impact').val($('#impact_value').val());
+  $('#industry').val($('#industry_value').val());
+  $('.change_status').click(function(e) {
+    var status;
+    e.preventDefault();
+    status = $(this).data('status');
+    return $.doPost('/experteer/update', {
+      status: status
+    });
+  });
   $(".combobox").combobox({});
   return multiTag('#areas', 'area_support');
 });

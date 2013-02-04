@@ -3,8 +3,10 @@ extends layouts/layout
 block append scripts
 	if mine
 		script(src='/javascript/plugins/jquery-ui.min.js')
-		script( src='/javascript/plugins/jquery.mw_combo.js')
-		script( src='/javascript/plugins/jquery.tag-it.js')
+		script(src='/javascript/plugins/jquery.mw_combo.js')
+		script(src='/javascript/plugins/jquery.tag-it.js')
+		script(src='/javascript/plugins/jquery.dropdown.js')
+		script(src='/javascript/plugins/jquery.extend.js')
 		script(src='/javascript/plugins/jquery.validate.min.js')
 		script(src='/javascript/experteer.js')
 
@@ -123,7 +125,15 @@ block content
 					if mine
 						ul
 							li
-								a.chunky_btn.round Change your status
+								a(data-dropdown='#status').chunky_btn.select Change your status
+								div(id="status", class="dropdown dropdown-tip")
+									ul.dropdown-menu
+										li
+											a(href='#', class='change_status', data-status='0') Currently Not Seeking Experteering Opportunity
+										li
+											a(href='#', class='change_status', data-status='1') Seeking Experteering Opportunity
+										li
+											a(href='#', class='change_status', data-status='2') Currently Experteering
 							//-li
 								a.smooth_btn.red Favorite
 					else
@@ -250,12 +260,14 @@ block content
 										ul
 											li
 												label(for="industry")
+												input(id='industry_value', type='hidden', value=user.industry)
 												select( id="industry", name="industry", class="combobox")
 													include includes/industry_combo
 										h4 I'd like to make a positive impact in
 										ul
 											li
-												select( id="impact", name="profile[impact]", tabindex="15", class="combobox", value=user.profile.impact )
+												input(id='impact_value', type='hidden', value=user.profile.impact)
+												select( id="impact", name="profile[impact]", tabindex="15", class="combobox")
 													include includes/impact_combo.jade
 									div.col2of2
 										h4 Monetized Value

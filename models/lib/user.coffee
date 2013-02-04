@@ -55,7 +55,6 @@ impacts =
   transfer_of_knowledge: "Transfer of Knowledge"
   womens_issues: "Women's Issues"
 
-
 educationSchema = new Schema(
   school: String
   major: [String]

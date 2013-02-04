@@ -24,6 +24,16 @@ $(document).ready ->
     create: (event, ui) ->
     onTagAdded: (event, tag) ->
 
+  # Set some value before combobox
+  $('#impact').val($('#impact_value').val());
+  $('#industry').val($('#industry_value').val());
+
+  # Change status
+  $('.change_status').click (e) ->
+    e.preventDefault()
+    status = $(this).data('status')
+    $.doPost('/experteer/update', { status: status })
+
   $(".combobox").combobox {}
   multiTag('#areas', 'area_support')
 
