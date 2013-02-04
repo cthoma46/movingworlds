@@ -28,7 +28,6 @@ areas =
   other: "Other"
 
 impacts =
-  health: "Health"
   civil_right: "Civil Rights"
   animal_rights: "Animal Rights"
   arts_culture: "Arts and Culture"
