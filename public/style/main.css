@@ -431,6 +431,7 @@ nav.email_options label{font:12px "Lato",Helvetica,Arial,sans-serif;text-transfo
 .smooth_btn.red:hover{background-color:#d15656}
 .chunky_btn{display:inline-block;padding:7px 15px;border:1px solid #bfbfbf;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;background:#fff url("/images/bg_chunky_btn.png") 0 0 repeat-x;-moz-box-shadow:0 1px 1px rgba(0,0,0,0.55);-webkit-box-shadow:0 1px 1px rgba(0,0,0,0.55);box-shadow:0 1px 1px rgba(0,0,0,0.55);font-family:"Lato",Helvetica,Arial,sans-serif;font-weight:700;text-transform:uppercase;text-shadow:0 1px 0 #fff;font-size:11px;color:#808080;letter-spacing:1px;text-decoration:none;height:12px;cursor:pointer;line-height:1em;}
 .chunky_btn.small{padding:4px 8px 3px !important;font-size:9px;height:auto}
+.chunky_btn.round{-webkit-border-radius:30px;-moz-border-radius:30px;border-radius:30px}
 button.chunky_btn{height:26px}
 .chunky_btn:hover,.chunky_btn.on,.chunky_btn.blue:hover,.chunky_btn.blue.on{background-position:0 -26px;padding:8px 15px 6px;color:#808080;-moz-box-shadow:0 1px 3px rgba(0,0,0,0.45) inset , 0 1px 0 #fff;-webkit-box-shadow:0 1px 3px rgba(0,0,0,0.45) inset , 0 1px 0 #fff;box-shadow:0 1px 3px rgba(0,0,0,0.45) inset , 0 1px 0 #fff}
 .chunky_btn.blue{background-position:0 -52px;border-color:#368bb2;color:#fff;text-shadow:0 1px 0 #226889}

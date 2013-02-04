@@ -5,6 +5,57 @@ utils = require("./utils")
 util = require("util")
 collection_name = "mw_users"
 
+areas =
+  general: "General / operational management"
+  financial: "Financial planning / fundraising"
+  communications: "Communications / Social Media"
+  ict: "ICT / Website building"
+  sales: "Sales & Marketing"
+  legal: "Legal advice"
+  product: "Specialty product development"
+  engineering: "Engineering (mechanical / electrical)"
+  energy: "Renewable Energy / Water supply systems"
+  gardening: "Gardening / Farming"
+  construction: "Construction / Building"
+  cooking: "Cooking / Food Management"
+  maintenance: "General maintenance"
+  tourist: "Tourist management"
+  animal: "Animal care"
+  charity: "Charity work"
+  art: "Art / special projects"
+  language: "Language Teaching"
+  teaching: "Teaching general"
+  other: "Other"
+
+impacts =
+  health: "Health"
+  civil_right: "Civil Rights"
+  animal_rights: "Animal Rights"
+  arts_culture: "Arts and Culture"
+  children: "Children"
+  civil_rights: "Civil Rights"
+  community_service: "Community and Service"
+  democracy_politics: "Democracy and Politics"
+  economic_empowerment: "Economic Empowerment"
+  education: "Education"
+  environment: "Environment"
+  food: "Food"
+  health: "Health"
+  housing_homelessness: "Housing & Homelessness"
+  human_rights: "Human Rights"
+  humanitarian_relief: "Humanitarian Relief"
+  international_affairs: "International Affairs"
+  job_creation: "Job Creation"
+  media_public_debate: "Media and Public Debate"
+  microfinance: "Microfinance"
+  poverty_alleviation: "Poverty Alleviation"
+  religion: "Religion"
+  science_technology: "Science & Technology"
+  senior_citizens_issues: "Senior Citizens Issues"
+  transfer_of_knowledge: "Transfer of Knowledge"
+  womens_issues: "Women's Issues"
+
+
 educationSchema = new Schema(
   school: String
   major: [String]
@@ -125,6 +176,25 @@ userSchema.methods.interpretStatus = interpretStatus = ->
       status.label = "Currently Experteering"
       status.class = "off"
   status
+
+userSchema.methods.interpretAreaSupport = interpretAreaSupport = ->
+  myAreas = []
+  for area in @area_support
+    myAreas.push areas[area]
+
+  myAreas
+
+userSchema.methods.areaSupportObject = areaSupportObject = ->
+
+  myAreas = {}
+  for area in @area_support
+    myAreas[area] = areas[area]
+
+  myAreas
+
+userSchema.methods.interpretImpact = interpretImpact = ->
+  if @profile.impact
+    impacts[@profile.impact]
 
 userSchema.methods.isProfileComplete = isProfileComplete = ->
   availability = @profile.availability && @profile.availability.start && @profile.availability.end

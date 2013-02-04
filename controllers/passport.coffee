@@ -97,14 +97,12 @@ LinkedInStrategy::userProfile = (token, tokenSecret, params, done) ->
     catch e
       done e
 
-
 passport.use new LinkedInStrategy(
   consumerKey: settings.apiKeys.linkedin.key
   consumerSecret: settings.apiKeys.linkedin.secret
   callbackURL: settings.apiKeys.linkedin.callback
   passReqToCallback: true
 , (req, token, tokenSecret, profile, done) ->
-
   email = (if (typeof req.user isnt "undefined") then req.user.email else null)
   User.upsertLinkedInUser profile, email, (err, user) ->
     return done(err)  if err

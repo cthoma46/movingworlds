@@ -25,19 +25,31 @@ $(document).ready ->
     onTagAdded: (event, tag) ->
 
   $(".combobox").combobox {}
+  multiTag('#areas', 'area_support')
 
-  $("#add_support").click (e) ->
+multiTag = (container, type) ->
+  if $('#' + type + "_values")
+    values = $('#' + type + "_values").val()
+    values = JSON.parse(values)
+    Object.keys(values).forEach (v) ->
+      addTag(container, type, v, values[v])
+
+  $("#add_" + type).click (e) ->
     e.preventDefault()
 
-    value = $('#area_support').val()
-    label = $('#area_support option:selected').text()
+    value = $('#' + type).val()
+    label = $('#' + type + ' option:selected').text()
 
-    if value != '' && $("input[name='area_support'][value='#{value}']").length == 0 && $("input[name='area_support']").length < 6
-      option = "<p class='tagit-choice'><span class='tagit-label'>#{label}</span><a class='close'><span class='text-icon'>×</span><span class='ui-icon ui-icon-close'></span></a><input type='hidden' name='area_support' value='#{value}' /></p>"
+    addTag(container, 'area_support', value, label)
 
-      $('#areas').append(option);
-      $(this).parent().val("")
+addTag = (container, type, value, label) ->
 
-      $("p.tagit-choice .close").click (e) ->
-        e.preventDefault()
-        $(this).parent().remove()
+  if value != '' && $("input[name='#{type}'][value='#{value}']").length == 0 && $("input[name='#{type}']").length < 6
+    option = "<p class='tagit-choice'><span class='tagit-label'>#{label}</span><a class='close'><span class='text-icon'>×</span><span class='ui-icon ui-icon-close'></span></a><input type='hidden' name='area_support' value='#{value}' /></p>"
+
+    $(container).append(option)
+    $('#' + type).next().find('input').val("")
+
+    $("p.tagit-choice .close").click (e) ->
+      e.preventDefault()
+      $(this).parent().remove()

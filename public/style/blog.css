@@ -121,7 +121,7 @@ div.tagit input[type="text"],ul.tagit input[type="text"]{-moz-box-shadow:none;-w
 .ui-autocomplete .ui-menu-item a{display:block;padding:5px 10px;text-transform:uppercase;text-decoration:none;color:#666;font:700 12px "Lato",Helvetica,Arial,sans-serif}
 .ui-autocomplete .ui-state-hover{background-color:#d3f1ff;color:#6cc2e9 !important}
 .ui_combobox{display:block;position:relative;}
-.ui_combobox .combo_trigger{position:absolute;top:0;right:-2px;display:block;width:33px;height:29px;background:url("/images/spt_form.png") no-repeat 0 -113px}
+.ui_combobox .combo_trigger{position:absolute;bottom:0;right:-2px;display:block;width:33px;height:29px;background:url("/images/spt_form.png") no-repeat 0 -113px}
 .editable:hover{padding:5px;border:dashed 2px #6cc2e9;-webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px;border-radius:5px 5px 5px 5px}
 .editable_area{min-height:100px;}
 .editable_area:hover{min-height:100px;padding:5px;border:dashed 2px #6cc2e9;-webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px;border-radius:5px 5px 5px 5px}

@@ -123,7 +123,7 @@ block content
 					if mine
 						ul
 							li
-								a Change your status
+								a.chunky_btn.round Change your status
 							//-li
 								a.smooth_btn.red Favorite
 					else
@@ -189,7 +189,7 @@ block content
 								h4(class=impact_class) I'd like to make a positive impact in
 								p
 									if impact
-										=user.profile.impact
+										=user.interpretImpact()
 									else
 										| No information specified
 							div.col2of2
@@ -210,7 +210,8 @@ block content
 								h4(class=support_class) Preferred Area of Support
 								p
 									if support
-										=user.area_support.join(', ')
+										= user.interpretAreaSupport().join(', ')
+										input(id="area_support_values", type="hidden", value=JSON.stringify(user.areaSupportObject()))
 									else
 										| No information specified
 								// Motivation
@@ -232,10 +233,13 @@ block content
 										ul
 											li.datepicker
 												label From
-												input( type="text", name="profile[availability][start]", data-months="1", data-years="2", value=user.profile.availability.start)
+												- var dstart = (typeof user.profile.availability.start !== 'undefined') ? settings.moment(user.profile.availability.start).format('MM/DD/YYYY') : ""
+												- var dend = (typeof user.profile.availability.start !== 'undefined') ? settings.moment(user.profile.availability.start).format('MM/DD/YYYY') : ""
+
+												input( type="text", name="profile[availability][start]", data-months="1", data-years="2", value=dstart)
 											li.datepicker
 												label To
-												input( type="text", name="profile[availability][end]", data-months="1", data-years="2", value=user.profile.availability.end)
+												input( type="text", name="profile[availability][end]", data-months="1", data-years="2", value=dend)
 										h4 I'd like to go to
 										ul
 											li
@@ -251,7 +255,7 @@ block content
 										h4 I'd like to make a positive impact in
 										ul
 											li
-												select( id="impact", name="profile[impact]", tabindex="15", class="combobox"  )
+												select( id="impact", name="profile[impact]", tabindex="15", class="combobox", value=user.profile.impact )
 													include includes/impact_combo.jade
 									div.col2of2
 										h4 Monetized Value
@@ -266,7 +270,7 @@ block content
 													span max 6
 												select(id="area_support", tabindex="9").combobox
 													include includes/area_support_combo
-												a(style="margin-top: 5px")#add_support.chunky_btn.small.right Add
+												a(style="margin-top: 5px")#add_area_support.chunky_btn.small.right Add
 												div#areas.tagit
 										h4 I get motivated & inspired by
 										ul
