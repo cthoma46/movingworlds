@@ -148,9 +148,22 @@ block content
 						h2.experteering_icon= experteer.headline
 					else
 						h2.experteering_icon Your experteer profile
-				if experteer.profile.video
-					div.profile_video
-						div.video_container!= youtube.embed(extractYoutubeId(experteer.profile.video), 558, 314);
+				div.profile_video
+					if experteer.profile.video
+						div.video_container
+							!= youtube.embed(extractYoutubeId(experteer.profile.video), 558, 314);
+					else if mine
+						div.video_upload.center
+							a(href='#')
+								img(src='/images/video_upload.png')
+						div#upload_form.center
+							form(action="/experteer/update", method="POST")
+								ul
+									li
+										label(for="video")
+											span Checkout our guide <a href="http://movingworlds.com/videopitch" target="_blank">How to record a video pitch</a>
+										input( type="text", id="video", name="profile[video]", tabindex="7", value=user.profile.video, placeholder="Paste here your YouTube video link" )
+								button(type='submit').chunky_btn Link Video
 				div.stack_body.clearfix
 						- if(mine && !experteer.isProfileComplete())
 							p.error Your profile is incomplete, please fill the information below
@@ -183,13 +196,13 @@ block content
 									else
 										| No information specified
 								// Industry
-								- var industry = experteer.industry
-								if !industry && mine
-									industry_class = 'error'
-								h4(class=industry_class) Preferred Industry
+								- var environment = experteer.profile.environment
+								if !environment && mine
+									environment_class = 'error'
+								h4(class=environment_class) Preferred Work Environment
 								p
-									if industry
-										=experteer.industry
+									if environment
+										=experteer.profile.environment
 									else
 										| No information specified
 								// Development Impact
@@ -238,6 +251,7 @@ block content
 							div#profile_form.hidden
 								div.clearfix
 								form(action="/experteer/update", method="POST")
+									input(type='hidden', name='profile[video]', value=experteer.profile.video)
 									div.col1of2
 										h4 Availability
 										ul
@@ -256,13 +270,15 @@ block content
 												label
 													span Enter countries, comma-separated
 												input( type="text", name="profile[countries]", class="tags", value=experteer.profile.countries.join(', ') )
-										h4 Preferred Industry
+										h4 Preferred Work Environment
 										ul
 											li
-												label(for="industry")
-												input(id='industry_value', type='hidden', value=experteer.industry)
-												select( id="industry", name="industry", class="combobox")
-													include includes/industry_combo
+												label
+														span max 6
+												select(id="environment").combobox
+													include includes/environment_combo
+												a(style="margin-top: 5px")#add_environment.chunky_btn.small.right Add
+												div#environments.tagit
 										h4 I'd like to make a positive impact in
 										ul
 											li

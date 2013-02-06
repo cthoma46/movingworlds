@@ -154,6 +154,7 @@ userSchema = new Schema(
     countries: [String]
     industry: [String]
     motivation: String
+    environment: [String]
 )
 userSchema.methods.fullName = fullName = ->
   @first_name + " " + @last_name

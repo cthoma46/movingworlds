@@ -35,7 +35,9 @@ $(document).ready ->
     $.doPost('/experteer/update', { status: status })
 
   $(".combobox").combobox {}
+
   multiTag('#areas', 'area_support')
+  multiTag('#environments', 'environment')
 
 multiTag = (container, type) ->
   if $('#' + type + "_values")
@@ -50,12 +52,12 @@ multiTag = (container, type) ->
     value = $('#' + type).val()
     label = $('#' + type + ' option:selected').text()
 
-    addTag(container, 'area_support', value, label)
+    addTag(container, type, value, label)
 
 addTag = (container, type, value, label) ->
 
   if value != '' && $("input[name='#{type}'][value='#{value}']").length == 0 && $("input[name='#{type}']").length < 6
-    option = "<p class='tagit-choice'><span class='tagit-label'>#{label}</span><a class='close'><span class='text-icon'>×</span><span class='ui-icon ui-icon-close'></span></a><input type='hidden' name='area_support' value='#{value}' /></p>"
+    option = "<p class='tagit-choice'><span class='tagit-label'>#{label}</span><a class='close'><span class='text-icon'>×</span><span class='ui-icon ui-icon-close'></span></a><input type='hidden' name='#{type}' value='#{value}' /></p>"
 
     $(container).append(option)
     $('#' + type).next().find('input').val("")

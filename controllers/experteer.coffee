@@ -1,6 +1,7 @@
 User = require("../models").User
 moment = require("moment")
 ObjectId = require("mongoose").Types.ObjectId
+utile = require('utile')
 
 module.exports = [
 		path: "/experteer/:id"
@@ -23,16 +24,21 @@ module.exports = [
 		path: "/experteer/update"
 		type: "POST"
 		action: (req, res) ->
-			console.log(req.body)
-			user = req.user
-			User.update
-        _id: ObjectId(user.id)
-      , req.body,
-        multi: false
-        upsert: true
-      , (err, numAffected) ->
+      User.findById req.user.id, (err, user) ->
         unless err
-          res.redirect "/experteer/" + user.id
+          data = utile.mixin(req.body, user)
+
+          User.update
+            _id: ObjectId(user.id)
+          , data,
+            multi: false
+            upsert: true
+          , (err, numAffected) ->
+            unless err
+              res.redirect "/experteer/" + user.id
+            else
+              req.flash "error", err
+              res.redirect "/experteer/" + user.id
         else
           req.flash "error", err
           res.redirect "/experteer/" + user.id

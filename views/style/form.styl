@@ -78,6 +78,7 @@ form
 		box-shadow: 0 1px 3px rgba(0,0,0,.43) inset
 		border: none
 		border-radius: 3px
+		resize: none
 		grad(#dddddd, #f0f0f0)
 		&:focus
 			grad(#e8e8e8, #ffffff)
@@ -386,24 +387,3 @@ ul.tagit
 		width: 33px
 		height: 29px
 		background: url('/images/spt_form.png') no-repeat 0 -113px;
-
-// Edit in place
-
-.editable
-	&:hover
-		padding: 5px
-		border: dashed 2px blue
-		bdrz(5px 5px 5px 5px)
-
-.editable_area
-	min-height: 100px
-	&:hover
-		min-height: 100px
-		padding: 5px
-		border: dashed 2px blue
-		bdrz(5px 5px 5px 5px)
-
-.editable_empty
-	display: block
-	text-transform: none
-	color: light_gray
