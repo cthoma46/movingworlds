@@ -26,16 +26,16 @@ block content
 								div.verified
 					ul
 						li
-							strong Location &nbsp;
+							strong Location&nbsp;
 							= experteer.city+", "+experteer.country
 						if experteer.birthday
 							li
 								strong Age&nbsp;
 								=experteer.age()
-						if experteer.gender
+						if experteer.industry
 							li
-								strong Gender&nbsp;
-								=experteer.interpretGender()
+								strong Industry&nbsp;
+								=experteer.industry
 						if experteer.experience && experteer.experience > 0
 							li
 								strong Experience&nbsp;
@@ -152,7 +152,7 @@ block content
 					div.profile_video
 						div.video_container!= youtube.embed(extractYoutubeId(experteer.profile.video), 558, 314);
 				div.stack_body.clearfix
-						- if(mine && !user.isProfileComplete())
+						- if(mine && !experteer.isProfileComplete())
 							p.error Your profile is incomplete, please fill the information below
 							br
 						if mine
@@ -161,77 +161,77 @@ block content
 							div.clearfix
 							div.col1of2
 								// Availability
-								- var availability = user.profile.availability && user.profile.availability.start && user.profile.availability.end
+								- var availability = experteer.profile.availability && experteer.profile.availability.start && experteer.profile.availability.end
 								if !availability && mine
 									availability_class = 'error'
 								h4(class=availability_class) Availability
 								p
 									if availability
-										dstart = (typeof user.profile.availability.start !== 'undefined') ? settings.moment(user.profile.availability.start).format('MM/DD/YYYY') : ""
-										dend = (typeof user.profile.availability.start !== 'undefined') ? settings.moment(user.profile.availability.start).format('MM/DD/YYYY') : ""
+										dstart = (typeof experteer.profile.availability.start !== 'undefined') ? settings.moment(experteer.profile.availability.start).format('MM/DD/YYYY') : ""
+										dend = (typeof experteer.profile.availability.start !== 'undefined') ? settings.moment(experteer.profile.availability.start).format('MM/DD/YYYY') : ""
 										| From #{dstart} to #{dend}
 									else
 										| No information specified
 								// Countries
-								- var countries = user.profile.countries && user.profile.countries.length > 0
+								- var countries = experteer.profile.countries && experteer.profile.countries.length > 0
 								if !countries && mine
 									countries_class = 'error'
 								h4(class=countries_class) I'd like to go to
 								p
 									if countries
-										=user.profile.countries.join(', ')
+										=experteer.profile.countries.join(', ')
 									else
 										| No information specified
 								// Industry
-								- var industry = user.industry
+								- var industry = experteer.industry
 								if !industry && mine
 									industry_class = 'error'
 								h4(class=industry_class) Preferred Industry
 								p
 									if industry
-										=user.industry
+										=experteer.industry
 									else
 										| No information specified
 								// Development Impact
-								- var impact = user.profile.impact
+								- var impact = experteer.profile.impact
 								if !impact && mine
 									impact_class = 'error'
 								h4(class=impact_class) I'd like to make a positive impact in
 								p
 									if impact
-										=user.interpretImpact()
+										=experteer.interpretImpact()
 									else
 										| No information specified
 							div.col2of2
 								// Value
-								- var value = user.profile.value
+								- var value = experteer.profile.value
 								if !value && mine
 									value_class = 'error'
 								h4(class=value_class) Monetized Value
 								p
 									if value
-										| #{user.profile.value} USD / hour
+										| #{experteer.profile.value} USD / hour
 									else
 										| No information specified
 								// Area Support
-								- var support = user.area_support && user.area_support.length > 0
+								- var support = experteer.area_support && experteer.area_support.length > 0
 								if mine && !support
 									support_class = 'error'
 								h4(class=support_class) Preferred Area of Support
 								p
 									if support
-										= user.interpretAreaSupport().join(', ')
-										input(id="area_support_values", type="hidden", value=JSON.stringify(user.areaSupportObject()))
+										= experteer.interpretAreaSupport().join(', ')
+										input(id="area_support_values", type="hidden", value=JSON.stringify(experteer.areaSupportObject()))
 									else
 										| No information specified
 								// Motivation
-								- var motivation = user.profile.motivation
+								- var motivation = experteer.profile.motivation
 								if mine && !motivation
 									motivation_class = 'error'
 								h4(class=motivation_class) I get motivated & inspired by
 								p
 									if motivation
-										| #{user.profile.motivation}
+										| #{experteer.profile.motivation}
 									else
 										| No information specified
 						if mine
@@ -243,8 +243,8 @@ block content
 										ul
 											li.datepicker
 												label From
-												- var dstart = (typeof user.profile.availability.start !== 'undefined') ? settings.moment(user.profile.availability.start).format('MM/DD/YYYY') : ""
-												- var dend = (typeof user.profile.availability.start !== 'undefined') ? settings.moment(user.profile.availability.start).format('MM/DD/YYYY') : ""
+												- var dstart = (typeof experteer.profile.availability.start !== 'undefined') ? settings.moment(experteer.profile.availability.start).format('MM/DD/YYYY') : ""
+												- var dend = (typeof experteer.profile.availability.start !== 'undefined') ? settings.moment(experteer.profile.availability.start).format('MM/DD/YYYY') : ""
 
 												input( type="text", name="profile[availability][start]", data-months="1", data-years="2", value=dstart)
 											li.datepicker
@@ -255,18 +255,18 @@ block content
 											li
 												label
 													span Enter countries, comma-separated
-												input( type="text", name="profile[countries]", class="tags", value=user.profile.countries.join(', ') )
+												input( type="text", name="profile[countries]", class="tags", value=experteer.profile.countries.join(', ') )
 										h4 Preferred Industry
 										ul
 											li
 												label(for="industry")
-												input(id='industry_value', type='hidden', value=user.industry)
+												input(id='industry_value', type='hidden', value=experteer.industry)
 												select( id="industry", name="industry", class="combobox")
 													include includes/industry_combo
 										h4 I'd like to make a positive impact in
 										ul
 											li
-												input(id='impact_value', type='hidden', value=user.profile.impact)
+												input(id='impact_value', type='hidden', value=experteer.profile.impact)
 												select( id="impact", name="profile[impact]", tabindex="15", class="combobox")
 													include includes/impact_combo.jade
 									div.col2of2
@@ -274,7 +274,7 @@ block content
 										ul
 											li
 												label USD/hour
-												input(type="text", name="profile[value]", value=user.profile.value)
+												input(type="text", name="profile[value]", value=experteer.profile.value)
 										h4 Preferred Area of Support
 										ul
 											li
@@ -290,7 +290,7 @@ block content
 												label
 													span max 500 characters
 												textarea(name="profile[motivation]", placeholder="E.g: I love to work on musical projects, the combination of music and teaching makes me tick!")
-													=user.profile.motivation
+													=experteer.profile.motivation
 									div.clearfix
 									button(type='submit')#save_profile.chunky_btn.blue.right Save
 									button#cancel_profile.chunky_btn.right Cancel

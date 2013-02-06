@@ -6,18 +6,17 @@ module.exports = [
 		path: "/experteer/:id"
 		type: "GET"
 		action:	(req, res) ->
-			user = req.user
-			if user?
+			currentUser = req.user
+			if currentUser?
 				id = req.params.id
-				User.findById id, (err, doc) ->
+				User.findById id, (err, user) ->
 					throw err if err
 
 					res.render "experteer",
-					title: doc.first_name + " " + doc.last_name + " Profile"
-					user: user
-					experteer: doc
+					title: user.first_name + " " + user.last_name + " Profile"
+					experteer: user
 					moment: moment
-					mine: user.id == id
+					mine: currentUser.id == id
 			else
 				res.redirect "/login"
 	,
