@@ -172,8 +172,11 @@ userSchema.methods.interpretStatus = interpretStatus = ->
       status.label = "Seeking Experteering Opportunity"
       status.class = "on"
     when 2
-      status.label = "Currently Experteering"
+      status.label = "Discussing an Experteering Opportunity"
       status.class = "yellow"
+    when 3
+      status.label = "Currently Experteering on Location"
+      status.class = "red"
   status
 
 userSchema.methods.interpretAreaSupport = interpretAreaSupport = ->
