@@ -2,6 +2,9 @@ $(document).ready ->
 
   # Set country value before create combobox
   $('#country').val($('#country_value').val());
+  $('#type').val($('#type_value').val());
+  $('#size').val($('#type_size').val());
+  $('#representative_type').val($('#representative_type_value').val());
 
   $(".combobox").combobox {}
 
@@ -114,6 +117,18 @@ $(document).ready ->
         required: true
         minlength: 6
         equalTo: "#password"
+    errorPlacement: (error, element) ->
+      if element.closest('.field-container').length > 0
+        error.appendTo( element.closest('.field-container') )
+      else
+        error.insertAfter(element);
+
+  $("form#rep_step2").validate
+    rules:
+      name: "required"
+      type: "required"
+      size: "required"
+      representative_type: "required"
     errorPlacement: (error, element) ->
       if element.closest('.field-container').length > 0
         error.appendTo( element.closest('.field-container') )

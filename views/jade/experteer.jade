@@ -143,171 +143,191 @@ block content
 							//-li
 								a.smooth_btn.red Favorite
 			section.stack_630
-				header
-					if experteer.headline
-						h2.experteering_icon= experteer.headline
-					else
-						h2.experteering_icon Your experteer profile
-				div.profile_video
-					if experteer.profile.video
-						div.video_container
-							!= youtube.embed(extractYoutubeId(experteer.profile.video), 558, 314);
-					else if mine
-						div.video_upload.center
-							a(href='#')
-								img(src='/images/video_upload.png')
-						div#upload_form.center
-							form(action="/experteer/update", method="POST")
-								ul
-									li
-										label(for="video")
-											span Checkout our guide <a href="http://movingworlds.com/videopitch" target="_blank">How to record a video pitch</a>
-										input( type="text", id="video", name="profile[video]", tabindex="7", value=user.profile.video, placeholder="Paste here your YouTube video link" )
-								button(type='submit').chunky_btn Link Video
-				div.stack_body.clearfix
-						- if(mine && !experteer.isProfileComplete())
-							p.error Your profile is incomplete, please fill the information below
-							br
+				form(action="/experteer/update", method="POST")
+					header
+						if experteer.headline
+							h2.experteering_icon= experteer.headline
+						else
+							h2.experteering_icon Your experteer profile
 						if mine
-							button#edit_profile.small.chunky_btn.right Edit my experteer profile
-						div#profile_info
-							div.clearfix
-							div.col1of2
-								// Availability
-								- var availability = experteer.profile.availability && experteer.profile.availability.start && experteer.profile.availability.end
-								if !availability && mine
-									availability_class = 'error'
-								h4(class=availability_class) Availability
-								p
-									if availability
-										dstart = (typeof experteer.profile.availability.start !== 'undefined' && experteer.profile.availability.start != null) ? settings.moment(experteer.profile.availability.start).format('MM/DD/YYYY') : ""
-										dend = (typeof experteer.profile.availability.end !== 'undefined' && experteer.profile.availability.end != null) ? settings.moment(experteer.profile.availability.end).format('MM/DD/YYYY') : ""
-										| From #{dstart} to #{dend}
-									else
-										| No information specified
-								// Countries
-								- var countries = experteer.profile.countries && experteer.profile.countries.length > 0
-								if !countries && mine
-									countries_class = 'error'
-								h4(class=countries_class) I'd like to go to
-								p
-									if countries
-										=experteer.profile.countries.join(', ')
-									else
-										| No information specified
-								// Industry
-								- var environment = experteer.profile.environment
-								if !environment && mine
-									environment_class = 'error'
-								h4(class=environment_class) Preferred Work Environment
-								p
-									if environment
-										=experteer.profile.environment
-									else
-										| No information specified
-								// Development Impact
-								- var impact = experteer.profile.impact
-								if !impact && mine
-									impact_class = 'error'
-								h4(class=impact_class) I'd like to make a positive impact in
-								p
-									if impact
-										=experteer.interpretImpact()
-									else
-										| No information specified
-							div.col2of2
-								// Value
-								- var value = experteer.profile.value
-								if !value && mine
-									value_class = 'error'
-								h4(class=value_class) Monetized Value
-								p
-									if value
-										| #{experteer.profile.value} USD / hour
-									else
-										| No information specified
-								// Area Support
-								- var support = experteer.area_support && experteer.area_support.length > 0
-								if mine && !support
-									support_class = 'error'
-								h4(class=support_class) Preferred Area of Support
-								p
-									if support
-										= experteer.interpretAreaSupport().join(', ')
-										input(id="area_support_values", type="hidden", value=JSON.stringify(experteer.areaSupportObject()))
-									else
-										| No information specified
-								// Motivation
-								- var motivation = experteer.profile.motivation
-								if mine && !motivation
-									motivation_class = 'error'
-								h4(class=motivation_class) I get motivated & inspired by
-								p
-									if motivation
-										| #{experteer.profile.motivation}
-									else
-										| No information specified
+							div(style="text-align: right")
+								button#edit_profile.chunky_btn Edit my experteer profile
+					div.profile_video
+						if experteer.profile.video
+							div.video_container
+								!= youtube.embed(extractYoutubeId(experteer.profile.video), 558, 314);
 						if mine
-							div#profile_form.hidden
+							if !experteer.profile.video
+								div.video_upload.center
+									a(href='#')
+										img(src='/images/video_upload.png')
+							div#upload_form.center.hidden
+									ul
+										li
+											label(for="video")
+												span Checkout our guide <a href="http://movingworlds.com/videopitch" target="_blank">How to record a video pitch</a>
+											input( type="text", id="video", name="profile[video]", tabindex="7", value=user.profile.video, placeholder="Paste here your YouTube video link" )
+					div.stack_body.clearfix
+							- if(mine && !experteer.isProfileComplete())
+								p.error Your profile is incomplete, please fill the information below
+								br
+							div#profile_info
 								div.clearfix
-								form(action="/experteer/update", method="POST")
-									input(type='hidden', name='profile[video]', value=experteer.profile.video)
-									div.col1of2
-										h4 Availability
-										ul
-											li.datepicker
-												label From
-												- var dstart = (typeof experteer.profile.availability.start !== 'undefined' && experteer.profile.availability.start != null) ? settings.moment(experteer.profile.availability.start).format('MM/DD/YYYY') : ""
-												- var dend = (typeof experteer.profile.availability.end !== 'undefined' && experteer.profile.availability.end != null) ? settings.moment(experteer.profile.availability.end).format('MM/DD/YYYY') : ""
-
-												input( type="text", name="profile[availability][start]", data-months="1", data-years="2", value=dstart)
-											li.datepicker
-												label To
-												input( type="text", name="profile[availability][end]", data-months="1", data-years="2", value=dend)
-										h4 I'd like to go to
-										ul
-											li
-												label
-													span Enter countries, comma-separated
-												input( type="text", name="profile[countries]", class="tags", value=experteer.profile.countries.join(', ') )
-										h4 Preferred Work Environment
-										ul
-											li
-												label
-														span max 6
-												select(id="environment").combobox
-													include includes/environment_combo
-												a(style="margin-top: 5px")#add_environment.chunky_btn.small.right Add
-												div#environments.tagit
-										h4 I'd like to make a positive impact in
-										ul
-											li
-												input(id='impact_value', type='hidden', value=experteer.profile.impact)
-												select( id="impact", name="profile[impact]", tabindex="15", class="combobox")
-													include includes/impact_combo.jade
-									div.col2of2
-										h4 Monetized Value
-										ul
-											li
-												label USD/hour
-												input(type="text", name="profile[value]", value=experteer.profile.value)
-										h4 Preferred Area of Support
-										ul
-											li
-												label
-													span max 6
-												select(id="area_support", tabindex="9").combobox
-													include includes/area_support_combo
-												a(style="margin-top: 5px")#add_area_support.chunky_btn.small.right Add
-												div#areas.tagit
-										h4 I get motivated & inspired by
-										ul
-											li
-												label
-													span max 500 characters
-												textarea(name="profile[motivation]", placeholder="E.g: I love to work on musical projects, the combination of music and teaching makes me tick!")
-													=experteer.profile.motivation
+								div.col1of2
+									// Availability
+									- var availability = experteer.profile.availability && experteer.profile.availability.start && experteer.profile.availability.end
+									if !availability && mine
+										availability_class = 'error'
+									h4(class=availability_class) Availability
+									p
+										if availability
+											dstart = (typeof experteer.profile.availability.start !== 'undefined' && experteer.profile.availability.start != null) ? settings.moment(experteer.profile.availability.start).format('MM/DD/YYYY') : ""
+											dend = (typeof experteer.profile.availability.end !== 'undefined' && experteer.profile.availability.end != null) ? settings.moment(experteer.profile.availability.end).format('MM/DD/YYYY') : ""
+											| From #{dstart} to #{dend}
+										else
+											| No information specified
+									// Countries
+									- var countries = experteer.profile.countries && experteer.profile.countries.length > 0
+									if !countries && mine
+										countries_class = 'error'
+									h4(class=countries_class) I'd like to go to
+									p
+										if countries
+											=experteer.profile.countries.join(', ')
+										else
+											| No information specified
+									// Industry
+									- var environment = experteer.profile.environment && experteer.profile.environment.length > 0
+									if !environment && mine
+										environment_class = 'error'
+									h4(class=environment_class) Preferred Work Environment
+									p
+										if environment
+											=experteer.profile.environment.join(', ')
+										else
+											| No information specified
+									// Development Impact
+									- var impact = experteer.profile.impact
+									if !impact && mine
+										impact_class = 'error'
+									h4(class=impact_class) I'd like to make a positive impact in
+									p
+										if impact
+											=experteer.interpretImpact()
+										else
+											| No information specified
+								div.col2of2
+									// Value
+									- var value = experteer.profile.value
+									if !value && mine
+										value_class = 'error'
+									h4(class=value_class) Monetized Value
+									p
+										if value
+											| #{experteer.profile.value} USD / hour
+										else
+											| No information specified
+									// Area Support
+									- var support = experteer.area_support && experteer.area_support.length > 0
+									if mine && !support
+										support_class = 'error'
+									h4(class=support_class) Preferred Area of Support
+									p
+										if support
+											= experteer.interpretAreaSupport().join(', ')
+											input(id="area_support_values", type="hidden", value=JSON.stringify(experteer.areaSupportObject()))
+										else
+											| No information specified
+									// Motivation
+									- var motivation = experteer.profile.motivation
+									if mine && !motivation
+										motivation_class = 'error'
+									h4(class=motivation_class) I get motivated & inspired by
+									p
+										if motivation
+											| #{experteer.profile.motivation}
+										else
+											| No information specified
+							if mine
+								div#profile_form.hidden
 									div.clearfix
-									button(type='submit')#save_profile.chunky_btn.blue.right Save
-									button#cancel_profile.chunky_btn.right Cancel
+										div.col1of2
+											h4 Availability
+											ul
+												li.datepicker
+													label From
+													- var dstart = (typeof experteer.profile.availability.start !== 'undefined' && experteer.profile.availability.start != null) ? settings.moment(experteer.profile.availability.start).format('MM/DD/YYYY') : ""
+													- var dend = (typeof experteer.profile.availability.end !== 'undefined' && experteer.profile.availability.end != null) ? settings.moment(experteer.profile.availability.end).format('MM/DD/YYYY') : ""
+
+													input( type="text", name="profile[availability][start]", data-months="1", data-years="2", value=dstart)
+												li.datepicker
+													label To
+													input( type="text", name="profile[availability][end]", data-months="1", data-years="2", value=dend)
+											h4 I'd like to go to
+											ul
+												li
+													label
+														span Enter countries, comma-separated
+													input( type="text", name="profile[countries]", class="tags", value=experteer.profile.countries.join(', ') )
+											h4 Preferred Work Environment
+											div.checkboxes
+												ul
+													li.half
+														input(type='checkbox', name='profile[environment]', value="Private Sector", checked=experteer.profile.environment.indexOf('Private Sector') > -1)
+														label Private Sector
+													li.half
+														input(type='checkbox', name='profile[environment]', value="Urban", checked=experteer.profile.environment.indexOf('Urban') > -1)
+														label Urban
+												ul
+													li.half
+														input(type='checkbox', name='profile[environment]', value="NGO", checked=experteer.profile.environment.indexOf('NGO') > -1)
+														label NGO
+													li.half
+														input(type='checkbox', name='profile[environment]', value="Rural", checked=experteer.profile.environment.indexOf('Rural') > -1)
+														label Rural
+												ul
+													li.half
+														input(type='checkbox', name='profile[environment]', value="Government", checked=experteer.profile.environment.indexOf('Government') > -1)
+														label Government
+													li.half
+														input(type='checkbox', name='profile[environment]', value="Nature", checked=experteer.profile.environment.indexOf('Nature') > -1)
+														label Nature
+												ul(style="height: 100px")
+													li.half
+														input(type='checkbox', name='profile[environment]', value="Research", checked=experteer.profile.environment.indexOf('Research') > -1)
+														label Research
+													li.half
+														input(type='checkbox', name='profile[environment]', value="Anywhere", checked=experteer.profile.environment.indexOf('Anywhere') > -1)
+														label Anywhere
+											h4 I'd like to make a positive impact in
+											ul
+												li
+													input(id='impact_value', type='hidden', value=experteer.profile.impact)
+													select( id="impact", name="profile[impact]", tabindex="15", class="combobox")
+														include includes/impact_combo.jade
+										div.col2of2
+											h4 Monetized Value
+											ul
+												li
+													label USD/hour
+													input(type="text", name="profile[value]", value=experteer.profile.value)
+											h4 Preferred Area of Support
+											ul
+												li
+													label
+														span max 6
+													select(id="area_support", tabindex="9").combobox
+														include includes/area_support_combo
+													a(style="margin-top: 5px")#add_area_support.chunky_btn.small.right Add
+													div#areas.tagit
+											h4 I get motivated & inspired by
+											ul
+												li
+													label
+														span max 500 characters
+													textarea(name="profile[motivation]", placeholder="E.g: I love to work on musical projects, the combination of music and teaching makes me tick!")
+														=experteer.profile.motivation
+										div.clearfix.center
+										button(type='submit')#save_profile.chunky_btn.blue.right Save
+										button#cancel_profile.chunky_btn.right Cancel
 				footer

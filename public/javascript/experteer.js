@@ -6,13 +6,15 @@ $(document).ready(function() {
     e.preventDefault();
     $(this).hide();
     $('#profile_form').show();
-    return $('#profile_info').hide();
+    $('#profile_info').hide();
+    return $('#upload_form').show();
   });
   $('#cancel_profile').click(function(e) {
     e.preventDefault();
     $('#profile_form').hide();
     $('#profile_info').show();
-    return $('#edit_profile').show();
+    $('#edit_profile').show();
+    return $('#upload_form').hide();
   });
   $(".datepicker input").datepicker({
     showOn: "both",
@@ -37,18 +39,21 @@ $(document).ready(function() {
     });
   });
   $(".combobox").combobox({});
-  multiTag('#areas', 'area_support');
-  return multiTag('#environments', 'environment');
+  return multiTag('#areas', 'area_support');
 });
 
 multiTag = function(container, type) {
   var values;
   if ($('#' + type + "_values")) {
     values = $('#' + type + "_values").val();
-    values = JSON.parse(values);
-    Object.keys(values).forEach(function(v) {
-      return addTag(container, type, v, values[v]);
-    });
+    if (typeof values !== 'undefined') {
+      if (typeof values !== '') {
+        values = JSON.parse(values);
+      }
+      Object.keys(values).forEach(function(v) {
+        return addTag(container, type, v, values[v]);
+      });
+    }
   }
   return $("#add_" + type).click(function(e) {
     var label, value;

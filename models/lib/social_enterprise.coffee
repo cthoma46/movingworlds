@@ -48,10 +48,8 @@ socialEnterpriseSchema = new Schema(
     location: String
     year: String
 
-  links: {}
+  url: String
   industry: String
-  partner_relations: String
-  partner_org_relation: String
   description: String
   impact: String
   conduct: Boolean

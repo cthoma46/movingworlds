@@ -5,12 +5,14 @@ $(document).ready ->
     $(this).hide()
     $('#profile_form').show()
     $('#profile_info').hide()
+    $('#upload_form').show();
 
   $('#cancel_profile').click (e) ->
     e.preventDefault()
     $('#profile_form').hide()
     $('#profile_info').show()
     $('#edit_profile').show()
+    $('#upload_form').hide();
 
   $(".datepicker input").datepicker
     showOn: "both"
@@ -37,14 +39,15 @@ $(document).ready ->
   $(".combobox").combobox {}
 
   multiTag('#areas', 'area_support')
-  multiTag('#environments', 'environment')
 
 multiTag = (container, type) ->
   if $('#' + type + "_values")
     values = $('#' + type + "_values").val()
-    values = JSON.parse(values)
-    Object.keys(values).forEach (v) ->
-      addTag(container, type, v, values[v])
+
+    unless typeof values == 'undefined'
+      values = JSON.parse(values) unless typeof values is ''
+      Object.keys(values).forEach (v) ->
+        addTag(container, type, v, values[v])
 
   $("#add_" + type).click (e) ->
     e.preventDefault()

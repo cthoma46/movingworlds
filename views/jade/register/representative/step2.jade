@@ -25,16 +25,15 @@ block content
 			header
 				h2 2. Company Information
 			div.stack_body.clearfix
-				form( action="/register/2/representative", method="post", enctype="multipart/form-data")
+				form(id="rep_step2", action="/register/2/representative", method="post", enctype="multipart/form-data")
 					fieldset.col1of2.split
 						ul
 							li
 								label(for="name") Organization Name
-								input( type="text", id="name", name="name", tabindex="1" )
+								input(type="text", id="name", name="name", tabindex="1", value=se.name )
 							li
 								label(for="type") Organization Type
-								select( id="last_name", name="type", tabindex="2", class="combobox"  )
-									option(value="")
+								select(id="type", name="type", tabindex="2", class="combobox")
 									option(value="profit") For profit company
 									option(value="profit-se") For profit (Social) Enterprise
 									option(value="non-profit") Non-profit (Social) Enterprise / NGO
@@ -43,16 +42,18 @@ block content
 									option(value="research_institute") Research Institute
 									option(value="government_agency") Government Agency
 									option(value="other") Other
+								input(type='hidden', id='type_value', value=se.type)
 
 							li
 								label(for="size") Organization Size
-								select( id="size", name="size", tabindex="3", class="combobox"  )
-									option(value="")
+								select(id="size", name="size", tabindex="3", class="combobox")
 									option(value="0") Startup (founder(s) only)
 									option(value="1") Startup (2 - 5 persons)
 									option(value="2") Small enterprise (5 - 10 persons)
 									option(value="3") Medium sized enterprise (10 - 100 persons)
 									option(value="4") Large enterprise (100+ persons)
+								input(type='hidden', id='size_value', value=se.size)
+
 							li
 								label Is your company legally registered?
 								ul
@@ -73,46 +74,27 @@ block content
 							li
 								label(for="representative_type") I represent this organization as its
 								select( id="representative_type", name="representative_type", tabindex="8", class="combobox"  )
-									option(value="")
 									option(value="founder") (co) Founder
 									option(value="director") Director
 									option(value="manager") Manager
 									option(value="employee") Employee (other)
 									option(value="legal_rep") Legal representative
 									option(value="other") Other
+								input(type='hidden', id='representative_type_value', value=se.representative_type)
+
 							li
 								label(for="url") Website Url
 									span example: http://www.mywebsite.com
-								input( type="text", id="url", name="url", tabindex="9" )
+								input(type="text", id="url", name="url", tabindex="9", value=se.url)
 							li
 								include ../../includes/industry_combo
-							//-li
-								label(for="partner_relations") Partner Organization
-								input( type="text", id="partner_relations", name="partner_relations", tabindex="10", class="tags"  )
-							//-li
-								label(for="partner_org_relation") Partner Organization Relation
-								select( id="partner_org_relation", name="partner_org_relation", tabindex="11", class="combobox"  )
-									option(value="")
-									option(value="financiers") Financiers
-									option(value="commissioners") Commissioners
-									option(value="clients") Clients
-									option(value="suppliers") Suppliers
-									option(value="supporting_organizations") Supporting Organizations
-									option(value="other") Other References
-							//-li
-								label(for="city") City
-								input( type="text", id="city", name="city", tabindex="12" )
-							//-li
-								label(for="country") Country
-								select( id="country", name="country", tabindex="13", class="combobox"  )
-									include ../../includes/countries_combo
 					fieldset.col2of2.split
 						ul
 							li#upload_avatar
 								label Upload your Company Logo
 								div.avatar
 									.av_img_container
-										img(src="/images/icn_avatar_se.png", width="80", height="80")
+										img(src=se.avatar || "/images/icn_avatar_se.png", width="80", height="80")
 								input( type="file", id="avatar", name="avatar", tabindex="14", value="upload image"  )
 							li
 								label(for="introduction") Description
@@ -120,8 +102,8 @@ block content
 								textarea(id="description", name="description", placeholder="What does your Organization do?")
 							li
 								label(for="video") Video Pitch
-									span paste your <a href="http://www.youtube.com" target="_blank">YouTube</a> url
-								input( type="text", id="video", name="video", tabindex="16" )
+									span Checkout our guide <a href="http://movingworlds.com/videopitch" target="_blank">How to record a video pitch</a>
+								input( type="text", id="video", name="video", tabindex="7", value=se.video, placeholder="Paste here your YouTube video link" )
 							li.field-container
 								input( type="checkbox", id="conduct", name="conduct", value="true", tabindex="11").required
 								label(for="agree")

@@ -198,12 +198,13 @@ userSchema.methods.interpretImpact = interpretImpact = ->
 userSchema.methods.isProfileComplete = isProfileComplete = ->
   availability = @profile.availability && @profile.availability.start && @profile.availability.end
   countries = @profile.countries && @profile.countries.length > 0
-  industry = @industry
+  environment = @profile.environment && @profile.environment.length > 0
+  video = @profile.video && @profile.video.length > 0
   impact = @profile.impact
   value = @profile.value
   support = @area_support && @area_support.length > 0
   motivation = @profile.motivation
-  return availability && countries && industry && impact && value && support && motivation
+  return availability && countries && environment && video && impact && value && support && motivation
 
 userSchema.methods.age = age = ->
   return null  unless @birthday
@@ -308,7 +309,6 @@ userSchema.statics.upsertLinkedInUser = upsertLinkedInUser = (linkedInUserData, 
         callback null, user
       else
         console.log "Syncing linkedin data with existing user"
-        console.log(require('util').inspect(linkedInUserData, true, null, true))
         user.connections.linkedin.id = linkedInUserData.id
         user.connections.linkedin.link = linkedInUserData.publicProfileUrl
         user.first_name = user.first_name or linkedInUserData.firstName

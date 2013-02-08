@@ -5,6 +5,7 @@ moment = require("moment")
 passport = require("passport")
 bcrypt = require("bcrypt")
 util = require("util")
+utile = require('utile')
 fs = require("fs")
 ObjectID = require("mongoose/node_modules/mongodb").ObjectID
 
@@ -206,34 +207,45 @@ module.exports = [
     login: "se"
     action: (req, res) ->
       view = "register/representative/step" + req.params.step
-      res.render view,
-        title: "register"
-        headtype: "nonav"
+      rep_id = req.user._id
+      social = new SE()
+      social.rep_id
+      SE.find rep_id: rep_id, (err, se) ->
+        unless err
+          utile.mixin(social, se)
+
+        res.render view,
+          title: "register"
+          headtype: "nonav"
+          se: social
   ,
     path: "/register/2/representative"
     type: "POST"
     login: "se"
     action: (req, res) ->
       rep_id = req.user._id
+      social = new SE()
 
-      if req.files && req.files.avatar && req.files.avatar.length > 0
-        file = fs.readFileSync(req.files.avatar.path)
-        fileName = 'logo_' + rep_id + '.' + req.files.avatar.type.split('/')[1]
-        path = __dirname + '/../public/avatars/' + fileName
-        fs.writeFileSync(path, file)
-        req.body.avatar = '/avatars/' + fileName
+      SE.findOne rep_id: rep_id, (err, se) ->
+        if err
+          utile.mixin(social, se)
 
-      SE.update
-        rep_id: req.user._id
-      , req.body,
-        multi: false
-        upsert: true
-      , (err, numAffected) ->
-        unless err
-          res.redirect "/register/3/representative"
-        else
-          req.flash "message", err
-          res.redirect "/register/2/representative"
+        # Upload Avatar
+        if req.files && req.files.avatar && req.files.avatar.length > 0
+          file = fs.readFileSync(req.files.avatar.path)
+          fileName = 'logo_' + rep_id + '.' + req.files.avatar.type.split('/')[1]
+          path = __dirname + '/../public/avatars/' + fileName
+          fs.writeFileSync(path, file)
+          req.body.avatar = '/avatars/' + fileName
+
+        utile.mixin(social, req.body);
+
+        social.save (err) ->
+          unless err
+            res.redirect "/register/3/representative"
+          else
+            req.flash "message", err
+            res.redirect "/register/2/representative"
   ,
     path: "/register/3/representative"
     type: "POST"

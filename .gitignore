@@ -4,3 +4,6 @@ public/*.html
 public/*/*.html
 public/*/*/*.html
 public/sitemap.xml
+public/avatars/*.gif
+public/avatars/*.png
+public/avatars/*.jpg

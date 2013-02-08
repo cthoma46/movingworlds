@@ -62,6 +62,7 @@ form ul{list-style:none;margin:0;padding:0;}
 form ul li{position:relative;min-height:45px;display:block;margin-bottom:15px;clear:both;}
 form ul li ul li{min-height:100% !important;display:inline;float:left;clear:none}
 form ul li ul li+li{margin-left:10px}
+form .checkboxes ul li{min-height:10px;margin-bottom:0}
 form label{display:block;margin-bottom:3px;font:700 11px "Lato",Helvetica,Arial,sans-serif;color:#808080;letter-spacing:1px;text-transform:uppercase;text-shadow:0 1px 0 #fff;vertical-align:bottom;}
 form label a{color:#6cc2e9;margin:0;padding:0;vertical-align:text-top}
 form button,form input,form select,form textarea{font-family:Arial,sans-serif;font-size:100%;margin:0;vertical-align:baseline;*vertical-align:middle;outline:none}

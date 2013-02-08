@@ -2,6 +2,9 @@
 
 $(document).ready(function() {
   $('#country').val($('#country_value').val());
+  $('#type').val($('#type_value').val());
+  $('#size').val($('#type_size').val());
+  $('#representative_type').val($('#representative_type_value').val());
   $(".combobox").combobox({});
   if ($(".modal.autoplay").length > 0) {
     $(".modal.autoplay").MwModal({});
@@ -101,7 +104,7 @@ $(document).ready(function() {
     buttonImage: "/images/btn_datepicker.png",
     buttonImageOnly: true
   });
-  return $("form#step1").validate({
+  $("form#step1").validate({
     rules: {
       first_name: "required",
       last_name: "required",
@@ -118,6 +121,21 @@ $(document).ready(function() {
         minlength: 6,
         equalTo: "#password"
       }
+    },
+    errorPlacement: function(error, element) {
+      if (element.closest('.field-container').length > 0) {
+        return error.appendTo(element.closest('.field-container'));
+      } else {
+        return error.insertAfter(element);
+      }
+    }
+  });
+  return $("form#rep_step2").validate({
+    rules: {
+      name: "required",
+      type: "required",
+      size: "required",
+      representative_type: "required"
     },
     errorPlacement: function(error, element) {
       if (element.closest('.field-container').length > 0) {
