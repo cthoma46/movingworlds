@@ -59,7 +59,6 @@ module.exports = [
         user.confirm = req.body.confirm
         user.gender = req.body.gender
         user.agree = req.body.agree
-        #user.notify = req.body.notify
 
         if not user.type or not user.first_name or not user.last_name or not user.birthday or not user.city or not user.country or not user.password or not user.confirm or not user.gender or not user.agree
           req.flash "error", "All fields are required"
@@ -217,8 +216,6 @@ module.exports = [
     action: (req, res) ->
       rep_id = req.user._id
 
-      console.log("WAT")
-      console.log(req.files)
       if req.files && req.files.avatar && req.files.avatar.length > 0
         file = fs.readFileSync(req.files.avatar.path)
         fileName = 'logo_' + rep_id + '.' + req.files.avatar.type.split('/')[1]
