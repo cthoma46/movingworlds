@@ -180,8 +180,8 @@ block content
 								h4(class=availability_class) Availability
 								p
 									if availability
-										dstart = (typeof experteer.profile.availability.start !== 'undefined') ? settings.moment(experteer.profile.availability.start).format('MM/DD/YYYY') : ""
-										dend = (typeof experteer.profile.availability.start !== 'undefined') ? settings.moment(experteer.profile.availability.start).format('MM/DD/YYYY') : ""
+										dstart = (typeof experteer.profile.availability.start !== 'undefined' && experteer.profile.availability.start != null) ? settings.moment(experteer.profile.availability.start).format('MM/DD/YYYY') : ""
+										dend = (typeof experteer.profile.availability.start !== 'undefined' && experteer.profile.availability.start != null) ? settings.moment(experteer.profile.availability.start).format('MM/DD/YYYY') : ""
 										| From #{dstart} to #{dend}
 									else
 										| No information specified
@@ -257,8 +257,8 @@ block content
 										ul
 											li.datepicker
 												label From
-												- var dstart = (typeof experteer.profile.availability.start !== 'undefined') ? settings.moment(experteer.profile.availability.start).format('MM/DD/YYYY') : ""
-												- var dend = (typeof experteer.profile.availability.start !== 'undefined') ? settings.moment(experteer.profile.availability.start).format('MM/DD/YYYY') : ""
+												- var dstart = (typeof experteer.profile.availability.start !== 'undefined' && experteer.profile.availability.start != null) ? settings.moment(experteer.profile.availability.start).format('MM/DD/YYYY') : ""
+												- var dend = (typeof experteer.profile.availability.start !== 'undefined' && experteer.profile.availability.start != null) ? settings.moment(experteer.profile.availability.start).format('MM/DD/YYYY') : ""
 
 												input( type="text", name="profile[availability][start]", data-months="1", data-years="2", value=dstart)
 											li.datepicker
