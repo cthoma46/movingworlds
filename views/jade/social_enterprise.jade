@@ -85,7 +85,8 @@ block content
 						div.stack_body.clearfix
 							div.col1of2
 								h4 Dates
-								p!= moment( se.opportunities[opp_id].start ).format('MMMM D, YYYY')+" <em>to</em> "+moment( se.opportunities[opp_id].end ).format('MMMM D, YYYY')
+								if se.opportunities[opp_id].start != null && se.opportunities[opp_id].end != null
+									p!= moment( se.opportunities[opp_id].start ).format('MMMM D, YYYY')+" <em>to</em> "+moment( se.opportunities[opp_id].end ).format('MMMM D, YYYY')
 								h4 Details
 								p= se.opportunities[opp_id].details
 								h4 Field
