@@ -2,9 +2,8 @@ extends layouts/layout
 block append scripts
 block content
 	div.layout_960
-
-		-var opp_id = (isNaN(Number(opp_id)) || !opp_id ) ? 0 : Number(opp_id)
-		-var status = se.interpretStatus()
+		- var opp_id = (isNaN(Number(opp_id)) || !opp_id ) ? 0 : Number(opp_id)
+		- var status = se.interpretStatus()
 
 		aside#personal_details.col1of2
 			div.widget.se
@@ -19,51 +18,50 @@ block content
 								div.verified
 					ul
 						li
-							h3= se.city+", "+se.country
-						li
-							strong Status:
-							=se.type
+							strong Type&nbsp;
+							=se.interpretType()
 						li
 							- var size = se.interpretSize()
-							strong Size:
-							span( title=size.desc )= size.title
+							strong Size&nbsp;
+							span(title=size.desc)= size.title
 						li
-							strong Field:
-							=se.opportunities[0].field
+							strong Industry&nbsp;
+							=se.industry
+						li
+							if se.registered.is_registered
+								strong Registered since&nbsp;
+								=se.registered.year
+							else
+								| Not registered
 					nav
 						ul
 							li
-								a(href="/social_enterprise/"+se.id+"/").chunky_btn Details
-
+								a(href="/social_enterprise/"+se.id+"/").chunky_btn Edit Profile
 			div.detail.clearfix
 				nav.credentials.clearfix
 					ul
-						li
+						//li
 							a.friends_btn(href="/explore") 101
 								span Friends
-						li
+						//li
 							a.invited_btn(href="/explore") 5
 								span invited
 						li.represented_by
-							span represented by
-							a(href="#")= se.rep_id || "Nobody"
+							span Represented by
+							- var rep = se.rep_id.fullName() + ' - ' + se.interpretRepType()
+							a(href="/experteer/"+ se.rep_id._id)= rep || "Nobody"
 				nav.profile_links
 					ul
-						//-each link, key in se.links
-							-var display = (key == 'url') ? link : key
 							li
-								a(href=link, class=key+'_link', )= display
+								a(href=se.url, class='url_link', )= se.url
 			div.detail
-				h4 Introduction
-				p=se.introduction
-			div.detail
-				h4 Impact
-				p=se.impact
-			div.detail
-				h4 conduct
-				p=se.conduct
-			div.detail
-				p !{se.video}
+				h4 Description
+				p=se.description
+
+			if se.video
+				div.detail
+					p!= youtube.embed(extractYoutubeId(se.video), 300, 200);
+
 
 		//- Opportunities
 		div#exp_profile.col2of2
@@ -76,48 +74,48 @@ block content
 						li
 							a.smooth_btn.red Favorite
 			//- each opp in se.opportunities
-			section.stack_630
-				header
-					h2.opportunity_icon= se.opportunities[opp_id].title
-				div.opportunity_map
-					div.map_container
-						- var icon = escape('http://movingworlds.nodester.com/images/spt_app_icons.png')
-						img( src= escape("http://maps.googleapis.com/maps/api/staticmap?center="+se.opportunities[opp_id].city+","+se.opportunities[opp_id].country+"&zoom=10&size=560x315&zoom=1&sensor=false&markers=icon:http://movingworlds.nodester.com/images/icn_map_marker.png%7C"+se.opportunities[opp_id].city+","+se.opportunities[opp_id].country) )
-					h3= se.opportunities[opp_id].city+", "+se.opportunities[opp_id].country
-				div.stack_body.clearfix
-					div.col1of2
-						h4 Dates
-						p!= moment( se.opportunities[opp_id].start ).format('MMMM D, YYYY')+" <em>to</em> "+moment( se.opportunities[opp_id].end ).format('MMMM D, YYYY')
-						h4 Details
-						p= se.opportunities[opp_id].details
-						h4 Field
-						p= se.opportunities[opp_id].field
-					div.col2of2
-						h4 3 Year Impact
-						p= se.opportunities[opp_id].impact
-						h4 Post Engagement
-						p= se.opportunities[opp_id].post_engagement
-						h4 Years Experience
-						p= se.opportunities[opp_id].min_experience + ' Years'
-				footer
-			-var prevOpp = opp_id-1;
-			-var nextOpp = opp_id+1
-			-var prevClass = "";
-			-var nextClass = "";
-			-if(opp_id === 0){
-				-prevOpp = 0;
-				-prevClass = "disabled";
-			-}
-			-if(opp_id === status.total-1){
-				-nextOpp = status.total-1;
-				-nextClass = "disabled"
-			-}
-			nav.pagination
-				ul
-					li
-						a.previous(href="/social_enterprise/"+se.id+"/"+prevOpp, class=prevClass) Left
-					li.page_info= (opp_id+1)+" "
-						em of
-						=status.total
-					li
-						a.next(href="/social_enterprise/"+se.id+"/"+nextOpp, class=nextClass) Right
+			if se.opportunities.length > 0
+				section.stack_630
+						header
+							h2.opportunity_icon= se.opportunities[opp_id].name
+						div.opportunity_map
+							div.map_container
+								img( src= escape("http://maps.googleapis.com/maps/api/staticmap?center="+se.opportunities[opp_id].city+","+se.opportunities[opp_id].country+"&zoom=10&size=560x315&zoom=1&sensor=false&markers=icon:http://staging.movingworlds.org/images/icn_map_marker.png%7C"+se.opportunities[opp_id].city+","+se.opportunities[opp_id].country) )
+							h3= se.opportunities[opp_id].city+", "+se.opportunities[opp_id].country
+						div.stack_body.clearfix
+							div.col1of2
+								h4 Dates
+								p!= moment( se.opportunities[opp_id].start ).format('MMMM D, YYYY')+" <em>to</em> "+moment( se.opportunities[opp_id].end ).format('MMMM D, YYYY')
+								h4 Details
+								p= se.opportunities[opp_id].details
+								h4 Field
+								p= se.opportunities[opp_id].field
+							div.col2of2
+								h4 3 Year Impact
+								p= se.opportunities[opp_id].impact
+								h4 Post Engagement
+								p= se.opportunities[opp_id].post_engagement
+								h4 Years Experience
+								p= se.opportunities[opp_id].min_experience + ' Years'
+						footer
+							-var prevOpp = opp_id-1;
+							-var nextOpp = opp_id+1
+							-var prevClass = "";
+							-var nextClass = "";
+							-if(opp_id === 0){
+								-prevOpp = 0;
+								-prevClass = "disabled";
+							-}
+							-if(opp_id === status.total-1){
+								-nextOpp = status.total-1;
+								-nextClass = "disabled"
+							-}
+						nav.pagination
+							ul
+								li
+									a.previous(href="/social_enterprise/"+se.id+"/"+prevOpp, class=prevClass) Left
+								li.page_info= (opp_id+1)+" "
+									em of
+									=status.total
+								li
+									a.next(href="/social_enterprise/"+se.id+"/"+nextOpp, class=nextClass) Right

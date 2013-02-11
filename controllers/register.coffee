@@ -209,11 +209,9 @@ module.exports = [
       view = "register/representative/step" + req.params.step
       rep_id = req.user._id
       social = new SE()
-      social.rep_id
-      SE.find rep_id: rep_id, (err, se) ->
-        unless err
+      SE.findOne rep_id: rep_id, (err, se) ->
+        if err == null && se != null
           utile.mixin(social, se)
-
         res.render view,
           title: "register"
           headtype: "nonav"
@@ -225,9 +223,10 @@ module.exports = [
     action: (req, res) ->
       rep_id = req.user._id
       social = new SE()
+      social.rep_id = rep_id
 
       SE.findOne rep_id: rep_id, (err, se) ->
-        if err
+        if err == null && se != null
           utile.mixin(social, se)
 
         # Upload Avatar

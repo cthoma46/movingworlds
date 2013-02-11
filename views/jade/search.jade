@@ -79,10 +79,7 @@ block content
 								ul
 									li
 										a(href="/experteer/"+item.id).chunky_btn Details
-
-
 				else
-
 					div.widget.se(class=className)
 						header
 							div.icon
@@ -95,14 +92,21 @@ block content
 										div.verified
 							ul
 								li
-									h3= item.city+", "+item.country
-								li
-									strong Status:
-									=item.type
+									strong Type&nbsp;
+									=item.interpretType()
 								li
 									- var size = item.interpretSize()
-									strong Size:
-									span( title=size.desc )= size.title
+									strong Size&nbsp;
+									span(title=size.desc)= size.title
+								li
+									strong Industry&nbsp;
+									=item.industry
+								li
+									if item.registered.is_registered
+										strong Registered since&nbsp;
+										=item.registered.year
+									else
+										| Not registered
 							nav
 								ul
 									li

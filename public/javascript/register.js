@@ -3,7 +3,7 @@
 $(document).ready(function() {
   $('#country').val($('#country_value').val());
   $('#type').val($('#type_value').val());
-  $('#size').val($('#type_size').val());
+  $('#size').val($('#size_value').val());
   $('#representative_type').val($('#representative_type_value').val());
   $(".combobox").combobox({});
   if ($(".modal.autoplay").length > 0) {
@@ -67,12 +67,14 @@ $(document).ready(function() {
     var $this;
     $this = $(this);
     if ($this.val() === "true") {
-      console.log($("#registered_options"));
       return $("#registered_options").show();
     } else {
       return $("#registered_options").hide();
     }
   });
+  if ($("#registered_yes").is(':checked')) {
+    $("#registered_options").show();
+  }
   $(".slider").slider({
     range: "min",
     value: 0,

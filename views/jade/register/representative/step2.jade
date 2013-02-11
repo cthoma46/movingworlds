@@ -58,22 +58,22 @@ block content
 								label Is your company legally registered?
 								ul
 									li
-										input( type="radio", id="registered[is_registered]", name="registered[is_registered]", value="true", tabindex="4"  )
+										input(type="radio", id="registered_yes", name="registered[is_registered]", value="true", tabindex="4", checked=se.registered.is_registered == true)
 										label(for="yes") Yes
 									li
-										input( type="radio", id="registered[is_registered]", name="registered[is_registered]", value="false", tabindex="5"  )
+										input(type="radio", id="registered_no", name="registered[is_registered]", value="false", tabindex="5", checked=se.registered.is_registered == false)
 										label(for="no") No
 							li#registered_options.hidden
 								ul
 									li.half
 										label(for="registered[location]") Location Registered
-										input( type="text", id="registered[location]", name="registered[location]", tabindex="6"  )
+										input( type="text", id="registered[location]", name="registered[location]", tabindex="6", value=se.registered.location)
 									li.half
 										label(for="registered.year") Year Registered
-										input( type="text", id="registered[year]", name="registered[year]", tabindex="7"  )
+										input( type="text", id="registered[year]", name="registered[year]", tabindex="7", value=se.registered.year)
 							li
 								label(for="representative_type") I represent this organization as its
-								select( id="representative_type", name="representative_type", tabindex="8", class="combobox"  )
+								select(id="representative_type", name="representative_type", tabindex="8", class="combobox"  )
 									option(value="founder") (co) Founder
 									option(value="director") Director
 									option(value="manager") Manager
@@ -86,8 +86,6 @@ block content
 								label(for="url") Website Url
 									span example: http://www.mywebsite.com
 								input(type="text", id="url", name="url", tabindex="9", value=se.url)
-							li
-								include ../../includes/industry_combo
 					fieldset.col2of2.split
 						ul
 							li#upload_avatar
@@ -100,10 +98,15 @@ block content
 								label(for="introduction") Description
 									span max 500 characters
 								textarea(id="description", name="description", placeholder="What does your Organization do?")
+									=se.description
+							li
+								label(for="industry") Industry
+								select( id="industry", name="industry", class="combobox")
+									include ../../includes/industry_combo
 							li
 								label(for="video") Video Pitch
 									span Checkout our guide <a href="http://movingworlds.com/videopitch" target="_blank">How to record a video pitch</a>
-								input( type="text", id="video", name="video", tabindex="7", value=se.video, placeholder="Paste here your YouTube video link" )
+								input( type="text", id="video", name="video", tabindex="7", value=se.video, placeholder="Paste here your YouTube video link", value=se.video)
 							li.field-container
 								input( type="checkbox", id="conduct", name="conduct", value="true", tabindex="11").required
 								label(for="agree")

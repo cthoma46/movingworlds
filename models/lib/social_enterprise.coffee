@@ -1,4 +1,5 @@
 mongoose = require("mongoose")
+User = require("./movingworlds").User
 Schema = mongoose.Schema
 ObjectId = Schema.ObjectId
 collection_name = "mw_se"
@@ -28,7 +29,10 @@ opportunitySchema = new Schema(
 )
 socialEnterpriseSchema = new Schema(
   name: String
-  rep_id: ObjectId
+  rep_id:
+    type: ObjectId
+    ref: 'mw_users'
+  representative_type: String
   city: String
   country: String
   type:
@@ -51,7 +55,6 @@ socialEnterpriseSchema = new Schema(
   url: String
   industry: String
   description: String
-  impact: String
   conduct: Boolean
   video: String
   opportunities: [opportunitySchema]
@@ -81,6 +84,29 @@ socialEnterpriseSchema.methods.interpretSize = interpretSize = ->
         desc: "founder(s) only"
   size
 
+socialEnterpriseSchema.methods.interpretType = interpretType = ->
+  types =
+    "profit": "For profit company"
+    "profit-se": "For profit (Social) Enterprise"
+    "non-profit": "Non-profit (Social) Enterprise / NGO"
+    "cooperative": "Cooperative"
+    "educational": "Educational Institute"
+    "research_institute": "Research Institute"
+    "government_agency": "Government Agency"
+    "other": "Other"
+
+  types[@type]
+
+socialEnterpriseSchema.methods.interpretRepType = interpretRepType = ->
+  types =
+    "founder": "(co) Founder"
+    "director": "Director"
+    "manager": "Manager"
+    "employee": "Employee"
+    "legal_rep": "Legal representative"
+    "other": "Other"
+  types[@representative_type]
+
 socialEnterpriseSchema.methods.interpretStatus = interpretStatus = ->
   totalOpps = @opportunities.length
   status = ""
@@ -96,11 +122,6 @@ socialEnterpriseSchema.methods.interpretStatus = interpretStatus = ->
       class: "off"
       total: 0
   status
-
-socialEnterpriseSchema.method.recommendations = recommendations = () ->
-  console.log userId
-  recomendations: 2
-
 
 SocialEnterprise = mongoose.model(collection_name, socialEnterpriseSchema)
 module.exports = SocialEnterprise

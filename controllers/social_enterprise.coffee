@@ -8,14 +8,12 @@ module.exports = [
     type: "GET"
     login: 'all'
     action: (req, res, next) ->
-      id = ObjectId.fromString(req.params.id)
       opp = (if not req.params.opp then 0 else req.params.opp)
-      SE.findById req.params.id, (err, doc) ->
+      SE.findById(req.params.id).populate('rep_id').exec (err, doc) ->
         next()  if err
         res.render "social_enterprise",
           title: doc.name + " Profile"
           se: doc
           opp_id: req.params.opp
           moment: moment
-          
 ]
