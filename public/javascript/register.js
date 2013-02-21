@@ -101,12 +101,14 @@ $(document).ready(function() {
   });
   $(".datepicker input").datepicker({
     showOn: "both",
+    yearRange: '-100:-18',
+    defaultDate: new Date(1980, 0, 1),
     changeMonth: true,
     changeYear: true,
     buttonImage: "/images/btn_datepicker.png",
     buttonImageOnly: true
   });
-  $("form#step1").validate({
+  $("#step1").validate({
     rules: {
       first_name: "required",
       last_name: "required",
@@ -132,12 +134,35 @@ $(document).ready(function() {
       }
     }
   });
-  return $("form#rep_step2").validate({
+  $("#rep_step2").validate({
     rules: {
       name: "required",
       type: "required",
       size: "required",
       representative_type: "required"
+    },
+    errorPlacement: function(error, element) {
+      if (element.closest('.field-container').length > 0) {
+        return error.appendTo(element.closest('.field-container'));
+      } else {
+        return error.insertAfter(element);
+      }
+    }
+  });
+  return $("#rep_step3").validate({
+    rules: {
+      "opportunity[name]": "required",
+      "opportunity[city]": "required",
+      "opportunity[details]": "required",
+      "opportunity[deadline]": "required",
+      "opportunity[start]": "required",
+      "opportunity[end]": "required",
+      "opportunity[desired_results]": "required",
+      "opportunity[country]": "required",
+      "opportunity[experience]": "required",
+      "opportunity[area_support]": "required",
+      "opportunity[skills]": "required",
+      "opportunity[language]": "required"
     },
     errorPlacement: function(error, element) {
       if (element.closest('.field-container').length > 0) {
