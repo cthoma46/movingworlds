@@ -70,7 +70,7 @@ block content
 				nav
 					ul
 						li
-							a.smooth_btn.green(href="/finalization") Apply
+							a.smooth_btn.green(href="/finalization") Request Intro
 						li
 							a.smooth_btn.red Favorite
 			//- each opp in se.opportunities
@@ -80,24 +80,32 @@ block content
 							h2.opportunity_icon= se.opportunities[opp_id].name
 						div.opportunity_map
 							div.map_container
-								img( src= escape("http://maps.googleapis.com/maps/api/staticmap?center="+se.opportunities[opp_id].city+","+se.opportunities[opp_id].country+"&zoom=10&size=560x315&zoom=1&sensor=false&markers=icon:http://staging.movingworlds.org/images/icn_map_marker.png%7C"+se.opportunities[opp_id].city+","+se.opportunities[opp_id].country) )
+								img( src= escape("http://maps.googleapis.com/maps/api/staticmap?center="+se.opportunities[opp_id].city+","+se.opportunities[opp_id].country+"&zoom=7&size=560x315&sensor=false&markers=icon:http://staging.movingworlds.org/images/icn_map_marker.png%7C"+se.opportunities[opp_id].city+","+se.opportunities[opp_id].country) )
 							h3= se.opportunities[opp_id].city+", "+se.opportunities[opp_id].country
 						div.stack_body.clearfix
 							div.col1of2
-								h4 Dates
 								if se.opportunities[opp_id].start != null && se.opportunities[opp_id].end != null
-								//	p!= moment( se.opportunities[opp_id].start ).format('MMMM D, YYYY')+" <em>to</em> "+moment( se.opportunities[opp_id].end ).format('MMMM D, YYYY')
-								h4 Details
-								p= se.opportunities[opp_id].details
-								h4 Field
-								p= se.opportunities[opp_id].field
+									h4 Dates
+									p!= moment( se.opportunities[opp_id].start ).format('MMMM D, YYYY')+" <em>to</em> "+moment( se.opportunities[opp_id].end ).format('MMMM D, YYYY')
+								if se.opportunities[opp_id].details != null
+									h4 Details
+									p= se.opportunities[opp_id].details
+								if se.opportunities[opp_id].benefits != null
+									h4 Benefits
+									p= se.opportunities[opp_id].benefits
 							div.col2of2
-								h4 3 Year Impact
-								p= se.opportunities[opp_id].impact
-								h4 Post Engagement
-								p= se.opportunities[opp_id].post_engagement
-								h4 Years Experience
-								p= se.opportunities[opp_id].min_experience + ' Years'
+								if se.opportunities[opp_id].impact
+									h4 Development Impact
+									p= se.opportunities[opp_id].impact
+								if se.opportunities[opp_id].experience
+									h4 Experience required
+									p= se.opportunities[opp_id].experience + ' Years'
+								if se.opportunities[opp_id].skills != null && se.opportunities[opp_id].skills.length > 0
+									h4 Skills needed
+									p= se.opportunities[opp_id].skills.join(', ')
+								if se.opportunities[opp_id].languages != null && se.opportunities[opp_id].skills.languages > 0
+									h4 Languages needed
+									p= se.opportunities[opp_id].languages.join(', ')
 						footer
 							-var prevOpp = opp_id-1;
 							-var nextOpp = opp_id+1

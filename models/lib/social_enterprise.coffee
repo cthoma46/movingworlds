@@ -4,7 +4,7 @@ Schema = mongoose.Schema
 ObjectId = Schema.ObjectId
 collection_name = "mw_se"
 opportunitySchema = new Schema(
-  title: String
+  name: String
   city: String
   country: String
   details: String

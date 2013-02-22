@@ -58,7 +58,7 @@ block content
 							li
 								a(href="/auth/linkedin").linkedin_signup Sign up with LinkedIn
 								small.disclaimer Recommended for fast Signup
-				form(id="#step1", action="/register", method="post")
+				form(id="step1", action="/register", method="post")
 					-if( typeof user !== 'undefined' )
 						input(type="hidden", name="coupon", value=user.invite.coupon)
 						input(type="hidden", name="type", value=user.type)
@@ -100,7 +100,7 @@ block content
 							li.datepicker
 								label(for="birthday") Birthday
 								-bday = (typeof user.birthday !== 'undefined') ? settings.moment(user.birthday).format('MM/DD/YYYY') : ""
-								input( type="text", id="birthday", name="birthday", tabindex="7", data-months="1", data-years="2", value=bday  )
+								input(type="text", id="birthday", name="birthday", tabindex="7", data-months="1", data-years="2", value=bday  )
 							li
 								label(for="confirm") Confirm Password
 								input( type="password", id="confirm", name="confirm", tabindex="9"  )

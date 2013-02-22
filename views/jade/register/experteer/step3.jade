@@ -84,11 +84,11 @@ block content
 									li.half.datepicker
 										label(for="start["+i+"]") Start Date
 										-var start = (edu.start) ? settings.moment( edu.start ).format('MMMM D, YYYY') : ''
-										input( type="text", id="start["+i+"]", name="start["+i+"]", value=start )
+										input( type="text", id="start["+i+"]", name="start["+i+"]", value=start, class="date" )
 									li.half.datepicker
 										label(for="end["+i+"]") End Date
 										-var end = (edu.end) ? settings.moment( edu.end ).format('MMMM D, YYYY') : ''
-										input( type="text", id="end["+i+"]", name="end["+i+"]", value=end  )
+										input( type="text", id="end["+i+"]", name="end["+i+"]", value=end, class="date"  )
 								p
 									a(href="").delete_btn.chunky_btn.small.right delete
 
@@ -121,8 +121,8 @@ block content
 		|	</ul>
 		|	<ul class="col2of2 split">
 		|		<li><label for="major[##]">Field of study<span>Enter your fields of study, comma-separated</span></label><input type="text" id="major[##]" name="major[##]" class="tags"></li>
-		|		<li class="half datepicker"><label for="start[##]">Start Date</label><input type="text" id="start[##]" name="start[##]"></li>
-		|		<li class="half datepicker"><label for="end[##]">End Date</label><input type="text" id="end[##]" name="end[##]"></li>
+		|		<li class="half datepicker"><label for="start[##]">Start Date</label><input type="text" id="start[##]" name="start[##]" class="date"></li>
+		|		<li class="half datepicker"><label for="end[##]">End Date</label><input type="text" id="end[##]" name="end[##]" class="date"></li>
 		|	</ul>
 		|	<p class=""><a href="#" class="delete_btn chunky_btn small right hidden">delete</a></p>
 		|	</fieldset>

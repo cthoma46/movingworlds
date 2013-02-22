@@ -99,7 +99,16 @@ $(document).ready(function() {
       return $("#degree").val("").parents("li").first().addClass("hidden");
     }
   });
-  $(".datepicker input").datepicker({
+  $(".date").datepicker({
+    showOn: "both",
+    yearRange: '0:+10',
+    defaultDate: new Date(),
+    changeMonth: true,
+    changeYear: true,
+    buttonImage: "/images/btn_datepicker.png",
+    buttonImageOnly: true
+  });
+  $("#birthday").datepicker({
     showOn: "both",
     yearRange: '-100:-18',
     defaultDate: new Date(1980, 0, 1),

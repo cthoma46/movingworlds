@@ -77,6 +77,8 @@ module.exports = [
           city: 1
           country: 1
           size: 1
+          industry: 1
+          registered: 1
           "opportunities.title": 1
           "opportunities.field": 1
         ).sort
