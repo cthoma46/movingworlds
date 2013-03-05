@@ -70,10 +70,6 @@ block content
 										img(src=user.avatar || "/images/icn_avatar_experteer.png", width="80", height="80")
 								input( type="file", id="avatar", name="avatar", tabindex="6"  )
 							li
-								label(for="video") Video
-									span Checkout our guide <a href="http://movingworlds.com/videopitch" target="_blank">How to record a video pitch</a>
-								input( type="text", id="video", name="profile[video]", tabindex="7", value=user.profile.video, placeholder="Paste here your YouTube video link" )
-							li
 								label(for="languages") Languages
 									span Enter your languages, comma-separated
 								input( type="text", id="languages", name="languages", tabindex="8", class="tags", value=user.languages)
