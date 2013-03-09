@@ -47,7 +47,7 @@ module.exports = [
     type: "POST"
     action: (req, res, next) ->
       User.findById req.user._id, (err, user) ->
-        console.log req.body
+        # console.log req.body
         return new Error("There was a problem saving your information.")  if err or not user
 
         # delete user.invite.coupon;
@@ -87,7 +87,7 @@ module.exports = [
         salt = bcrypt.genSaltSync(10)
         user.hash = bcrypt.hashSync(password, salt)
 
-        console.log(user.hash, user.salt);
+        # console.log(user.hash, user.salt);
         # Create a new user in your data store
         user.save (err) ->
           next new Error("There was a problem saving your information.")  if err
