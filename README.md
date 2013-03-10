@@ -6,8 +6,11 @@
 
 `sudo vi /etc/movingworlds.conf` ( Modify to fit your dev environment. )
 
+`npm install -g coffee-script supervisor stylus`
+
 ### Development
-** Compile client side JavaScript **
+
+** Compile client side .styl files **
 `make all`
 
 ** Initialize app: **
