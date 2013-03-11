@@ -8,4 +8,4 @@ public/avatars/*.gif
 public/avatars/*.png
 public/avatars/*.jpg
 public/avatars/*.jpeg
-node_modules/bcrypt/build
+build/
