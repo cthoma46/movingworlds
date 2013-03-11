@@ -69,6 +69,7 @@ form
 	input[type="password"],
 	input[type="text"],
 	ul.tagit,
+	ul.selectit,
 	.ui-autocomplete-input,
 	textarea
 		margin: 0
@@ -368,12 +369,21 @@ ul.tagit
 	border-left: 1px solid gray
 	border-right: 1px solid gray
 	border-bottom: 1px solid gray
+
+	.ui-autocomplete-category
+		border-top: 1px solid gray
+		border-bottom: 1px solid gray
+		font-weight: bold
+		padding: 5px 10px
+		color: black
+		text-transform: uppercase
+		font: 700 14px default_fonts
 	.ui-menu-item+li.ui-menu-item
 		border-top: 1px solid gray
 	.ui-menu-item
 		a
 			display: block
-			padding: 5px 10px
+			padding: 5px 10px 5px 20px
 			text-transform: uppercase
 			text-decoration: none
 			color: dark_gray
@@ -393,3 +403,78 @@ ul.tagit
 		width: 33px
 		height: 29px
 		background: url('/images/spt_form.png') no-repeat 0 -113px;
+
+
+// SELECTIT - UI-AUTOCOMPLETE
+div.selectit,
+ul.selectit
+	padding: 2px 5px!important
+	overflow: auto;
+	margin-left: inherit;
+	margin-right: inherit;
+	min-height: 28px
+	li
+		display: block;
+		float: left;
+		margin: 0
+		// margin: 2px 5px 2px 0;
+	li.selectit-new
+		// background-color: red
+		padding: .25em 4px .25em 0;
+	p.selectit-choice,
+	li.selectit-choice
+		position: relative;
+		height: 22px
+		margin: 1px 25px 0 0
+		padding-left: 15px
+		background: transparent url('/images/bg_tag.png') 0 0 no-repeat
+		font: 12px Arial, sans-serif
+		txsh(0,1px,0, #FFF)
+		color: dark_gray
+		.selectit-label
+			height: 22px
+			line-height: 20px;
+			display: inline-block
+			cursor: pointer;
+			text-decoration: none;
+			white-space: nowrap;
+			max-width: 180px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		a.close
+			display: block
+			position: absolute;
+			width: 20px
+			height: 22px
+			right: -20px
+			top: 0
+			background: transparent url('/images/bg_tag.png') right 0 no-repeat
+			text-align: center
+			text-decoration: none
+			color: dark_gray
+			font-weight: 900
+			cursor:pointer
+			border: none;
+			bxsh(none);
+			padding: 0
+			&:hover
+				color: blue
+			.text-icon
+				font-size: 15px
+				line-height: 21px;
+				// display: none
+			// .ui-icon-close
+		input
+			display: block;
+			float: left;
+			// margin: 2px 5px 2px 0;
+	input[type="text"]
+		bxsh(none)
+		background: red;
+		border: none
+		margin: 0
+		padding: 3px 0 0;
+		width: inherit;
+		background-color: inherit;
+		outline: none;
+
