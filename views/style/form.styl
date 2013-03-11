@@ -69,7 +69,6 @@ form
 	input[type="password"],
 	input[type="text"],
 	ul.tagit,
-	ul.selectit,
 	.ui-autocomplete-input,
 	textarea
 		margin: 0
@@ -79,6 +78,25 @@ form
 		-webkit-box-sizing: border-box;
 		display:block
 		padding: 8px 10px 6px
+		color: #505050
+		font-size: 12px
+		font-weight: normal
+		box-shadow: 0 1px 3px rgba(0,0,0,.43) inset
+		border: none
+		border-radius: 3px
+		resize: none
+		grad(#dddddd, #f0f0f0)
+		&:focus
+			grad(#e8e8e8, #ffffff)
+		&.error, &.warning, &.success
+			text-align: left !important
+	div.selectit
+		margin: 0
+		width: 100%
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		display:block
 		color: #505050
 		font-size: 12px
 		font-weight: normal
@@ -406,9 +424,8 @@ ul.tagit
 
 
 // SELECTIT - UI-AUTOCOMPLETE
-div.selectit,
-ul.selectit
-	padding: 2px 5px!important
+div.selectit ul
+	padding: 4px 4px 0px 4px;
 	overflow: auto;
 	margin-left: inherit;
 	margin-right: inherit;
@@ -478,3 +495,15 @@ ul.selectit
 		background-color: inherit;
 		outline: none;
 
+
+.ui-combobox
+	display: block
+	position: relative
+	.ui-combobox-toggle
+		position: absolute
+		top: 0px
+		bottom: 0px
+		right: -2px
+		display:block
+		width: 33px
+		background: url('/images/spt_form.png') no-repeat 0 -113px;

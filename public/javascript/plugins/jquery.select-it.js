@@ -59,6 +59,10 @@
             this.options.selectFieldNode = this.element;
             this.element.css('display', 'none');
 
+            // Setup our control container
+            this._controlContainer = $("<div/>").insertAfter(this.element);
+            this._controlContainer.addClass('selectit ui-widget ui-widget-content ui-corner-left ui-combobox');
+
             // Extract the data
             this.options.availableTags = this._readDataFromSelect(this.element);
 
@@ -67,10 +71,9 @@
             this._tagInput.attr('placeholder', this.element.attr('placeholder' || this.options.placeholder));
 
             // Create the tag list and input.
-            this.tagList = $('<ul></ul>').insertAfter(this.element);
-            this.tagList.addClass('selectit')
-                .addClass('ui-widget ui-widget-content ui-corner-all')
-                // Create the input field.
+            this.tagList = $('<ul></ul>');
+            this._controlContainer.append(this.tagList);
+            this.tagList
                 .append($('<li class="selectit-new"></li>').append(this._tagInput))
                 .click(function (e) {
                     var target = $(e.target);
@@ -93,7 +96,7 @@
             // Autocomplete.
             this._tagInput.catcomplete({
                 source: this.options.availableTags,
-                minLength: 2,
+                minLength: 0,
                 select: function (event, ui) {
                     // Delete the last tag if we autocomplete something despite the input being empty
                     // This happens because the input's blur event causes the tag to be created when
@@ -116,8 +119,30 @@
                 focus: function (event, ui) {
                     that._tagInput.val(ui.item.label);
                     return false;
-                },
+                }
             });
+
+            // Autocomplete button.
+            var wasOpen = false;
+            this._comboButton = $("<a>")
+                .attr("tabIndex", -1)
+                .attr("title", "Show Available Items")
+                .addClass( "ui-corner-right ui-combobox-toggle" )
+                .appendTo(this._controlContainer)
+                .mousedown(function() {
+                    wasOpen = that._tagInput.catcomplete( "widget" ).is( ":visible" );
+                })
+                .click(function() {
+                    that._tagInput.focus();
+
+                    // close if already visible
+                    if ( wasOpen ) {
+                        return;
+                    }
+
+                    // pass empty string as value to search for, displaying all results
+                    that._tagInput.catcomplete( "search", "" );
+                });
 
             // Events.
             this._tagInput
