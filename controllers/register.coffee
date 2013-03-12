@@ -47,6 +47,7 @@ module.exports = [
     type: "POST"
     action: (req, res, next) ->
       User.findById req.user._id, (err, user) ->
+        # console.log req.body
         return new Error("There was a problem saving your information.")  if err or not user
 
         # delete user.invite.coupon;
@@ -89,7 +90,7 @@ module.exports = [
         # console.log(user.hash, user.salt);
         # Create a new user in your data store
         user.save (err) ->
-          return new Error("There was a problem saving your information.")  if err
+          next new Error("There was a problem saving your information.")  if err
           # console.log user
           res.redirect "/register/2/" + user.type
   ,

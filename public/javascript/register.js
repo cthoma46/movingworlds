@@ -55,7 +55,7 @@ $(document).ready(function() {
       $("li.step2 span").text("Personal Information");
       $("li.step3 span").text("Work & Education");
       $("#next").attr("href", "/register/2/experteer");
-      return $("input[name=\"type\"]").attr("value", "expterteer");
+      return $("input[name=\"type\"]").attr("value", "experteer");
     } else {
       $("li.step2 span").text("Company Information");
       $("li.step3 span").text("First Opportunity");

@@ -57,7 +57,7 @@
 						
 					var $temp = $( $this.data('mwFieldCloner').template ).insertBefore( $this.data('mwFieldCloner').$nav );
 
-					$temp.find(settings.deleteBtnClass).removeClass('hidden').click( function(){
+					$temp.find(settings.deleteBtnClass).removeClass('hidden').click( function(e){
 						e.preventDefault();
 						removeTemplate( $temp )
 					})
