@@ -7,7 +7,7 @@ module.exports = [
     action: (req, res, next) ->
       youtube = require("youtube")
       res.render "home",
-        title: "Moving Words"
+        title: "Moving Worlds"
         page_id: "home"
         video: youtube.embed("BcTQp935yco", 439, 253)
         warning: req.flash('warning')
@@ -25,7 +25,7 @@ module.exports = [
     action: (req, res) ->
       youtube = require("youtube")
       res.render "home_se",
-        title: "Moving Words"
+        title: "Moving Worlds"
         page_id: "se_home"
         video: youtube.embed("BcTQp935yco", 439, 253)
 ]
