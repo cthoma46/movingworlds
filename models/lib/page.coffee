@@ -1,17 +1,17 @@
-mongoose = require("mongoose")
+mongoose = require('mongoose')
 Schema = mongoose.Schema
 ObjectId = Schema.ObjectId
-utils = require("./utils")
-collection_name = "mw_pages"
+utils = require('./utils')
 
 snippetSchema = new Schema(
   key: String
   value: String
   type:
     type: String
-    enum: ["text", "select", "textarea", "checkbox", "radio"]
-    default: "text"
+    enum: ['text', 'select', 'textarea', 'checkbox', 'radio']
+    default: 'text'
 )
+
 pageSchema = new Schema(
   title: String
   slug:
@@ -30,17 +30,17 @@ pageSchema = new Schema(
 
   status:
     type: String
-    enum: ["draft", "published", "private"]
-    default: "draft"
+    enum: ['draft', 'published', 'private']
+    default: 'draft'
 
   type:
     type: String
-    enum: ["post", "page"]
-    default: "page"
+    enum: ['post', 'page']
+    default: 'page'
 
   language:
     type: String
-    default: "english"
+    default: 'english'
 
   template:
     type: String
@@ -48,5 +48,6 @@ pageSchema = new Schema(
 
   snippets: {}
 )
-Page = mongoose.model(collection_name, pageSchema)
+
+Page = mongoose.model('page', pageSchema)
 module.exports = Page

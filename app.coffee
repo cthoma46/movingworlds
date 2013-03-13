@@ -1,15 +1,18 @@
-express = require("express")
-stylus = require("stylus")
-http = require("http")
-path = require("path")
-mongoose = require("mongoose")
-moment = require("moment")
-SessionStore = require("session-mongoose")
-utils = require("util")
-flash = require("connect-flash")
-passport = require("passport")
-settings = require("./models").SETTINGS
-youtube = require("youtube")
+express = require('express')
+stylus = require('stylus')
+http = require('http')
+path = require('path')
+mongoose = require('mongoose')
+moment = require('moment')
+SessionStore = require('session-mongoose')
+utils = require('util')
+flash = require('connect-flash')
+passport = require('passport')
+settings = require('./models').SETTINGS
+youtube = require('youtube')
+controllers = require('./controllers')
+
+require('./controllers/passport')
 
 # console.log(process.versions);
 #/////////////////////////////////////////
@@ -21,12 +24,8 @@ app = express()
 #              DATABASE                 //
 #/////////////////////////////////////////
 mongoose.connect settings.dbUri, (err) ->
-  console.log "COULD NOT CONNECT TO DB at: " + settings.dbUri + "\n", err  if err
-
-#/////////////////////////////////////////
-#            PASSPORT                   //
-#/////////////////////////////////////////
-require "./controllers/passport"
+  if err
+    console.log('COULD NOT CONNECT TO DB at: ' + settings.dbUri + '\n', err)
 
 #/////////////////////////////////////////
 #             CONFIGURE                 //
@@ -42,10 +41,10 @@ app.configure ->
       return match[2]
     else
       return null
-  app.set "moment", moment
-  app.set "port", process.env.PORT or settings.port
-  app.set "view engine", "jade"
-  app.set "views", __dirname + "/views/jade"
+  app.set 'moment', moment
+  app.set 'port', process.env.PORT or settings.port
+  app.set 'view engine', 'jade'
+  app.set 'views', __dirname + '/views/jade'
 
   app.use express.bodyParser()
   app.use express.methodOverride()
@@ -56,13 +55,13 @@ app.configure ->
       path: '/'
       maxAge: settings.session.expire
     store: new SessionStore
-      url:settings.dbUri
+      url: settings.dbUri
       interval: 120000
 
   )
   app.use stylus.middleware(
-    src: __dirname + "/views"
-    dest: __dirname + "/public"
+    src: __dirname + '/views'
+    dest: __dirname + '/public'
     compress: true
     debug: false
   )
@@ -75,14 +74,13 @@ app.configure ->
     res.locals.user = req.user
     next()
 
-
   app.use app.router
-  app.use express.favicon(__dirname + "/public/images/favicon.ico")
-  app.use express.static(__dirname + "/public")
+  app.use express.favicon(__dirname + '/public/images/favicon.ico')
+  app.use express.static(__dirname + '/public')
 
 # Development Config
-app.configure "development", ->
-  app.set express.logger("dev")
+app.configure 'development', ->
+  app.set express.logger('dev')
   app.use express.errorHandler(
     dumpExceptions: true
     showStack: true
@@ -92,19 +90,21 @@ app.configure "development", ->
   # detector.detect().forEach (name) ->
   #   console.warn('found global leak: %s', name);
 
-  require("./sandbox")
+  require('./sandbox')
 
 # Production Config
-app.configure "production", ->
+app.configure 'production', ->
 
 
 #/////////////////////////////////////////
 #              ROUTES                   //
 #/////////////////////////////////////////
-require("./controllers")(app)
+controllers(app)
 
 #/////////////////////////////////////////
 #              LISTEN                   //
 #/////////////////////////////////////////
-module.exports = http.createServer(app).listen(app.get("port"), ->
-  console.log "Express server listening on port " + app.get("port") )
+module.exports = http.createServer(app).listen(app.get('port'), ->
+  console.log 'Express server listening on port ' + app.get('port') 
+  # console.log('app', app.routes)
+)

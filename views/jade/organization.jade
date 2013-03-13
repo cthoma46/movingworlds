@@ -1,0 +1,130 @@
+extends layouts/layout
+block append scripts
+block content
+	div.layout_960
+		- var opp_id = (isNaN(Number(opp_id)) || !opp_id ) ? 0 : Number(opp_id)
+		- var status = org.interpretStatus()
+
+		aside#personal_details.col1of2
+			div.widget.org
+				header
+					div.icon
+					h3= org.name || 'Undefined'
+				section.widget_body
+					div.avatar
+						.av_img_container
+							img(src= org.avatar || "/images/icn_avatar_org.png", width="80", height="80")
+							if org.verified
+								div.verified
+					ul
+						li
+							strong Type&nbsp;
+							=org.interpretType()
+						li
+							- var size = org.interpretSize()
+							strong Size&nbsp;
+							span(title=size.desc)= size.title
+						li
+							strong Industry&nbsp;
+							=org.industry
+						li
+							if org.registered.is_registered
+								strong Registered since&nbsp;
+								=org.registered.year
+							else
+								| Not registered
+					nav
+						ul
+							li
+								a(href="/organization/"+org.id+"/").chunky_btn Edit Profile
+			div.detail.clearfix
+				nav.credentials.clearfix
+					ul
+						//li
+							a.friends_btn(href="/explore") 101
+								span Friends
+						//li
+							a.invited_btn(href="/explore") 5
+								span invited
+						li.represented_by
+							span Represented by
+							- var rep = org.rep_id.fullName() + ' - ' + org.interpretRepType()
+							a(href="/experteer/"+ org.rep_id._id)= rep || "Nobody"
+				nav.profile_links
+					ul
+							li
+								a(href=org.url, class='url_link', )= org.url
+			div.detail
+				h4 Description
+				p=org.description
+
+			if org.video
+				div.detail
+					p!= youtube.embed(extractYoutubeId(org.video), 300, 200);
+
+
+		//- Opportunities
+		div#exp_profile.col2of2
+			section.status_bar
+				div(class="status "+status.class)!= status.label
+				nav
+					ul
+						li
+							a.smooth_btn.green(href="/finalization") Request Intro
+						li
+							a.smooth_btn.red Favorite
+			//- each opp in org.opportunities
+			if org.opportunities.length > 0
+				section.stack_630
+						header
+							h2.opportunity_icon= org.opportunities[opp_id].name
+						div.opportunity_map
+							div.map_container
+								img( src= escape("http://maps.googleapis.com/maps/api/staticmap?center="+org.opportunities[opp_id].city+","+org.opportunities[opp_id].country+"&zoom=7&size=560x315&sensor=false&markers=icon:http://staging.movingworlds.org/images/icn_map_marker.png%7C"+org.opportunities[opp_id].city+","+org.opportunities[opp_id].country) )
+							h3= org.opportunities[opp_id].city+", "+org.opportunities[opp_id].country
+						div.stack_body.clearfix
+							div.col1of2
+								if org.opportunities[opp_id].start != null && org.opportunities[opp_id].end != null
+									h4 Dates
+									p!= moment( org.opportunities[opp_id].start ).format('MMMM D, YYYY')+" <em>to</em> "+moment( org.opportunities[opp_id].end ).format('MMMM D, YYYY')
+								if org.opportunities[opp_id].details != null
+									h4 Details
+									p= org.opportunities[opp_id].details
+								if org.opportunities[opp_id].benefits != null
+									h4 Benefits
+									p= org.opportunities[opp_id].benefits
+							div.col2of2
+								if org.opportunities[opp_id].impact
+									h4 Development Impact
+									p= org.opportunities[opp_id].impact
+								if org.opportunities[opp_id].experience
+									h4 Experience required
+									p= org.opportunities[opp_id].experience + ' Years'
+								if org.opportunities[opp_id].skills != null && org.opportunities[opp_id].skills.length > 0
+									h4 Skills needed
+									p= org.opportunities[opp_id].skills.join(', ')
+								if org.opportunities[opp_id].languages != null && org.opportunities[opp_id].skills.languages > 0
+									h4 Languages needed
+									p= org.opportunities[opp_id].languages.join(', ')
+						footer
+							-var prevOpp = opp_id-1;
+							-var nextOpp = opp_id+1
+							-var prevClass = "";
+							-var nextClass = "";
+							-if(opp_id === 0){
+								-prevOpp = 0;
+								-prevClass = "disabled";
+							-}
+							-if(opp_id === status.total-1){
+								-nextOpp = status.total-1;
+								-nextClass = "disabled"
+							-}
+						nav.pagination
+							ul
+								li
+									a.previous(href="/organization/"+org.id+"/"+prevOpp, class=prevClass) Left
+								li.page_info= (opp_id+1)+" "
+									em of
+									=status.total
+								li
+									a.next(href="/organization/"+org.id+"/"+nextOpp, class=nextClass) Right

@@ -1,58 +1,57 @@
-mongoose = require("mongoose")
+mongoose = require('mongoose')
 Schema = mongoose.Schema
 ObjectId = Schema.ObjectId
-utils = require("./utils")
-util = require("util")
-collection_name = "mw_users"
+utils = require('./utils')
+util = require('util')
 
 areas =
-  general: "General / operational management"
-  financial: "Financial planning / fundraising"
-  communications: "Communications / Social Media"
-  ict: "ICT / Website building"
-  sales: "Sales & Marketing"
-  legal: "Legal advice"
-  product: "Specialty product development"
-  engineering: "Engineering (mechanical / electrical)"
-  energy: "Renewable Energy / Water supply systems"
-  gardening: "Gardening / Farming"
-  construction: "Construction / Building"
-  cooking: "Cooking / Food Management"
-  maintenance: "General maintenance"
-  tourist: "Tourist management"
-  animal: "Animal care"
-  charity: "Charity work"
-  art: "Art / special projects"
-  language: "Language Teaching"
-  teaching: "Teaching general"
-  other: "Other"
+  general: 'General / operational management'
+  financial: 'Financial planning / fundraising'
+  communications: 'Communications / Social Media'
+  ict: 'ICT / Website building'
+  sales: 'Sales & Marketing'
+  legal: 'Legal advice'
+  product: 'Specialty product development'
+  engineering: 'Engineering (mechanical / electrical)'
+  energy: 'Renewable Energy / Water supply systems'
+  gardening: 'Gardening / Farming'
+  construction: 'Construction / Building'
+  cooking: 'Cooking / Food Management'
+  maintenance: 'General maintenance'
+  tourist: 'Tourist management'
+  animal: 'Animal care'
+  charity: 'Charity work'
+  art: 'Art / special projects'
+  language: 'Language Teaching'
+  teaching: 'Teaching general'
+  other: 'Other'
 
 impacts =
-  civil_right: "Civil Rights"
-  animal_rights: "Animal Rights"
-  arts_culture: "Arts and Culture"
-  children: "Children"
-  civil_rights: "Civil Rights"
-  community_service: "Community and Service"
-  democracy_politics: "Democracy and Politics"
-  economic_empowerment: "Economic Empowerment"
-  education: "Education"
-  environment: "Environment"
-  food: "Food"
-  health: "Health"
-  housing_homelessness: "Housing & Homelessness"
-  human_rights: "Human Rights"
-  humanitarian_relief: "Humanitarian Relief"
-  international_affairs: "International Affairs"
-  job_creation: "Job Creation"
-  media_public_debate: "Media and Public Debate"
-  microfinance: "Microfinance"
-  poverty_alleviation: "Poverty Alleviation"
-  religion: "Religion"
-  science_technology: "Science & Technology"
-  senior_citizens_issues: "Senior Citizens Issues"
-  transfer_of_knowledge: "Transfer of Knowledge"
-  womens_issues: "Women's Issues"
+  civil_right: 'Civil Rights'
+  animal_rights: 'Animal Rights'
+  arts_culture: 'Arts and Culture'
+  children: 'Children'
+  civil_rights: 'Civil Rights'
+  community_service: 'Community and Service'
+  democracy_politics: 'Democracy and Politics'
+  economic_empowerment: 'Economic Empowerment'
+  education: 'Education'
+  environment: 'Environment'
+  food: 'Food'
+  health: 'Health'
+  housing_homelessness: 'Housing & Homelessness'
+  human_rights: 'Human Rights'
+  humanitarian_relief: 'Humanitarian Relief'
+  international_affairs: 'International Affairs'
+  job_creation: 'Job Creation'
+  media_public_debate: 'Media and Public Debate'
+  microfinance: 'Microfinance'
+  poverty_alleviation: 'Poverty Alleviation'
+  religion: 'Religion'
+  science_technology: 'Science & Technology'
+  senior_citizens_issues: 'Senior Citizens Issues'
+  transfer_of_knowledge: 'Transfer of Knowledge'
+  womens_issues: 'Women\'s Issues'
 
 educationSchema = new Schema(
   school: String
@@ -61,6 +60,7 @@ educationSchema = new Schema(
   start: Date
   end: Date
 )
+
 employmentSchema = new Schema(
   title: String
   start: Date
@@ -69,11 +69,12 @@ employmentSchema = new Schema(
   city: String
   country: String
 )
+
 userSchema = new Schema(
   type:
     type: String
-    enum: ["invitee", "experteer", "representative", "admin"]
-    default: "invitee"
+    enum: ['invitee', 'experteer', 'representative', 'admin']
+    default: 'invitee'
   created:
     type: Date
     default: Date.now()
@@ -85,17 +86,14 @@ userSchema = new Schema(
     type: String
     validate: /^[\w\.%\+\-]+@(?:[A-Z0-9\-]+\.)+(?:[A-Z]{2,6})$/i
     unique: true
-
   invite:
     coupon:
       type: String
       default: utils.generatorGUID
-
     invited_by: ObjectId
     invite_date:
       type: Date
       default: Date.now()
-
   birthday: Date
   hash: String
   salt: String
@@ -103,8 +101,7 @@ userSchema = new Schema(
   country: String
   gender:
     type: String
-    enum: ["male", "female"]
-
+    enum: ['male', 'female']
   agree: Boolean
   notify: Boolean
   headline: String
@@ -121,17 +118,14 @@ userSchema = new Schema(
       id: String
       username: String
       link: String
-
     facebook:
       id: String
       username: String
       link: String
-
     google:
       id: String
       username: String
       link: String
-
   verified: {}
   friends: [ObjectId]
   links: {}
@@ -139,7 +133,6 @@ userSchema = new Schema(
   status:
     type: Number
     default: 1
-
   industry: String
   experience: Number
   employment: [employmentSchema]
@@ -156,42 +149,40 @@ userSchema = new Schema(
     motivation: String
     environment: [String]
 )
+
 userSchema.methods.fullName = fullName = ->
-  @first_name + " " + @last_name
+  @first_name + ' ' + @last_name
 
 userSchema.methods.interpretStatus = interpretStatus = ->
   status =
-    label: "Status Unavailable"
-    class: "off"
+    label: 'Status Unavailable'
+    class: 'off'
 
   switch Number(@status)
     when 0
-      status.label = "Currently Not Seeking Experteering Opportunity"
-      status.class = "off"
+      status.label = 'Currently Not Seeking Experteering Opportunity'
+      status.class = 'off'
     when 1
-      status.label = "Seeking Experteering Opportunity"
-      status.class = "on"
+      status.label = 'Seeking Experteering Opportunity'
+      status.class = 'on'
     when 2
-      status.label = "Discussing an Experteering Opportunity"
-      status.class = "yellow"
+      status.label = 'Discussing an Experteering Opportunity'
+      status.class = 'yellow'
     when 3
-      status.label = "Currently Experteering on Location"
-      status.class = "red"
+      status.label = 'Currently Experteering on Location'
+      status.class = 'red'
   status
 
 userSchema.methods.interpretAreaSupport = interpretAreaSupport = ->
   myAreas = []
   for area in @area_support
     myAreas.push areas[area]
-
   myAreas
 
 userSchema.methods.areaSupportObject = areaSupportObject = ->
-
   myAreas = {}
   for area in @area_support
     myAreas[area] = areas[area]
-
   myAreas
 
 userSchema.methods.interpretImpact = interpretImpact = ->
@@ -227,96 +218,96 @@ userSchema.statics.authenticate = authenticate = (email, password, callback) ->
     email: email
   , (err, user) ->
     if not user or err
-      callback null, "could not find user with email: " + email
+      callback null, 'could not find user with email: ' + email
       return
     if user.password is password
-      callback user, "Welcome back " + user.fullName()
+      callback user, 'Welcome back ' + user.fullName()
       return
     else
-      callback null, "Your password is incorrect"
+      callback null, 'Your password is incorrect'
       return
-    callback null, "There was a problem logging in"
+    callback null, 'There was a problem logging in'
 
-userSchema.statics.upsertFacebookUser = upsertFacebookUser = (fbUserData, callback) ->
-  User.findOne
-    "connections.id": fbUserData.id
-  , (err, user) ->
-    if err
-      callback err
-    else if user
-      callback user
-    else
-      user = new User()
-      user.type = "invitee"
-      user.first_name = fbUserData.first_name or ""
-      user.last_name = fbUserData.last_name or ""
-      user.email = fbUserData.email or null
-      user.gender = fbUserData.gender or ""
-      user.birthday = new Date(fbUserData.birthday) or ""
-      user.city = (if (fbUserData.localation) then fbUserData.localation.name else "")
-      user.country = (if (fbUserData.locale) then fbUserData.locale.split("_")[1] else "")
-      user.interests = fbUserData.interested_in or new Array()
-      user.languages = (if (typeof user.languages is "undefined") then new Array() else user.languages)
-      for lang of fbUserData.languages
-        user.languages.push lang.name
-      user.connections.facebook.id = fbUserData.id
-      user.connections.facebook.link = fbUserData.link
-      user.connections.facebook.username = fbUserData.username
-      user.avatar = (if (fbUserData.cover) then fbUserData.cover[0].source else "")
-      user.links = (if (typeof user.links is "undefined") then new Object() else user.links)
-      user.links["facebook"] = fbUserData.link
-      user.links["url"] = fbUserData.website
-      user.bio = fbUserData.bio
+# userSchema.statics.upsertFacebookUser = upsertFacebookUser = (fbUserData, callback) ->
+#   User.findOne
+#     'connections.id': fbUserData.id
+#   , (err, user) ->
+#     if err
+#       callback err
+#     else if user
+#       callback user
+#     else
+#       user = new User()
+#       user.type = 'invitee'
+#       user.first_name = fbUserData.first_name or ''
+#       user.last_name = fbUserData.last_name or ''
+#       user.email = fbUserData.email or null
+#       user.gender = fbUserData.gender or ''
+#       user.birthday = new Date(fbUserData.birthday) or ''
+#       user.city = (if (fbUserData.localation) then fbUserData.localation.name else '')
+#       user.country = (if (fbUserData.locale) then fbUserData.locale.split('_')[1] else '')
+#       user.interests = fbUserData.interested_in or new Array()
+#       user.languages = (if (typeof user.languages is 'undefined') then new Array() else user.languages)
+#       for lang of fbUserData.languages
+#         user.languages.push lang.name
+#       user.connections.facebook.id = fbUserData.id
+#       user.connections.facebook.link = fbUserData.link
+#       user.connections.facebook.username = fbUserData.username
+#       user.avatar = (if (fbUserData.cover) then fbUserData.cover[0].source else '')
+#       user.links = (if (typeof user.links is 'undefined') then new Object() else user.links)
+#       user.links['facebook'] = fbUserData.link
+#       user.links['url'] = fbUserData.website
+#       user.bio = fbUserData.bio
 
-      user.employment = (if (typeof user.employment is "undefined") then new Array() else user.employment)
-      for i of fbUserData.work
-        user.employment.push
-          title: fbUserData.work[i].position
-          start: new Date(fbUserData.work[i].start_date)
-          end: new Date(fbUserData.work[i].endDate)
+#       user.employment = (if (typeof user.employment is 'undefined') then new Array() else user.employment)
+#       for i of fbUserData.work
+#         user.employment.push
+#           title: fbUserData.work[i].position
+#           start: new Date(fbUserData.work[i].start_date)
+#           end: new Date(fbUserData.work[i].endDate)
 
-          # ,	is_current : fbUserData.work[i]
-          employer: fbUserData.work[i].employer
-          city: fbUserData.work[i].location
+#           # ,	is_current : fbUserData.work[i]
+#           employer: fbUserData.work[i].employer
+#           city: fbUserData.work[i].location
 
-      user.education = (if (typeof user.education is "undefined") then new Array() else user.education)
-      for i of fbUserData.education
-        user.education.push
-          school: fbUserData.education[i].school.name
-          major: fbUserData.education[i].concentration
-          degree: fbUserData.education[i].degree
+#       user.education = (if (typeof user.education is 'undefined') then new Array() else user.education)
+#       for i of fbUserData.education
+#         user.education.push
+#           school: fbUserData.education[i].school.name
+#           major: fbUserData.education[i].concentration
+#           degree: fbUserData.education[i].degree
 
-          # ,	start : start
-          end: fbUserData.education[i].year
+#           # ,	start : start
+#           end: fbUserData.education[i].year
 
-      user.save (err) ->
-        callback user  unless err
-        callback err
+#       user.save (err) ->
+#         callback user  unless err
+#         callback err
 
 
 userSchema.statics.upsertLinkedInUser = upsertLinkedInUser = (linkedInUserData, email, callback) ->
 
   User.findOne
     $or: [
-      "connections.linkedin.id": linkedInUserData.id
+      'connections.linkedin.id': linkedInUserData.id
     ,
       email: email
     ]
   , (err, user) ->
     if err or not user
-      callback new Error("Moving Worlds is an invite only community")
+      callback new Error('Moving Worlds is an invite only community')
     else if user
-      console.log "Found existing user. Linkedin ID: ", user.connections.linkedin.id, " Email: " + email
+      console.log 'Found existing user. Linkedin ID: ', user.connections.linkedin.id, ' Email: ' + email
       if user.connections.linkedin.id
-        console.log "User already synced linkedIn account"
+        console.log 'User already synced linkedIn account'
         callback null, user
       else
-        console.log "Syncing linkedin data with existing user"
+        console.log 'Syncing linkedin data with existing user'
         user.connections.linkedin.id = linkedInUserData.id
         user.connections.linkedin.link = linkedInUserData.publicProfileUrl
         user.first_name = user.first_name or linkedInUserData.firstName
         user.last_name = user.last_name or linkedInUserData.lastName
-        if typeof linkedInUserData.location isnt "undefined"
+        if typeof linkedInUserData.location isnt 'undefined'
           user.city = user.city or linkedInUserData.location.name
           user.country = user.country or linkedInUserData.location.country.code.toUpperCase()
         user.avatar = user.avatar or linkedInUserData.pictureUrl
@@ -326,21 +317,21 @@ userSchema.statics.upsertLinkedInUser = upsertLinkedInUser = (linkedInUserData, 
         for skill in linkedInUserData.skills.values
           user.skills.push skill.skill.name
         user.interests = user.interests or []
-        for interest in linkedInUserData.interests.split(",")
+        for interest in linkedInUserData.interests.split(',')
           user.interests.push interest
         user.languages = user.languages or []
         for lang in linkedInUserData.languages.values
           user.languages.push lang.language.name
         user.links = user.links or {}
-        user.links["url"] = linkedInUserData.memberUrlResources.values[0].url if linkedInUserData.memberUrlResources._total > 0
-        user.links["twitter"] = "http://www.twitter.com/" + linkedInUserData.twitterAccounts.values[0].providerAccountName if linkedInUserData.twitterAccounts._total > 0
-        user.links["linkedin"] = linkedInUserData.publicProfileUrl
+        user.links['url'] = linkedInUserData.memberUrlResources.values[0].url if linkedInUserData.memberUrlResources._total > 0
+        user.links['twitter'] = 'http://www.twitter.com/' + linkedInUserData.twitterAccounts.values[0].providerAccountName if linkedInUserData.twitterAccounts._total > 0
+        user.links['linkedin'] = linkedInUserData.publicProfileUrl
         user.bio = user.bio or linkedInUserData.summary
         user.industry = user.industry or linkedInUserData.industry
         user.employment = user.employment or []
         for position in linkedInUserData.positions.values
-          start = (if (typeof position.startDate isnt "undefined") then new Date(position.startDate.year, position.startDate.month, 1) else null)
-          end = (if (typeof position.endDate isnt "undefined") then new Date(position.endDate.year, position.endDate.month, 1) else null)
+          start = (if (typeof position.startDate isnt 'undefined') then new Date(position.startDate.year, position.startDate.month, 1) else null)
+          end = (if (typeof position.endDate isnt 'undefined') then new Date(position.endDate.year, position.endDate.month, 1) else null)
           user.employment.push
             title: position.title
             start: start
@@ -350,8 +341,8 @@ userSchema.statics.upsertLinkedInUser = upsertLinkedInUser = (linkedInUserData, 
 
         user.education = user.education or new Array()
         for education in linkedInUserData.educations.values
-          start = (if (typeof education.startDate.year isnt "undefined" and typeof education.startDate.month isnt "undefined") then new Date(education.startDate.year, education.startDate.month, 1) else null)
-          end = (if (typeof education.endDate.year isnt "undefined" and typeof education.endDate.month isnt "undefined") then new Date(education.endDate.year, education.endDate.month, 1) else null)
+          start = (if (typeof education.startDate.year isnt 'undefined' and typeof education.startDate.month isnt 'undefined') then new Date(education.startDate.year, education.startDate.month, 1) else null)
+          end = (if (typeof education.endDate.year isnt 'undefined' and typeof education.endDate.month isnt 'undefined') then new Date(education.endDate.year, education.endDate.month, 1) else null)
           user.education.push
             school: education.schoolName
             major: education.fieldOfStudy
@@ -364,15 +355,15 @@ userSchema.statics.upsertLinkedInUser = upsertLinkedInUser = (linkedInUserData, 
           callback err
 
     else
-      callback new Error("Moving Worlds is an invite only community")
+      callback new Error('Moving Worlds is an invite only community')
 
 
-userSchema.statics.findOrCreateGoogleUser = findOrCreateGoogleUser = (fbUserData, callback) ->
-  callback()
+# userSchema.statics.findOrCreateGoogleUser = findOrCreateGoogleUser = (fbUserData, callback) ->
+#   callback()
 
-userSchema.statics.search = search = (name, callback) ->
-  @where("name", new RegExp(name, "i")).run callback
+# userSchema.statics.search = search = (name, callback) ->
+  # @where('name', new RegExp(name, 'i')).run callback
 
-User = mongoose.model(collection_name, userSchema)
+User = mongoose.model('user', userSchema)
 
 module.exports = User

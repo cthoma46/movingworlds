@@ -1,4 +1,4 @@
-User = require("./user")
+User = require('./user')
 
 class Representative extends User
 

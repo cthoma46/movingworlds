@@ -6,29 +6,29 @@ $(document).ready(function() {
       expires: 1
     }
   });
-  $(".reply_btn a").click(function(e) {
-    var $this, subject;
-    e.preventDefault();
-    $this = $(this);
-    $(".tabs").tabs("select", 2);
-    $("#msg_to").tagit("removeAll");
-    $("#msg_to").tagit("createTag", $this.data("uid"), $this.data("name"));
-    subject = $this.parents(".email").first().find("h3").text();
-    $("#msg_subject").val("RE: " + subject);
-    return $("#msg_body").focus();
-  });
-  return $(".delete_msg_btn").click(function(e) {
-    var $this;
-    e.preventDefault();
-    $this = $(this);
-    return $.ajax({
-      url: "/api/messages",
-      method: "delete",
-      data: {},
-      success: function(data) {
-        console.log(data);
-        return $this.parents(".email").first().slideUp();
-      }
-    });
-  });
+  // $(".reply_btn a").click(function(e) {
+  //   var $this, subject;
+  //   e.preventDefault();
+  //   $this = $(this);
+  //   $(".tabs").tabs("select", 2);
+  //   $("#msg_to").tagit("removeAll");
+  //   $("#msg_to").tagit("createTag", $this.data("uid"), $this.data("name"));
+  //   subject = $this.parents(".email").first().find("h3").text();
+  //   $("#msg_subject").val("RE: " + subject);
+  //   return $("#msg_body").focus();
+  // });
+  // return $(".delete_msg_btn").click(function(e) {
+  //   var $this;
+  //   e.preventDefault();
+  //   $this = $(this);
+  //   return $.ajax({
+  //     url: "/api/messages",
+  //     method: "delete",
+  //     data: {},
+  //     success: function(data) {
+  //       console.log(data);
+  //       return $this.parents(".email").first().slideUp();
+  //     }
+  //   });
+  // });
 });

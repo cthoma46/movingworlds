@@ -168,7 +168,7 @@ footer#page_foot nav.socials{position:absolute;right:0}
 #feature #dotmap{position:relative;background:transparent url("/images/gfx_dotmap.png") 50% -60px repeat;width:1160px;height:530px;margin:0 auto;}
 #feature #dotmap .marker{opacity:0;position:absolute;background:transparent url("/images/spt_aux_icons.png") 0 0 no-repeat;width:16px;height:20px;cursor:pointer;}
 #feature #dotmap .marker.experteer_icn{background-position:0 0}
-#feature #dotmap .marker.se_icn{background-position:0 -21px}
+#feature #dotmap .marker.org_icn{background-position:0 -21px}
 #se_home #feature h1{font-size:32px}
 .testemonial_popup{display:none;position:absolute;left:30px;-moz-box-shadow:0 2px 5px rgba(0,0,0,0.4);-webkit-box-shadow:0 2px 5px rgba(0,0,0,0.4);box-shadow:0 2px 5px rgba(0,0,0,0.4);color:#fff;width:425px;max-height:455px;background-color:rgba(23,28,38,0.75);border:1px solid #171c26;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;padding:10px;z-index:99;}
 .testemonial_popup header{width:415px;height:28px;background-color:rgba(23,28,38,0.75);-webkit-border-radius:5px 5px 0 0;-moz-border-radius:5px 5px 0 0;border-radius:5px 5px 0 0;-moz-box-shadow:0 1px 0 rgba(255,255,255,0.4) inset , 0 1px 0 rgba(255,255,255,0.4);-webkit-box-shadow:0 1px 0 rgba(255,255,255,0.4) inset , 0 1px 0 rgba(255,255,255,0.4);box-shadow:0 1px 0 rgba(255,255,255,0.4) inset , 0 1px 0 rgba(255,255,255,0.4);margin:-10px 0 10px -10px;padding:9px 10px 0 20px;}
@@ -272,20 +272,20 @@ nav#steps li.step3.on{background-position:-474px bottom}
 nav#steps li.step4.on{width:39px;color:#e96c6c;background-position:-711px bottom}
 .role_boxes{padding:30px 30px 30px 53px;background:#fff url("../images/bg_crosshatch.png") 0 0 repeat;border-left:1px solid #bfbfbf;border-right:1px solid #bfbfbf;border-bottom:1px solid #bfbfbf;-moz-box-shadow:0 1px 0 #fff;-webkit-box-shadow:0 1px 0 #fff;box-shadow:0 1px 0 #fff;}
 .role_boxes .icon{background:transparent url("/images/spt_user_icons.png") 0 0 no-repeat;float:left;width:32px;height:90px;margin-right:10px}
-.role_boxes .experteer_box,.role_boxes .se_box{float:left;width:350px;height:75px;padding:20px 30px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;background:#fff;background:-moz-linear-gradient(top,#fff 0%,#f0f0f0 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#fff),color-stop(100%,#f0f0f0));background:-webkit-linear-gradient(top,#fff 0%,#f0f0f0 100%);background:-o-linear-gradient(top,#fff 0%,#f0f0f0 100%);background:-ms-linear-gradient(top,#fff 0%,#f0f0f0 100%);background:linear-gradient(top,#fff 0%,#f0f0f0 100%);filter:progid:DXImageTransform.Microsoft.gradient( startColorstr=#fff, endColorstr=#f0f0f0,GradientType=0 );;-moz-box-shadow:0 1px 1px rgba(0,0,0,0.55);-webkit-box-shadow:0 1px 1px rgba(0,0,0,0.55);box-shadow:0 1px 1px rgba(0,0,0,0.55);border:1px solid #bfbfbf;cursor:pointer;}
-.role_boxes .experteer_box p,.role_boxes .se_box p{font-weight:bold;color:#666;padding:0;margin:0}
+.role_boxes .experteer_box,.role_boxes .org_box{float:left;width:350px;height:75px;padding:20px 30px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;background:#fff;background:-moz-linear-gradient(top,#fff 0%,#f0f0f0 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#fff),color-stop(100%,#f0f0f0));background:-webkit-linear-gradient(top,#fff 0%,#f0f0f0 100%);background:-o-linear-gradient(top,#fff 0%,#f0f0f0 100%);background:-ms-linear-gradient(top,#fff 0%,#f0f0f0 100%);background:linear-gradient(top,#fff 0%,#f0f0f0 100%);filter:progid:DXImageTransform.Microsoft.gradient( startColorstr=#fff, endColorstr=#f0f0f0,GradientType=0 );;-moz-box-shadow:0 1px 1px rgba(0,0,0,0.55);-webkit-box-shadow:0 1px 1px rgba(0,0,0,0.55);box-shadow:0 1px 1px rgba(0,0,0,0.55);border:1px solid #bfbfbf;cursor:pointer;}
+.role_boxes .experteer_box p,.role_boxes .org_box p{font-weight:bold;color:#666;padding:0;margin:0}
 .role_boxes .experteer_box.on,.role_boxes .experteer_box:hover{-moz-box-shadow:0 1px 1px rgba(0,0,0,0.55) , 0 1px 0 rgba(255,255,255,0.75) inset;-webkit-box-shadow:0 1px 1px rgba(0,0,0,0.55) , 0 1px 0 rgba(255,255,255,0.75) inset;box-shadow:0 1px 1px rgba(0,0,0,0.55) , 0 1px 0 rgba(255,255,255,0.75) inset;background:#6cc2e9;border:1px solid #245b76;color:#fff;}
 .role_boxes .experteer_box.on h4,.role_boxes .experteer_box:hover h4{color:#fff;text-shadow:none}
 .role_boxes .experteer_box.on p,.role_boxes .experteer_box:hover p{color:#fff}
-.role_boxes .se_box.on,.role_boxes .se_box:hover{-moz-box-shadow:0 1px 1px rgba(0,0,0,0.55) , 0 1px 0 rgba(255,255,255,0.75) inset;-webkit-box-shadow:0 1px 1px rgba(0,0,0,0.55) , 0 1px 0 rgba(255,255,255,0.75) inset;box-shadow:0 1px 1px rgba(0,0,0,0.55) , 0 1px 0 rgba(255,255,255,0.75) inset;background:#e96c6c;border:1px solid #ae3a3a;}
-.role_boxes .se_box.on h4,.role_boxes .se_box:hover h4{color:#fff;text-shadow:none}
-.role_boxes .se_box.on p,.role_boxes .se_box:hover p{color:#fff}
+.role_boxes .org_box.on,.role_boxes .org_box:hover{-moz-box-shadow:0 1px 1px rgba(0,0,0,0.55) , 0 1px 0 rgba(255,255,255,0.75) inset;-webkit-box-shadow:0 1px 1px rgba(0,0,0,0.55) , 0 1px 0 rgba(255,255,255,0.75) inset;box-shadow:0 1px 1px rgba(0,0,0,0.55) , 0 1px 0 rgba(255,255,255,0.75) inset;background:#e96c6c;border:1px solid #ae3a3a;}
+.role_boxes .org_box.on h4,.role_boxes .org_box:hover h4{color:#fff;text-shadow:none}
+.role_boxes .org_box.on p,.role_boxes .org_box:hover p{color:#fff}
 .role_boxes h4{font-weight:900}
 .role_boxes .experteer_box{margin-right:50px;}
 .role_boxes .experteer_box h4{color:#6cc2e9}
 .role_boxes .experteer_box .icon{background-position:0 0}
-.role_boxes .se_box h4{color:#e96c6c}
-.role_boxes .se_box .icon{background-position:-35px 0}
+.role_boxes .org_box h4{color:#e96c6c}
+.role_boxes .org_box .icon{background-position:-35px 0}
 nav#progress{clear:both;text-align:center;}
 nav#progress a+a{margin-left:30px}
 #upload_avatar{text-align:center;padding-bottom:43px;height:auto;}
@@ -400,11 +400,11 @@ nav.email_options label{font:12px "Lato",Helvetica,Arial,sans-serif;text-transfo
 .widget header h3{color:#fff;font-size:15px}
 .widget.experteer header{background-color:#3f9fe9;border-color:#327fba;}
 .widget.experteer header h3{text-shadow:0 1px 1px #1e4b6e}
-.widget.se header{background-color:#e96c6c;border-color:#bb4141;}
-.widget.se header h3{text-shadow:0 1px 1px #6d0c0c}
+.widget.org header{background-color:#e96c6c;border-color:#bb4141;}
+.widget.org header h3{text-shadow:0 1px 1px #6d0c0c}
 .widget .icon{display:block;float:left;width:32px;height:38px;position:absolute;top:5px;left:5px;background:transparent url("/images/spt_user_icons.png") 0 0 no-repeat}
 .widget.experteer .icon{background-position:0 0}
-.widget.se .icon{background-position:-35px 0}
+.widget.org .icon{background-position:-35px 0}
 .widget .widget_body{padding:10px;}
 .widget .widget_body .avatar{float:left;margin-right:20px}
 .widget .widget_body ul{list-style:none;margin:0;padding:0;font-size:13px;text-shadow:0 1px 0 #fff;line-height:16px}

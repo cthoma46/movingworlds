@@ -1,0 +1,28 @@
+div.widget.org(class=className)
+	header
+		div.icon
+		h3= org.name || 'Undefined'
+	section.widget_body
+		div.avatar
+			.av_img_container
+				if org.img || org.type
+					img(src= org.img || "/images/icn_avatar_"+org.type+".png", width="80", height="80")
+				if org.verified
+					div.verified
+		ul
+			li
+				h3= org.city + ", " + org.country
+			li
+				strong Status: 
+				=org.type
+			li
+				- var size = org.interpretSize()
+				strong Size: 
+				span( title=size.desc )= size.title
+			li
+				strong Field: 
+				=org.opportunities[0].field
+		nav
+			ul
+				li
+					a(href="/organization/" + org.id + "/").chunky_btn Details

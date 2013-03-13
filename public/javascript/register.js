@@ -45,11 +45,11 @@ $(document).ready(function() {
       });
     }
   });
-  $(".experteer_box, .se_box").click(function(e) {
+  $(".experteer_box, .org_box").click(function(e) {
     var $this;
     $this = $(this);
     e.preventDefault;
-    $(".experteer_box, .se_box").removeClass("on");
+    $(".experteer_box, .org_box").removeClass("on");
     $this.addClass("on");
     if ($this.is(".experteer_box")) {
       $("li.step2 span").text("Personal Information");
@@ -59,7 +59,7 @@ $(document).ready(function() {
     } else {
       $("li.step2 span").text("Company Information");
       $("li.step3 span").text("First Opportunity");
-      $("#next").attr("href", "/register/2/se");
+      $("#next").attr("href", "/register/2/org");
       return $("input[name=\"type\"]").attr("value", "representative");
     }
   });

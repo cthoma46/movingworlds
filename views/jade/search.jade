@@ -17,7 +17,7 @@ block content
 					nav.clearfix
 						ul.small
 							li: a(href="#experteers") Experteers
-							li: a(href="#ses") SE<small>s</small>
+							li: a(href="#orgs") Organizations<small>s</small>
 					div#experteers
 						form
 							ul
@@ -37,7 +37,7 @@ block content
 								li
 									label(for="languages") Languages
 									input( type="text", id="languages", name="languages", tabindex="7", class="tags"  )
-					div#ses
+					div#orgs
 						form
 							ul
 								li
@@ -80,14 +80,14 @@ block content
 									li
 										a(href="/experteer/"+item.id).chunky_btn Details
 				else
-					div.widget.se(class=className)
+					div.widget.org(class=className)
 						header
 							div.icon
 							h3= item.name || 'Undefined'
 						section.widget_body
 							div.avatar
 								.av_img_container
-									img(src= item.avatar || "/images/icn_avatar_se.png", width="80", height="80")
+									img(src= item.avatar || "/images/icn_avatar_org.png", width="80", height="80")
 									if(item.verified)
 										div.verified
 							ul
@@ -110,4 +110,4 @@ block content
 							nav
 								ul
 									li
-										a(href="/social_enterprise/"+item.id+"/").chunky_btn Details
+										a(href="/organization/"+item.id+"/").chunky_btn Details

@@ -1,9 +1,9 @@
 module.exports = [
 
-	  path: "/finalization"
-	  type: "GET"
+	  path: '/finalization'
+	  type: 'GET'
 	  action: (req, res) -> 
-	  	res.render "finalization",
-				title: "Finalization"
+	  	res.render 'finalization',
+				title: 'Finalization'
 
 ]
