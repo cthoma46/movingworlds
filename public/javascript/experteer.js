@@ -23,6 +23,9 @@ $(document).ready(function() {
     buttonImage: "/images/btn_datepicker.png",
     buttonImageOnly: true
   });
+
+  $('.selectit-me').selectit({});
+
   $('.tags').tagit({
     availableTags: ["Option 1", "Option 2", "Option 3", "Option 4"],
     create: function(event, ui) {},
@@ -41,6 +44,7 @@ $(document).ready(function() {
   $(".combobox").combobox({});
   return multiTag('#areas', 'area_support');
 });
+
 
 multiTag = function(container, type) {
   var values;
@@ -62,6 +66,7 @@ multiTag = function(container, type) {
     label = $('#' + type + ' option:selected').text();
     return addTag(container, type, value, label);
   });
+
 };
 
 addTag = function(container, type, value, label) {

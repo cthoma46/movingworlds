@@ -112,7 +112,6 @@ userSchema = new Schema(
   languages: [String]
   area_support: [String]
   avatar: String
-  video: String
   connections:
     linkedin:
       id: String
@@ -142,7 +141,6 @@ userSchema = new Schema(
       start: Date
       end: Date
     value: Number
-    video: String
     impact: String
     countries: [String]
     industry: [String]
@@ -193,12 +191,11 @@ userSchema.methods.isProfileComplete = isProfileComplete = ->
   availability = @profile.availability && @profile.availability.start && @profile.availability.end
   countries = @profile.countries && @profile.countries.length > 0
   environment = @profile.environment && @profile.environment.length > 0
-  video = @profile.video && @profile.video.length > 0
   impact = @profile.impact
   value = @profile.value
   support = @area_support && @area_support.length > 0
   motivation = @profile.motivation
-  return availability && countries && environment && video && impact && value && support && motivation
+  return availability && countries && environment && impact && value && support && motivation
 
 userSchema.methods.age = age = ->
   return null  unless @birthday

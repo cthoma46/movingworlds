@@ -2,6 +2,7 @@ User = require('../models').User
 moment = require('moment')
 ObjectId = require('mongoose').Types.ObjectId
 utile = require('utile')
+countryList = require('../models/countries.js')
 
 module.exports = [
     path: '/experteer/:id'
@@ -12,11 +13,12 @@ module.exports = [
         id = req.params.id
         User.findById id, (err, user) ->
           throw err if err
-
           res.render 'experteer',
           title: user.first_name + ' ' + user.last_name + ' Profile'
           experteer: user
           moment: moment
+          countryList: countryList.countries
+          regionList: countryList.regions
           mine: currentUser.id == id
       else
         res.redirect '/login'
@@ -27,7 +29,6 @@ module.exports = [
       User.findById req.user.id, (err, user) ->
         unless err
           data = utile.mixin(req.body, user)
-
           User.update
             _id: ObjectId(user.id)
           , data,

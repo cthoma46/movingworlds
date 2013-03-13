@@ -5,6 +5,8 @@ block append scripts
 		script(src='/javascript/plugins/jquery-ui.min.js')
 		script(src='/javascript/plugins/jquery.mw_combo.js')
 		script(src='/javascript/plugins/jquery.tag-it.js')
+		script(src='/javascript/plugins/jquery.catcomplete.js')
+		script(src='/javascript/plugins/jquery.select-it.js')
 		script(src='/javascript/plugins/jquery.dropdown.js')
 		script(src='/javascript/plugins/jquery.extend.js')
 		script(src='/javascript/plugins/jquery.validate.min.js')
@@ -154,21 +156,6 @@ block content
 						if mine
 							div(style="text-align: right")
 								button#edit_profile.chunky_btn Edit my experteer profile
-					div.profile_video
-						if experteer.profile.video
-							div.video_container
-								!= youtube.embed(extractYoutubeId(experteer.profile.video), 558, 314);
-						if mine
-							if !experteer.profile.video
-								div.video_upload.center
-									a(href='#')
-										img(src='/images/video_upload.png')
-							div#upload_form.center.hidden
-									ul
-										li
-											label(for="video")
-												span Checkout our guide <a href="http://movingworlds.com/videopitch" target="_blank">How to record a video pitch</a>
-											input( type="text", id="video", name="profile[video]", tabindex="7", value=user.profile.video, placeholder="Paste here your YouTube video link" )
 					div.stack_body.clearfix
 							- if(mine && !experteer.isProfileComplete())
 								p.error Your profile is incomplete, please fill the information below
@@ -195,7 +182,12 @@ block content
 									h4(class=countries_class) I'd like to go to
 									p
 										if countries
-											=experteer.profile.countries.join(', ')
+											- selectedCountries = []
+											- for ( var c = 0; c < experteer.profile.countries.length; c++ ) {
+												- code = experteer.profile.countries[c];
+												- selectedCountries.push(countryList[code] || regionList[code]);
+											- }
+											= selectedCountries.join(", ");
 										else
 											| No information specified
 									// Industry
@@ -268,9 +260,17 @@ block content
 											h4 I'd like to go to
 											ul
 												li
-													label
-														span Enter countries, comma-separated
-													input( type="text", name="profile[countries]", class="tags", value=experteer.profile.countries.join(', ') )
+													select( id="countries", name="profile[countries]", class="selectit-me", multiple=true)
+														optgroup(label="Regions")
+															- for( var key in regionList) {
+																- var isSelected = experteer.profile.countries.indexOf(key) > -1;
+																option(value=key,selected=isSelected)= regionList[key]
+															- }
+														optgroup(label="Countries")
+															- for( var key in countryList) {
+																- var isSelected = experteer.profile.countries.indexOf(key) > -1;
+																option(value=key,selected=isSelected)= countryList[key]
+															- }
 											h4 Preferred Work Environment
 											div.checkboxes
 												ul
