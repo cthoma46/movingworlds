@@ -127,7 +127,7 @@ div.tagit input[type="text"],ul.tagit input[type="text"]{-moz-box-shadow:none;-w
 .ui-autocomplete .ui-state-hover{background-color:#d3f1ff;color:#6cc2e9 !important}
 .ui_combobox{display:block;position:relative;}
 .ui_combobox .combo_trigger{position:absolute;bottom:0;right:-2px;display:block;width:33px;height:29px;background:url("/images/spt_form.png") no-repeat 0 -113px}
-div.selectit ul{padding:4px 4px 0 4px;overflow:auto;margin-left:inherit;margin-right:inherit;min-height:28px;}
+div.selectit ul{padding:4px 4px 0 4px;overflow:auto;margin-left:inherit;margin-right:30px;min-height:28px;}
 div.selectit ul li{display:block;float:left;margin:0}
 div.selectit ul li.selectit-new{padding:.25em 4px .25em 0}
 div.selectit ul p.selectit-choice,div.selectit ul li.selectit-choice{position:relative;height:22px;margin:1px 25px 0 0;padding-left:15px;background:transparent url("/images/bg_tag.png") 0 0 no-repeat;font:12px Arial,sans-serif;color:#666;}

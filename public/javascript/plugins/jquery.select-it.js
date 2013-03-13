@@ -1,28 +1,10 @@
 /*
- * jQuery UI Tag-it!
+ * jQuery UI Select-it!
  *
- * @version v2.0 (06/2011)
+ * @version v1.0
  *
- * Copyright 2011, Levy Carneiro Jr.
+ * Copyright 2013, MovingWorlds
  * Released under the MIT license.
- * http://aehlke.github.com/tag-it/LICENSE
- *
- * Homepage:
- *   http://aehlke.github.com/tag-it/
- *
- * Authors:
- *   Levy Carneiro Jr.
- *   Martin Rehfeld
- *   Tobias Schmidt
- *   Skylar Challand
- *   Alex Ehlke
- *
- * Maintainer:
- *   Alex Ehlke - Twitter: @aehlke
- *
- * Dependencies:
- *   jQuery v1.4+
- *   jQuery UI v1.8+
  */
 (function ($) {
 
