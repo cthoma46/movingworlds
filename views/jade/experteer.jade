@@ -182,7 +182,12 @@ block content
 									h4(class=countries_class) I'd like to go to
 									p
 										if countries
-											=experteer.profile.countries.join(', ')
+											- selectedCountries = []
+											- for ( var c = 0; c < experteer.profile.countries.length; c++ ) {
+												- code = experteer.profile.countries[c];
+												- selectedCountries.push(countryList[code] || regionList[code]);
+											- }
+											= selectedCountries.join(", ");
 										else
 											| No information specified
 									// Industry
@@ -256,7 +261,16 @@ block content
 											ul
 												li
 													select( id="countries", name="profile[countries]", class="selectit-me", multiple=true)
-														include includes/countries_combo.jade
+														optgroup(label="Regions")
+															- for( var key in regionList) {
+																- var isSelected = experteer.profile.countries.indexOf(key) > -1;
+																option(value=key,selected=isSelected)= regionList[key]
+															- }
+														optgroup(label="Countries")
+															- for( var key in countryList) {
+																- var isSelected = experteer.profile.countries.indexOf(key) > -1;
+																option(value=key,selected=isSelected)= countryList[key]
+															- }
 											h4 Preferred Work Environment
 											div.checkboxes
 												ul
