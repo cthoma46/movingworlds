@@ -79,9 +79,9 @@ if account.model === 'organization'
                   ) View
                 span &nbsp; &nbsp; 
 
-              if (typeof user !== 'undefined' && user.id !== account.id && introDate !== undefined)
+              if (typeof introDate !== 'undefined')
                 a.chunky_btn.disabled.small.round Intro Requested #{introDate}
-              else
+              else if (typeof user !== 'undefined' && user.id !== account.id)
                 a.chunky_btn.small.round(
                   id='request-intro', 
                   data-loading-text='Loading...',
