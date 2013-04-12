@@ -2,20 +2,20 @@
 var addTag, multiTag;
 
 $(document).ready(function() {
-  $('#edit_profile').click(function(e) {
-    e.preventDefault();
-    $(this).hide();
-    $('#profile_form').show();
-    $('#profile_info').hide();
-    return $('#upload_form').show();
-  });
-  $('#cancel_profile').click(function(e) {
-    e.preventDefault();
-    $('#profile_form').hide();
-    $('#profile_info').show();
-    $('#edit_profile').show();
-    return $('#upload_form').hide();
-  });
+  // $('#edit_profile').click(function(e) {
+  //   e.preventDefault();
+  //   $(this).hide();
+  //   $('#profile_form').show();
+  //   $('#profile_info').hide();
+  //   return $('#upload_form').show();
+  // });
+  // $('#cancel_profile').click(function(e) {
+  //   e.preventDefault();
+  //   $('#profile_form').hide();
+  //   $('#profile_info').show();
+  //   $('#edit_profile').show();
+  //   return $('#upload_form').hide();
+  // });
   $(".datepicker input").datepicker({
     showOn: "both",
     changeMonth: true,
@@ -31,18 +31,25 @@ $(document).ready(function() {
     create: function(event, ui) {},
     onTagAdded: function(event, tag) {}
   });
+
   $('#impact').val($('#impact_value').val());
+
   $('#industry').val($('#industry_value').val());
+
   $('.change_status').click(function(e) {
     var status;
     e.preventDefault();
     status = $(this).data('status');
-    return $.doPost('/experteer/update', {
-      status: status
+    return $.doPost('/setup', {
+      experteerStatus : status,
+      next : 'back'
     });
   });
+
   $(".combobox").combobox({});
-  return multiTag('#areas', 'area_support');
+
+  return multiTag('#areas', 'supportArea');
+
 });
 
 

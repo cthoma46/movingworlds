@@ -125,7 +125,7 @@ $(document).ready(function(){
 	    var that = this;
 	    $.ajax({
 	      url: '/api/user',
-	      data: {fields:'first_name|last_name', search:search.term},
+	      data: {fields:'firstName|lastName', search:search.term},
 	      success: function(data) {
 
 	      	try	{
@@ -133,7 +133,7 @@ $(document).ready(function(){
 							$.map( data, function( item ) {
 	      	  		return {
 	      	  			 	value: item._id
-	      	  			, label: item.first_name + " " + item.last_name
+	      	  			, label: item.firstName + " " + item.lastName
 	      	  		}
 	  	      	})
 						);

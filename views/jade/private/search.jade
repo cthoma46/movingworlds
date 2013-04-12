@@ -1,0 +1,265 @@
+extends ../layouts/layout
+
+block append scripts
+  script(src="/javascript/setup.js")
+  script(src="/javascript/search.js")
+
+block content
+  //- div.layout_960
+
+  - if (typeof search_result === 'undefined')
+    - search_result = []
+
+  div.layout_960
+
+    div.col1of2
+
+      include partials/account-nav
+
+      section#recommendations
+        header
+          h6.right.gray #{search_result.length} found
+          h2 Search 
+      form#search-form(action='#', method='get')
+        ul
+          li
+            input(type='text', name='q', value=search_str)
+
+          li
+            button.col1of2.chunky_btn.blue(type='submit', form='search-form') 
+              | Search
+
+          li.half
+            label Number of Results
+            select.data-select-value(
+              name='limit', 
+              data-value=query.limit
+              )
+              option(value=4) 4
+              option(value=10) 10
+              option(value=25) 25
+              option(value=50) 50
+
+          //- li.datepicker.half
+            label From
+            input.date(disabled='disabled', type='text', name='from', value='')
+
+          //- li.datepicker.half
+            label To
+            input.date(disabled='disabled', type='text', name='from', value='', data-months='1', data-years='2')
+
+          li.half
+            label Location
+            select.data-select-value(
+              name='filter[country]', 
+              data-value=query.filter.country
+              )
+              include forms/countries_combo
+
+          li
+            label Industry
+            select.data-select-value(
+              name='filter[industry]', 
+              data-value=query.filter.industry
+              )
+              include forms/industry_combo
+
+          li
+            label Desired Impact
+            select.data-select-value(
+              name='filter[impactArea]', 
+              data-value=filter.impactArea
+              )
+              include forms/impact_combo
+
+          li
+            label Support Area
+            select.data-select-value(
+              name='filter[supportArea]', 
+              data-value=filter.supportArea
+              )
+              include forms/area_support_combo
+
+          li
+            label Environment
+            select.data-select-value(
+              name='filter[environment]', 
+              data-value=filter.environment
+              )
+              include forms/environment_combo
+
+    div.col2of2
+
+      section#recommendations
+        //- header
+          h2 Search 
+
+        if (search_result.length)
+          for card, i in search_result
+            -card.buttonView = true
+            include partials/card
+        else 
+          em 
+            strong #{query.q} 
+            | Returned no results.
+
+        footer.clear
+          if (typeof page !== 'undefined' && typeof pages !== 'undefined')
+            nav.pagination
+              ul
+                li
+                  a.previous(
+                    data-page=previousPage,
+                    href='#', 
+                    class=(previousPage ? '' : 'disabled' ) 
+                    ) 
+                li.page_info
+                  | #{page} 
+                  em of 
+                  | #{pages} 
+                li
+                  a.next(
+                    data-page=nextPage,
+                    href='#',
+                    class=(nextPage ? '' : 'disabled' )
+                    ) 
+
+          //- div.right
+            a.chunky_btn.small.blue(href='/') next page
+          //- div.left
+            a.chunky_btn.small.disabled(href='/') previous page
+
+      //- div.col1of2
+
+        section  
+
+            header
+
+            form(action='#', method='get')
+              ul
+
+                li
+                  label(for="city") City
+                  input(
+                    type="text", 
+                    id="city", 
+                    name="city", 
+                    tabindex="7", 
+                    class="tags"
+                    )
+                li
+                  label Country
+                  select(name="country", class="combobox")
+                    include forms/countries_combo
+
+                li
+                  label(for="languages") Languages
+                  input(
+                    type="text", 
+                    id="languages", 
+                    name="languages", 
+                    tabindex="7", 
+                    class="tags"
+                    )
+
+
+            div.clearfix
+
+            p &nbsp;
+
+            div#experteers
+
+              form
+                ul
+                  li
+                    label Gender
+                    ul
+                      li
+                        input(
+                          type="checkbox", 
+                          id="male", 
+                          name="gender", 
+                          value="male", 
+                          tabindex="5"
+                          )
+                        label(for="male") Male
+                      li
+                        input(
+                          type="checkbox", 
+                          id="female", 
+                          name="gender", 
+                          value="female", 
+                          tabindex="6"
+                          )
+                        label(for="female") Female
+                  li
+                    label Country
+                    select(name="country", class="combobox")
+                      include forms/countries_combo
+                  li
+                    label(for="languages") Languages
+                    input(
+                      type="text", 
+                      id="languages", 
+                      name="languages", 
+                      tabindex="7", 
+                      class="tags"
+                      )
+
+            div#orgs
+
+              form
+                ul
+                  li
+                    label Country
+                    select(name="country", class="combobox")
+                      include forms/countries_combo
+                  li
+                    label(for="languages") Languages
+                    input(
+                      type="text", 
+                      id="languages", 
+                      name="languages", 
+                      tabindex="7", 
+                      class="tags"
+                      )
+
+      //- div.col2of2
+        h2= message+" "
+        for card, i in search_result
+          //- -var className = (i % 2 == 1) ? 'last' : '';
+
+          include partials/card
+
+
+            //- div.widget.org(class=className)
+              header
+                div.icon
+                h3= account.name || 'Undefined'
+              section.widget_body
+                div.avatar
+                  .av_img_container
+                    img(src= account.avatar || "/images/icn_avatar_organization.png", width="80", height="80")
+                    if(account.verified)
+                      div.verified
+                ul
+                  li
+                    strong Type&nbsp;
+                    =account.type
+                  //- li
+                    //- - var size = account.orgSize
+                    //- strong Size&nbsp;
+                    //- span(title=size.description)= size.title
+                  li
+                    strong Industry&nbsp;
+                    =account.industry
+                  li
+                    if account.registered
+                      strong Registered since&nbsp;
+                      =account.registeredYear
+                    else
+                      | Not registered
+                nav
+                  ul
+                    li
+                      a(href="/organization/"+account.id+"/").chunky_btn Details

@@ -1,17 +1,16 @@
 express = require('express')
 stylus = require('stylus')
 http = require('http')
-path = require('path')
 mongoose = require('mongoose')
 moment = require('moment')
 SessionStore = require('session-mongoose')
-utils = require('util')
 flash = require('connect-flash')
 passport = require('passport')
-settings = require('./models').SETTINGS
+settings = process.settings = require('./settings')
 youtube = require('youtube')
 controllers = require('./controllers')
 
+require('rconsole')
 require('./controllers/passport')
 
 # console.log(process.versions);
@@ -19,6 +18,18 @@ require('./controllers/passport')
 #              GLOBAL                   //
 #/////////////////////////////////////////
 app = express()
+
+methodOverrideGET = (key) ->
+  key = key || "_method"
+  return (req, res, next) ->
+    if (req.originalMethod != req.method)
+      next()
+      return
+    req.originalMethod = req.method
+    if (req.query && !!req.query[key])
+      req.method = req.query[key].toUpperCase()
+      delete req.query[key]
+    next()
 
 #/////////////////////////////////////////
 #              DATABASE                 //
@@ -34,6 +45,7 @@ app.configure ->
   app.locals settings.locals
   app.locals.pretty = false
   app.locals.youtube = youtube
+  app.locals.moment = moment
   app.locals.extractYoutubeId = (url) ->
     regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/
     match = url.match(regExp);
@@ -46,9 +58,16 @@ app.configure ->
   app.set 'view engine', 'jade'
   app.set 'views', __dirname + '/views/jade'
 
-  app.use express.bodyParser()
+  app.use express.favicon(__dirname + '/public/images/favicon.ico')
+  app.use express.static(__dirname + '/public')
+  
+  # app.use express.logger()
+  app.use express.compress()
   app.use express.methodOverride()
+  # app.use methodOverrideGET()
+  app.use express.bodyParser()
   app.use express.cookieParser()
+
   app.use express.session(
     secret: settings.session.secret
     cookie:
@@ -75,8 +94,6 @@ app.configure ->
     next()
 
   app.use app.router
-  app.use express.favicon(__dirname + '/public/images/favicon.ico')
-  app.use express.static(__dirname + '/public')
 
 # Development Config
 app.configure 'development', ->
@@ -90,7 +107,7 @@ app.configure 'development', ->
   # detector.detect().forEach (name) ->
   #   console.warn('found global leak: %s', name);
 
-  require('./sandbox')
+  # require('./sandbox')
 
 # Production Config
 app.configure 'production', ->

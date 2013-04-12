@@ -1,0 +1,95 @@
+
+//- div.detail
+  nav.credentials.clearfix
+    ul
+      li
+        a.friends_btn(href="/explore") 101
+          span Friends
+      li
+        a.invited_btn(href="/explore") 5
+          span invited
+
+if account.model === 'organization'
+  div.detail.clearfix
+    nav.credentials
+      ul
+        li.represented_by
+          span Represented by 
+          span #{account.name}, #{account.position}
+
+  div.detail.clearfix
+    h4 Description
+    p #{account.description}
+
+else if account.model === 'experteer'
+  
+  div.detail.clearfix
+    h4 Biography
+    p #{account.description}
+
+  div.detail
+    h4 Education
+    if account.education && account.education.length > 0
+      each edu in account.education
+        ul
+          li
+            strong= edu.school
+          li= edu.degree+" "+edu.major
+          if edu.start && edu.end
+            li= edu.start+" to "+edu.end;
+
+  div.detail
+    h4 Employment History
+    if account.employment && account.employment.length > 0
+      each emp in account.employment
+        ul
+          li
+            strong= emp.title
+          li= emp.employer
+          if emp.start && emp.end
+            li= emp.start.getFullYear()+" to "+emp.end.getFullYear();
+
+  div.detail
+    h4 Languages
+    if account.languages && account.languages.length
+      ul
+        each lang in account.languages
+          li= lang
+
+  div.detail
+    h4 Countries Visited
+    if account.visited && account.visited.length > 0
+      p= account.visited.join(', ');
+
+  div.detail
+    h4 Skills
+    if account.skills && account.skills.length > 0
+      p= account.skills.join(', ');
+
+if account.video
+  div.detail.clearfix 
+    p!= youtube.embed(extractYoutubeId(account.video), 300, 200);
+
+div.detail.clearfix 
+  nav.profile_links.clearfix
+    ul
+      li 
+        if (account.linksUrl)
+          a.url_link(href=account.linksUrl) #{account.linksUrl}
+        else 
+          a.disabled.url_link(title='Not provided') Website
+      li.right
+        if (account.linksTwitter)
+          a.twitter_link(href=account.linksTwitter) Twitter
+        else
+          a.disabled.twitter_link(title='Not provided') Twitter
+      li.clear
+        if (account.linksLinkedin)
+          a.linkedin_link(href=account.linksLinkedin) LinkedIn
+        else
+          a.disabled.linkedin_link(title='Not provided') LinkedIn
+      li.right 
+        if (account.linksFacebook)
+          a.facebook_link(href=account.linksFacebook) Facebook
+        else
+          a.disabled.facebook_link(title='Not provided') Facebook

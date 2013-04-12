@@ -1,6 +1,6 @@
-settings = require('../models').SETTINGS
+settings = require('../settings') 
 bcrypt = require('bcrypt')
-User = require('../models').User
+User = require('../models').Account
 
 # , utils = require('util')
 passport = require('passport')
@@ -9,48 +9,57 @@ FacebookStrategy = require('passport-facebook').Strategy
 LinkedInStrategy = require('passport-linkedin').Strategy
 InternalOAuthError = require('passport-linkedin/node_modules/passport-oauth').InternalOAuthError
 
-
 passport.serializeUser (user, done) ->
   done null, user.id
 
 passport.deserializeUser (id, done) ->
-  User.findById id, (err, user) ->
-    done err, user
-
-
+  User.findById id, done
 
 #/////////////////////////////////////////
 #             PASSWORD                  //
 #/////////////////////////////////////////
-passport.use new LocalStrategy( usernameField: 'email', (email, password, done) ->
+passport.use(
+  new LocalStrategy(usernameField: 'email', (email, password, done) ->
 
-  unless email
-    return done null, false, message: 'Please enter your email address'
-  unless password
-    return done null, false, message: 'please provide a password'
+    console.log('LocalStrategy')
 
-  User.findOne email: email, (err, user) ->
+    unless email
+      return done null, false, message: 'Please enter your email address.' 
+    unless password
+      return done null, false, message: 'Please provide your password.' 
 
-    if err
-      return done null, false, message: err
+    User.findOne(email: email, (err, user) ->
 
-    unless user
-      return done null, false, message: 'User with email <' + email + '> does not exist.'
+      if err 
+        return done(null, false, message: err)
 
-    # if(!user.type || user.type == 'invitee'){
-    # 	return done(null, false, { message:'MovingWorlds is an invite only site.'});
-    # }
-    bcrypt.compare password, user.hash, (err, didSucceed) ->
-      if err
-        return done(null, false,
-          message: 'Invalid password.'
-        )
-      return done(null, user)  if didSucceed
-      done null, false,
-        message: 'Invalid password.'
+      # the user was not found
+      unless user 
+        return done(null, false, message: 'Invalid email or password.')
 
+      # the user was found but they didnt complete registration
+      unless user.hash
+        return done(null, false, 
+          message: 'Please use the invitation link we emailed to ' + email + ' in order to finish registering your account.')
+    
+      # if(!user.type || user.type == 'invitee'){
+      # 	return done(null, false, { message:'MovingWorlds is an invite only site.'});
+      # }
 
+      bcrypt.compare(password, user.hash, (err, didSucceed) ->
+        if err
+          # the password was invalid
+          return done(null, false, message: 'Invalid email or password.')
 
+        if didSucceed
+          # successful login
+          return done(null, user) 
+
+        # the password was invalid
+        done(null, false, message: 'Invalid email or password.')
+      )
+    )
+  )
 )
 
 #/////////////////////////////////////////

@@ -1,0 +1,10 @@
+{
+  "profit" : "For profit company",
+  "profit-se" : "For profit (Social) Enterprise",
+  "non-profit" : "Non-profit (Social) Enterprise / NGO",
+  "cooperative" : "Cooperative",
+  "educational" : "Educational Institute",
+  "research_institute" : "Research Institute",
+  "government_agency" : "Government Agency",
+  "other" : "Other"
+}
