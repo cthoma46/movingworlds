@@ -44,7 +44,7 @@ var OpportunitySchema = new mongoose.Schema({
     },
     default : Date.now  
   },
-  minExperience : { 
+  experienceYears : { 
     type : Number, 
     default : 0 
   },
