@@ -38,7 +38,7 @@ module.exports = [
             )
           else
             console.log('You\'ve already requested an invite.')
-            req.flash 'warning', 'You\'ve already requested an invite.'
+            req.flash 'warning', 'You have already requested an invite. If you don\'t remember your account or need a new invite email, please let us know at info@movingworlds.org'
             res.redirect 'back'
   ,
     path: '/invite_extras'
