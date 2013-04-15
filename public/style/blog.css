@@ -36,7 +36,7 @@ h5{font-size:11px}
 h6{font-size:9px}
 hgroup{margin-bottom:.2em}
 hgroup h1,hgroup h2,hgroup h3,hgroup h4,hgroup h5,hgroup h6{margin-bottom:0}
-a,a:active{line-height:1em;color:#6cc2e9;text-decoration:underline;cursor:pointer;}
+a,a:active{line-height:1em;color:#6cc2e9;text-decoration:none;cursor:pointer;}
 a.disabled,a:active.disabled{pointer-events:none;cursor:default}
 a:hover{color:#e96c6c}
 a:hover,a:active{outline:0}

@@ -135,9 +135,9 @@ $(document).ready(function() {
     }
   });
 
-  if ($(".slider").length) {
-    $(".slider").slide(null, $(".slider + input[type='hidden']"));
-  }
+  // if ($(".slider").length) {
+    // $(".slider").slide(null, $(".slider + input[type='hidden']"));
+  // }
   
 
   $("#graduated").change(function() {
