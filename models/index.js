@@ -1,22 +1,19 @@
-
 require('rconsole')
 var mongoose = require('mongoose')
-
-// the extend module
 require('mongoose-schema-extend')
-
 var troop = require('mongoose-troop')
 
 mongoose.plugin(troop.timestamp)
 mongoose.plugin(troop.merge)
 mongoose.plugin(troop.pagination)
-
 mongoose.plugin(function (schema) {
   var opts = {}
   var paths = Object.keys(schema.paths)
+  
   paths = paths.filter(function (path) {
     return String(schema.paths[path].instance) === 'String'
   })
+
   opts.source = paths
   opts.naturalize = true
 
@@ -27,12 +24,6 @@ mongoose.plugin(function (schema) {
 
   schema.plugin(troop.keywords, opts)
 })
-
-// fooModel.find({ 
-  // keywords: { $in: fooModel.extractKeywords('batman') }
-// }, function(docs) {
-  // ...
-// })
 
 var AccountSchema = require('./account/account')
 var ExperteerSchema = require('./account/experteer')
