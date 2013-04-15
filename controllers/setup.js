@@ -21,6 +21,9 @@ function setup (req, res, next) {
   })
 }
 
+setup.experteer = {}
+setup.organization = {}
+
 setup.all = function (req, res, next) {
   if (req.user.setupBasicComplete() === false) {
     res.locals({ headtype : 'nonav' })
@@ -57,28 +60,16 @@ setup.password = function (req, res, next) {
     req.flash('error', 'Your passwords did not match')
     return res.redirect('back')
   }
-  req.flash('success', 'New password added')
   req.user.hash = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
   return next()
 }
 
 setup.opportunity = function (req, res, next) { 
-  console.log('opportuntiy edit', req.body, req.method)
   req.user.opportunityUpsert(req.body.opportunity, function (err) {
     if (err) {
       return next(err)
     }
-    return res.redirect(req.body.next || 'back') 
-  })
-}
-
-setup.opportunity.delete = function (req, res, next) { 
-  console.log('opportuntiy delete')
-  req.user.opportunityRemove(req.params.opportunity, function (err) {
-    if (err) {
-      return next(err)
-    }
-    return res.redirect(req.body.next || 'back') 
+    return res.redirect(req.body.next || '/profile/' + req.user.id + '/' + req.body.opportunity._id) 
   })
 }
 
@@ -90,11 +81,38 @@ setup.opportunity.delete = function (req, res, next) {
  */
 
 setup.basic = function (req, res, next) { 
-  console.debug('setup.basic')
-  res.locals({ title : 'Setup Basic Information' })
-  return res.render('private/setup-basic')
+  console.log('setup.basic', req.user.model)
+  Account.findById(req.user.id).exec(function (error, account) {
+    if (error) {
+      return next(error)
+    }
+    req.user = account
+    res.locals({ title : 'Setup Basic Information' })
+    return res.render('private/setup-basic')
+  })
 }
 
+setup.experteer.basic = function (req, res, next) { 
+  console.log('setup.experteer.basic', req.user.model)
+  req.user.model = 'experteer'
+  req.user.save(function (err) {
+    if (err) {
+      console.error(err)
+    }
+    res.redirect('back')
+  })
+}
+
+setup.organization.basic = function (req, res, next) { 
+  console.log('setup.organization.basic', req.user.model)
+  req.user.model = 'organization'
+  req.user.save(function (err) {
+    if (err) {
+      console.error(err)
+    }
+    res.redirect('back')
+  })
+}
 
 /**
  * 2. 
@@ -102,8 +120,6 @@ setup.basic = function (req, res, next) {
  * - Experteer
  * 
  */
-
-setup.experteer = {}
 
 setup.experteer.personal = function (req, res, next) { 
   if (req.user.model === 'organization') {
@@ -146,8 +162,6 @@ setup.experteer.payment = function (req, res, next) {
  * 
  */
 
-setup.organization = {}
-
 setup.organization.company = function (req, res, next) { 
   res.locals({ title : 'Setup Company Information' })
   return res.render('private/setup-organization-company')
@@ -185,6 +199,16 @@ setup.organization.opportunityEdit = function (req, res, next) {
     res.locals({ title : 'Edit Opportunity' })
     res.locals({ opportunity : doc })
     return res.render('private/setup-organization-opportunity')
+  })
+}
+
+setup.organization.opportunityDelete = function (req, res, next) { 
+  req.user.opportunityRemove(req.params.id, function (error) {
+    if (error) { 
+      console.error(error)
+      return next(error)
+    }
+    return res.redirect('/landing')
   })
 }
 
@@ -287,17 +311,23 @@ module.exports = function (app) {
   app.post('/payment/plus', setup.charge.plus, setup.charge)
 
   app.post('/setup', axx.all, setup.password, setup)
-  app.get('/opportunity/:opportunity/delete', setup.opportunity.delete)
   app.post('/setup/opportunity', setup.opportunity)
 
   app.get('/setup/*', axx.all, setup.all)
+
   app.get('/setup/basic', setup.basic)
+
+  app.get('/setup/basic/organization', setup.organization.basic)
+  app.get('/setup/basic/experteer', setup.experteer.basic)
+
   app.get('/setup/personal', setup.experteer.personal)
   app.get('/setup/history', setup.experteer.history)
   app.get('/setup/payment', setup.experteer.payment)
   app.get('/setup/company', setup.organization.company)
   app.get('/setup/opportunity', setup.organization.opportunityList)
   app.get('/setup/opportunity/:id', setup.organization.opportunityEdit)
+  app.get('/delete/opportunity/:id', setup.organization.opportunityDelete)
+
   app.get('/setup/review', setup.organization.review)
 
 }

@@ -35,12 +35,6 @@ module.exports.searchRequest = function searchRequest (req, res, next) {
   query.limit = query.limit || 10
   query.page = query.page || 1
 
-  // if (!query.q) {
-    // query.q = params.model
-  // }
-  
-  console.log('query.q', query.q)
-
   // 
   // pre search
   // 
@@ -108,34 +102,6 @@ module.exports.searchRequest = function searchRequest (req, res, next) {
       return next()
     })
 }
-
-// function getSearchPages () {
-//   var conditions = { 
-//     // query : req.query || null, 
-//     page : req.query.page || null,
-//     limit : req.query.limit || null,
-//     fields : req.query.fields || null
-//   }
-//   delete req.query.page
-//   delete req.query.limit
-//   delete req.query.fields
-//   conditions.query = req.query
-//   try {
-//     this.model.paginate(conditions, function (err, docs) {
-//       res.json(err || docs)
-//     })
-//   } catch (error) {
-//     res.json(error.toString())
-//   }
-// }
-
-
-// Models[modelName].paginate
-//     page : 1,
-//     pages : 1,
-//     nextPage : false,
-//     previousPage : false
-
 
 function renderSearch (req, res) {
   res.render('private/search', {

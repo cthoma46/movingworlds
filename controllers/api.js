@@ -58,9 +58,6 @@ Resource.prototype = {
         return res.json(error || new Error('Document not found'))
       }
       doc.merge(req.body)
-
-      // console.log(doc.constructor.modelName, doc.__proto__.schema)
-
       doc.save(function (err) {
         res.json(err || doc)
       })
@@ -69,24 +66,15 @@ Resource.prototype = {
 
 }
 
-// organization should be able to create an opportunity
-// experteer <-> organization should be able to create intros
-// experteer should be able to search for opportunity/experteer/organization
-// organization should be able to search for opportunity/experteer/organization
-
 module.exports = function (app) {
   var accounts = new Resource(Models.Account)
   var opportunities = new Resource(Models.Opportunity)
-
   app.all('/api/:model/:_id?', hasContentType([ 'json' ]))
-
-
   app.post('/api/account', accounts.create.bind(accounts))
   app.get('/api/account', accounts.models.bind(accounts))
   app.get('/api/account/:_id', accounts.read.bind(accounts))
   app.put('/api/account/:_id', accounts.update.bind(accounts))
   app.delete('/api/account/:_id', accounts.delete.bind(accounts))
-
 
   // create an opportunity
   app.post('/api/opportunity', opportunities.create.bind(opportunities))
@@ -103,19 +91,7 @@ module.exports = function (app) {
   // delete an opportunity
   app.delete('/api/opportunity/:_id', opportunities.delete.bind(opportunities))
 
-
-
-// create an opportunity that belongs to an organization
-
-// get all of the opportunities that belong to an organization
-
-// delete an opportunity
-
-// update an opportunity
-
 }
-
-
 
 /**
  * Returns a connect middleware function that checks if 
@@ -204,12 +180,3 @@ function hasAccess (level) {
     }
   }
 }
-
-
-
-
-
-
-
-
-
