@@ -27,6 +27,7 @@ module.exports = [
       Page.findOne
         slug: pageName
       , (err, doc) ->
+        console.log err, doc
         if err or not doc
           next()
         else

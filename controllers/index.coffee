@@ -7,7 +7,6 @@ routes = []
 excluded = [
     'index.coffee'
   , 'passport.coffee'
-  , 'page.coffee'
   , 'social_networks.coffee'
   , 'api.js'
   , 'setup.js'
