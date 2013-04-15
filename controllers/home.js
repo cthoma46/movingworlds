@@ -48,6 +48,22 @@ module.exports = [
   },
 
   // 
+  // blog layout
+  // 
+  {
+    path : '/blog',
+    type : 'GET',
+    action : function (req, res) {
+      res.render('blog', {
+        // locals : {
+          title : 'Blog',
+          layout : 'layout_blog'
+        // }
+      })
+    }
+  },
+
+  // 
   // Not used 
   // 
   {
