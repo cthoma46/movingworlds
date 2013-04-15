@@ -98,20 +98,16 @@ OrganizationSchema.method('opportunityUpsert', function (params, next) {
   var account = this
   var instance
 
-  // console.log('opportunityUpsert', params)
-
   params.organization = params.organization || this._id
   
   Opportunity.findById(params._id).exec(function (err, doc) {
     if (err) {
-      console.log('err', err)
+      console.error(err)
       return next(err)
     } else if (doc) {
-      console.log('doc found')
       instance = doc.merge(params)
       return then()
     } else {
-      console.log('no doc found')
       instance = new Opportunity(params)
       return then()
     }
@@ -120,6 +116,7 @@ OrganizationSchema.method('opportunityUpsert', function (params, next) {
   function then () {
     instance.save(function (error) {
       if (error) {
+        console.error(error)
         return next(error)
       }
       return account.save(next)
@@ -133,7 +130,6 @@ OrganizationSchema.method('opportunityUpsert', function (params, next) {
  */
 
 OrganizationSchema.method('opportunityRemove', function (_id, next) {
-  console.log('opportunityRemove')
   return mongoose.model('opportunity').findByIdAndRemove(_id, next)
 })
 
@@ -155,7 +151,6 @@ OrganizationSchema.pre('save', function (next) {
   if (this.orgSize === undefined) { 
     this.orgSize = 'earlyStartup'
   }
-  // console.log('OrganizationSchema pre save', this)
   next()
 })
 
@@ -163,15 +158,10 @@ OrganizationSchema.pre('save', function (next) {
   var account = this
   account.opportunityList().exec(function (err, docs) {
     if (err || !docs) {
-
-      console.log('whats the status? off', err, !docs, docs)
       account.orgStatus = 'off'
     } else {
-
-      console.log('whats the status? on', err, !docs, docs)
       account.orgStatus = 'on'
     }
-    // console.log(account.orgStatus)
     next()
   })
 })
