@@ -239,103 +239,111 @@ AccountSchema.statics.upsertLinkedInUser = function (data, email, callback) {
   ;
 
   function addData (account, callback) {
-    console.log('Found existing account. Linkedin ID: ', account.linkedinId, ' Email: ' + email)
-    if (account.linkedinId) {
-      console.log('User already synced linkedIn account')
-      return callback(null, account)
-    } 
     console.log('Syncing linkedin data with existing account')
     account.linkedinId = data.id
+    console.log('Linkedin ID: ', account.linkedinId, ' Email: ' + email)
 
-    // name and basic info
-    account.firstname = account.firstname || data.firstName
-    account.lastname = account.lastname || data.lastName
-    account.headline = data.headline
-    account.description = data.summary
-    account.industry = data.industry
+    // if (account.linkedinId) {
+      // console.log('User already synced linkedIn account')
+      // return callback(null, account)
+    // } 
 
-    // location 
-    if (typeof data.location !== 'undefined') {
-      account.city = account.city || data.location.name
-      account.country = account.country || data.location.country.code.toUpperCase()
-    }
+    try {
 
-    // avatar 
-    account.avatar = account.avatar || data.pictureUrl
+      // name and basic info
+      account.firstname = account.firstname || data.firstName
+      account.lastname = account.lastname || data.lastName
+      account.headline = data.headline
+      account.description = data.summary
+      account.industry = data.industry
 
-    // birthday 
-    if (data.dateOfBirth) {
-      account.birthday = account.birthday || new Date(data.dateOfBirth.year, data.dateOfBirth.month, data.dateOfBirth.day)
-    }
-
-    // skills 
-    account.skills = account.skills || []
-    for (var skill in data.skills.values) {
-      account.skills.push(skill.skill.name)
-    }
-
-    // interests 
-    account.interests = account.interests || []
-    for (var interest in data.interests.split(',')) {
-      account.interests.push(interest)
-    }
-
-    // languages 
-    account.languages = account.languages || []
-    for (var lang in data.languages.values) {
-      account.languages.push(lang.language.name)
-    }
-
-    // website url 
-    if (data.memberUrlResources._total > 0) {
-      account.linksUrl = data.memberUrlResources.values[0].url
-    }
-
-    // twitter url 
-    if (data.twitterAccounts._total > 0) {
-      account.linksTwitter = 'http://www.twitter.com/' 
-        + data.twitterAccounts.values[0].providerAccountName
-    }
-
-    // linkedin url 
-    account.linksLinkedin = data.publicProfileUrl
-
-    // employment 
-    account.employment = account.employment || []
-
-    for (var position in data.positions.values) {
-      if (typeof position.startDate !== 'undefined') {
-        var start = new Date(position.startDate.year, position.startDate.month, 1)
-      }
-      if (typeof position.endDate !== 'undefined') {
-        var end = new Date(position.endDate.year, position.endDate.month, 1)
-      }
-      account.employment.push({
-        employer : position.company.name,
-        position : position.title,
-        current : position.isCurrent,
-        start : start,
-        end : end
-      })
-    }
-
-    // employment 
-    account.education = account.education || []
-    for (var education in data.educations.values) {
-      if (typeof education.startDate.year !== 'undefined' && typeof education.startDate.month !== 'undefined') {
-        var start = new Date(education.startDate.year, education.startDate.month, 1)
-      }
-      if (typeof education.endDate.year !== 'undefined' && typeof education.endDate.month !== 'undefined') {
-        var end = new Date(education.endDate.year, education.endDate.month, 1)
+      // location 
+      if (typeof data.location !== 'undefined') {
+        account.city = account.city || data.location.name
+        account.country = account.country || data.location.country.code.toUpperCase()
       }
 
-      account.education.push({
-        school : education.schoolName,
-        major : education.fieldOfStudy,
-        degree : education.degree,
-        start : start,
-        end : end
-      })
+      // avatar 
+      account.avatar = account.avatar || data.pictureUrl
+
+      // birthday 
+      if (data.dateOfBirth) {
+        account.birthday = account.birthday || new Date(data.dateOfBirth.year, data.dateOfBirth.month, data.dateOfBirth.day)
+      }
+
+      // skills 
+      account.skills = account.skills || []
+      for (var skill in data.skills.values) {
+        account.skills.push(skill.name)
+      }
+
+      // interests 
+      account.interests = account.interests || []
+      for (var interest in data.interests.split(',')) {
+        account.interests.push(interest)
+      }
+
+      // languages 
+      account.languages = account.languages || []
+      for (var lang in data.languages.values) {
+        account.languages.push(lang.language.name)
+      }
+
+      // website url 
+      if (data.memberUrlResources._total > 0) {
+        account.linksUrl = data.memberUrlResources.values[0].url
+      }
+
+      // twitter url 
+      if (data.twitterAccounts._total > 0) {
+        account.linksTwitter = 'http://www.twitter.com/' 
+          + data.twitterAccounts.values[0].providerAccountName
+      }
+
+      // linkedin url 
+      account.linksLinkedin = data.publicProfileUrl
+
+      // employment 
+      account.employment = account.employment || []
+
+      for (var position in data.positions.values) {
+        if (typeof position.startDate !== 'undefined') {
+          var start = new Date(position.startDate.year, position.startDate.month, 1)
+        }
+        if (typeof position.endDate !== 'undefined') {
+          var end = new Date(position.endDate.year, position.endDate.month, 1)
+        }
+        account.employment.push({
+          employer : position.company.name,
+          position : position.title,
+          current : position.isCurrent,
+          start : start,
+          end : end
+        })
+      }
+
+      // employment 
+      account.education = account.education || []
+      for (var education in data.educations.values) {
+        if (typeof education.startDate.year !== 'undefined' && typeof education.startDate.month !== 'undefined') {
+          var start = new Date(education.startDate.year, education.startDate.month, 1)
+        }
+        if (typeof education.endDate.year !== 'undefined' && typeof education.endDate.month !== 'undefined') {
+          var end = new Date(education.endDate.year, education.endDate.month, 1)
+        }
+
+        account.education.push({
+          school : education.schoolName,
+          major : education.fieldOfStudy,
+          degree : education.degree,
+          start : start,
+          end : end
+        })
+      }
+
+    } catch (error) {
+      console.error(error)
+      return callback(error)
     }
 
     account.save(function (err) {
