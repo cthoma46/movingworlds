@@ -72,9 +72,8 @@ block content
               include partials/setup-progress
           footer
 
-
       section#recommendations
-        //- header
+        header
           a.refresh_icn.gray.right(href='/landing') reload
           h2 Recommendations
         if (typeof search_result !== 'undefined' && search_result.length)
@@ -83,7 +82,6 @@ block content
             include partials/card
         else
           div.info Sorry, we don't have any recommendations for you.
-
 
       //- section#recommendations
         header

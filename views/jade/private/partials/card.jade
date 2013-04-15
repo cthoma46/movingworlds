@@ -36,7 +36,6 @@ div.widget(class=card.model)
           li
             label Size 
             strong #{card.size.title} 
-            small #{card.size.description} 
           li
             label Type 
             strong #{card.type}
@@ -72,28 +71,8 @@ div.widget(class=card.model)
           label Age 
           strong #{card.age}
         li
-          label Skills 
-          strong #{card.skills.join(', ')}
-        li
           label Exp 
           strong #{card.experienceYears} years
-
-
-      if card.model === 'organization'
-        li
-          if card.orgRegistered
-            label Registered
-            strong #{card.orgRegisteredLocation} #{card.orgRegisteredYear}
-          else
-            label Not registered
-        if typeof card.organization === 'undefined'
-          li: p 
-        else
-          li: p &nbsp; 
-          li: p 
-      else
-        //- li: p &nbsp; 
-        li: p 
 
     nav 
       ul 

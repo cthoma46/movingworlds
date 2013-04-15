@@ -15,11 +15,18 @@ if account.model === 'organization'
       ul
         li.represented_by
           span Represented by 
-          span #{account.name}, #{account.position}
+          span #{account.firstname} #{account.lastname}, #{account.position}
 
   div.detail.clearfix
     h4 Description
     p #{account.description}
+
+  div.detail.clearfix
+    if account.orgRegistered
+      p Registered 
+        strong #{account.orgRegisteredLocation} #{account.orgRegisteredYear}
+    else
+      p Not registered
 
 else if account.model === 'experteer'
   

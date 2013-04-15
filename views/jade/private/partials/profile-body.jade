@@ -9,9 +9,9 @@ if account.model === 'experteer'
           | Profile
         div.right
 
-          if (typeof user !== 'undefined' && user.id !== account.id && introDate !== undefined)
-              a.chunky_btn.disabled.small.round Intro Requested #{introDate}
-          else
+          if (typeof introDate !== 'undefined')
+            a.chunky_btn.disabled.small.round Intro Requested #{introDate}
+          else if (typeof user === 'undefined' || user.id !== account.id)
             a.chunky_btn.small.round(
               id='request-intro', 
               data-loading-text='Loading...',
@@ -71,6 +71,10 @@ if account.model === 'organization'
 
               if (typeof user !== 'undefined' && user.id === org.id)
                 a.chunky_btn.small.round(
+                  href='/delete/opportunity/' + account.opportunities[opp_id].id
+                  ) Delete
+                | 
+                a.chunky_btn.small.round(
                   href='/setup/opportunity/' + account.opportunities[opp_id].id
                   ) Edit
                 | 
@@ -81,7 +85,7 @@ if account.model === 'organization'
 
               if (typeof introDate !== 'undefined')
                 a.chunky_btn.disabled.small.round Intro Requested #{introDate}
-              else if (typeof user !== 'undefined' && user.id !== account.id)
+              else if (typeof user === 'undefined' || user.id !== account.id)
                 a.chunky_btn.small.round(
                   id='request-intro', 
                   data-loading-text='Loading...',

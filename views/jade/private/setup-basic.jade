@@ -1,113 +1,84 @@
 extends ../layouts/layout
 
 block append scripts
-    script(src='/javascript/setup.js')
+    //- script(src='/javascript/setup.js')
 
 block content
-  - var expBoxClass = '';
-  - var orgBoxClass = '';
-  //- - var step2Label = '???';
-  //- - var step3Label = '???';
-  if ('undefined' !== typeof user && user.model === 'experteer')
-    - expBoxClass = 'on'
-  //-   - step2Label = 'Personal Information'
-  //-   - step3Label = 'Work &amp; Education'
-  if ('undefined' !== typeof user && user.model === 'organization')
-    - orgBoxClass = 'on'
-  //-   - step2Label = 'Company Information'
-  //-   - step3Label = 'List Opportunity'
-
   div.layout_960
-
     include partials/account-nav
-
-    - if ('undefined' !== typeof errors && errors.length)
+    //- - if ('undefined' !== typeof errors && errors.length)
       ul.error
         - each error in errors
           li= error
-    //- if (!user.setupComplete())
-      nav#steps.clearfix
-        ul
-          li.step1.on
-            span Basic Information
-          li.step2
-            span
-            //- span= step2Label
-          li.step3
-            span
-            //- span= step3Label
-          li.step4
-            span
-          //- span Review
     section.stack_960
       header
         h2 Basic Information
-      form(id="step1", action="/setup", method="post")
+      form(id='step1', action='/setup', method='post')
         if (!user.setupBasicComplete())
           section.stack_body.role_boxes.clearfix
-            div( class="experteer_box "+expBoxClass )
+            a.experteer_box(
+              href='/setup/basic/experteer', 
+              class=(user.model === 'experteer' ? 'on' : '')
+              )
               div.icon
               h4 I want to go Experteering:
               p travel & donate my expertise at an organization abroad
-            div(class="organization_box "+orgBoxClass)
+            a.organization_box(
+              href='/setup/basic/organization', 
+              class=(user.model === 'organization' ? 'on' : '')
+              )
               div.icon
               h4 I want to be connected to an Experteer
               p and receive free professional support for my organization
-              
             p.clearfix &nbsp;
-
             p.clearfix &nbsp;
-
             fieldset.col1of2.split
               ul
                 li
-                  label(for="password") Password
+                  label(for='password') Password
                   input(
-                    type="password", 
-                    id="password", 
-                    name="password", 
-                    tabindex="8"
+                    type='password', 
+                    id='password', 
+                    name='password', 
+                    tabindex='8'
                     )
             fieldset.col2of2.split
               ul
                 li
-                  label(for="confirm") Confirm Password
+                  label(for='confirm') Confirm Password
                   input(
-                    type="password", 
-                    id="confirm", 
-                    name="confirm", 
-                    tabindex="9"
+                    type='password', 
+                    id='confirm', 
+                    name='confirm', 
+                    tabindex='9'
                     )
-
-            - if(!user.connections || !user.connections.linkedin || !user.connections.linkedin.id)
-            nav.social_connects.clearfix
-              ul.no_style
-                li
-                  a(href="/auth/linkedin").linkedin_signup Sign up with LinkedIn
-                  small.disclaimer Recommended for fast Signup
+                  
+            if (user.model === 'experteer')
+              nav.social_connects.clearfix
+                ul.no_style
+                  li
+                    a(href='/auth/linkedin').linkedin_signup Sign up with LinkedIn
+                    small.disclaimer Recommended for fast Signup
 
         section.stack_body.clearfix.step1
-          -if( typeof user !== 'undefined' )
-            input(type="hidden", name="model", value=user.model)
-            input(type="hidden", name="email", value=user.email)
           fieldset.col1of2.split
             ul
               li
-                label(for="firstname") First Name
+                label(for='firstname') First Name
                 input(
-                  type="text", 
-                  id="firstname", 
-                  name="firstname", 
-                  tabindex="1", 
+                  type='text', 
+                  id='firstname', 
+                  name='firstname', 
+                  tabindex='1', 
                   value=user.firstname
                   )
               li
-                label(for="city") City
+                label(for='city') City
                 input(
-                  type="text", 
-                  id="city", 
-                  name="city", 
-                  tabindex="3", 
+                  type='text', 
+                  id='city', 
+                  name='city', 
+                  tabindex='3', 
                   value=user.city
                   )
               li.field-container
@@ -115,73 +86,74 @@ block content
                 ul
                   li
                     input(
-                      type="radio", 
-                      id="male", 
-                      name="gender", 
-                      value="male", 
-                      tabindex="5", 
+                      type='radio', 
+                      id='male', 
+                      name='gender', 
+                      value='male', 
+                      tabindex='5', 
                       checked=user.gender=='male'
                       )
-                    label(for="male") Male
+                    label(for='male') Male
                   li
                     input(
-                      type="radio", 
-                      id="female", 
-                      name="gender", 
-                      value="female", 
-                      tabindex="6", 
+                      type='radio', 
+                      id='female', 
+                      name='gender', 
+                      value='female', 
+                      tabindex='6', 
                       checked=user.gender=='female'
                       )
-                    label(for="female") Female
+                    label(for='female') Female
           fieldset.col2of2.split
             ul
               li
-                label(for="lastname") Last Name
+                label(for='lastname') Last Name
                 input(
-                  type="text", 
-                  id="lastname", 
-                  name="lastname", 
-                  tabindex="2", 
+                  type='text', 
+                  id='lastname', 
+                  name='lastname', 
+                  tabindex='2', 
                   value=user.lastname
                   )
               li
-                label(for="country") Country
+                label(for='country') Country
                 select.data-select-value(
-                  id="country", 
-                  name="country", 
-                  tabindex="4", 
+                  id='country', 
+                  name='country', 
+                  tabindex='4', 
                   data-value=user.country
                   )
                   include forms/countries_combo
                 input(type='hidden', id='country_value', value='USA')
               li.datepicker
-                label(for="birthday") Birthday
-                -bday = (typeof user.birthday !== 'undefined') ? settings.moment(user.birthday).format('MM/DD/YYYY') : ""
+                label(for='birthday') Birthday
+                -bday = (typeof user.birthday !== 'undefined') ? settings.moment(user.birthday).format('MM/DD/YYYY') : ''
                 input(
-                  type="text", 
-                  id="birthday", 
-                  name="birthday", 
-                  tabindex="7", 
-                  data-months="1", 
-                  data-years="2", 
+                  type='text', 
+                  id='birthday', 
+                  name='birthday', 
+                  tabindex='7', 
+                  data-months='1', 
+                  data-years='2', 
                   value=bday
                   )
               li.field-container
                 input(
-                  type="checkbox", 
-                  id="agree", 
-                  name="agree", 
+                  type='checkbox', 
+                  id='agree', 
+                  name='agree', 
                   checked=user.agree === true, 
-                  tabindex="11"
+                  tabindex='11'
                   ).required
-                label(for="agree")
+                label(for='agree')
                   | I agree to MovingWorlds
-                  a(href="/terms_conditions", target="_blank") 
+                  a(href='/terms_conditions', target='_blank') 
                     | terms and conditions
 
           if !user.setupComplete()
             input(type='hidden', name='next', value='/setup/personal')
 
           nav.progress.center.clear
-            button(type="submit")#next.big.smooth_btn Save
+            button(type='submit')#next.big.smooth_btn Save
       footer
+        
