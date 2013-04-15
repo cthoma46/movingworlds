@@ -226,10 +226,12 @@ AccountSchema.set('toJSON', { getters : true, virtuals : true })
 AccountSchema.set('toObject', { getters : true, virtuals : true })
 
 AccountSchema.statics.upsertLinkedInUser = function (data, email, callback) {
+  console.notice('upsertLinkedInUser', arguments)
   this
     .findOne({ $or : [ { linkedinId : data.id, email : email } ] })
     .exec(function (err, account) {
       if (err || !account) {
+        console.error(err, account)
         return callback(new Error('Moving Worlds is an invite only community'))
       }
       return addData(account, callback)
