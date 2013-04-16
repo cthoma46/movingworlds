@@ -274,9 +274,11 @@ AccountSchema.statics.upsertLinkedInUser = function (data, email, callback) {
       // skills 
       console.notice('skills', data.skills.values)
       account.skills = account.skills || []
-      for (var skill in data.skills.values) {
-        if (skill !== undefined && skill.skill !== undefined) {
-          account.skills.push(skill.skill.name)
+      if (data.skills !== undefined) {
+        for (var skill in data.skills.values) {
+          if (skill !== undefined && skill.skill !== undefined) {
+            account.skills.push(skill.skill.name)
+          }
         }
       }
 
@@ -292,9 +294,12 @@ AccountSchema.statics.upsertLinkedInUser = function (data, email, callback) {
       // languages 
       console.notice('languages', data.languages.values)
       account.languages = account.languages || []
-      for (var lang in data.languages.values) {
-        if (lang !== undefined && lang.language !== undefined) {
-          account.languages.push(lang.language.name)
+
+      if (data.languages !== undefined) {
+        for (var lang in data.languages.values) {
+          if (lang !== undefined && lang.language !== undefined) {
+            account.languages.push(lang.language.name)
+          }
         }
       }
 
