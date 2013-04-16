@@ -281,9 +281,12 @@ AccountSchema.statics.upsertLinkedInUser = function (data, email, callback) {
       }
 
       // interests 
+      console.notice('interests', data.interests)
       account.interests = account.interests || []
-      for (var interest in data.interests.split(',')) {
-        account.interests.push(interest)
+      if (data.interests !== undefined) {
+        for (var interest in data.interests.split(',')) {
+          account.interests.push(interest)
+        }
       }
 
       // languages 
