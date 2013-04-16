@@ -274,7 +274,9 @@ AccountSchema.statics.upsertLinkedInUser = function (data, email, callback) {
       // skills 
       account.skills = account.skills || []
       for (var skill in data.skills.values) {
-        account.skills.push(skill.name)
+        if (skill !== undefined && skill.skill !== undefined) {
+          account.skills.push(skill.skill.name)
+        }
       }
 
       // interests 
