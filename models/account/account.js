@@ -320,20 +320,22 @@ AccountSchema.statics.upsertLinkedInUser = function (data, email, callback) {
       // employment 
       account.employment = account.employment || []
 
-      for (var position in data.positions.values) {
-        if (typeof position.startDate !== 'undefined') {
-          var start = new Date(position.startDate.year, position.startDate.month, 1)
+      if (data.positions !== undefined) {
+        for (var pos in data.positions.values) {
+          if (typeof pos.startDate !== 'undefined') {
+            var start = new Date(pos.startDate.year, pos.startDate.month, 1)
+          }
+          if (typeof pos.endDate !== 'undefined') {
+            var end = new Date(pos.endDate.year, pos.endDate.month, 1)
+          }
+          account.employment.push({
+            employer : pos.company !== undefined ? pos.company.name : '',
+            position : pos.title,
+            current : pos.isCurrent,
+            start : start,
+            end : end
+          })
         }
-        if (typeof position.endDate !== 'undefined') {
-          var end = new Date(position.endDate.year, position.endDate.month, 1)
-        }
-        account.employment.push({
-          employer : position.company.name,
-          position : position.title,
-          current : position.isCurrent,
-          start : start,
-          end : end
-        })
       }
 
       // employment 
@@ -341,6 +343,8 @@ AccountSchema.statics.upsertLinkedInUser = function (data, email, callback) {
       if (data.educations !== undefined) {
   
         for (var education in data.educations.values) {
+          
+          console.log('education', education)
 
           if (education.startDate !== undefined && education.startDate.year !== undefined && education.startDate.month !== undefined) {
             var start = new Date(education.startDate.year, education.startDate.month, 1)
