@@ -124,14 +124,11 @@ block content
                   data-value=user.country
                   )
                   include forms/countries_combo
-                input(type='hidden', id='country_value', value='USA')
               li.datepicker
-                label(for='birthday') Birthday
+                label Birthday
                 input.date(
                   type='text', 
-                  id='birthday', 
                   name='birthday', 
-                  tabindex='7', 
                   data-months='1', 
                   data-years='2', 
                   value=user.birthday

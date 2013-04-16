@@ -51,8 +51,12 @@ AccountSchema.add({
   birthday : { 
     type : Date, 
     get : function (val) { 
+      if (!val) {
+        return val
+      }
       return moment(val).format('MM/DD/YYYY')
-    } 
+    },
+    // default : Date.now
   },
   agree : Boolean,
   conduct : Boolean,
