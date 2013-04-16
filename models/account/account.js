@@ -272,7 +272,7 @@ AccountSchema.statics.upsertLinkedInUser = function (data, email, callback) {
       }
 
       // skills 
-      console.notice('skills', data.skills.values)
+      console.notice('skills', data.skills)
       account.skills = account.skills || []
       if (data.skills !== undefined) {
         for (var skill in data.skills.values) {
@@ -292,7 +292,7 @@ AccountSchema.statics.upsertLinkedInUser = function (data, email, callback) {
       }
 
       // languages 
-      console.notice('languages', data.languages.values)
+      console.notice('languages', data.languages)
       account.languages = account.languages || []
 
       if (data.languages !== undefined) {
