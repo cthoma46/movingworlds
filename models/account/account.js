@@ -338,21 +338,27 @@ AccountSchema.statics.upsertLinkedInUser = function (data, email, callback) {
 
       // employment 
       account.education = account.education || []
-      for (var education in data.educations.values) {
-        if (typeof education.startDate.year !== 'undefined' && typeof education.startDate.month !== 'undefined') {
-          var start = new Date(education.startDate.year, education.startDate.month, 1)
-        }
-        if (typeof education.endDate.year !== 'undefined' && typeof education.endDate.month !== 'undefined') {
-          var end = new Date(education.endDate.year, education.endDate.month, 1)
+      if (data.educations !== undefined) {
+  
+        for (var education in data.educations.values) {
+
+          if (education.startDate !== undefined && education.startDate.year !== undefined && education.startDate.month !== undefined) {
+            var start = new Date(education.startDate.year, education.startDate.month, 1)
+          }
+
+          if (education.endDate !== undefined && education.endDate.year !== undefined && education.endDate.month !== undefined) {
+            var end = new Date(education.endDate.year, education.endDate.month, 1)
+          }
+
+          account.education.push({
+            school : education.schoolName,
+            major : education.fieldOfStudy,
+            degree : education.degree,
+            start : start,
+            end : end
+          })
         }
 
-        account.education.push({
-          school : education.schoolName,
-          major : education.fieldOfStudy,
-          degree : education.degree,
-          start : start,
-          end : end
-        })
       }
 
     } catch (error) {
