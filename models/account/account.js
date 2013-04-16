@@ -48,7 +48,12 @@ AccountSchema.add({
   city : { type : String, default : '' },
   country : { type : String, default : '' },
   gender : { type : String, enum : [ 'male', 'female' ] },
-  birthday : Date,
+  birthday : { 
+    type : Date, 
+    get : function (val) { 
+      return moment(val).format('MM/DD/YYYY')
+    } 
+  },
   agree : Boolean,
   conduct : Boolean,
   plan : { type : Number, default : 0 },
@@ -60,7 +65,7 @@ AccountSchema.virtual('age').get(function () {
     return null
   }
   var today = new Date() 
-  var birthDate = this.birthday 
+  var birthDate = new Date(this.birthday)
   var age = today.getFullYear() - birthDate.getFullYear() 
   var m = today.getMonth() - birthDate.getMonth() 
   if (m < 0 || (m == 0 && today.getDate() < birthDate.getDate())) {
@@ -268,37 +273,38 @@ AccountSchema.statics.upsertLinkedInUser = function (data, email, callback) {
 
       // birthday 
       if (data.dateOfBirth) {
-        account.birthday = account.birthday || new Date(data.dateOfBirth.year, data.dateOfBirth.month, data.dateOfBirth.day)
+        account.birthday = account.birthday || new Date(
+          data.dateOfBirth.year, 
+          data.dateOfBirth.month, 
+          data.dateOfBirth.day
+          )
       }
 
       // skills 
-      console.notice('skills', data.skills)
       account.skills = account.skills || []
       if (data.skills !== undefined) {
-        for (var skill in data.skills.values) {
-          if (skill !== undefined && skill.skill !== undefined) {
-            account.skills.push(skill.skill.name)
+        for (var i in data.skills.values) {
+          if (data.skills.values[i] !== undefined 
+            && data.skills.values[i].skill !== undefined) {
+            account.skills.push(data.skills.values[i].skill.name)
           }
         }
       }
 
       // interests 
-      console.notice('interests', data.interests)
       account.interests = account.interests || []
       if (data.interests !== undefined) {
-        for (var interest in data.interests.split(',')) {
-          account.interests.push(interest)
-        }
+        account.interests = data.interests
       }
 
       // languages 
-      console.notice('languages', data.languages)
       account.languages = account.languages || []
 
       if (data.languages !== undefined) {
-        for (var lang in data.languages.values) {
-          if (lang !== undefined && lang.language !== undefined) {
-            account.languages.push(lang.language.name)
+        for (var i in data.languages.values) {
+          if (data.languages.values[i] !== undefined 
+            && data.languages.values[i].language !== undefined) {
+            account.languages.push(data.languages.values[i].language.name)
           }
         }
       }
@@ -321,17 +327,27 @@ AccountSchema.statics.upsertLinkedInUser = function (data, email, callback) {
       account.employment = account.employment || []
 
       if (data.positions !== undefined) {
-        for (var pos in data.positions.values) {
-          if (typeof pos.startDate !== 'undefined') {
-            var start = new Date(pos.startDate.year, pos.startDate.month, 1)
+        for (var i in data.positions.values) {
+          if (typeof data.positions.values[i].startDate !== 'undefined') {
+            var start = new Date(
+              data.positions.values[i].startDate.year, 
+              data.positions.values[i].startDate.month, 
+              1
+              )
           }
-          if (typeof pos.endDate !== 'undefined') {
-            var end = new Date(pos.endDate.year, pos.endDate.month, 1)
+          if (typeof data.positions.values[i].endDate !== 'undefined') {
+            var end = new Date(
+              data.positions.values[i].endDate.year, 
+              data.positions.values[i].endDate.month, 
+              1
+              )
           }
           account.employment.push({
-            employer : pos.company !== undefined ? pos.company.name : '',
-            position : pos.title,
-            current : pos.isCurrent,
+            employer : (data.positions.values[i].company !== undefined 
+              ? data.positions.values[i].company.name 
+              : ''),
+            position : data.positions.values[i].title,
+            current : data.positions.values[i].isCurrent,
             start : start,
             end : end
           })
@@ -341,23 +357,29 @@ AccountSchema.statics.upsertLinkedInUser = function (data, email, callback) {
       // employment 
       account.education = account.education || []
       if (data.educations !== undefined) {
-  
-        for (var education in data.educations.values) {
-          
-          console.log('education', education)
-
-          if (education.startDate !== undefined && education.startDate.year !== undefined && education.startDate.month !== undefined) {
-            var start = new Date(education.startDate.year, education.startDate.month, 1)
+        for (var i in data.educations.values) {
+          if (data.educations.values[i].startDate !== undefined 
+            && data.educations.values[i].startDate.year !== undefined 
+            && data.educations.values[i].startDate.month !== undefined) {
+            var start = new Date(
+              data.educations.values[i].startDate.year, 
+              data.educations.values[i].startDate.month, 
+              1
+              )
           }
-
-          if (education.endDate !== undefined && education.endDate.year !== undefined && education.endDate.month !== undefined) {
-            var end = new Date(education.endDate.year, education.endDate.month, 1)
+          if (data.educations.values[i].endDate !== undefined 
+            && data.educations.values[i].endDate.year !== undefined 
+            && data.educations.values[i].endDate.month !== undefined) {
+            var end = new Date(
+              data.educations.values[i].endDate.year, 
+              data.educations.values[i].endDate.month, 
+              1
+              )
           }
-
           account.education.push({
-            school : education.schoolName,
-            major : education.fieldOfStudy,
-            degree : education.degree,
+            school : data.educations.values[i].schoolName,
+            major : data.educations.values[i].fieldOfStudy,
+            degree : data.educations.values[i].degree,
             start : start,
             end : end
           })
