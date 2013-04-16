@@ -9,4 +9,4 @@ module.exports = (app) ->
   app.get '/auth/linkedin/callback', passport.authenticate('linkedin', failureRedirect: '/login'), (req, res) ->
     console.log 'LinkedIn Success'
     req.flash 'success', 'You have successfully connected to LinkedIn'
-    res.redirect req.session.returnTo or '/landing'
+    res.redirect req.session.returnTo or '/setup/basic'
