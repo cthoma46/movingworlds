@@ -1,7 +1,7 @@
 extends ../layouts/layout
 
 block append scripts
-    //- script(src='/javascript/setup.js')
+  script(src='/javascript/setup.js')
 
 block content
   div.layout_960
@@ -127,15 +127,14 @@ block content
                 input(type='hidden', id='country_value', value='USA')
               li.datepicker
                 label(for='birthday') Birthday
-                -bday = (typeof user.birthday !== 'undefined') ? settings.moment(user.birthday).format('MM/DD/YYYY') : ''
-                input(
+                input.date(
                   type='text', 
                   id='birthday', 
                   name='birthday', 
                   tabindex='7', 
                   data-months='1', 
                   data-years='2', 
-                  value=bday
+                  value=user.birthday
                   )
               li.field-container
                 input(
