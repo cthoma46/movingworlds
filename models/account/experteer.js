@@ -83,30 +83,15 @@ ExpertSchema.pre('save', function (next, done) {
   // 
   // employment list defaults
   // 
-  if (this.employment === undefined || this.employment.length === 0) { 
-    this.employment = [
-      {
-        employer : '',
-        city : '',
-        position : '',
-        current : false
-      }
-    ]
+  if (this.employment === undefined ) { 
+    this.employment = [];
   } 
 
   // 
   // education list defaults
   // 
-  if (this.education === undefined || this.education.length === 0) { 
-    this.education = [
-      {
-        school : '',
-        major : '',
-        degree : '',
-        start : '',
-        end : ''
-      }
-    ]
+  if (this.education === undefined) { 
+    this.education = [];
   } 
 
   if (this.experteerStatus === undefined) { 
