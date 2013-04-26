@@ -1,14 +1,19 @@
 if user.model === 'experteer'
-  nav#steps.clearfix
-    ul
-      li.step1(class=(user.setupBasicComplete() ? 'on' : ''))
-        span Basic Information
-      li.step2(class=(user.setupPersonalComplete() ? 'on' : ''))
-        span Personal Information
-      li.step3(class=(user.setupHistoryComplete() ? 'on' : ''))
-        span Work &amp; Education
-      li.step4(class=(user.setupBillingComplete() ? 'on' : ''))
-        span Payment Information
+
+  div.warning Your profile is incomplete.
+
+  //- nav#steps.clearfix
+  //-   ul
+  //-     li.step1(class=(user.setupBasicComplete() ? 'on' : ''))
+  //-       span Basic Information
+  //-     li.step2(class=(user.setupPersonalComplete() ? 'on' : ''))
+  //-       span Personal Information
+  //-     li.step3(class=(user.setupHistoryComplete() ? 'on' : ''))
+  //-       span Work &amp; Education
+  //-     li.step4(class=(user.setupBillingComplete() ? 'on' : ''))
+  //-       span Payment Information
+
+
 else if user.model === 'organization'
   //- nav#steps.clearfix
     ul

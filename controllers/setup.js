@@ -69,7 +69,9 @@ setup.opportunity = function (req, res, next) {
     if (err) {
       return next(err)
     }
-    return res.redirect(req.body.next || '/profile/' + req.user.id + '/' + req.body.opportunity._id) 
+    return res.redirect(req.body.next || '/profile/' 
+      + req.user.id + '/' 
+      + req.body.opportunity._id) 
   })
 }
 
@@ -304,22 +306,16 @@ setup.intro = function (req, res, next) {
 module.exports = function (app) {
   app.get('/invite/:inviteCoupon', setup.invite)
   app.get('/intro-request/:_id', axx.all, setup.intro)
-
   app.post('/payment/*', axx.experteer)
   app.post('/payment/basic', setup.charge.basic, setup.charge)
   app.post('/payment/premium', setup.charge.premium, setup.charge)
   app.post('/payment/plus', setup.charge.plus, setup.charge)
-
   app.post('/setup', axx.all, setup.password, setup)
   app.post('/setup/opportunity', setup.opportunity)
-
   app.get('/setup/*', axx.all, setup.all)
-
   app.get('/setup/basic', setup.basic)
-
   app.get('/setup/basic/organization', setup.organization.basic)
   app.get('/setup/basic/experteer', setup.experteer.basic)
-
   app.get('/setup/personal', setup.experteer.personal)
   app.get('/setup/history', setup.experteer.history)
   app.get('/setup/payment', setup.experteer.payment)
@@ -327,9 +323,7 @@ module.exports = function (app) {
   app.get('/setup/opportunity', setup.organization.opportunityList)
   app.get('/setup/opportunity/:id', setup.organization.opportunityEdit)
   app.get('/delete/opportunity/:id', setup.organization.opportunityDelete)
-
   app.get('/setup/review', setup.organization.review)
-
 }
 
 function saveAvatar (files, user) {

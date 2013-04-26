@@ -269,7 +269,8 @@ AccountSchema.statics.upsertLinkedInUser = function (data, email, callback) {
       // location 
       if (typeof data.location !== 'undefined') {
         account.city = account.city || data.location.name
-        account.country = account.country || data.location.country.code.toUpperCase()
+        account.country = account.country 
+          || data.location.country.code.toUpperCase()
       }
 
       // avatar 
