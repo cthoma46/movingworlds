@@ -361,23 +361,33 @@ AccountSchema.statics.upsertLinkedInUser = function (data, email, callback) {
 
       // employment 
       account.education = account.education || []
+
       if (data.educations !== undefined) {
         for (var i in data.educations.values) {
+          var start = '';
+          var end = '';
+          
+          console.log(data.educations.values[i])
+
+
           if (data.educations.values[i].startDate !== undefined 
-            && data.educations.values[i].startDate.year !== undefined 
-            && data.educations.values[i].startDate.month !== undefined) {
-            var start = new Date(
-              data.educations.values[i].startDate.year, 
-              data.educations.values[i].startDate.month, 
-              1
+            && data.educations.values[i].startDate.year !== undefined){
+
+              var month = data.educations.values[i].startDate.month || 0;
+              start = new Date(
+                data.educations.values[i].startDate.year,
+                month, 
+                1
               )
           }
           if (data.educations.values[i].endDate !== undefined 
-            && data.educations.values[i].endDate.year !== undefined 
-            && data.educations.values[i].endDate.month !== undefined) {
-            var end = new Date(
+            && data.educations.values[i].endDate.year !== undefined) {
+
+              var month = data.educations.values[i].endDate.month || 11;
+
+              end = new Date(
               data.educations.values[i].endDate.year, 
-              data.educations.values[i].endDate.month, 
+              month, 
               1
               )
           }

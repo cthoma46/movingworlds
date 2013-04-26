@@ -140,7 +140,29 @@ setup.experteer.personal = function (req, res, next) {
 
 setup.experteer.history = function (req, res, next) { 
   req.user.employment = req.user.employment || []
+  if (req.user.employment.length === 0)
+  {
+    req.user.employment = [
+       {
+        employer : '',
+        city : '',
+        position : '',
+        current : false
+      }
+    ]
+  }
   req.user.education = req.user.education || []
+  if (req.user.education.length === 0)
+  {
+     req.user.education = [
+        {
+          employer : '',
+          city : '',
+          position : '',
+          current : false
+        } 
+      ];
+  }
   res.locals({ title : 'Setup Work & History' })
   return res.render('private/setup-experteer-history')
 }
