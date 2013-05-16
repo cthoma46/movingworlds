@@ -6,6 +6,7 @@
   "dependencies": {
     "bcrypt": "0.7.x",
     "connect-flash": "0.1.x",
+    "directory": "0.1.0",
     "session-mongoose": "0.0.7",
     "emailjs": "0.3.x",
     "express": "3.0.x",
