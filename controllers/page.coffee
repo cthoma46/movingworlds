@@ -1,10 +1,7 @@
-Page = require("../models").Page
-_ = require("underscore")
-ObjectId = require("mongoose").Types.ObjectId
-md = require("markdown").markdown
+Page = require('../models').Page
+_ = require('underscore')
+md = require('markdown').markdown
 
-# console.log(String(ObjectId.fromString));
-# ObjectId.fromString.toString()
 renderPage = (id, res) ->
   Page.find {}, (err, doc) ->
     if err or not doc
@@ -13,40 +10,39 @@ renderPage = (id, res) ->
       edit = _.find(doc, (item) ->
         item._id is id
       )
-      res.render "page_edit",
-        title: "Edit Page"
-        headtype: "nonav"
+      res.render 'page_edit',
+        title: 'Edit Page'
+        headtype: 'nonav'
         pages: doc
         fs:
           getValue: (key) ->
-            (if (edit) then edit[key] else "")
-
-
+            (if (edit) then edit[key] else '')
 
 module.exports = [
 
-    path: ""
-    type: "USE"
+    path: ''
+    type: 'USE' 
     action: (req, res, next) ->
       pageName = req.url.substring(1)
       Page.findOne
         slug: pageName
       , (err, doc) ->
+        console.log err, doc
         if err or not doc
           next()
         else
-          res.render "page",
+          res.render 'page',
             title: doc.title
             body: md.toHTML(doc.body)
   ,
-      path: "/cms/page_edit"
-      type: "GET"
+      path: '/cms/page_edit'
+      type: 'GET'
       action: (req, res, next) ->
-        id = req.query["id"]
+        id = req.query['id']
         renderPage id, res
   ,
-      path: "/page_edit"
-      type: "POST"
+      path: '/page_edit'
+      type: 'POST'
       action: (req, res, next) ->
         req.body.slug = req.body.title
         page = new Page(req.body)

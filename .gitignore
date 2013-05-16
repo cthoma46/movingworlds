@@ -1,5 +1,6 @@
 .DS_Store
-node_modules/
+.idea
+*.iml
 *.log
 public/*.html
 public/*/*.html
@@ -8,3 +9,5 @@ public/sitemap.xml
 public/avatars/*.gif
 public/avatars/*.png
 public/avatars/*.jpg
+public/avatars/*.jpeg
+build/

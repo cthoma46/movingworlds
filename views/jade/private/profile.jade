@@ -1,0 +1,22 @@
+extends ../layouts/layout
+
+block append scripts
+  if user
+    if user.id === account.id
+      script(src='/javascript/experteer.js')
+
+block content 
+  div.layout_960
+    div#personal_details.col1of2
+      -card = account
+      include partials/card
+      include partials/profile-status
+      if user
+        if (user.id === account.id && user.model === 'organization')
+          a(href='/setup/opportunity').chunky_btn.small.round.blue 
+            | List New Opportunity
+      p &nbsp;
+      include partials/profile-sidebar
+    div.col2of2
+      div#exp_profile
+      include partials/profile-body

@@ -1,0 +1,8 @@
+div.avatar.av_img_container
+  img(
+    src=avatar.avatar || '/images/icn_avatar_' + avatar.model + '.png', 
+    width='80', 
+    height='80'
+    )
+  if avatar.plan || avatar.stripeId || avatar.verified
+    div.verified

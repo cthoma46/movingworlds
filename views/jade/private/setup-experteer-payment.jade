@@ -1,0 +1,118 @@
+extends ../layouts/layout
+
+block append scripts
+  script(src='https://checkout.stripe.com/v2/checkout.js')
+  script(src='/javascript/setup.js')
+  script(src='/javascript/setup-payment.js')
+
+block content
+
+  div.layout_960
+    
+    include partials/account-nav
+
+    section.stack_960
+      header
+        h2 Payment Information
+      section(class="stack_body clearfix step3")
+        p 
+          | Choose your plan below to get started. 
+          | After you choose your option, you'll be asked to 
+          | complete the registration and payment process.
+        p 
+          | All the plans include:
+        ul
+          li Unlimited access to all organizations and Experteers for a year
+          li Unlimited matches to volunteer your expertise overseas
+        table
+          tbody
+            tr
+              td
+                h4 PREMIUM PLUS
+              td
+                h4 PREMIUM
+              td
+                h4 BASIC
+            tr
+              td
+                ul
+                  li 
+                    | Personalized travel agent to manage your 
+                    | Experteering trip
+                  li Unlimited Experteering coaching 
+                  li 
+                    | Premium concierge matching service with 
+                    | MovingWorlds staff
+                  li 90 days of premium travel insurance
+                  li Full community features
+                  li Unlimited access to training and resources
+              td
+                ul
+                  li 60 days of premium travel Insurance
+                  li 1 hour of Experteering coaching and matching consulting
+                  li Full community features
+                  li Unlimited access to training and resources
+              td
+                ul
+                  li Full community features
+                  li Unlimited access to training and resources
+            tr
+              td 699
+              td 199
+              td 99
+            tr
+              td
+                if (user.plan === 69900) 
+                  button.chunky_btn.blue.round.on 
+                    | Your plan 
+                else
+                  button#button-plus.chunky_btn.blue.round Get this Plan
+                  form#form-plus(action='/payment/plus', method='post')
+              td
+                if (user.plan === 19900) 
+                  button.chunky_btn.blue.round.on 
+                    | Your plan 
+                else
+                  button#button-premium.chunky_btn.blue.round Get this Plan
+                  form#form-premium(action='/payment/premium', method='post')
+              td
+                if (user.plan === 9900) 
+                  button.chunky_btn.blue.round.on 
+                    | Your plan 
+                else
+                  button#button-basic.chunky_btn.blue.round Get this Plan
+                  form#form-basic(action='/payment/basic', method='post')
+      footer
+      p &nbsp;
+      table.clearfix
+        tbody
+          tr
+            td
+              h4
+                strong Why does this cost money?
+              p 
+                | Your sign-up fee allows us to verify that you and 
+                | all organizations are real, legal entities. It also 
+                | helps cover the operational costs of supporting a 
+                | global movement.
+            td
+              h4
+                strong Safe, secure, and risk-free
+              p 
+                | Our databases and payment systems are managed by 
+                | Amazon Web Services and are guaranteed to be safe and 
+                | secure. And if you don't find a match, we will 
+                | refund you the money and you can delete your 
+                | account at any time.      
+      p &nbsp;
+      h3 The MovingWorlds Guarantee
+      p
+        | We guarantee to find you a match cheaper than any other 
+        | voluntourism company. In fact, many of the opportunities will 
+        | even provide accomodations so that you can travel and Experteer 
+        | for free. If you don't find a match within a year, we'll refund 
+        | your money.
+      p &nbsp;
+      h5 Not ready to commit yet?
+      button(href='/search').chunky_btn Browse opportunities around the world
+      p &nbsp;

@@ -1,0 +1,100 @@
+extends ../layouts/layout
+
+block append scripts
+  script(src="/javascript/setup.js")
+  script(src="/javascript/search.js")
+
+block content
+
+  - if (typeof search_result === 'undefined')
+    - search_result = []
+
+  div.layout_960
+    div.col1of2
+      include partials/account-nav
+      section#recommendations
+        header
+          h6.right.gray #{search_result.length} found
+          h2 Search 
+      form#search-form(action='#', method='get')
+        ul
+          li
+            input(type='text', name='q', value=search_str)
+          li
+            button.col1of2.chunky_btn.blue(type='submit', form='search-form') 
+              | Search
+          li.half
+            label Number of Results
+            select.data-select-value(
+              name='limit', 
+              data-value=query.limit
+              )
+              option(value=4) 4
+              option(value=10) 10
+              option(value=25) 25
+              option(value=50) 50
+          li.half
+            label Location
+            select.data-select-value(
+              name='filter[country]', 
+              data-value=query.filter.country
+              )
+              include forms/countries_combo
+          li
+            label Industry
+            select.data-select-value(
+              name='filter[industry]', 
+              data-value=query.filter.industry
+              )
+              include forms/industry_combo
+          li
+            label Desired Impact
+            select.data-select-value(
+              name='filter[impactArea]', 
+              data-value=filter.impactArea
+              )
+              include forms/impact_combo
+          li
+            label Support Area
+            select.data-select-value(
+              name='filter[supportArea]', 
+              data-value=filter.supportArea
+              )
+              include forms/area_support_combo
+          li
+            label Environment
+            select.data-select-value(
+              name='filter[environment]', 
+              data-value=filter.environment
+              )
+              include forms/environment_combo
+    div.col2of2
+      section#recommendations
+        if (search_result.length)
+          for card, i in search_result
+            -card.buttonView = true
+            include partials/card
+        else 
+          em 
+            strong #{query.q} 
+            | Returned no results.
+        footer.clear
+          if (typeof page !== 'undefined' && typeof pages !== 'undefined')
+            nav.pagination
+              ul
+                li
+                  a.previous(
+                    data-page=previousPage,
+                    href='#', 
+                    class=(previousPage ? '' : 'disabled' ) 
+                    ) 
+                li.page_info
+                  | #{page} 
+                  em of 
+                  | #{pages} 
+                li
+                  a.next(
+                    data-page=nextPage,
+                    href='#',
+                    class=(nextPage ? '' : 'disabled' )
+                    ) 

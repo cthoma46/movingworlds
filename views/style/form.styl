@@ -90,6 +90,25 @@ form
 			grad(#e8e8e8, #ffffff)
 		&.error, &.warning, &.success
 			text-align: left !important
+	div.selectit
+		margin: 0
+		width: 100%
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		display:block
+		color: #505050
+		font-size: 12px
+		font-weight: normal
+		box-shadow: 0 1px 3px rgba(0,0,0,.43) inset
+		border: none
+		border-radius: 3px
+		resize: none
+		grad(#dddddd, #f0f0f0)
+		&:focus
+			grad(#e8e8e8, #ffffff)
+		&.error, &.warning, &.success
+			text-align: left !important
 
 	.half
 		width: 49%
@@ -368,12 +387,21 @@ ul.tagit
 	border-left: 1px solid gray
 	border-right: 1px solid gray
 	border-bottom: 1px solid gray
+
+	.ui-autocomplete-category
+		border-top: 1px solid gray
+		border-bottom: 1px solid gray
+		font-weight: bold
+		padding: 5px 10px
+		color: black
+		text-transform: uppercase
+		font: 700 14px default_fonts
 	.ui-menu-item+li.ui-menu-item
 		border-top: 1px solid gray
 	.ui-menu-item
 		a
 			display: block
-			padding: 5px 10px
+			padding: 5px 10px 5px 20px
 			text-transform: uppercase
 			text-decoration: none
 			color: dark_gray
@@ -393,3 +421,104 @@ ul.tagit
 		width: 33px
 		height: 29px
 		background: url('/images/spt_form.png') no-repeat 0 -113px;
+
+
+// SELECTIT
+div.selectit ul
+	padding: 4px 4px 0px 4px;
+	overflow: auto;
+	margin-left: inherit;
+	margin-right: 30px;
+	min-height: 28px
+	li
+		display: block;
+		float: left;
+		margin: 0
+		// margin: 2px 5px 2px 0;
+	li.selectit-new
+		// background-color: red
+		padding: .25em 4px .25em 0;
+	p.selectit-choice,
+	li.selectit-choice
+		position: relative;
+		height: 22px
+		margin: 1px 25px 0 0
+		padding-left: 15px
+		background: transparent url('/images/bg_tag.png') 0 0 no-repeat
+		font: 12px Arial, sans-serif
+		txsh(0,1px,0, #FFF)
+		color: dark_gray
+		.selectit-label
+			height: 22px
+			line-height: 20px;
+			display: inline-block
+			cursor: pointer;
+			text-decoration: none;
+			white-space: nowrap;
+			max-width: 180px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		a.close
+			display: block
+			position: absolute;
+			width: 20px
+			height: 22px
+			right: -20px
+			top: 0
+			background: transparent url('/images/bg_tag.png') right 0 no-repeat
+			text-align: center
+			text-decoration: none
+			color: dark_gray
+			font-weight: 900
+			cursor:pointer
+			border: none;
+			bxsh(none);
+			padding: 0
+			&:hover
+				color: blue
+			.text-icon
+				font-size: 15px
+				line-height: 21px;
+				// display: none
+			// .ui-icon-close
+		input
+			display: block;
+			float: left;
+			// margin: 2px 5px 2px 0;
+	input[type="text"]
+		bxsh(none)
+		background: red;
+		border: none
+		margin: 0
+		padding: 3px 0 0;
+		width: inherit;
+		background-color: inherit;
+		outline: none;
+
+
+.ui-combobox
+	display: block
+	position: relative
+	.ui-combobox-toggle
+		position: absolute
+		top: 0px
+		bottom: 0px
+		right: -2px
+		display:block
+		width: 33px
+		border-right: 1px solid #BCBCBC;
+		border-bottom: 1px solid #A4A4A4;
+		border-top: 1px solid #cecece;
+		border-left: 1px solid #d3d3d3;
+		border-radius: 0px 4px 4px 0px;
+		background-image: url('/images/spt_arrow_down.png');
+		background-image: url('/images/spt_arrow_down.png'), -ms-linear-gradient(top, #F6F6F6 0%, #E5E5E5 100%);
+		background-image: url('/images/spt_arrow_down.png'), -moz-linear-gradient(top, #F6F6F6 0%, #E5E5E5 100%);
+		background-image: url('/images/spt_arrow_down.png'), -o-linear-gradient(top, #F6F6F6 0%, #E5E5E5 100%);
+		background-image: url('/images/spt_arrow_down.png'), -webkit-gradient(linear, left top, left bottom, color-stop(0, #F6F6F6), color-stop(1, #E5E5E5));
+		background-image: url('/images/spt_arrow_down.png'), -webkit-linear-gradient(top, #F6F6F6 0%, #E5E5E5 100%);
+		-webkit-box-shadow: inset 0px 1px 1px #FFFFFF, 1px 1px 1px #CCCCCC;
+		-moz-box-shadow: inset 0px 1px 1px #FFFFFF, 1px 1px 1px #CCCCCC;
+		box-shadow: inset 0px 1px 1px #FFFFFF, 1px 1px 1px #CCCCCC;
+		background-repeat: no-repeat;
+		background-position: center;

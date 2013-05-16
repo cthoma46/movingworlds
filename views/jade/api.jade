@@ -11,7 +11,7 @@ block content
 					li
 						a(href='#experteer').chunky_btn Experteer
 					li
-						a(href='#se').chunky_btn Social Enterprise
+						a(href='#org').chunky_btn Organization
 					li
 						a(href='#page').chunky_btn Page
 		div.col2of2
@@ -38,7 +38,7 @@ block content
 					| country,
 					| professions,
 					| industry
-			p To search nested documents use dot notation. For instance if you wanted to search for Experteers who majored in engineering you might try a seach like this:
+			p To search nested documents use dot notation. For instance if you wanted to search for Experteers who majored in engineering you might try a search like this:
 				pre
 					code http://movingworlds.nodester.com/api/experteer?search=engineer&field=education.major
 			p You can search from the following fields
@@ -86,21 +86,21 @@ block content
 						| profile.industry
 						| profile.goals
 						| profile.motivation 
-			h2#se Social Enterprise
+			h2#org Organization
 			hr
 			h4 Global Search
-			p The following url will produce all the Social Enterprises in the database
+			p The following url will produce all the Organizations in the database
 			pre
-				code http://movingworlds.nodester.com/api/social_enterprise
+				code http://movingworlds.nodester.com/api/organization
 			h4 Id Search
-			p Adding and id will output the single Social Enterprise with that id.
+			p Adding and id will output the single Organization with that id.
 			pre
-				code http://movingworlds.nodester.com/api/social_enterprise/4fcae73b460da48f66000055
+				code http://movingworlds.nodester.com/api/organization/4fcae73b460da48f66000055
 			h4 Field Search
-			p You can search for a Social Enterprise by adding <code>search</code> and <code>fields</code> to the query string like so:
+			p You can search for a Organization by adding <code>search</code> and <code>fields</code> to the query string like so:
 			pre
-				code http://movingworlds.nodester.com/api/social_enterprise?search=india&field=country
-			p The above url will produce only Social Enterprises from India. 
+				code http://movingworlds.nodester.com/api/organization?search=india&field=country
+			p The above url will produce only Organizations from India. 
 			p Multiple search terms can be seperated by colon (:), pipe (|) or comma (,) like so: <code>search=india|china</code>. If you leave of the <code>fields</code> parameter off a default set of perimeters will be used: 
 				code
 					| name,
@@ -111,9 +111,9 @@ block content
 					| opportunities.details,
 					| opportunities.field,
 					| opportunities.skills
-			p To search nested documents use dot notation. For instance if you wanted to search for Social Enterprises who majored in engineering you might try a seach like this:
+			p To search nested documents use dot notation. For instance if you wanted to search for Organizations who majored in engineering you might try a seach like this:
 				pre
-					code http://movingworlds.nodester.com/api/social_enterprise?search=engineer&field=education.major
+					code http://movingworlds.nodester.com/api/organization?search=engineer&field=education.major
 			p You can search from the following fields
 				pre
 					code

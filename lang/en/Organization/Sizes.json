@@ -1,0 +1,27 @@
+{
+  "earlyStartup" : {
+    "key" : "earlyStartup",
+    "title" : "Startup",
+    "description" : "founder(s) only"
+  },
+  "startup" : {
+    "key" : "startup",
+    "title" : "Startup",
+    "description" : "2 - 5 persons"
+  },
+  "small" : {
+    "key" : "small",
+    "title" : "Small organization",
+    "description" : "5 - 10 persons"
+  },
+  "medium" : {
+    "key" : "medium",
+    "title" : "Medium sized organization",
+    "description" : "10 - 100 persons"
+  },
+  "large" : {
+    "key" : "large",
+    "title" : "Large organization",
+    "description" : "100+ persons"
+  }
+}

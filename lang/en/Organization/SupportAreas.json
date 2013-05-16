@@ -1,0 +1,22 @@
+{
+  "general" : "General / operational management",
+  "financial" : "Financial planning / fundraising",
+  "communications" : "Communications / Social Media",
+  "ict" : "ICT / Website building",
+  "sales" : "Sales & Marketing",
+  "legal" : "Legal advice",
+  "product" : "Specialty product development",
+  "engineering" : "Engineering (mechanical / electrical)",
+  "energy" : "Renewable Energy / Water supply systems",
+  "gardening" : "Gardening / Farming",
+  "construction" : "Construction / Building",
+  "cooking" : "Cooking / Food Management",
+  "maintenance" : "General maintenance",
+  "tourist" : "Tourist management",
+  "animal" : "Animal care",
+  "charity" : "Charity work",
+  "art" : "Art / special projects",
+  "language" : "Language Teaching",
+  "teaching" : "Teaching general",
+  "other" : "Other"
+}

@@ -1,0 +1,8 @@
+{
+  "founder" : "(co) Founder",
+  "director" : "Director",
+  "manager" : "Manager",
+  "employee" : "Employee",
+  "legal_rep" : "Legal representative",
+  "other" : "Other"
+}

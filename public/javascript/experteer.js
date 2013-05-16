@@ -2,20 +2,20 @@
 var addTag, multiTag;
 
 $(document).ready(function() {
-  $('#edit_profile').click(function(e) {
-    e.preventDefault();
-    $(this).hide();
-    $('#profile_form').show();
-    $('#profile_info').hide();
-    return $('#upload_form').show();
-  });
-  $('#cancel_profile').click(function(e) {
-    e.preventDefault();
-    $('#profile_form').hide();
-    $('#profile_info').show();
-    $('#edit_profile').show();
-    return $('#upload_form').hide();
-  });
+  // $('#edit_profile').click(function(e) {
+  //   e.preventDefault();
+  //   $(this).hide();
+  //   $('#profile_form').show();
+  //   $('#profile_info').hide();
+  //   return $('#upload_form').show();
+  // });
+  // $('#cancel_profile').click(function(e) {
+  //   e.preventDefault();
+  //   $('#profile_form').hide();
+  //   $('#profile_info').show();
+  //   $('#edit_profile').show();
+  //   return $('#upload_form').hide();
+  // });
   $(".datepicker input").datepicker({
     showOn: "both",
     changeMonth: true,
@@ -23,24 +23,35 @@ $(document).ready(function() {
     buttonImage: "/images/btn_datepicker.png",
     buttonImageOnly: true
   });
+
+  $('.selectit-me').selectit({});
+
   $('.tags').tagit({
     availableTags: ["Option 1", "Option 2", "Option 3", "Option 4"],
     create: function(event, ui) {},
     onTagAdded: function(event, tag) {}
   });
+
   $('#impact').val($('#impact_value').val());
+
   $('#industry').val($('#industry_value').val());
+
   $('.change_status').click(function(e) {
     var status;
     e.preventDefault();
     status = $(this).data('status');
-    return $.doPost('/experteer/update', {
-      status: status
+    return $.doPost('/setup', {
+      experteerStatus : status,
+      next : 'back'
     });
   });
+
   $(".combobox").combobox({});
-  return multiTag('#areas', 'area_support');
+
+  return multiTag('#areas', 'supportArea');
+
 });
+
 
 multiTag = function(container, type) {
   var values;
@@ -62,6 +73,7 @@ multiTag = function(container, type) {
     label = $('#' + type + ' option:selected').text();
     return addTag(container, type, value, label);
   });
+
 };
 
 addTag = function(container, type, value, label) {

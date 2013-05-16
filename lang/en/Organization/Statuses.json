@@ -1,0 +1,12 @@
+{
+  "off" : { 
+    "key" : "off",
+    "title" : "No Opportunities Available Right Now", 
+    "description" : ""
+  },
+  "on" : { 
+    "key" : "on",
+    "title" : "Experteering Opportunities Available", 
+    "description" : ""
+  }
+}

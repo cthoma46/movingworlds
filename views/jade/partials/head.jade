@@ -1,0 +1,50 @@
+- var messages = flash()
+
+each val, key in messages
+  div.modal(role='dialog', id='flash_message') 
+    div.modal_body(class=key)!=val
+header#page_head
+  div.layout_960
+    if (user)
+      div(id='setup-menu', class='dropdown dropdown-tip')
+        ul.dropdown-menu
+          li: a(href='/landing') Home
+          li: a(href='/setup/basic') Basic Info
+          if (user.model === 'experteer')    
+            li: a(href='/setup/personal') Personal Info 
+            li: a(href='/setup/history') Work & Education
+            li: a(href='/setup/payment') Payment Info
+          if (user.model === 'organization')    
+            li: a(href='/setup/company') Company Info
+            li: a(href='/setup/opportunity') Add Opportunity
+          li: a(href='/profile/' + user.id) Profile
+          li: p.detail &nbsp;
+          li: a(href='/logout') Logout
+    if (typeof headtype !== 'undefined' && headtype === 'nonav')
+      a.logo.center(href='/') MovingWorlds
+    else if (typeof user !== 'undefined')
+      a.logo(href='/landing') MovingWorlds
+      nav
+        ul
+          li.subnav: a(href='/profile/' + user.id)= user.name
+          li: a(data-dropdown='#setup-menu').chunky_btn: i.user_icn
+          if (typeof search_str === 'undefined' || search_str.length === 0)
+            if (user.model === 'organization')
+              li
+                form(action='/search/experteer', method='get')
+                  input(type='search', name='q')
+                  button(type='submit') search
+            if (user.model === 'experteer')
+              li
+                form(action='/search/opportunity', method='get')
+                  input(type='search', name='q')
+                  button(type='submit') search
+    else
+      a.logo(href='/') MovingWorlds
+      nav.clearfix
+        ul
+          li: a(href='/login') Login
+          li
+            form(action='/search/opportunity', method='get')
+              input(type='search', name='q')
+              button(type='submit') search

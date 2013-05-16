@@ -1,0 +1,22 @@
+{ 
+  "off" : { 
+    "key" : "off",
+    "title" : "Not Seeking Experteering Opportunity", 
+    "description" : ""
+  },
+  "on" : { 
+    "key" : "on",
+    "title" : "Seeking Experteering Opportunity", 
+    "description" : ""
+  },
+  "yellow" : { 
+    "key" : "yellow",
+    "title" : "Discussing an Experteering Opportunity", 
+    "description" : ""
+  },
+  "red" : { 
+    "key" : "red",
+    "title" : "Currently Experteering on Location", 
+    "description" : ""
+  }
+}
