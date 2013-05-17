@@ -1,53 +1,51 @@
 extends layouts/layout
 
 block append scripts
-		script( src='/javascript/plugins/jquery-ui.min.js')
-		script( src='/javascript/plugins/jquery.mw_modal.js')
-		script( src='/javascript/plugins/jquery.validate.min.js')
-		script( src='/javascript/invite.js')
+    script(src='/javascript/plugins/jquery-ui.min.js')
+    script(src='/javascript/plugins/jquery.mw_modal.js')
+    script(src='/javascript/plugins/jquery.validate.min.js')
+    script(src='/javascript/invite.js')
 
 block content
-	div.layout_630.clearfix
-		h2.center= headline
-		p.center= body
-		section#invite_area
-			hr.clear
-			form( action="/invite_extras", method="post" )#invite_extras.validate
-				input(type="hidden", id="email", name="email", value=newUser.email)
-				fildeset.col1of2
-					ul
-						li.field-container
-							label(for="type") I'd like to
-							select( id="type", name="type", class="combobox", tabindex="1").required
-								option( value="" ) Choose One
-								option( value="experteer" ) Go Experteering
-								option( value="representative" ) Be connected to an Experteer (for my organization)
-						li
-							label(for="first_name") First Name
-							-fname = ('undefined' !== typeof newUser) ? newUser.first_name : ""
-							input( type="text", id="first_name", name="first_name", value=fname, tabindex="3", minlength="2" ).required
-						li
-							button(type="submit", data-toggle="modal", data-target="#modal").chunky_btn.round Invite Me
-				fildeset.col2of2
-					ul
-						li.field-container
-							label(for="recommended_by") How did you hear about us?
-							select( id="recommended_by", name="recommended_by", class="combobox", tabindex="2").required
-								option( value="" ) Choose One
-								option( value="advertisement" )  Advertisement
-								option( value="email" ) Email/Newsletter
-								option( value="facebook" ) Facebook
-								option( value="google" ) Google+
-								option( value="twitter" ) Twitter
-								option( value="friend" ) Family or Friend
-								option( value="press" ) Press
-								option( value="search" ) Search
-								option( value="another website" ) Another website
-								option( value="other" ) Other
-						li
-							label(for="last_name") Last Name
-							-lname = (typeof newUser !== 'undefined') ? newUser.last_name : ""
-							input( type="text", id="last_name", name="last_name", value=lname, tabindex="4", minlength="2"  ).required
-						//- li.experteer_only.hidden
-						//- 	label(for="availability") When do you want to go Experteering?
-						//- 	input( type="text", id="availability", name="availability" )
+  div.layout_630.clearfix
+    h2.center= headline
+    p.center= body
+    section#invite_area
+      hr.clear
+      form(action="/invite_extras", method="post")#invite_extras.validate
+        input(type="hidden", id="email", name="email", value=user.email)
+        fildeset.col1of2
+          ul
+            li.field-container
+              label(for="model") I'd like to
+              select(id="model", name="model", class="combobox", tabindex="1").required
+                option(value="") Choose One
+                option(value="experteer") Go Experteering
+                option(value="organization") Be connected to an Experteer (for my organization)
+            li
+              label(for="firstname") First Name
+              input(type="text", id="firstname", name="firstname", value=user.firstname, tabindex="3", minlength="2").required
+            li
+              button(type="submit", data-toggle="modal", data-target="#modal").chunky_btn.round Invite Me
+        fildeset.col2of2
+          ul
+            li.field-container
+              label(for="recommendedBy") How did you hear about us?
+              select(id="recommendedBy", name="recommendedBy", class="combobox", tabindex="2").required
+                option(value="") Choose One
+                option(value="advertisement")  Advertisement
+                option(value="email") Email/Newsletter
+                option(value="facebook") Facebook
+                option(value="google") Google+
+                option(value="twitter") Twitter
+                option(value="friend") Family or Friend
+                option(value="press") Press
+                option(value="search") Search
+                option(value="another website") Another website
+                option(value="other") Other
+            li
+              label(for="lastname") Last Name
+              input(type="text", id="lastname", name="lastname", value=user.lastname, tabindex="4", minlength="2").required
+            //- li.experteer_only.hidden
+            //-   label(for="availability") When do you want to go Experteering?
+            //-   input( type="text", id="availability", name="availability" )

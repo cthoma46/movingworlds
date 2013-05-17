@@ -1,0 +1,273 @@
+extends ../layouts/layout
+
+block append scripts
+    script(src='/javascript/setup.js')
+
+block content
+  div.layout_960
+    include partials/account-nav
+    section#edit.stack_960(class=((user.opportunities && user.opportunities.length) ? '' : '' ))
+      - if (typeof user.opportunities !== 'undefined')
+        header
+          h2.opportunity_icon Add a new Opportunity
+      - else
+        header
+          h2.opportunity_icon #{opportunity.name}
+            | &nbsp; 
+            div.right
+              a.chunky_btn.small.round(
+                href='/delete/opportunity/' + opportunity.id
+                ) Delete
+              | 
+              a.chunky_btn.small.round.on(
+                href='/setup/opportunity/' + opportunity.id
+                ) Edit
+              | 
+              a.chunky_btn.small.round(
+                href='/profile/' + user.id + '/' + opportunity.id
+                ) View
+              span &nbsp; &nbsp; 
+
+          if (opportunity.published)
+            a(href='/unpublish/' + opportunity.id).chunky_btn.small.round.blue 
+              | Unpublish
+          else
+            a(href='/publish/' + opportunity.id).chunky_btn.small.round.blue 
+              | Publish
+
+
+      div.stack_body.clearfix
+        form(id='rep_step3', action='/setup/opportunity', method='post')
+          input(type='hidden', name='opportunity[_id]', value=opportunity.id)
+          fieldset.col1of2.split
+            ul
+              li
+                label(for='name') We are looking for
+                  span max 50 characters
+                input(
+                  type='text', 
+                  id='name', 
+                  name='opportunity[name]', 
+                  tabindex='1', 
+                  placeholder='What / who you look for', 
+                  value=opportunity.name
+                  )
+              li.half
+                label(for='city') city
+                input(
+                  type='text',
+                  name='opportunity[city]', 
+                  tabindex='2', 
+                  value=opportunity.city
+                  )
+              li.half
+                label(for='country') Country
+                select.data-select-value(
+                  id='country', 
+                  name='opportunity[country]', 
+                  tabindex='4', 
+                  class='combobox',
+                  data-value=opportunity.country,
+                  value=opportunity.country
+                  )
+                  include forms/countries_combo
+              li
+                label(for='description') Project Details
+                  span max 500 characters
+                textarea(
+                  id='description', 
+                  name='opportunity[description]', 
+                  placeholder='Describe your opportunity'
+                  )=opportunity.description
+              li
+                label(for='desiredResult') Desired Results
+                  span max 500 characters
+                textarea(
+                  id='desiredResult', 
+                  name='opportunity[desiredResult]', 
+                  placeholder='What is the ideal output for this project? Please specify to get a clear idea on the deliverables you are looking for'
+                  )=opportunity.desiredResult
+              li.datepicker
+                    label(for='deadline') Apply Before
+                      span expiration date for applying to this opportunity
+                    input(
+                      type='text', 
+                      id='deadline', 
+                      name='opportunity[deadline]', 
+                      class='date', 
+                      tabindex='4', 
+                      data-months='1', 
+                      data-years='2', 
+                      value=opportunity.deadline
+                      )
+          fieldset.col2of2.split
+            ul
+              li.half.datepicker
+                label(for='start') Start Date
+                input(
+                  type='text', 
+                  id='start', 
+                  name='opportunity[start]', 
+                  class='date', 
+                  tabindex='2', 
+                  data-months='1', 
+                  data-years='2', 
+                  value=opportunity.start
+                  )
+              li.half.datepicker
+                label(for='end') End Date
+                input(
+                  type='text', 
+                  id='end', 
+                  name='opportunity[end]', 
+                  class='date', 
+                  tabindex='2', 
+                  data-months='1', 
+                  data-years='2', 
+                  value=opportunity.end
+                  )
+            ul
+
+              li.slider_container.clearfix
+                label.slider_label Years of work experience
+                  span #{opportunity.experienceYears || 0}
+                div.data-select-value.slider#experienceYears(
+                  data-min='0', 
+                  data-max='30', 
+                  data-value=opportunity.experienceYears || 0
+                  )
+                input(
+                  type='hidden', 
+                  name='opportunity[experienceYears]', 
+                  value=opportunity.experienceYears || 0, 
+                  )
+              li
+                label Area of support needed
+                  span 
+                select.data-select-value(
+                  multiple=true,
+                  name='opportunity[supportArea]', 
+                  tabindex='9', 
+                  data-value=opportunity.supportArea
+                  )
+                  include forms/area_support_combo
+              li
+                label(for='skills') Favored Skills & Expertise
+                  span max 3
+                input(
+                  type='text', 
+                  id='skills', 
+                  name='opportunity[skills]', 
+                  tabindex='2', 
+                  class='tags', 
+                  data-max='3', 
+                  value=opportunity.skills
+                  )
+              li
+                label(for='languages') Favored Languages
+                  span max 3
+                input(
+                  type='text', 
+                  id='languages', 
+                  name='opportunity[languages]', 
+                  tabindex='2', 
+                  class='tags', 
+                  data-max='3', 
+                  value=opportunity.languages
+                  )
+              li
+                label Development impact
+                select.data-select-value(
+                  id='impact', 
+                  name='opportunity[impact]', 
+                  tabindex='15', 
+                  class='combobox', 
+                  data-value=opportunity.impact,
+                  value=opportunity.impact
+                  )
+                  include forms/impact_combo.jade
+              br
+          //- h2 What we are offering
+          fieldset.col1of2.split
+            ul
+              li
+                label Accomodation provided?
+                ul
+                  li
+                    input(
+                      type='radio', 
+                      name='opportunity[accomodation]', 
+                      value='Yes', 
+                      checked=(opportunity.accomodation === 'Yes')
+                      )
+                    label Yes
+                  li
+                    input(
+                      type='radio', 
+                      name='opportunity[accomodation]', 
+                      value='No', 
+                      checked=(opportunity.accomodation === 'No')
+                      )
+                    label No
+                  li
+                    input(
+                      type='radio', 
+                      name='opportunity[accomodation]', 
+                      value='To be defined', 
+                      checked=(opportunity.accomodation === 'To be defined')
+                      )
+                    label(for='accomodation[define]') To be defined
+              li#accomodation_options.hidden
+                ul
+                  li
+                    label(for='opportunity[accomodationDescription]') Describe acommodation
+                    input(
+                      type='text', 
+                      id='opportunity[accomodationDescription]', 
+                      name='opportunity[accomodationDescription]', 
+                      value=opportunity.accomodationDescription
+                      )
+              li
+                label(for='opportunity[benefits]') Additional amenities / benefits?
+                textarea(
+                  id='opportunity[benefits]', 
+                  name='opportunity[benefits]'
+                  )=opportunity.benefits
+          fieldset.col2of2.split
+            ul
+              li
+                label Compensation for travel and/or local cost of living?
+                ul
+                  li
+                    input(
+                      type='radio', 
+                      name='opportunity[compensation]', 
+                      value='Yes', 
+                      checked=(opportunity.compensation === 'Yes')
+                      )
+                    label Yes
+                  li
+                    input(
+                      type='radio', 
+                      name='opportunity[compensation]', 
+                      value='No', 
+                      checked=(opportunity.accomodation === 'No')
+                      )
+                    label No
+                  li
+                    input(
+                      type='radio', 
+                      name='opportunity[compensation]', 
+                      value='To be defined', 
+                      checked=(opportunity.accomodation === 'To be defined')
+                      )
+                    label(for='compensation[define]') To be defined
+              li
+                label(for='opportunity[learn]') Learning Opportunity
+                textarea(
+                  id='opportunity[learn]', 
+                  name='opportunity[learn]'
+                  )=opportunity.learn
+          nav#progress
+            button(type='submit')#next.big.smooth_btn Save
+      footer

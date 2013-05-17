@@ -1,0 +1,182 @@
+extends ../layouts/layout
+
+block append scripts
+  script(src='/javascript/setup.js')
+
+block content
+  div.layout_960
+
+    include partials/account-nav
+
+    section.stack_960
+      header
+        h2 Company Information
+      div.stack_body.clearfix
+        form(id="rep_step2", action="/setup", method="post", enctype="multipart/form-data")
+          fieldset.col1of2.split
+            ul
+              li
+                label(for="orgName") Organization Name
+                input(
+                  type="text", 
+                  id="orgName", 
+                  name="orgName", 
+                  tabindex="1", 
+                  value=user.orgName
+                  )
+              li
+                label(for="orgType") Organization Type
+                select.data-select-value(
+                  id="orgType", 
+                  name="orgType", 
+                  tabindex="2", 
+                  class="combobox",
+                  data-value=user.orgType
+                  )
+                  option(value="profit") For profit company
+                  option(value="profit-org") For profit (Social) Enterprise
+                  option(value="non-profit") Non-profit (Social) Enterprise / NGO
+                  option(value="cooperative") Cooperative
+                  option(value="educational") Educational Institute
+                  option(value="research_institute") Research Institute
+                  option(value="government_agency") Government Agency
+                  option(value="other") Other
+                input(type='hidden', id='type_value', value=user.orgType.key)
+
+              li
+                label(for="orgSize") Organization Size
+                select.data-select-value(
+                  id="orgSize", 
+                  name="orgSize", 
+                  tabindex="3", 
+                  class="combobox",
+                  data-value=user.orgSize
+                  )
+                  option(value="earlyStartup") Startup (founder(s) only)
+                  option(value="startup") Startup (2 - 5 persons)
+                  option(value="small") Small enterprise (5 - 10 persons)
+                  option(value="medium") Medium sized enterprise (10 - 100 persons)
+                  option(value="large") Large enterprise (100+ persons)
+                input(type='hidden', id='size_value', value=user.orgSize.key)
+
+              li
+                label Is your company legally registered?
+                ul
+                  li
+                    input(
+                      type="radio", 
+                      id="orgRegistered", 
+                      name="orgRegistered", 
+                      value="yes", 
+                      tabindex="4", 
+                      checked=user.orgRegistered === 'yes'
+                      )
+                    label(for="orgRegistered") Yes
+                  li
+                    input(
+                      type="radio", 
+                      id="orgRegistered", 
+                      name="orgRegistered", 
+                      value="no", 
+                      tabindex="5", 
+                      checked=user.orgRegistered === 'no'
+                      )
+                    label(for="orgRegistered") No
+              li
+                ul
+                  li.half
+                    label(for="orgRegisteredLocation") Location Registered
+                    input(
+                      type="text", 
+                      id="orgRegisteredLocation", 
+                      name="orgRegisteredLocation", 
+                      tabindex="6", 
+                      value=user.orgRegisteredLocation
+                      )
+                  li.half
+                    label(for="orgRegisteredYear") Year Registered
+                    input(
+                      type="text", 
+                      id="orgRegisteredYear", 
+                      name="orgRegisteredYear", 
+                      tabindex="7", 
+                      value=user.orgRegisteredYear
+                      )
+              li
+                label(for="orgPosition") I represent this organization as its
+                select.data-select-value(
+                  id="orgPosition", 
+                  name="orgPosition", 
+                  tabindex="8", 
+                  class="combobox",
+                  data-value=user.orgPosition
+                  )
+                  option(value="founder") (co) Founder
+                  option(value="director") Director
+                  option(value="manager") Manager
+                  option(value="employee") Employee (other)
+                  option(value="legal_rep") Legal representative
+                  option(value="other") Other
+              li
+                label(for="linksUrl") Website Url
+                  span example: http://www.mywebsite.com
+                input(
+                  type="text", 
+                  id="linksUrl", 
+                  name="linksUrl", 
+                  tabindex="9", 
+                  value=user.linksUrl
+                  )
+          fieldset.col2of2.split
+            ul
+              li#upload_avatar
+                label Upload your Company Logo
+                div.avatar
+                  .av_img_container
+                    img(
+                      src=user.avatar ||'/images/icn_avatar_organization.png', 
+                      width="80", 
+                      height="80"
+                      )
+                input(
+                  type="file", 
+                  id="avatar", 
+                  name="avatar", 
+                  tabindex="14", 
+                  value="upload image"
+                  )
+              li
+                label(for="introduction") Description
+                  span max 500 characters
+                textarea(
+                  id="description", 
+                  name="description", 
+                  placeholder="What does your Organization do?"
+                  )=user.description
+              li
+                label(for="industry") Industry
+                select.data-select-value(
+                  id="industry", 
+                  name="industry", 
+                  class="combobox",
+                  data-value=user.industry
+                  )
+                  include forms/industry_combo
+              li.field-container
+                input(
+                  type="checkbox", 
+                  id="conduct", 
+                  name="conduct", 
+                  checked=user.conduct === true, 
+                  tabindex="11"
+                  ).required
+                label(for="agree")
+                  | I agree to the&nbsp;
+                  a(href="/rules_conduct", target="_blank") rules of conduct
+
+          //- if !user.orgName
+            input(type='hidden', name='next', value='/setup/opportunity')
+
+          nav#progress
+            button(type="submit")#next.big.smooth_btn Save
+      footer

@@ -45,7 +45,7 @@
 
 
 
-				addTemplate( $this.data('mwFieldCloner').template );
+				// addTemplate( $this.data('mwFieldCloner').template );
 
 				// console.log( data.settings )
 
@@ -57,7 +57,7 @@
 						
 					var $temp = $( $this.data('mwFieldCloner').template ).insertBefore( $this.data('mwFieldCloner').$nav );
 
-					$temp.find(settings.deleteBtnClass).removeClass('hidden').click( function(){
+					$temp.find(settings.deleteBtnClass).removeClass('hidden').click( function(e){
 						e.preventDefault();
 						removeTemplate( $temp )
 					})
@@ -110,9 +110,9 @@
 
 							var $this = $(this);
 
-							if( $this.attr('name') )
-								var newName = $this.attr('name').replace(/\[.*\]/, "["+i+"]");
-
+							if( $this.attr('name') ) {
+								var newName = $this.attr('name').replace(/\[##\]/, "["+i+"]");
+							}
 							// console.log($this, newName);
 
 							if( newName ){

@@ -1,0 +1,46 @@
+//- account.status
+
+div.clearfix
+  p &nbsp; 
+  div.detail(
+    class='status '+account.status.key, 
+    title=account.status.description
+    ) #{account.status.title}
+nav.clearfix
+  if typeof user !== 'undefined' && user.id === account.id 
+    if (user.model === 'experteer')
+      ul
+        li
+          a(data-dropdown='#status').chunky_btn.round.select.small Change your status
+          div(id='status', class='dropdown dropdown-tip')
+            ul.dropdown-menu
+              li
+                a(href='#', class='change_status', data-status='off') Currently Not Seeking Experteering Opportunity
+              li
+                a(href='#', class='change_status', data-status='on') Seeking Experteering Opportunity
+              li
+                a(href='#', class='change_status', data-status='yellow') Discussing an Experteering Opportunity
+              li
+                a(href='#', class='change_status', data-status='red') Currently Experteering on Location
+          //- li
+          //- a.chunky_btn.disabled This is you.
+    else if (user.model === 'organization')
+
+  //- else
+    ul
+      if introDate !== undefined
+        li
+          a.chunky_btn.disabled.small.round Intro Requested #{introDate}
+      else
+        li
+          a.chunky_btn.small.round(id='request-intro', 
+            data-loading-text='Loading...',
+            href='/intro-request/' + account.id
+            ) Request Intro
+
+        //- li
+          a.chunky_btn.round.btn.blue(href='#',
+            id='favorite', 
+            data-favorite-text='Favorite'
+            ) Favorite
+p &nbsp;

@@ -1,0 +1,37 @@
+if user.model === 'experteer'
+
+  //- nav#steps.clearfix
+  //-   ul
+  //-     li.step1(class=(user.setupBasicComplete() ? 'on' : ''))
+  //-       span Basic Information
+  //-     li.step2(class=(user.setupPersonalComplete() ? 'on' : ''))
+  //-       span Personal Information
+  //-     li.step3(class=(user.setupHistoryComplete() ? 'on' : ''))
+  //-       span Work &amp; Education
+  //-     li.step4(class=(user.setupBillingComplete() ? 'on' : ''))
+  //-       span Payment Information
+
+
+else if user.model === 'organization'
+  //- nav#steps.clearfix
+    ul
+      li.step1(class=(user.setupBasicComplete() ? 'on' : ''))
+        span Basic Information
+      li.step2(class=(user.setupCompanyComplete() ? 'on' : ''))
+        span Company Information
+      li.step3(class=(user.setupOpportunityComplete() ? 'on' : ''))
+        span List Opportunity
+      li.step4(class=(user.setupReviewComplete() ? 'on' : ''))
+        span Review
+else
+  //- nav#steps.clearfix
+    ul
+      li.step1.on
+        span Basic Information
+      li.step2
+        span 
+      li.step3
+        span 
+      li.step4
+        span 
+

@@ -1,46 +1,65 @@
 !!! 5
 //if lt IE 7
-	html.no-js.lt-ie9.lt-ie8.lt-ie7(lang='en')
+  html.no-js.lt-ie9.lt-ie8.lt-ie7(lang='en')
 //if IE 7
-	html.no-js.lt-ie9.lt-ie8(lang='en')
+  html.no-js.lt-ie9.lt-ie8(lang='en')
 //if IE 8
-	html.no-js.lt-ie9(lang='en')
+  html.no-js.lt-ie9(lang='en')
 //[if gt IE 8]><!
 html.no-js(lang='en')
-	//<![endif]
-	head
-		if( typeof title !== 'undefined' )
-			title= title
-			meta(name='title', content=title )
-		meta(charset='utf-8')
-		meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
-		meta(name='description', content='')
-		meta(name='viewport', content='width=device-width')
-		link(href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900', rel='stylesheet')
-		link(href='/style/main.css', rel='stylesheet')
-		link(href='/favicon.ico', rel='icon', type='image/x-icon')
+  //<![endif]
+  head
+    if( typeof title !== 'undefined' )
+      title= title
+      meta(name='title', content=title )
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    meta(name='description', content='')
+    meta(name='viewport', content='width=device-width')
+    link(href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900', rel='stylesheet')
+    link(href='/style/main.css', rel='stylesheet')
+    link(href='/favicon.ico', rel='icon', type='image/x-icon')
+  -bodyId = (typeof page_id != 'undefined') ? page_id : title.toLowerCase()
+  body(id=bodyId)
 
-	block scripts
-		script( src='/javascript/lib/modernizr.min.js')
-		script(src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js")
-		script
-			window.jQuery || document.write("<script src=\"/javascript/lib/jquery-1.9.0.min.js\"><\/script>")
-		script( src='/javascript/plugins/jquery.hover_intent.min.js')
-		script( src='/javascript/main.js')
+    include ../partials/head
 
-	-var bodyId = (typeof page_id != 'undefined') ? page_id : title.toLowerCase();
-	body( id= bodyId )
-		include ../includes/head
-		div#container
-			block content
-		include ../includes/foot
-		script(type="text/javascript")
-			var uvOptions = {};
-			(function() {
-				var uv = document.createElement('script'); uv.type =
-				'text/javascript'; uv.async = true;
-				uv.src = ('https:' == document.location.protocol ? 'https://' :
-				'http://') + 'widget.uservoice.com/M70cUCxIkbd86851l7dxnw.js';
-				var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(uv, s);
-			})();
+    div#container
+      block content
+
+    include ../partials/foot
+
+    block scripts
+      script( src='/javascript/lib/modernizr.min.js')
+      script(src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js")
+      script
+        window.jQuery || document.write("<script src=\"/javascript/lib/jquery-1.9.0.min.js\"><\/script>")
+
+      script( src='/javascript/plugins/jquery.hover_intent.min.js')
+      script( src='/javascript/plugins/bootstrap-button.js')      
+      //- script( src='/javascript/plugins/bootstrap-modal.js')      
+
+      script(src="/javascript/plugins/jquery.cookie.js")
+      script(src='/javascript/plugins/jquery-ui.min.js')
+      script(src='/javascript/plugins/jquery.mw_combo.js')
+      script(src='/javascript/plugins/jquery.tag-it.js')
+      script(src='/javascript/plugins/jquery.mw_modal.js')
+      script(src='/javascript/plugins/jquery.mw_fieldcloner.js')
+      script(src='/javascript/plugins/jquery.catcomplete.js')
+      script(src='/javascript/plugins/jquery.select-it.js')
+      script(src='/javascript/plugins/jquery.dropdown.js')
+      script(src='/javascript/plugins/jquery.extend.js')
+      script(src='/javascript/plugins/jquery.validate.min.js')
+
+      script( src='/javascript/main.js')
+
+    script(type="text/javascript")
+      var uvOptions = {};
+      (function() {
+        var uv = document.createElement('script'); uv.type =
+        'text/javascript'; uv.async = true;
+        uv.src = ('https:' == document.location.protocol ? 'https://' :
+        'http://') + 'widget.uservoice.com/M70cUCxIkbd86851l7dxnw.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(uv, s);
+      })();

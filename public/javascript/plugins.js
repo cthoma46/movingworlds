@@ -34,10 +34,10 @@ $(document).ready(function(){
 
 	//
 
-	$(".experteer_box, .se_box").click(function(e){
+	$(".experteer_box, .org_box").click(function(e){
 		$this = $(this);
 		e.preventDefault;
-		$(".experteer_box, .se_box").removeClass('on');
+		$(".experteer_box, .org_box").removeClass('on');
 		$this.addClass('on');
 		if($this.is('.experteer_box')){
 			$("li.step2 span").text('Personal Information');
@@ -48,7 +48,7 @@ $(document).ready(function(){
 		else{
 			$("li.step2 span").text('Company Information');
 			$("li.step3 span").text('First Opportunity');
-			$('#next').attr('href', '/register/2/se');
+			$('#next').attr('href', '/register/2/org');
 			$('input[name="type"]').attr('value', 'representative');
 		};
 	});
@@ -125,7 +125,7 @@ $(document).ready(function(){
 	    var that = this;
 	    $.ajax({
 	      url: '/api/user',
-	      data: {fields:'first_name|last_name', search:search.term},
+	      data: {fields:'firstName|lastName', search:search.term},
 	      success: function(data) {
 
 	      	try	{
@@ -133,7 +133,7 @@ $(document).ready(function(){
 							$.map( data, function( item ) {
 	      	  		return {
 	      	  			 	value: item._id
-	      	  			, label: item.first_name + " " + item.last_name
+	      	  			, label: item.firstName + " " + item.lastName
 	      	  		}
 	  	      	})
 						);

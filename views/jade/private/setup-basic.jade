@@ -1,0 +1,156 @@
+extends ../layouts/layout
+
+block append scripts
+  script(src='/javascript/setup.js')
+
+block content
+  div.layout_960
+    include partials/account-nav
+    //- - if ('undefined' !== typeof errors && errors.length)
+      ul.error
+        - each error in errors
+          li= error
+    section.stack_960
+      header
+        h2 Basic Information
+      form(id='step1', action='/setup', method='post')
+
+        if (!user.hash)
+          section.stack_body.role_boxes.clearfix
+            a.experteer_box(
+              href='/setup/basic/experteer', 
+              class=(user.model === 'experteer' ? 'on' : '')
+              )
+              div.icon
+              h4 I want to go Experteering:
+              p travel & donate my expertise at an organization abroad
+            a.organization_box(
+              href='/setup/basic/organization', 
+              class=(user.model === 'organization' ? 'on' : '')
+              )
+              div.icon
+              h4 I want to be connected to an Experteer
+              p and receive free professional support for my organization
+            p.clearfix &nbsp;
+            p.clearfix &nbsp;
+            fieldset.col1of2.split
+              ul
+                li
+                  label(for='password') Password
+                  input(
+                    type='password', 
+                    id='password', 
+                    name='password', 
+                    tabindex='8'
+                    )
+            fieldset.col2of2.split
+              ul
+                li
+                  label(for='confirm') Confirm Password
+                  input(
+                    type='password', 
+                    id='confirm', 
+                    name='confirm', 
+                    tabindex='9'
+                    )
+                  
+            if (user.model === 'experteer')
+              nav.social_connects.clearfix
+                ul.no_style
+                  li
+                    a(href='/auth/linkedin').linkedin_signup Sign up with LinkedIn
+                    small.disclaimer Recommended for fast Signup
+
+        section.stack_body.clearfix.step1
+          fieldset.col1of2.split
+            ul
+              li
+                label(for='firstname') First Name
+                input(
+                  type='text', 
+                  id='firstname', 
+                  name='firstname', 
+                  tabindex='1', 
+                  value=user.firstname
+                  )
+              li
+                label(for='city') City
+                input(
+                  type='text', 
+                  id='city', 
+                  name='city', 
+                  tabindex='3', 
+                  value=user.city
+                  )
+              li.field-container
+                label Gender
+                ul
+                  li
+                    input(
+                      type='radio', 
+                      id='male', 
+                      name='gender', 
+                      value='male', 
+                      tabindex='5', 
+                      checked=user.gender=='male'
+                      )
+                    label(for='male') Male
+                  li
+                    input(
+                      type='radio', 
+                      id='female', 
+                      name='gender', 
+                      value='female', 
+                      tabindex='6', 
+                      checked=user.gender=='female'
+                      )
+                    label(for='female') Female
+          fieldset.col2of2.split
+            ul
+              li
+                label(for='lastname') Last Name
+                input(
+                  type='text', 
+                  id='lastname', 
+                  name='lastname', 
+                  tabindex='2', 
+                  value=user.lastname
+                  )
+              li
+                label(for='country') Country
+                select.data-select-value(
+                  id='country', 
+                  name='country', 
+                  tabindex='4', 
+                  data-value=user.country
+                  )
+                  include forms/countries_combo
+              li.datepicker
+                label Birthday
+                input.date(
+                  type='text', 
+                  name='birthday', 
+                  data-months='1', 
+                  data-years='2', 
+                  value=user.birthday
+                  )
+              li.field-container
+                input(
+                  type='checkbox', 
+                  id='agree', 
+                  name='agree', 
+                  checked=user.agree === true, 
+                  tabindex='11'
+                  ).required
+                label(for='agree')
+                  | I agree to MovingWorlds
+                  a(href='/terms_conditions', target='_blank') 
+                    | terms and conditions
+
+          if !user.hash
+            input(type='hidden', name='next', value='/setup/personal')
+
+          nav.progress.center.clear
+            button(type='submit')#next.big.smooth_btn Save
+      footer
+        

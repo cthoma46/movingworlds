@@ -1,0 +1,18 @@
+
+//- -var card = user
+//- include card
+if (user)
+  section#profile_status
+    if (user.name)
+      -var avatar = user
+      div(style='zoom:50%')
+        include avatar
+      h3 &nbsp; #{user.name}
+      if (user.city || user.country)
+        p &nbsp; #{user.city}, #{user.country}
+    h3 &nbsp;
+
+  div.clearfix
+
+  //- if (user.setupComplete() === false && typeof setup !== 'undefined')
+    include setup-progress

@@ -1,0 +1,202 @@
+extends ../layouts/layout
+
+block append scripts
+  script(src="/javascript/plugins/jquery-ui.min.js")
+  script(src="/javascript/plugins/jquery.tag-it.js")
+  script(src="/javascript/plugins/jquery.cookie.js")
+  script(src="/javascript/landing.js")
+block content
+  div.layout_960
+
+    div.col1of2
+
+      include partials/account-nav
+
+      if (user.model === 'organization')
+        a(href='/setup/opportunity').chunky_btn.small.round.blue 
+          | List New Opportunity
+
+      //- if (!user.setupComplete())
+        nav.clearfix
+          ul 
+            li.warning Your profile is incomplete.
+
+      section.clearfix
+        nav.clearfix
+          ul 
+            li 
+              h4 Activity
+        div#recent_activity
+          ul
+            for action, i in user.activity
+              li 
+                div.icon
+                  span.send_icn.gray
+                p 
+                  small
+                    a(href=action.account.url) #{action.account.name} 
+                    span #{action.type} 
+                    a(href=action.peer.url) #{action.peer.name} 
+                  time #{action.created} 
+            li
+              div.icon
+                span.user_icn.gray
+              p
+                small
+                  span You signed up. 
+                time #{user.created} 
+        footer
+          p &nbsp; 
+
+
+        //- div#favorites
+      //- section#quick_links.clear
+        h3 Quick Links
+        //- if !user.connections.linkedin && !user.connections.facebook && !user.connections.google
+      //- section.social_connects
+        h3 Connect
+        ul.no_style
+          //- if !user.connections.linkedin
+          li
+            a(href="/auth/linkedin").linkedin_connect Connect with LinkedIn
+          //- if !user.connections.google
+          li
+            a(href="/auth/google").google_plus_connect Connect with Google_plus
+          //- if !user.connections.facebook
+          li
+            a(href="/auth/facebook").facebook_connect Connect with Facebook
+
+    div.col2of2
+
+      section#recommendations
+        header
+          a.refresh_icn.gray.right(href='/landing') reload
+          h2 Recommendations
+        if (typeof search_result !== 'undefined' && search_result.length)
+          for card, i in search_result
+            -card.buttonView = true
+            include partials/card
+        else
+          div.info Sorry, we don't have any recommendations for you.
+
+      //- section#recommendations
+        header
+          h2 
+          a.refresh_icn.gray.right(href="/landing") reload
+        if(recommendations.length)
+          for recommend in recommendations
+            div.widget.org
+              header
+                div.icon
+                h3= recommend.name || 'Undefined'
+              section.widget_body
+                div.avatar
+                  .av_img_container
+                    if(recommend.img || recommend.type)
+                      img(src= recommend.img || "/images/icn_avatar_org.png", width="80", height="80")
+                    if(recommend.verified)
+                      div.verified
+                ul
+                  li
+                    h3= recommend.city+", "+recommend.country
+                  li
+                    strong Status:
+                    =recommend.type
+                  li
+                    -var size = recommend.interpretSize()
+                    strong Size:
+                    span( title=size.desc )= size.title
+                  li
+                    strong Field:
+                    =recommend.opportunities[0].field
+                nav
+                  ul
+                    li
+                      a(href="/organization/"+recommend._id+"/").chunky_btn Details
+        else
+          p Nothing here.
+  
+      p &nbsp;
+
+      //-section#email.stack_630.clear.tabs
+        header.clearfix
+          ul
+            li
+              a(href="#inbox")
+                | inbox
+                if(inbox.length)
+                  span.inbox_alert= inbox.length
+              div.section_strip
+            li
+              a(href="#sent") sent
+              div.section_strip
+            li.yellow.right
+              a(href="#compose") compose
+              div.section_strip
+        div.stack_body.clearfix
+          div#inbox
+            each msg in inbox
+              div.email(data-id=msg._id)
+                if( typeof msg.from !== 'undefined')
+                  div.avatar
+                    .av_img_container
+                      if(user.img || user.type)
+                        img(src= user.img || "/images/icn_avatar_"+user.type+".png", width="80", height="80")
+                      if(user.verified)
+                        div.verified
+                hgroup
+                  h3= msg.subject
+                  h4
+                    a(href="profile/"+msg.from.userId)= msg.from.fullName
+                  time(datetime="")= settings.moment( msg.sent_on ).format('MMMM D, YYYY')
+                div.msg_body= msg.body
+                nav.clearfix
+                  ul
+                    li.reply_btn: a(href="", data-uid=msg.from.userId, data-name=msg.from.fullName).chunky_btn
+                      span.send_icn.gray &nbsp;
+                      | reply
+                    li.delete_msg_btn: a(href="").x_btn X
+            nav.email_options.clearfix
+              ul
+                li.load_more_btn: a(href="").chunky_btn
+                  span.refresh_icn.gray &nbsp;
+                  | Load More
+                li.right.delete_btn
+                  label(for="delete_all") Delete all unread messages
+                  a(href="", id="delete_all").x_btn.right X
+
+          div#sent.ui-tabs-hide
+            each msg in sent
+              div.email
+                if( typeof msg.from !== 'undefined')
+                  div.avatar
+                    .av_img_container
+                      if(user.img || user.type)
+                        img(src= user.img || "/images/icn_avatar_"+user.type+".png", width="80", height="80")
+                      if(user.verified)
+                        div.verified
+                hgroup
+                  h3= msg.subject
+                  h4
+                    a(href="profile/"+msg.to.userId)= msg.to.fullName
+                  time(datetime="")= settings.moment( msg.sent_on ).format('MMMM D, YYYY')
+                div.msg_body= msg.body
+                nav.clearfix
+                  ul
+                    li.delete_btn: a(href="").x_btn X
+          div#compose.ui-tabs-hide
+            form( action="message", method="post" )
+              //- input( type="hidden", name="from", value=user.id )
+              ul
+                li
+                  label(for="to") To
+                  input(type="text", id="msg_to", name="to", class="")
+                li
+                  label(for="subject") Subject
+                  input(type="text", id="msg_subject", name="subject")
+                li
+                  label(for="body") Message
+                  textarea(id="msg_body", name="body")
+                li
+                  button(type="submit").chunky_btn.round Send
+        footer

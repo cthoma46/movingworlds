@@ -1,0 +1,146 @@
+
+if account.model === 'experteer'
+  section.stack_630
+    header
+      h2.experteering_icon
+        if account.headline
+          | #{account.headline}
+        else
+          | Profile
+        div.right
+
+          if (typeof introDate !== 'undefined')
+            a.chunky_btn.disabled.small.round Intro Requested #{introDate}
+          else if (typeof user === 'undefined' || user.id !== account.id)
+            a.chunky_btn.small.round(
+              id='request-intro', 
+              data-loading-text='Loading...',
+              href='/intro-request/' + account.id
+              ) Request Intro
+
+          span &nbsp; &nbsp; 
+
+    div.stack_body.clearfix
+      div#profile_info
+        div.clearfix
+        div.col1of2
+
+          div.detail
+            h4 Availability
+            p From #{account.experteerStart} to #{account.experteerEnd}
+
+          div.detail
+            h4 I'd like to go to
+            p #{account.countries}
+
+          div.detail
+            h4 Preferred Work Environment
+            p #{account.experteerEnvironment}
+
+          div.detail
+            h4 I'd like to make a positive impact in
+            p #{account.experteerImpact}
+
+        div.col2of2
+
+          div.detail
+            h4 Monetized Value
+            p #{account.experteerCompensation} USD / hour
+
+          div.detail
+            h4 Preferred Area of Support
+            p #{account.supportArea}
+
+          div.detail
+            h4 I get motivated & inspired by
+            p #{account.experteerMotivation}
+
+    footer
+
+if account.model === 'organization'
+
+  //- each opp in org.opportunities
+  if org.opportunities.length === 0
+    p Nothing here.
+  if org.opportunities.length > 0
+    section.stack_630
+        header
+          h2.opportunity_icon #{org.opportunities[opp_id].name}
+            | &nbsp; 
+            div.right
+
+              if (typeof user !== 'undefined' && user.id === org.id)
+                a.chunky_btn.small.round(
+                  href='/delete/opportunity/' + account.opportunities[opp_id].id
+                  ) Delete
+                | 
+                a.chunky_btn.small.round(
+                  href='/setup/opportunity/' + account.opportunities[opp_id].id
+                  ) Edit
+                | 
+                a.chunky_btn.small.round.on(
+                  href='/profile/' + account.id + '/' + account.opportunities[opp_id].id
+                  ) View
+                span &nbsp; &nbsp; 
+
+              if (typeof introDate !== 'undefined')
+                a.chunky_btn.disabled.small.round Intro Requested #{introDate}
+              else if (typeof user === 'undefined' || user.id !== account.id)
+                a.chunky_btn.small.round(
+                  id='request-intro', 
+                  data-loading-text='Loading...',
+                  href='/intro-request/' + account.id
+                  ) Request Intro
+
+              span &nbsp; &nbsp; 
+
+        div.opportunity_map
+          div.map_container
+            img( src= escape("http://maps.googleapis.com/maps/api/staticmap?center="+org.opportunities[opp_id].city+","+org.opportunities[opp_id].country+"&zoom=7&size=560x315&sensor=false&markers=icon:http://staging.movingworlds.org/images/icn_map_marker.png%7C"+org.opportunities[opp_id].city+","+org.opportunities[opp_id].country) )
+          h3= org.opportunities[opp_id].city+", "+org.opportunities[opp_id].country
+        div.stack_body.clearfix
+          div.col1of2
+            if org.opportunities[opp_id].start != null && org.opportunities[opp_id].end != null
+              h4 Dates
+              p!= moment( org.opportunities[opp_id].start ).format('MMMM D, YYYY')+" <em>to</em> "+moment( org.opportunities[opp_id].end ).format('MMMM D, YYYY')
+            if org.opportunities[opp_id].details != null
+              h4 Details
+              p= org.opportunities[opp_id].details
+            if org.opportunities[opp_id].benefits != null
+              h4 Benefits
+              p= org.opportunities[opp_id].benefits
+          div.col2of2
+            if org.opportunities[opp_id].impact
+              h4 Development Impact
+              p= org.opportunities[opp_id].impact
+            if org.opportunities[opp_id].experience
+              h4 Experience required
+              p= org.opportunities[opp_id].experience + ' Years'
+            if org.opportunities[opp_id].skills != null && org.opportunities[opp_id].skills.length > 0
+              h4 Skills needed
+              p= org.opportunities[opp_id].skills.join(', ')
+            if org.opportunities[opp_id].languages != null && org.opportunities[opp_id].skills.languages > 0
+              h4 Languages needed
+              p= org.opportunities[opp_id].languages.join(', ')
+        footer
+          -var prevOpp = opp_id-1;
+          -var nextOpp = opp_id+1
+          -var prevClass = "";
+          -var nextClass = "";
+          -if(opp_id === 0){
+            -prevOpp = 0;
+            -prevClass = "disabled";
+          -}
+          -if(opp_id === org.opportunities.length-1){
+            -nextOpp = org.opportunities.length-1;
+            -nextClass = "disabled"
+          -}
+        nav.pagination
+          ul
+            li
+              a.previous(href="/profile/"+org.id+'/'+org.opportunities[prevOpp].id+"/", class=prevClass) Left
+            li.page_info= (opp_id+1)+" "
+              em of
+              =org.opportunities.length
+            li
+              a.next(href="/profile/"+org.id+'/'+org.opportunities[nextOpp].id+"/", class=nextClass) Right

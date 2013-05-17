@@ -1,79 +1,79 @@
 extends layouts/layout
 
 block append scripts
-	script(src="/javascript/plugins/jquery.mw_ease.js")
-	script(src="/javascript/plugins/jquery.mw_feature.js")
-	script(src="/javascript/home.js")
-	script
-		var featureData = [
-				{"description":"Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","video_id":"T8nZj1Gc1XM","image":"/images/tmp_avatar1.png","h4":"Engineer","h3":"Sammy Sossa","h2":"Chicago, USA","y":"200","x":"350","type":"experteer"}
-			,	{"description":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","video_id":"gScaRmanfY0","image":"/images/icn_avatar_se.png","h4":"Biologist","h3":"Africa Now","h2":"Congo, Africa","y":"300","x":"600","type":"se"}
-			,	{"description":"Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","video_id":"dMOxfW5bLK8","image":"/images/tmp_avatar1.png","h4":"Philanthropist","h3":"Mark Horoszowski","h2":"Seattle, USA","y":"200","x":"255","type":"experteer"}
-			,	{"description":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","video_id":"MXk4GUGXNTQ","image":"/images/icn_avatar_se.png","h4":"Underwater Welder","h3":"Water Aid","h2":"Patra, Greece","y":"200","x":"600","type":"se"}
-			,	{"description":"Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","video_id":"Nyja5jlAuDM","image":"/images/tmp_avatar1.png","h4":"Linguist","h3":"Derk Norde","h2":"Darkhan, Mongolia","y":"150","x":"800","type":"experteer"}
-			,	{"description":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","video_id":"xlV6LS3vc7M","image":"/images/icn_avatar_se.png","h4":"Engineer","h3":"India Now","h2":"Karnataka, India","y":"270","x":"740","type":"se"}
-			]
+  //- script(src="/javascript/plugins/jquery.mw_ease.js")
+  //- script(src="/javascript/plugins/jquery.mw_feature.js")
+  //- script(src="/javascript/home.js")
+  //- script
+  //-   var featureData = [
+  //-       {"description":"Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","video_id":"T8nZj1Gc1XM","image":"/images/tmp_avatar1.png","h4":"Engineer","h3":"Sammy Sossa","h2":"Chicago, USA","y":"200","x":"350","type":"experteer"}
+  //-     , {"description":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","video_id":"gScaRmanfY0","image":"/images/icn_avatar_org.png","h4":"Biologist","h3":"Africa Now","h2":"Congo, Africa","y":"300","x":"600","type":"org"}
+  //-     , {"description":"Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","video_id":"dMOxfW5bLK8","image":"/images/tmp_avatar1.png","h4":"Philanthropist","h3":"Mark Horoszowski","h2":"Seattle, USA","y":"200","x":"255","type":"experteer"}
+  //-     , {"description":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","video_id":"MXk4GUGXNTQ","image":"/images/icn_avatar_org.png","h4":"Underwater Welder","h3":"Water Aid","h2":"Patra, Greece","y":"200","x":"600","type":"org"}
+  //-     , {"description":"Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","video_id":"Nyja5jlAuDM","image":"/images/tmp_avatar1.png","h4":"Linguist","h3":"Derk Norde","h2":"Darkhan, Mongolia","y":"150","x":"800","type":"experteer"}
+  //-     , {"description":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","video_id":"xlV6LS3vc7M","image":"/images/icn_avatar_org.png","h4":"Engineer","h3":"India Now","h2":"Karnataka, India","y":"270","x":"740","type":"org"}
+  //-     ]
 
 block content
-	section#feature
-		div#dotmap
-			h1 Travel and donate your skills abroad
+  section#feature
+    div#dotmap
+      h1 Travel and donate your skills abroad
 
-	div.wrapper.clearfix
-		div.layout_960
-			#invite_wrapper
-				form#invite_form(action='/invite', method='post').validate
-					label(for='email') Sign-up for an invite to MovingWorlds
-					.field_wrap
-						input(type='email', name="email", autocapitalize='off', autocorrect='off', placeholder='Email').required
-						button#submit_btn(type='submit') Invite Me!
-					p.form_help.center MovingWorlds is an invite only community. Submit your email and we’ll send you an invite as soon as we can.
-				#alert.hidden
-			div.col1of2.split
-				div#intro_video!= video
-			div#welcome.col2of2.split
-				h3.experteering_icon What is MovingWorlds?
-				p This is more than a Global Experteering Network. It's a movement. It's an opportunity to use your skills to make the world a better place. Sign up for an invite. Create a profile. Find the best place to donate your expertise. Go Experteering. You will change the world, and the world will change you.
-				p
-					a(href="/faq", title="learn more about experteering").chunky_btn Learn more about MovingWorlds
-				div#welcome_bg_gfx
-			section#se_cta.clearfix
-				div.col1of2.split
-					p Do you represent a Social Enterperprise? Find support for any business challenge, anywhere in the world.
-				div.col2of2.split
-					a(href="/se", title="learn more about experteering").chunky_btn Learn how Experteering can help your business
-			nav#mw_steps.clearfix
-				ul.step_icons
-					li.invite_step
-					li.arrow
-					li.profile_step
-					li.arrow
-					li.match_step
-					li.arrow
-					li.impact_step
-				ul
-					li.invite_step
-						div.icon
-						hgroup
-							h4 Step 1
-							h5 Request an invite
-						p To ensure community quality, MovingWorlds is invite only. Enter your email and we’ll send you an invite when the time is right.
-					li.profile_step
-						div.icon
-						hgroup
-							h4 Step 2
-							h5 Create a Profile
-						p 	Once you get your invite, tell us about your skills, what causes you care about, and where in the world you want to help.
-					li.match_step
-						div.icon
-						hgroup
-							h4 Step 3
-							h5 Find a Match
-						p 	We'll help you find the best opportunity for your skill set and travel desires. Then, like a dating site, guide you through a hosted conversation process to ensure safety and quality.
-					li.impact_step
-						div.icon
-						hgroup
-							h4 Step 4
-							h5 Make an Impact
-						p Go experteering and make an impact. Use the MovingWorlds community and library of resources for ongoing support as you change the world.
-				br.clear
+  div.wrapper.clearfix
+    div.layout_960
+      #invite_wrapper
+        form#invite_form(action='/invite', method='post').validate
+          label(for='email') Sign-up for an invite to MovingWorlds
+          .field_wrap
+            input(type='email', name="email", autocapitalize='off', autocorrect='off', placeholder='Email').required
+            button#submit_btn(type='submit') Invite Me!
+          p.form_help.center MovingWorlds is an invite only community. Submit your email and we’ll send you an invite as soon as we can.
+        #alert.hidden
+      div.col1of2.split
+        div#intro_video!= video
+      div#welcome.col2of2.split
+        h3.experteering_icon What is MovingWorlds?
+        p This is more than a Global Experteering Network. It's a movement. It's an opportunity to use your skills to make the world a better place. Sign up for an invite. Create a profile. Find the best place to donate your expertise. Go Experteering. You will change the world, and the world will change you.
+        p
+          a(href="/faq", title="learn more about experteering").chunky_btn Learn more about MovingWorlds
+        div#welcome_bg_gfx
+      section#org_cta.clearfix
+        div.col1of2.split
+          p Do you represent an Organization? Find support for any business challenge, anywhere in the world.
+        div.col2of2.split
+          a(href="/org", title="learn more about experteering").chunky_btn Learn how Experteering can help your business
+      nav#mw_steps.clearfix
+        ul.step_icons
+          li.invite_step
+          li.arrow
+          li.profile_step
+          li.arrow
+          li.match_step
+          li.arrow
+          li.impact_step
+        ul
+          li.invite_step
+            div.icon
+            hgroup
+              h4 Step 1
+              h5 Request an invite
+            p To ensure community quality, MovingWorlds is invite only. Enter your email and we’ll send you an invite when the time is right.
+          li.profile_step
+            div.icon
+            hgroup
+              h4 Step 2
+              h5 Create a Profile
+            p   Once you get your invite, tell us about your skills, what causes you care about, and where in the world you want to help.
+          li.match_step
+            div.icon
+            hgroup
+              h4 Step 3
+              h5 Find a Match
+            p   We'll help you find the best opportunity for your skill set and travel desires. Then, like a dating site, guide you through a hosted conversation process to ensure safety and quality.
+          li.impact_step
+            div.icon
+            hgroup
+              h4 Step 4
+              h5 Make an Impact
+            p Go experteering and make an impact. Use the MovingWorlds community and library of resources for ongoing support as you change the world.
+        br.clear
