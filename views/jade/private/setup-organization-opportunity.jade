@@ -28,6 +28,14 @@ block content
                 ) View
               span &nbsp; &nbsp; 
 
+          if (opportunity.published)
+            a(href='/unpublish/' + opportunity.id).chunky_btn.small.round.blue 
+              | Unpublish
+          else
+            a(href='/publish/' + opportunity.id).chunky_btn.small.round.blue 
+              | Publish
+
+
       div.stack_body.clearfix
         form(id='rep_step3', action='/setup/opportunity', method='post')
           input(type='hidden', name='opportunity[_id]', value=opportunity.id)
@@ -44,17 +52,14 @@ block content
                   placeholder='What / who you look for', 
                   value=opportunity.name
                   )
-
               li.half
                 label(for='city') city
                 input(
-                  type='text', 
-                  id='city', 
+                  type='text',
                   name='opportunity[city]', 
                   tabindex='2', 
                   value=opportunity.city
                   )
-
               li.half
                 label(for='country') Country
                 select.data-select-value(
@@ -66,9 +71,6 @@ block content
                   value=opportunity.country
                   )
                   include forms/countries_combo
-                input(type='hidden', id='country_value')
-
-
               li
                 label(for='description') Project Details
                   span max 500 characters
@@ -139,19 +141,16 @@ block content
                   name='opportunity[experienceYears]', 
                   value=opportunity.experienceYears || 0, 
                   )
-
               li
                 label Area of support needed
-                  span max 6
+                  span 
                 select.data-select-value(
-                  id='supportArea', 
+                  multiple=true,
+                  name='opportunity[supportArea]', 
                   tabindex='9', 
-                  data-value=opportunity.supportArea,
-                  value=opportunity.supportArea
-                  ).combobox
+                  data-value=opportunity.supportArea
+                  )
                   include forms/area_support_combo
-                a(style='margin-top: 5px')#add_support_needed.chunky_btn.small.right Add
-                div#areas.tagit
               li
                 label(for='skills') Favored Skills & Expertise
                   span max 3

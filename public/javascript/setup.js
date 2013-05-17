@@ -29,38 +29,38 @@ $(document).ready(function() {
     onTagAdded: function(event, tag) {}
   });
 
-  $("#add_support").click(function(e) {
-    var label, option, value;
-    e.preventDefault();
-    value = $('#supportArea').val();
-    label = $('#supportArea option:selected').text();
-    if (value !== '' && $("input[name='supportArea'][value='" + value + "']").length === 0 && $("input[name='supportArea']").length < 6) {
-      option = "<p class='tagit-choice'><span class='tagit-label'>" + label + "</span><a class='close'><span class='text-icon'>×</span><span class='ui-icon ui-icon-close'></span></a><input type='hidden' name='supportArea' value='" + value + "' /></p>";
-      $('#areas').append(option);
-      $(this).parent().val("");
-      return $("p.tagit-choice .close").click(function(e) {
-        e.preventDefault();
-        return $(this).parent().remove();
-      });
-    }
-  });
+  // $("#add_support").click(function(e) {
+  //   var label, option, value;
+  //   e.preventDefault();
+  //   value = $('#supportArea').val();
+  //   label = $('#supportArea option:selected').text();
+  //   if (value !== '' && $("input[name='supportArea'][value='" + value + "']").length === 0 && $("input[name='supportArea']").length < 6) {
+  //     option = "<p class='tagit-choice'><span class='tagit-label'>" + label + "</span><a class='close'><span class='text-icon'>×</span><span class='ui-icon ui-icon-close'></span></a><input type='hidden' name='supportArea' value='" + value + "' /></p>";
+  //     $('#areas').append(option);
+  //     $(this).parent().val("");
+  //     return $("p.tagit-choice .close").click(function(e) {
+  //       e.preventDefault();
+  //       return $(this).parent().remove();
+  //     });
+  //   }
+  // });
 
   
-  $("#add_support_needed").click(function(e) {
-    var label, option, value;
-    e.preventDefault();
-    value = $('#supportArea_needed').val();
-    label = $('#supportArea_needed option:selected').text();
-    if (value !== '' && $("input[name='opportunity[supportArea]'][value='" + value + "']").length === 0 && $("input[name='opportunity[supportArea]']").length < 6) {
-      option = "<p class='tagit-choice'><span class='tagit-label'>" + label + "</span><a class='close'><span class='text-icon'>×</span><span class='ui-icon ui-icon-close'></span></a><input type='hidden' name='opportunity[supportArea]' value='" + value + "' /></p>";
-      $('#areas').append(option);
-      $(this).parent().val("");
-      return $("p.tagit-choice .close").click(function(e) {
-        e.preventDefault();
-        return $(this).parent().remove();
-      });
-    }
-  });
+  // $("#add_support_needed").click(function(e) {
+  //   var label, option, value;
+  //   e.preventDefault();
+  //   value = $('#supportArea_needed').val();
+  //   label = $('#supportArea_needed option:selected').text();
+  //   if (value !== '' && $("input[name='opportunity[supportArea]'][value='" + value + "']").length === 0 && $("input[name='opportunity[supportArea]']").length < 6) {
+  //     option = "<p class='tagit-choice'><span class='tagit-label'>" + label + "</span><a class='close'><span class='text-icon'>×</span><span class='ui-icon ui-icon-close'></span></a><input type='hidden' name='opportunity[supportArea]' value='" + value + "' /></p>";
+  //     $('#areas').append(option);
+  //     $(this).parent().val("");
+  //     return $("p.tagit-choice .close").click(function(e) {
+  //       e.preventDefault();
+  //       return $(this).parent().remove();
+  //     });
+  //   }
+  // });
 
 
   $(".experteer_box, .org_box").click(function(e) {

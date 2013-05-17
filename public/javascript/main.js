@@ -4,7 +4,11 @@ $(document).ready(function() {
 
   $('.data-select-value').each(function (e, el) {
     el = $(el)
-    el.val(el.attr('data-value'))
+    var value = el.attr('data-value')
+    try {
+      value = JSON.parse(value)
+    } catch (e) { }
+    el.val(value)
   })
 
 

@@ -4,7 +4,7 @@
   "description": "The global experteering network",
   "version": "0.0.1-20",
   "dependencies": {
-    "bcrypt": "0.7.x",
+    "bcrypt": "0.7.2",
     "connect-flash": "0.1.x",
     "session-mongoose": "0.0.7",
     "emailjs": "0.3.x",
