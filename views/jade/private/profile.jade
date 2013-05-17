@@ -12,9 +12,17 @@ block content
       include partials/card
       include partials/profile-status
       if user
-        if (user.id === account.id && user.model === 'organization')
-          a(href='/setup/opportunity').chunky_btn.small.round.blue 
-            | List New Opportunity
+        if (user.id === account.id) 
+          if (account.published)
+            a(href='/unpublish').chunky_btn.small.round.blue 
+              | Unpublish
+          else
+            a(href='/publish').chunky_btn.small.round.blue 
+              | Publish
+
+          if (user.model === 'organization')
+            a(href='/setup/opportunity').chunky_btn.small.round.blue 
+              | List New Opportunity
       p &nbsp;
       include partials/profile-sidebar
     div.col2of2

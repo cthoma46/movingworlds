@@ -16,6 +16,11 @@ block content
         a(href='/setup/opportunity').chunky_btn.small.round.blue 
           | List New Opportunity
 
+      //- if (!user.setupComplete())
+        nav.clearfix
+          ul 
+            li.warning Your profile is incomplete.
+
       section.clearfix
         nav.clearfix
           ul 
@@ -62,15 +67,6 @@ block content
             a(href="/auth/facebook").facebook_connect Connect with Facebook
 
     div.col2of2
-
-      - if (!user.setupComplete())
-        section.stack_630
-          header 
-            h3 Setup Progress
-          div.stack_body
-            div.detail.clearfix(style='zoom:70%')
-              include partials/setup-progress
-          footer
 
       section#recommendations
         header

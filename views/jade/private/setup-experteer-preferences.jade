@@ -12,7 +12,7 @@ block content
       header
         h2 Personal Information
       section.stack_body.clearfix.step2
-        - if(!user.connections || !user.connections.linkedin || !user.connections.linkedin.id)
+        //- - if(!user.connections || !user.connections.linkedin || !user.connections.linkedin.id)
           nav.social_connects.clearfix
             ul.no_style
               li
@@ -324,7 +324,7 @@ block content
                   placeholder="E.g: I love to work on musical projects, the combination of music and teaching makes me tick!"
                   )=user.experteerMotivation
 
-          if !user.setupComplete()
+          //- if !user.headline
             input(type='hidden', name='next', value='/setup/history')
 
           nav#progress

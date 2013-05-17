@@ -1,4 +1,4 @@
-var Models = require('../models')
+var mongoose = require('mongoose')
 
 function Resource (model) {
   this.model = model
@@ -29,6 +29,9 @@ Resource.prototype = {
     conditions.query = req.query
     try {
       this.model.paginate(conditions, function (err, docs) {
+        docs = docs.map(function (doc) {
+          return doc.addDefaults()
+        })
         res.json(err || docs)
       })
     } catch (error) {
@@ -39,7 +42,7 @@ Resource.prototype = {
   read : function (req, res, next) { 
     this.model.findById(req.params._id)
       .exec(function (err, doc) {
-        res.json(err || doc)
+        res.json(err || doc.addDefaults())
       })
     ;
   },
@@ -67,30 +70,21 @@ Resource.prototype = {
 }
 
 module.exports = function (app) {
-  var accounts = new Resource(Models.Account)
-  var opportunities = new Resource(Models.Opportunity)
+  var accounts = new Resource(mongoose.model('account'))
+  var opportunities = new Resource(mongoose.model('opportunity'))
   app.all('/api/:model/:_id?', hasContentType([ 'json' ]))
   app.post('/api/account', accounts.create.bind(accounts))
   app.get('/api/account', accounts.models.bind(accounts))
   app.get('/api/account/:_id', accounts.read.bind(accounts))
   app.put('/api/account/:_id', accounts.update.bind(accounts))
   app.delete('/api/account/:_id', accounts.delete.bind(accounts))
-
   // create an opportunity
   app.post('/api/opportunity', opportunities.create.bind(opportunities))
-  
-  // read a list of opportunities
   app.get('/api/opportunity', opportunities.models.bind(opportunities))
-  
-  // read an opportunity
   app.get('/api/opportunity/:_id', opportunities.read.bind(opportunities))
-  
   // update an opportunity
   app.put('/api/opportunity/:_id', opportunities.update.bind(opportunities))
-
-  // delete an opportunity
   app.delete('/api/opportunity/:_id', opportunities.delete.bind(opportunities))
-
 }
 
 /**

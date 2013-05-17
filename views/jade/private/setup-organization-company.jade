@@ -174,7 +174,7 @@ block content
                   | I agree to the&nbsp;
                   a(href="/rules_conduct", target="_blank") rules of conduct
 
-          if !user.setupComplete()
+          //- if !user.orgName
             input(type='hidden', name='next', value='/setup/opportunity')
 
           nav#progress

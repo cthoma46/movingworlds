@@ -14,7 +14,8 @@ block content
       header
         h2 Basic Information
       form(id='step1', action='/setup', method='post')
-        if (!user.setupBasicComplete())
+
+        if (!user.hash)
           section.stack_body.role_boxes.clearfix
             a.experteer_box(
               href='/setup/basic/experteer', 
@@ -146,7 +147,7 @@ block content
                   a(href='/terms_conditions', target='_blank') 
                     | terms and conditions
 
-          if !user.setupComplete()
+          if !user.hash
             input(type='hidden', name='next', value='/setup/personal')
 
           nav.progress.center.clear

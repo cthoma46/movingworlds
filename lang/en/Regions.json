@@ -1,9 +1,11 @@
-{
-  "AFRICA" : "Africa",
-  "ASIA" : "Asia",
-  "EUROPE" : "Europe",
-  "NAMERICA" : "North America",
-  "SAMERICA" : "South America",
-  "OCEANIA" : "Oceania",
-  "ANTARCTICA" : "Antarctica"
-}
+[
+  "Africa",
+  "Australia",
+  "Central Asia",
+  "Europe",
+  "Middle-East",
+  "North America",
+  "South America",
+  "South-Asia",
+  "South-East Asia"
+]
