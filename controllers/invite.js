@@ -31,23 +31,26 @@ module.exports = {
       return res.redirect('/login')
     }
     User.find({ email : email }).count().exec(function (err, total) {
-      if (!err) {
-        if (total === 0) {
-          mail('invitation-request', { 
-            to : email,
-            subject : inviteRequestedSubject
-          }, function (err, message) {
-            user = new User()
-            user.email = email
-            user.created = new Date()
-            user.save(function (err) {
-              return renderInvitePage(req, res, user)
-            })
-          })
-        }
+      if (err) { 
+        req.flash('error', err)
+        return res.redirect('back')
       }
-      req.flash('info', inviteAlreadyRequested)
-      return res.redirect('back')
+      if (total === 0) {
+        mail('invitation-request', { 
+          to : email,
+          subject : inviteRequestedSubject
+        }, function (err, message) {
+          user = new User()
+          user.email = email
+          user.created = new Date()
+          user.save(function (err) {
+            return renderInvitePage(req, res, user)
+          })
+        })
+      } else {
+        req.flash('info', inviteAlreadyRequested)
+        return res.redirect('back')
+      }
     })
   }, 
   inviteExtras : function (req, res) {
