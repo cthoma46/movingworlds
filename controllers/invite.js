@@ -40,6 +40,11 @@ module.exports = {
           to : email,
           subject : inviteRequestedSubject
         }, function (err, message) {
+          if (err) {
+            console.error(err, 'message', message)
+            req.flash('error', err.message)
+            return res.redirect('back')
+          }
           user = new User()
           user.email = email
           user.created = new Date()
@@ -56,6 +61,7 @@ module.exports = {
   inviteExtras : function (req, res) {
     User.findOne({ email : req.body.email }, function (error, user) {
       if (!user) {
+        console.warning(savingError)
         req.flash('message', savingError)
         return renderInvitePage(req, res, user)
       }
@@ -66,11 +72,17 @@ module.exports = {
               to : user.name + '<' + user.email + '>',
               subject : inviteSubject,
               url : settings.url + '/invite/' + user.inviteCoupon
+            }, function (err, message) {
+              if (err) {
+                console.error(err, 'message', message)
+                req.flash('error', err.message)
+                return res.redirect('back')
+              }
+              req.flash('modal', inviteSentModal[0])
+              req.flash('modal', inviteSentModal[1])
+              req.flash('modal', inviteSentModal[2])
+              return renderInvitePage(req, res, user)
             })
-            req.flash('modal', inviteSentModal[0])
-            req.flash('modal', inviteSentModal[1])
-            req.flash('modal', inviteSentModal[2])
-            return renderInvitePage(req, res, user)
           } else {
             req.flash('message', savingError)
             return renderInvitePage(req, res, user)
