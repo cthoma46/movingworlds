@@ -9,7 +9,6 @@ module.exports = function (schema, opts) {
     var paths = Object.keys(schema.paths)
     paths = paths.filter(function (path) {
       if (Array.isArray(schema.paths[path].options.type)) {
-        console.log(path)
         return schema.paths[path].options.type[0].name === 'String'
       }
       return schema.paths[path].options.type.name === 'String'
