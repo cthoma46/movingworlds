@@ -1,18 +1,22 @@
 
-//- -var card = user
-//- include card
-if (user)
-  section#profile_status
-    if (user.name)
-      -var avatar = user
-      div(style='zoom:50%')
-        include avatar
-      h3 &nbsp; #{user.name}
-      if (user.city || user.country)
-        p &nbsp; #{user.city}, #{user.country}
-    h3 &nbsp;
+section#profile_status
+  div(style='zoom:50%')
+    -var avatar = user
+    include avatar
+  h3 &nbsp; #{user.name}
+  if (user.city || user.country)
+    p 
+      | &nbsp; #{user.city}, #{user.country}
+      br 
+      small: a(href='#invite-colleagues') Invite colleagues
 
-  div.clearfix
+  if (user.completion < 0.98)
+    div.completeness
+      div.progress_bar
+        p You're profile is 
+          strong #{(user.completion * 100)} %  
+          | complete 
+      div.bar
+        div.bar_inner(style="width:" + ( (user.completion * 100) + "%" ))
 
-  //- if (user.setupComplete() === false && typeof setup !== 'undefined')
-    include setup-progress
+
