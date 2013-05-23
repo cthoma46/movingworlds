@@ -1,0 +1,72 @@
+extends layouts/layout
+
+block append scripts
+	script
+		var featureData = !{ JSON.stringify( JSON.parse(snippets.feature_data) ) }
+	script( src='/javascript/plugins/jquery.mw_feature.js')
+	script( src='/javascript/home.js')
+
+block content
+	section#feature
+		div#dotmap
+			h1=snippets.headline
+	div.wrapper.clearfix
+		div.layout_960
+			#invite_wrapper
+				form#invite_form(action='/invite', method='post').validate
+					label(for='email') Sign-up for an invite to MovingWorlds
+					.field_wrap
+						input(type='email', name="email", autocapitalize='off', autocorrect='off', placeholder='Email').required
+						button#submit_btn(type='submit') Invite Me!
+					p.form_help.center MovingWorlds is an invite only community. Submit your email and we’ll send you an invite as soon as we can.
+				#alert.hidden
+			div.col1of2.split
+				div#intro_video
+					iframe(width="439", height="253", src="http://www.youtube.com/embed/"+snippets.video_id, frameborder="0", allowfullscreen)
+			div#welcome.col2of2.split
+				h3.experteering_icon What is MovingWorlds?
+				!=body
+				p
+					a(href="/faq", title="learn more about experteering").chunky_btn Learn more about MovingWorlds
+				div#welcome_bg_gfx
+			section#se_cta.clearfix
+				div.col1of2.split
+					p Do you represent a Social Enterperprise? Find support for any business challenge, anywhere in the world.
+				div.col2of2.split
+					a(href="/se", title="learn more about experteering").chunky_btn Learn how Experteering can help your business
+			nav#mw_steps.clearfix
+				ul.step_icons
+					li.invite_step
+					li.arrow
+					li.profile_step
+					li.arrow
+					li.match_step
+					li.arrow
+					li.impact_step
+				ul
+					li.invite_step
+						div.icon
+						hgroup
+							h4 Step 1
+							h5 Request an invite
+						p=snippets.step_one
+					li.profile_step
+						div.icon
+						hgroup
+							h4 Step 2
+							h5 Create a Profile
+						p=snippets.step_two
+					li.match_step
+						div.icon
+						hgroup
+							h4 Step 3
+							h5 Find a Match
+						p=snippets.step_three
+					li.impact_step
+						div.icon
+						hgroup
+							h4 Step 4
+							h5 Make an Impact
+						p=snippets.step_four
+				br.clear
+

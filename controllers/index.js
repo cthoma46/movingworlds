@@ -1,5 +1,6 @@
 var passport = require('passport')
 var home = require('./home') 
+var generic = require('./generic');
 var pages = require('./account-pages') 
 var invite = require('./invite') 
 var access = require('../mixins/access')
@@ -58,4 +59,7 @@ module.exports = function (app) {
   )
   // app.get(                  '/blog', home.blog)
   // app.get(              '/finalize', home.finalization)
+
+  app.get('/about', generic.about);
+  app.get('/partners', generic.partners);
 }
