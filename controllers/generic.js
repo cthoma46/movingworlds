@@ -20,6 +20,7 @@ module.exports = {
       title: 'About'
     }
   }),
+
   partners: renderGeneric({
     view: 'generic/pages/partners',
     context: {
@@ -27,4 +28,35 @@ module.exports = {
       title: 'Partners'
     }
   }),
+
+  faq: renderGeneric({
+    view: 'generic/pages/faq',
+    context: {
+      slug: 'faq',
+      title: 'Frequently Asked Questions'
+    }
+  }),
+
+  resources: renderGeneric({
+    view: 'generic/pages/resources',
+    context: {
+      slug: 'resources',
+      title: 'Resources'
+    }
+  }),
+
+  organization_info: renderGeneric({
+    view: 'generic/pages/organizations',
+    context: {
+      slug: 'organization-info',
+      title: 'Info for Organizations'
+    }
+
+  experteer_info: renderGeneric({
+    view: 'generic/pages/experteers',
+    context: {
+      slug: 'organization-info',
+      title: 'Info for Organizations'
+    }
+  }),  }),
 }
