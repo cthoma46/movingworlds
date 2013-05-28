@@ -51,12 +51,29 @@ module.exports = {
       slug: 'organization-info',
       title: 'Info for Organizations'
     }
+  }),
 
   experteer_info: renderGeneric({
     view: 'generic/pages/experteers',
     context: {
-      slug: 'organization-info',
-      title: 'Info for Organizations'
+      slug: 'experteer-info',
+      title: 'Info for Experteers'
     }
-  }),  }),
+  }),
+
+  contact: renderGeneric({
+    view: 'generic/pages/contact',
+    context: {
+      slug: 'contact',
+      title: 'Contact'
+    }
+  }),
+
+  terms: renderGeneric({
+    view: 'generic/pages/terms_of_use',
+    context: {
+      slug: 'terms',
+      title: 'Terms of Use'
+    }
+  })
 }

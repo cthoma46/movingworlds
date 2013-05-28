@@ -64,6 +64,8 @@ module.exports = function (app) {
   app.get('/partners', generic.partners);
   app.get('/faq', generic.faq);
   app.get('/resources', generic.resources);
-  app.get('/resources/information-for-experteers.html', generic.experteers);
-  app.get('/resources/information-for-hosting-organizations.html', generic.organizations);
+  app.get('/resources/information-for-experteers.html', generic.experteer_info);
+  app.get('/resources/information-for-hosting-organizations.html', generic.organization_info);
+  app.get('/contact', generic.contact);
+  app.get('/terms-of-use', generic.terms);
 }
