@@ -1,13 +1,17 @@
 
 section#profile_status
-  //- div(style=' ')
-    -var avatar = user
+
+  -var avatar = user
+  div.avatar.avatar-small
     include avatar
+
   h3 #{user.name}
   small.right
     a(href='#invite-colleagues') Invite colleagues
   if (user.city || user.country)
     p #{user.city}, #{user.country}
+
+  p.clearfix
 
   if (user.completion < 0.98)
     div.completeness

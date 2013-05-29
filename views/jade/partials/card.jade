@@ -18,8 +18,11 @@ div.widget(class=card.model)
       h3 #{card.industry}
 
   section.widget_body
-    -var avatar = card
-    include avatar
+    
+    -var avatar = user
+    div.avatar
+      include avatar
+
     ul.clearfix
 
       if (card.model === 'organization' && card.organization !== undefined)

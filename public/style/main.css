@@ -381,9 +381,9 @@ nav.email_options label{font:12px "Lato",Helvetica,Arial,sans-serif;text-transfo
 .send_icn.gray{background-position:-160px -20px}
 .foward_icn.gray{background-position:-180px -20px}
 .chunky_btn .check_icn,.chunky_btn .doc_icn,.chunky_btn .star_icn,.chunky_btn .user_icn,.chunky_btn .heart_icn,.chunky_btn .refresh_icn,.chunky_btn .compose_icn,.chunky_btn .read_icn,.chunky_btn .send_icn,.chunky_btn .foward_icn{margin-right:5px}
-.avatar{position:relative;display:block;width:80px;height:79px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-moz-box-shadow:0 1px 0 #fff;-webkit-box-shadow:0 1px 0 #fff;box-shadow:0 1px 0 #fff;border-top:1px solid rgba(0,0,0,0.3);background-color:#fff;}
-.avatar .av_img_container{width:80px;height:79px;overflow:hidden;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px}
+.avatar{position:relative;display:block;width:80px;height:80px;overflow:hidden;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-moz-box-shadow:0 1px 0 #fff;-webkit-box-shadow:0 1px 0 #fff;box-shadow:0 1px 0 #fff;border-top:1px solid rgba(0,0,0,0.3);background-color:#fff;}
 .avatar .verified{background:transparent url("/images/spt_verified.png") 0 0 no-repeat;position:absolute;display:block;top:-8px;right:-8px;width:24px;height:26px}
+.avatar-small{width:40px;height:40px;overflow:hidden;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;margin:0 8px 0 0}
 .status{float:left;height:22px;padding:2px 0 0 30px;background:transparent url("../images/spt_lights.png") 0 0 no-repeat;font-weight:bold;line-height:21px;text-shadow:0 1px 0 #fff;text-transform:capitalize;}
 .status span{background-color:#a8e04f;color:#fff;font-size:14px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:3px 10px;text-shadow:none}
 .status.green,.status.on{background-position:0 0;color:#86b23e}
