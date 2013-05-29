@@ -1,17 +1,22 @@
+var _ = require('underscore')
 var youtube = require('youtube')
 var account = require('../mixins/account-actions')
 var activity = require('../mixins/activity')
 
-module.exports = {
-  index : function (req, res, next) {
-    return res.render('home', {
-      title : 'Moving Worlds', 
-      page_id : 'home', 
-      video : youtube.embed('BcTQp935yco', 439, 253)
-    })
-  },
+module.exports = function (req, res, next) {
+  if (req.url !== '/') {
+    return res.redirect('/')
+  }
+  return res.render('home', {
+    title : 'Moving Worlds', 
+    page_id : 'home', 
+    video : youtube.embed('BcTQp935yco', 439, 253)
+  })
+}
+
+_.extend(module.exports, {
   org : function (req, res) {
-    return res.render('home_org', {
+    return res.render('home-org', {
       title : 'Moving Worlds', 
       page_id : 'org_home', 
       video : youtube.embed('BcTQp935yco', 439, 253)
@@ -35,4 +40,4 @@ module.exports = {
   finalization : function (req, res) { 
     return res.render('finalization', { title : 'Finalization' })
   },
-}
+})
