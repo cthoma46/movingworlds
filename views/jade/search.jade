@@ -1,8 +1,8 @@
-extends ../layouts/layout
+extends layouts/layout
 
 block append scripts
-  script(src="/javascript/setup.js")
-  script(src="/javascript/search.js")
+  script(src='/javascript/setup.js')
+  script(src='/javascript/search.js')
 
 block content
 
@@ -19,7 +19,7 @@ block content
       form#search-form(action='#', method='get')
         ul
           li
-            input(type='text', name='q', value=search_str)
+            input(type='text', name='q', value=query.q)
           li
             button.col1of2.chunky_btn.blue(type='submit', form='search-form') 
               | Search

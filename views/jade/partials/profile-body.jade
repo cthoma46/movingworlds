@@ -19,6 +19,11 @@ if account.model === 'experteer'
               ) Request Intro
 
           span &nbsp; &nbsp; 
+      
+    div.opportunity_map
+      div.map_container
+        img( src= escape("http://maps.googleapis.com/maps/api/staticmap?center="+account.city+","+account.country+"&zoom=7&size=560x315&sensor=false&markers=icon:http://staging.movingworlds.org/images/icn_map_marker.png%7C"+account.city+","+account.country) )
+      h3= account.city+", "+account.country
 
     div.stack_body.clearfix
       div#profile_info
@@ -71,11 +76,11 @@ if account.model === 'organization'
 
               if (typeof user !== 'undefined' && user.id === org.id)
                 a.chunky_btn.small.round(
-                  href='/delete/opportunity/' + account.opportunities[opp_id].id
+                  href='/opportunity/' + account.opportunities[opp_id].id + '/delete'
                   ) Delete
                 | 
                 a.chunky_btn.small.round(
-                  href='/setup/opportunity/' + account.opportunities[opp_id].id
+                  href='/opportunity/' + account.opportunities[opp_id].id
                   ) Edit
                 | 
                 a.chunky_btn.small.round.on(

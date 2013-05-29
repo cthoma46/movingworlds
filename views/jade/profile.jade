@@ -1,4 +1,4 @@
-extends ../layouts/layout
+extends layouts/layout
 
 block append scripts
   if user
@@ -14,15 +14,11 @@ block content
       if user
         if (user.id === account.id) 
           if (account.published)
-            a(href='/unpublish').chunky_btn.small.round.blue 
+            a(href='/unpublish').chunky_btn.small.round 
               | Unpublish
           else
-            a(href='/publish').chunky_btn.small.round.blue 
+            a(href='/publish').chunky_btn.small.round 
               | Publish
-
-          if (user.model === 'organization')
-            a(href='/setup/opportunity').chunky_btn.small.round.blue 
-              | List New Opportunity
       p &nbsp;
       include partials/profile-sidebar
     div.col2of2

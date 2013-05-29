@@ -1,0 +1,96 @@
+-var account = account || user
+- if (typeof card.organization !== 'undefined') 
+  - card.avatar = card.organization.avatar
+  - card.type = card.organization.type
+  - card.industry = card.industry || card.organization.industry
+  - card.orgRegistered = card.organization.orgRegistered
+  - card.orgRegisteredYear = card.organization.orgRegisteredYear
+  - card.orgRegisteredLocation = card.organization.orgRegisteredLocation
+
+div.widget(class=card.model)
+  header
+    div.icon
+
+    //- private
+    if user.loggedIn
+      h3 #{card.name}
+    else
+      h3 #{card.industry}
+
+  section.widget_body
+    -var avatar = card
+    include avatar
+    ul.clearfix
+
+      if (card.model === 'organization' && card.organization !== undefined)
+
+        //- opportunity cards
+        //- private
+        if user.loggedIn
+          li
+            label  
+              strong #{card.organization.name}
+        li
+          label 
+            em
+              strong #{card.start} 
+              span to  
+              strong #{card.end} 
+        li
+          label Location 
+          strong= card.city + ', ' + card.country
+        li
+          label Industry
+          strong #{card.industry}
+        //-
+
+      else if (card.model === 'organization' && card.organization == undefined)
+
+        //- organization cards
+        li
+          label Size 
+          strong #{card.size.title} 
+        li
+          label Type 
+          strong #{card.type}
+        li
+          label Location 
+          strong= card.city + ', ' + card.country
+
+        li
+          label Industry
+          strong #{card.industry}
+        //- private
+        //-
+
+      else if card.model === 'experteer'
+        //- experteer cards
+        li
+          label Location 
+          strong= card.city + ', ' + card.country
+        li
+          label Industry
+          strong #{card.industry}
+        li
+          label Age 
+          strong #{card.age}
+        li
+          label Exp 
+          strong #{card.experienceYears} years
+        //- private
+        //-
+
+    nav 
+      ul 
+        if typeof card.buttonView !== 'undefined'
+          if typeof card.opportunity === 'undefined' 
+            li: a(href=card.url).chunky_btn.small Details
+          else
+            li: a(href='/profile/' + card.organization.id + '/' + card.id).chunky_btn.small Details 
+
+        if (typeof card.buttonEdit !== 'undefined')
+          if (typeof card.opportunity === 'undefined')
+            li: a(href='/landing').chunky_btn.small Edit
+          else
+            li: a(href='/setup/opportunity/' + card.id).chunky_btn.small Edit
+    div.clearfix &nbsp;
