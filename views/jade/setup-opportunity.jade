@@ -1,4 +1,4 @@
-extends ../layouts/layout
+extends layouts/layout
 
 block append scripts
     script(src='/javascript/setup.js')
@@ -6,8 +6,8 @@ block append scripts
 block content
   div.layout_960
     include partials/account-nav
-    section#edit.stack_960(class=((user.opportunities && user.opportunities.length) ? '' : '' ))
-      - if (typeof user.opportunities !== 'undefined')
+    section#edit.stack_960
+      - if (opportunity.name.length === 0)
         header
           h2.opportunity_icon Add a new Opportunity
       - else
@@ -16,11 +16,11 @@ block content
             | &nbsp; 
             div.right
               a.chunky_btn.small.round(
-                href='/delete/opportunity/' + opportunity.id
+                href='/opportunity/' + opportunity.id + '/delete'
                 ) Delete
               | 
               a.chunky_btn.small.round.on(
-                href='/setup/opportunity/' + opportunity.id
+                href='/opportunity/' + opportunity.id
                 ) Edit
               | 
               a.chunky_btn.small.round(
@@ -28,16 +28,12 @@ block content
                 ) View
               span &nbsp; &nbsp; 
 
-          if (opportunity.published)
-            a(href='/unpublish/' + opportunity.id).chunky_btn.small.round.blue 
-              | Unpublish
-          else
-            a(href='/publish/' + opportunity.id).chunky_btn.small.round.blue 
-              | Publish
-
-
       div.stack_body.clearfix
-        form(id='rep_step3', action='/setup/opportunity', method='post')
+        form(
+          id='rep_step3', 
+          action='/opportunity/' + opportunity.id, 
+          method='post'
+          )
           input(type='hidden', name='opportunity[_id]', value=opportunity.id)
           fieldset.col1of2.split
             ul
@@ -269,5 +265,27 @@ block content
                   name='opportunity[learn]'
                   )=opportunity.learn
           nav#progress
+            ul
+              li
+                label Published?
+                ul
+                  li
+                    input(
+                      type='radio', 
+                      name='opportunity[published]', 
+                      value='true', 
+                      checked=(opportunity.published)
+                      )
+                    label Yes
+                  li
+                    input(
+                      type='radio', 
+                      name='opportunity[published]', 
+                      value='false', 
+                      checked=(!opportunity.published 
+                        || opportunity.published === 'false')
+                      )
+                    label No
+
             button(type='submit')#next.big.smooth_btn Save
       footer
