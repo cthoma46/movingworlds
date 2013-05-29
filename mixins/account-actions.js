@@ -115,12 +115,6 @@ account.searchRequest = function (req, res, next) {
 
 account.defaults = function (req, res, next) {
   req.user.addDefaults()
-  // if (req.user.setupBasicComplete() === false) {
-    // res.locals({ headtype : 'nonav' })
-  // }
-  // if (req.user.setupComplete() === false) {
-    // res.locals({ setup : true })
-  // }
   return next()
 }
 
@@ -136,17 +130,16 @@ account.password = function (req, res, next) {
   return next()
 }
 
-account.opportunity = function (req, res, next) {
-  req.user.opportunityUpsert(req.body.opportunity, function (err) {
-    if (err) {
-      return next(err)
-    }
-    return res.redirect(req.body.next || '/profile/' 
-      + req.user.id + '/' 
-      + req.body.opportunity._id) 
-  })
-}
-
+// account.opportunity = function (req, res, next) {
+//   req.user.opportunityUpsert(req.body.opportunity, function (err) {
+//     if (err) {
+//       return next(err)
+//     }
+//     return res.redirect(req.body.next || '/profile/' 
+//       + req.user.id + '/' 
+//       + req.body.opportunity._id) 
+//   })
+// }
 
 account.experteer = function (req, res, next) { 
   console.log('setup.experteer.basic', req.user.model)
@@ -160,15 +153,15 @@ account.organization = function (req, res, next) {
   next()
 }
 
-account.opportunityDelete = function (req, res, next) { 
-  req.user.opportunityRemove(req.params.id, function (error) {
-    if (error) { 
-      console.error(error)
-      return next(error)
-    }
-    return res.redirect('/landing')
-  })
-}
+// account.opportunityDelete = function (req, res, next) { 
+//   req.user.opportunityRemove(req.params.id, function (error) {
+//     if (error) { 
+//       console.error(error)
+//       return next(error)
+//     }
+//     return res.redirect('/landing')
+//   })
+// }
 
 account.intro = function (req, res, next) {
   // req.user.id wants to contact req.params._id
