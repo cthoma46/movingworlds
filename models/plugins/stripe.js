@@ -19,34 +19,40 @@ module.exports = function (schema, opts) {
    * or if this account has already been added to stripe then do nothing
    * 
    */
-
-  schema.method('getStripeId', function (stripeToken, callback) {
-    if (typeof stripeToken !== 'string') throw new Error('stripeToken required')
+  schema.method('getStripeId', function (stripeToken, next) {
+    if (typeof stripeToken !== 'string') {
+      return next(new Error('stripeToken required'))
+    } 
     var account = this
+    var opts = { card : stripeToken, email : account.email }
     if (account.stripeId) {
-      return callback(account.stripeId)
+      return next(null, account.stripeId)
     }
     stripe
       .customers
-      .create({ card : stripeToken, email : account.email }, function (e, res) {
-        if (e) {
-          return callback(e)
+      .create(opts, function (err, res) {
+        if (err) {
+          return next(err)
         }
         account.stripeId = res.id
-        return callback(null, res.id)
+        return next(null, account.stripeId)
       })
     ;
   })
 
-  schema.method('charge', function (options, callback) {
-    if (!options.cents) throw new Error('options.cents is required')
-    if (!options.stripeToken) throw new Error('options.stripeToken is required')
+  schema.method('charge', function (options, next) {
+    if (!options.cents) {
+      return next(new Error('options.cents is required'))
+    }
+    if (!options.stripeToken) {
+      return next(new Error('options.stripeToken is required'))
+    }    
     var account = this
     account.plan = options.cents
     account.getStripeId(options.stripeToken, function (err, stripeId) {
       if (err) {
-        return callback(err)
-      }    
+        return next(err)
+      } 
       var params = { 
         amount : options.cents, 
         currency : 'usd', 
@@ -56,15 +62,15 @@ module.exports = function (schema, opts) {
         .charges
         .create(params, function (error, response) {
           if (error) {
-            return callback(error)
+            return next(error)
           }
           if (response.paid === true) {
             account.stripeCharges = account.stripeCharges || []
             account.stripeCharges.push(response)
             account.markModified('stripeCharges')
-            return callback()
+            return next()
           }
-          return callback(new Error('Sorry, please try again or contact us'))
+          return next(new Error('Sorry, please try again or contact us'))
         })
       ;
     })
