@@ -1,18 +1,17 @@
 
 section#profile_status
-  div(style='zoom:50%')
+  //- div(style=' ')
     -var avatar = user
     include avatar
-  h3 &nbsp; #{user.name}
+  h3 #{user.name}
+  small.right
+    a(href='#invite-colleagues') Invite colleagues
   if (user.city || user.country)
-    p 
-      | &nbsp; #{user.city}, #{user.country}
-      br 
-      small: a(href='#invite-colleagues') Invite colleagues
+    p #{user.city}, #{user.country}
 
   if (user.completion < 0.98)
     div.completeness
-      div.progress_bar
+      div.progress_bar(title='Please fill out: #{user.incomplete}')
         p You're profile is 
           strong #{(user.completion * 100)} %  
           | complete 
