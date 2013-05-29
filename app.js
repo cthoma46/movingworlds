@@ -15,6 +15,7 @@ var youtube = require('youtube')
 var controllers = require('./controllers')
 var lang = require('./lang')
 var app = express()
+var Account = mongoose.model('account')
 
 function methodOverrideGET (key) {
   key = key || '_method'
@@ -83,6 +84,8 @@ app.configure(function () {
   app.use(passport.session())
   app.use(flash())
   app.use(function (req, res, next) {
+    console.log(req.session)
+    req.user = req.user || new Account()
     res.locals.lang = lang
     res.locals.flash = req.flash.bind(req)
     res.locals.user = req.user
