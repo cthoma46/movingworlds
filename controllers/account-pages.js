@@ -23,10 +23,10 @@ module.exports = {
   dashboard : function (req, res) {
     req.query.limit = 2
     req.query.page = 1
-    req.query.filter = { industry : req.user.industry }
+    req.query.filter = { }
     activity.getActivity(req, res, function () {
       actions.searchRequest(req, res, function () {
-        return res.render('private/dashboard', { title : 'Dashboard' })
+        return res.render('dashboard', { title : 'Dashboard' })
       })
     })
   },
@@ -37,7 +37,7 @@ module.exports = {
   },
 
   search : function (req, res, next) {
-    res.render('private/search', {
+    res.render('search', {
       title : 'Search',
       headtype : 'loggedin',
       message : '',
@@ -78,7 +78,7 @@ module.exports = {
       })
     })
     function renderProfile (account, opp_id) {
-      res.render('private/profile', {
+      res.render('profile', {
         title : 'MovingWorlds Profile - ' + account.name,
         experteer : account,
         org : account,
@@ -126,7 +126,7 @@ module.exports = {
       doc.addDefaults()
       req.user = doc
       res.locals({ title : 'Setup Basic Information' })
-      return res.render('private/setup-basic')
+      return res.render('setup-basic-info')
     })
   },
 
@@ -138,40 +138,16 @@ module.exports = {
    */
   setupReview : function (req, res, next) { 
     res.locals({ title : 'Setup Review' })
-    return res.render('private/setup-organization-review')
+    return res.render('setup-review')
   },
 
   /**
-   * 3. Add Opportunity
+   * 3. Add/Edit Opportunity
    * - Organization
    * 
    */
-  setupNewOpportunity : function (req, res, next) { 
-    req.user
-      .opportunityList()
-      .populate('organization')
-      .exec(function (err, docs) {
-        if (err) {
-          return next(err)
-        }
-        req.user.opportunities = docs
-        res.locals({ title : 'Setup Opportunities' })
-        res.locals({ opportunity : new Opportunity() })
-        return res.render('private/setup-organization-opportunity')
-      })
-    ;
-  },
-
-  setupOpportunity : function (req, res, next) { 
-    Opportunity.findById(req.params.id, function (err, doc) {
-      if (err) {
-        req.flash('error', err)
-        return res.redirect('back')
-      }
-      res.locals({ title : 'Edit Opportunity' })
-      res.locals({ opportunity : doc })
-      return res.render('private/setup-organization-opportunity')
-    })
+  setupOpportunity : function (req, res, next) {
+    return res.render('setup-opportunity')
   },
 
   /**
@@ -184,7 +160,7 @@ module.exports = {
       return res.redirect('/setup/company')
     }
     res.locals({ title : 'Setup Experteering Preferences' })
-    return res.render('private/setup-experteer-preferences')
+    return res.render('setup-preferences')
   },
 
   /**
@@ -219,7 +195,7 @@ module.exports = {
         ];
     }
     res.locals({ title : 'Setup Professional Skills' })
-    return res.render('private/setup-experteer-skills')
+    return res.render('setup-skills')
   },
 
   /**
@@ -229,7 +205,7 @@ module.exports = {
    */
   setupPlan : function (req, res, next) { 
     res.locals({ title : 'Choose Plan & Payment' })
-    return res.render('private/setup-experteer-plan')
+    return res.render('setup-plan')
   },
 
   /**
@@ -239,7 +215,7 @@ module.exports = {
    */
  setupCompany : function (req, res, next) { 
     res.locals({ title : 'Setup Company Information' })
-    return res.render('private/setup-organization-company')
+    return res.render('setup-company-info')
   },
 
 }
