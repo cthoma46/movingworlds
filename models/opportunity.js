@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
 var plugins = require('./plugins')
 var $oid = mongoose.Schema.Types.ObjectId
 
-var OpportunitySchema = new mongoose.Schema({
+var Opportunity = new mongoose.Schema({
   start :           { type : Date,   default : Date.now, get : _.dateFormat },
   end :             { type : Date,   default : Date.now, get : _.dateFormat },
   deadline :        { type : Date,   default : Date.now, get : _.dateFormat },
@@ -23,7 +23,8 @@ var OpportunitySchema = new mongoose.Schema({
   compensation :    { type : String, default : '' },
   benefits :        { type : String, default : '' },
   learn :           { type : String, default : '' },
-  organization :    { type : $oid, ref : 'organization', required : true }
+  organization :    { type : $oid, ref : 'organization', required : true },
+  published :       { type : Boolean, default : false },
 }, { 
   strict : 'throw', 
   collection : 'opportunities',
@@ -32,16 +33,26 @@ var OpportunitySchema = new mongoose.Schema({
   toObject : { getters : true, virtuals : true } 
 })
 
-OpportunitySchema
+Opportunity
+  .path('published')
+  .set(function (val) {
+    if (val === 'false') {
+      return false
+    }
+    return !!val
+  })
+;
+
+Opportunity
   .plugin(plugins.search, { excluded : [ '_id' ] })
   .plugin(plugins.incompleteFields)
   .plugin(plugins.discriminatorKey)
 
-OpportunitySchema.virtual('url').get(function () {
+Opportunity.virtual('url').get(function () {
   var org = typeof this.organization.id === 'undefined' 
     ? this.organization 
     : this.organization.id 
   return '/profile/' + org + '/' + this.id
 })
 
-module.exports = OpportunitySchema
+module.exports = Opportunity
