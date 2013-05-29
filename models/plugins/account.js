@@ -27,10 +27,13 @@ module.exports = function (schema, opts) {
     recommendedBy :   { type : String },
     published :       { type : Boolean, default : false },
   })
- 
+
+  schema
+    .path('loggedIn')
+
   schema
     .virtual('age')
-    .get(function () {
+    .get(function (val) {
       if (!this.birthday) {
         return null
       }
