@@ -93,5 +93,5 @@ passport.use(new LinkedInStrategy({
   passReqToCallback : true
 }, function (req, token, tokenSecret, profile, done) {
   var email = req.user.email || null 
-  User.upsertLinkedInUser(profile, email, done)
+  Account.upsertLinkedInUser(profile, email, done)
 }))
