@@ -20,13 +20,13 @@ module.exports = {
     }
     return redirectToLogin(req, res)
   },
-  organization : function (req, res, next) { 
+  org : function (req, res, next) { 
     if (req.user && req.user.model === 'organization') {
       return next()
     }
     return res.redirect('/404')
   },
-  experteer : function (req, res, next) { 
+  exp : function (req, res, next) { 
     if (req.user && req.user.model === 'experteer') {
       return next()
     }
