@@ -78,6 +78,30 @@ block content
           em 
             strong #{query.q} 
             | Returned no results.
+        if !user.loggedIn
+          div.widget.experteer
+            header
+            section.widget_body
+              form(action='/invite', method='post')
+                ul.clearfix
+                  li
+                    h3.center See more details, more organizations, and request intros
+                ul.left
+                  li 
+                    input(
+                      type='text', 
+                      placeholder='Enter your email', 
+                      name='email'
+                      ) 
+                  li
+                    button.chunky_btn.blue(type='submit') Request an invite
+                ul.right
+                  li 
+                    span Already have 
+                    br 
+                    span account?
+                    br 
+                    a(href='/login') Log in
         footer.clear
           if (typeof page !== 'undefined' && typeof pages !== 'undefined')
             nav.pagination
