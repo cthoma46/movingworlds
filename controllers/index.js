@@ -4,10 +4,10 @@ var passport = require('passport')
 var home = require('./home') 
 var acc = require('./account-pages') 
 var invite = require('./invite') 
-var x = require('../mixins/access')
-var m = require('../mixins/account-actions')
-var opp = require('../mixins/opportunity')
-var activity = require('../mixins/activity') 
+var x = require('../middleware/access')
+var m = require('../middleware/account-actions')
+var opp = require('../middleware/opportunity')
+var activity = require('../middleware/activity') 
 
 module.exports = function (app) { 
   app.all('*', function (req, res, next) {

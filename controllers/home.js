@@ -1,7 +1,7 @@
 var _ = require('underscore')
 var youtube = require('youtube')
-var account = require('../mixins/account-actions')
-var activity = require('../mixins/activity')
+var account = require('../middleware/account-actions')
+var activity = require('../middleware/activity')
 
 module.exports = function (req, res, next) {
   if (req.url !== '/') {

@@ -5,8 +5,8 @@ var Account = mongoose.model('account')
 var Opportunity = mongoose.model('opportunity') 
 var moment = require('moment')
 var Lang = require('../lang')
-var activity = require('../mixins/activity')
-var actions = require('../mixins/account-actions')
+var activity = require('../middleware/activity')
+var actions = require('../middleware/account-actions')
 
 module.exports = {
 
