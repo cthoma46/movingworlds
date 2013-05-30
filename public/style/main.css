@@ -337,6 +337,7 @@ nav#progress a+a{margin-left:30px}
 #profile_status ul.todos{list-style:none;padding:0;}
 #profile_status ul.todos li{font-size:13px;line-height:1px;margin-bottom:5px;}
 #profile_status ul.todos li h5{font-size:13px;color:#666;margin-bottom:10px}
+#recent_activity{max-height:300px;overflow-y:auto;}
 #recent_activity ul{margin:0;padding:0;list-style:none;}
 #recent_activity ul li{height:33px;padding:10px;border:1px solid #bfbfbf;background-color:#fff;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;margin-top:10px;-moz-box-shadow:0 1px 0 #fff;-webkit-box-shadow:0 1px 0 #fff;box-shadow:0 1px 0 #fff;}
 #recent_activity ul li .icon{display:block;float:left;margin:-10px 10px 0 -10px;width:50px;height:53px;border-right:1px solid #bfbfbf;}
