@@ -4,7 +4,7 @@ audio[controls],canvas,video{display:inline-block;*display:inline;*zoom:1}
 html,body{height:100%}
 html{overflow-y:scroll;-webkit-font-smoothing:antialiased;font-size:100%;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
 body{font:14px Helvetica,Arial,sans-serif;line-height:1.4em;color:#404040;*font-size:small;*font:x-small;background-color:#f9f9f9;margin-bottom:30px}
-p{font:14px Helvetica,Arial,sans-serif;line-height:1.5em;color:#404040}
+p{font:14px Helvetica,Arial,sans-serif;line-height:1.5em;color:#404040;padding-bottom:10px}
 p+p{margin-top:20px}
 p img,figure{margin-bottom:20px}
 figcaption{color:#999;font-size:.8em}
@@ -411,7 +411,7 @@ nav.email_options label{font:12px "Lato",Helvetica,Arial,sans-serif;text-transfo
 .stack_960 footer{width:960px;height:25px;background:transparent url("/images/bg_stack960_bottom.png") 0 bottom no-repeat}
 .stack_630 .col1of2,.stack_630 .col2of2{width:268px}
 .stack_630 footer{width:630px;height:25px;background:transparent url("/images/bg_stack630_bottom.png") 0 bottom no-repeat}
-.widget{position:relative;width:298px;min-height:142px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;background:linear-gradient(top,#e8e8e8 0%,#fff 100%);filter:progid:DXImageTransform.Microsoft.gradient( startColorstr="#e8e8e8", endColorstr="#ffffff",GradientType=0 );-moz-box-shadow:0 1px 0 #fff;-webkit-box-shadow:0 1px 0 #fff;box-shadow:0 1px 0 #fff;border:1px solid #bfbfbf;float:left;margin:0 15px 15px 0;}
+.widget{position:relative;width:298px;height:139px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;background:linear-gradient(top,#e8e8e8 0%,#fff 100%);filter:progid:DXImageTransform.Microsoft.gradient( startColorstr="#e8e8e8", endColorstr="#ffffff",GradientType=0 );-moz-box-shadow:0 1px 0 #fff;-webkit-box-shadow:0 1px 0 #fff;box-shadow:0 1px 0 #fff;border:1px solid #bfbfbf;float:left;margin:0 15px 15px 0;}
 .widget.last{margin-right:0}
 .widget header{position:relative;width:253px;-webkit-border-radius:5px 5px 0 0;-moz-border-radius:5px 5px 0 0;border-radius:5px 5px 0 0;margin:-1px 0 0 -1px;padding:8px 0 6px 45px;-moz-box-shadow:0 1px 0 rgba(255,255,255,0.4) inset;-webkit-box-shadow:0 1px 0 rgba(255,255,255,0.4) inset;box-shadow:0 1px 0 rgba(255,255,255,0.4) inset;border-width:1px;border-style:solid;}
 .widget header h3{color:#fff;font-size:15px}

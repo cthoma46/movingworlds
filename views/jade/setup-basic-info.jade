@@ -13,19 +13,19 @@ block content
     section.stack_960
       header
         h2 Basic Information
-      form(id='step1', action='/setup', method='post')
+      form(id='step1', action='/setup', method='post', enctype='multipart/form-data')
 
         if (!user.hash)
           section.stack_body.role_boxes.clearfix
             a.experteer_box(
-              href='/setup/basic/experteer', 
+              href='/setup/experteer', 
               class=(user.model === 'experteer' ? 'on' : '')
               )
               div.icon
               h4 I want to go Experteering:
               p travel & donate my expertise at an organization abroad
             a.organization_box(
-              href='/setup/basic/organization', 
+              href='/setup/organization', 
               class=(user.model === 'organization' ? 'on' : '')
               )
               div.icon
@@ -62,9 +62,9 @@ block content
                     small.disclaimer Recommended for fast Signup
 
         section.stack_body.clearfix.step1
-          fieldset.col1of2.split
+          fieldset 
             ul
-              li
+              li.half
                 label(for='firstname') First Name
                 input(
                   type='text', 
@@ -73,7 +73,17 @@ block content
                   tabindex='1', 
                   value=user.firstname
                   )
-              li
+              li.half
+                label(for='lastname') Last Name
+                input(
+                  type='text', 
+                  id='lastname', 
+                  name='lastname', 
+                  tabindex='2', 
+                  value=user.lastname
+                  )
+            ul
+              li.half
                 label(for='email') Email
                 input(
                   type='text', 
@@ -82,16 +92,7 @@ block content
                   tabindex='3', 
                   value=user.email
                   )
-              li
-                label(for='city') City
-                input(
-                  type='text', 
-                  id='city', 
-                  name='city', 
-                  tabindex='3', 
-                  value=user.city
-                  )
-              li.field-container
+              li.half.field-container
                 label Gender
                 ul
                   li
@@ -114,18 +115,17 @@ block content
                       checked=user.gender=='female'
                       )
                     label(for='female') Female
-          fieldset.col2of2.split
             ul
-              li
-                label(for='lastname') Last Name
+              li.half
+                label(for='city') City
                 input(
                   type='text', 
-                  id='lastname', 
-                  name='lastname', 
-                  tabindex='2', 
-                  value=user.lastname
+                  id='city', 
+                  name='city', 
+                  tabindex='3', 
+                  value=user.city
                   )
-              li
+              li.half
                 label(for='country') Country
                 select.data-select-value(
                   id='country', 
@@ -134,7 +134,8 @@ block content
                   data-value=user.country
                   )
                   include forms/countries_combo
-              li.datepicker
+            ul
+              li.half.datepicker
                 label Birthday
                 input.date(
                   type='text', 
@@ -143,7 +144,14 @@ block content
                   data-years='2', 
                   value=user.birthday
                   )
-              li.field-container
+              li.half 
+                label Upload your Photo
+                div.avatar.avatar-small
+                  img(src=user.avatar || '/images/icn_avatar_experteer.png')
+                input(type='file', id='avatar', name='avatar')
+
+            ul
+              li.half.field-container
                 input(
                   type='checkbox', 
                   id='agree', 
@@ -156,8 +164,11 @@ block content
                   a(href='/terms_conditions', target='_blank') 
                     | terms and conditions
 
+          //- fieldset.col2of2.split
+            ul
+
           if !user.hash
-            input(type='hidden', name='next', value='/setup/personal')
+            input(type='hidden', name='next', value='/setup/preferences')
 
           nav.progress.center.clear
             button(type='submit')#next.big.smooth_btn Save

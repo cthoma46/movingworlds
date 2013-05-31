@@ -39,7 +39,7 @@ module.exports = function (app) {
   
   app.post('/invite',                 invite.invite)
   app.post('/invite_extras',          invite.inviteExtras)
-  app.get( '/invite/:inviteCoupon',   invite.invite)
+  app.get( '/invite/:inviteCoupon',   acc.setupInvite)
   
   app.get( '/login',                  acc.login)
   app.post('/login',                  acc.doLogin)
@@ -60,8 +60,8 @@ module.exports = function (app) {
   
   app.post('/setup',                  x.all,        m.password, m.save)
   app.get( '/setup/basic',            x.all,        acc.setupBasic)
-  app.get( '/setup/organization',     x.all,        m.organization)
-  app.get( '/setup/experteer',        x.all,        m.experteer)
+  app.get( '/setup/organization',     x.all,        m.organization, m.save)
+  app.get( '/setup/experteer',        x.all,        m.experteer, m.save)
   app.get( '/setup/preferences',      x.exp,        acc.setupPreferences)
   app.get( '/setup/skills',           x.exp,        acc.setupSkills)
   app.get( '/setup/plan',             x.exp,        acc.setupPlan)

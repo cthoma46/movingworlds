@@ -34,52 +34,45 @@ div.widget(class=card.model)
             label  
               strong #{card.organization.name}
         li
-          label 
-            em
-              strong #{card.start} 
-              span to  
-              strong #{card.end} 
+          //- label Location 
+          label #{card.city + ', ' + card.country}
         li
-          label Location 
-          strong= card.city + ', ' + card.country
-        li
-          label Industry
-          strong #{card.industry}
+          //- label Industry
+          label #{card.industry}
         //-
 
       else if (card.model === 'organization' && card.organization == undefined)
 
         //- organization cards
         li
-          label Size 
-          strong #{card.size.title} 
-        li
-          label Type 
-          strong #{card.type}
-        li
-          label Location 
-          strong= card.city + ', ' + card.country
-
-        li
-          label Industry
+          //- label Industry
           strong #{card.industry}
+        li
+          //- label Location 
+          label #{card.city + ', ' + card.country}
+        li
+          //- strong Size 
+          label #{card.size.title} size
+        li
+          //- strong Type 
+          label #{card.type}
         //- private
         //-
 
       else if card.model === 'experteer'
         //- experteer cards
         li
-          label Location 
-          strong= card.city + ', ' + card.country
-        li
-          label Industry
+          //- label Industry
           strong #{card.industry}
         li
-          label Age 
-          strong #{card.age}
+          //- label Location 
+          label #{card.city + ', ' + card.country}
         li
-          label Exp 
-          strong #{card.experienceYears} years
+          //- label Age 
+          label #{card.age} years old
+        li
+          //- label Exp 
+          label #{card.experienceYears} years of experience
         //- private
         //-
 
