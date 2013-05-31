@@ -1,0 +1,90 @@
+extends layouts/layout_blog
+
+block append scripts
+	script(src="http://underscorejs.org/underscore-min.js")
+
+block content
+	section#post
+		article.post
+			header
+				h2=title
+			section.post_body!=body
+			section#signup_form
+				h4 If you’ve enjoyed this post please consider signing up for updates
+				form( action="", method="", id="signup")
+					input(type="email", id="email", name="email", placeholder="Email")
+					button Sign Me Up
+			
+
+			//- social networks
+			nav.post_options.clearfix
+				ul.socials
+					li
+						a(href="https://twitter.com/share", class="twitter-share-button", data-url="http://www.movingworlds.org/blog", data-via="movingworlds", data-size="") Tweet
+					li
+						div(class="g-plusone", data-size="medium")
+					li
+						div(class="fb-like", data-send="false", data-layout="button_count", data-width="450", data-show-faces="false", data-font="arial")
+					li
+						script(type="IN/Share", data-counter="right")
+
+			//- pagination
+			-var index = 0
+			-_.each( siblings, function(item){ if(item.slug == slug){ index = siblings.indexOf(item) } });
+			-var nextIndex = index == siblings.length-1 ? 0 : index+1
+			-var prevIndex = index == 0 ? siblings.length-1 : index-1
+			nav.pagination.clearfix
+				ul
+					li.prev
+						a(href=siblings[prevIndex].prettyUrl)
+							span.arrow_icn.light_blue_left
+							=siblings[prevIndex].title
+					li.next
+						a(href=siblings[nextIndex].prettyUrl)
+							=siblings[nextIndex].title
+							span.arrow_icn.light_blue_right
+				//- ul.tags
+				//- 	for tag in tags
+				//- 		li.tag
+				//- 			a(href="#")=tag
+			hr
+			section#comments
+				div#disqus_thread
+			footer
+			time(datetime="2011-10-05T09:00Z") 
+				span.month= moment(created).format("MMM") 
+				span.day= moment(created).format("DD")
+				span.year= moment(created).format("YYYY")
+
+	div#fb-root
+	script(type="text/javascript")
+		// DISQUS
+		var disqus_shortname = 'movingworlds'; // required: replace example with your forum shortname
+		var disqus_developer = document.location.host == "dev.movingworlds.org";
+		(function() {
+			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+
+		// FACEBOOK
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=267774456645632";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+
+		// TWITTER
+		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+		// GOOOGLE +1
+		(function() {
+			var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+			po.src = 'https://apis.google.com/js/plusone.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+		})();
+
+	// LINKEDIN
+	script(src="//platform.linkedin.com/in.js", type="text/javascript")

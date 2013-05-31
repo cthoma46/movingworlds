@@ -1,0 +1,10 @@
+header#page_head
+	div.layout_960
+		a.logo(href='/') MovingWorlds
+		nav.clearfix
+			ul
+				li: a#get_invite_btn(href='#') Get Invite
+				li: a(href='/login') Login
+				li: form(action="/explore", method="get")
+					input(type='search', name='search')
+					button(type='submit') search

@@ -2,6 +2,7 @@ var mongoose = require('mongoose')
 var Account = mongoose.model('account')
 var passport = require('passport')
 var home = require('./home') 
+var generic = require('./generic');
 var acc = require('./account-pages') 
 var invite = require('./invite') 
 var x = require('../middleware/access')
@@ -27,6 +28,7 @@ module.exports = function (app) {
       return res.redirect(req.session.returnTo || '/setup/basic')
     }
   )
+
   app.get( '/auth/linkedin',          passport.authenticate('linkedin'))
   require( './api')(app)
   app.get( '/404',                    home[404])
@@ -79,17 +81,18 @@ module.exports = function (app) {
   app.post('/opportunity/:id',        x.org,    opp.edit, acc.setupOpportunity)
   app.get( '/opportunity/:id',        x.org,    opp.read, acc.setupOpportunity)
   app.get( '/opportunity/:id/delete', x.org,    opp.delete, home)
-  // app.get( '/opportunity/:id/publish', x.org,   opp.publish)
-  // app.get( '/opportunity/:id/unpublish', x.org, opp.unpublish)
   app.get( '/profile/:_id/:_id2?', acc.profile)
-  
-  // app.get( '/setup/opportunity',      x.org,  acc.setupNewOpportunity)
-  // app.post('/setup/opportunity',      x.org,  opp.update)
-  // app.get( '/setup/opportunity/:id',  x.org,  acc.setupOpportunity)
-  // app.get( '/delete/opportunity/:id', x.org,  opp.delete)
 
+  // app.get(                  '/blog', home.blog)
+  // app.get(              '/finalize', home.finalization)
 
+  app.get('/about', generic.about)
+  app.get('/partners', generic.partners)
+  app.get('/faq', generic.faq)
+  app.get('/resources', generic.resources)
+  app.get('/resources/information-for-experteers.html', generic.experteer_info)
+  app.get('/resources/information-for-hosting-organizations.html', generic.organization_info)
+  app.get('/contact', generic.contact)
+  app.get('/terms-of-use', generic.terms)
 
-  // app.get('/blog', home.blog)
-  // app.get('/finalize', home.finalization)
 }
