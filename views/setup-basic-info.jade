@@ -31,8 +31,7 @@ block content
               div.icon
               h4 I want to be connected to an Experteer
               p and receive free professional support for my organization
-            p.clearfix &nbsp;
-            p.clearfix &nbsp;
+            p.clearfix &nbsp; 
             fieldset.col1of2.split
               ul
                 li
@@ -53,17 +52,13 @@ block content
                     name='confirm', 
                     tabindex='9'
                     )
-                  
-            if (user.model === 'experteer')
-              nav.social_connects.clearfix
-                ul.no_style
-                  li
-                    a(href='/auth/linkedin').linkedin_signup Sign up with LinkedIn
-                    small.disclaimer Recommended for fast Signup
-
-        section.stack_body.clearfix.step1
+        section.stack_body 
           fieldset 
             ul
+              if (user.model === 'experteer')
+                li
+                  p Connect your account with LinkedIn 
+                  a(href='/auth/linkedin').linkedin_signup 
               li.half
                 label(for='firstname') First Name
                 input(

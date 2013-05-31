@@ -2,6 +2,7 @@ var settings = require('./settings')
 var mongoose = require('mongoose')
 var bcrypt = require('bcrypt')
 var Account = mongoose.model('account') 
+var Experteer = mongoose.model('experteer') 
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
 var FacebookStrategy = require('passport-facebook').Strategy
@@ -72,26 +73,85 @@ passport.use(
 )
 
 // Override userProfile
-LinkedInStrategy.prototype.userProfile = function (token, tokenSecret, params, done) {
-  this._oauth.get('https://api.linkedin.com/v1/people/~:(id,first-name,last-name,headline,location:(name,country:(code)),industry,num-connections,num-connections-capped,summary,specialties,proposal-comments,associations,honors,interests,positions,publications,patents,languages,skills,certifications,educations,three-current-positions,three-past-positions,num-recommenders,recommendations-received,phone-numbers,im-accounts,twitter-accounts,date-of-birth,main-address,member-url-resources,picture-url,site-standard-profile-request:(url),api-standard-profile-request:(url,headers),public-profile-url)?format=json', token, tokenSecret, function (err, body, res) {
-    if (err) {
-      return done(new InternalOAuthError('failed to fetch user profile', err)) 
-    }
-    try {
-      json = JSON.parse(body)
-      return done(null, json)
-    } catch (e) {
-      return done(e)
-    }
-  })
-}
+// LinkedInStrategy.prototype.userProfile = function (token, tokenSecret, params, done) {
+//   this._oauth.get('https://api.linkedin.com/v1/people/~:(email-address,id,first-name,last-name,headline,location:(name,country:(code)),industry,num-connections,num-connections-capped,summary,specialties,proposal-comments,associations,honors,interests,positions,publications,patents,languages,skills,certifications,educations,three-current-positions,three-past-positions,num-recommenders,recommendations-received,phone-numbers,im-accounts,twitter-accounts,date-of-birth,main-address,member-url-resources,picture-url,site-standard-profile-request:(url),api-standard-profile-request:(url,headers),public-profile-url)?format=json', token, tokenSecret, function (err, body, res) {
+//     if (err) {
+//       return done(new InternalOAuthError('failed to fetch user profile', err)) 
+//     }
+//     try {
+//       json = JSON.parse(body)
+//       console.log('LinkedInStrategy.prototype.userProfile')
+//       return done(null, json)
+//     } catch (e) {
+//       return done(e)
+//     }
+//   })
+// }
 
 passport.use(new LinkedInStrategy({
   consumerKey : settings.apiKeys.linkedin.key,
   consumerSecret : settings.apiKeys.linkedin.secret,
   callbackURL : settings.apiKeys.linkedin.callback,
-  passReqToCallback : true
+  passReqToCallback : true,
+  profileFields : [
+    'id',
+    'email-address',
+    'first-name',
+    'last-name',
+    'headline',
+    'location:(name,country:(code))',
+    'industry',
+    'num-connections',
+    'num-connections-capped',
+    'summary',
+    'specialties',
+    'proposal-comments',
+    'associations',
+    'honors',
+    'interests',
+    'positions',
+    'publications',
+    'patents',
+    'languages',
+    'skills',
+    'certifications',
+    'educations',
+    'three-current-positions',
+    'three-past-positions',
+    'num-recommenders',
+    'recommendations-received',
+    'phone-numbers,im-accounts',
+    'twitter-accounts',
+    'date-of-birth',
+    'main-address',
+    'member-url-resources',
+    'picture-url',
+    'site-standard-profile-request:(url)',
+    'api-standard-profile-request:(url,headers)',
+    'public-profile-url'
+  ]
 }, function (req, token, tokenSecret, profile, done) {
-  var email = req.user.email || null 
-  Account.upsertLinkedInUser(profile, email, done)
+  var params = { linkedinId : profile.id }
+  console.log(JSON.stringify(profile))
+  Account.findOne(params, function (err, account) {
+    if (err) {
+      return done(null, false, err.toString())
+    }
+    if (!account || req.user.loggedIn) {
+      if (req.user.loggedIn) {
+        return Experteer.upsertLinkedInUser(profile, req.user.email, function (err, doc) {
+          if (!err) {
+            req.flash('success', 'You have successfully connected to LinkedIn')
+          }
+          return done(err, doc)
+        })
+      }
+    }
+    if (account) {
+      account.loggedIn = true
+      return done(null, account)
+    }
+    req.flash('info', 'We couldn\'t find anything associated with your LinkedIn account.')
+    return done(null, false)
+  })
 }))

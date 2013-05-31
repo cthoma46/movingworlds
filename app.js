@@ -95,7 +95,7 @@ app.configure(function () {
   app.use(passport.session())
   app.use(flash())
   app.use(function (req, res, next) {
-    console.log(req.session)
+    // console.log(req.session)
     req.user = req.user || new Account()
     res.locals.lang = lang
     res.locals.flash = req.flash.bind(req)

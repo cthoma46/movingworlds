@@ -43,7 +43,7 @@ else if account.model === 'experteer'
             strong= edu.school
           li= edu.degree+" "+edu.major
           if edu.start && edu.end
-            li= edu.start+" to "+edu.end;
+            li= moment(edu.start).format('MM/YYYY')+" to "+moment(edu.end).format('MM/YYYY');
 
   div.detail
     h4 Employment History

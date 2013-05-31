@@ -15,14 +15,18 @@ module.exports = function (schema, opts) {
     ;
 
     function addData (account, callback) {
+
+      // if (account.linkedinId) {
+      //   console.log('User already synced linkedIn account')
+      //   return callback(null, account)
+      // } 
+
       console.log('Syncing linkedin data with existing account')
       account.linkedinId = data.id
       console.log('Linkedin ID: ', account.linkedinId, ' Email: ' + email)
 
-      if (account.linkedinId) {
-        console.log('User already synced linkedIn account')
-        return callback(null, account)
-      } 
+      data = data._json
+      console.log(data)
 
       try {
 
@@ -55,12 +59,14 @@ module.exports = function (schema, opts) {
         // skills 
         account.skills = account.skills || []
         if (data.skills !== undefined) {
+          var skills = []
           for (var i in data.skills.values) {
             if (data.skills.values[i] !== undefined 
               && data.skills.values[i].skill !== undefined) {
-              account.skills.push(data.skills.values[i].skill.name)
+              skills.push(data.skills.values[i].skill.name)
             }
           }
+          account.skills = skills
         }
 
         // interests 
@@ -73,21 +79,23 @@ module.exports = function (schema, opts) {
         account.languages = account.languages || []
 
         if (data.languages !== undefined) {
+          var languages = []
           for (var i in data.languages.values) {
             if (data.languages.values[i] !== undefined 
               && data.languages.values[i].language !== undefined) {
-              account.languages.push(data.languages.values[i].language.name)
+              languages.push(data.languages.values[i].language.name)
             }
           }
+          account.languages = languages
         }
 
         // website url 
-        if (data.memberUrlResources._total > 0) {
+        if (data.memberUrlResources && data.memberUrlResources._total > 0) {
           account.linksUrl = data.memberUrlResources.values[0].url
         }
 
         // twitter url 
-        if (data.twitterAccounts._total > 0) {
+        if (data.twitterAccounts && data.twitterAccounts._total > 0) {
           account.linksTwitter = 'http://www.twitter.com/' 
             + data.twitterAccounts.values[0].providerAccountName
         }
@@ -99,6 +107,7 @@ module.exports = function (schema, opts) {
         account.employment = account.employment || []
 
         if (data.positions !== undefined) {
+          var emps = []
           for (var i in data.positions.values) {
             if (typeof data.positions.values[i].startDate !== 'undefined') {
               var start = new Date(
@@ -114,7 +123,7 @@ module.exports = function (schema, opts) {
                 1
                 )
             }
-            account.employment.push({
+            emps.push({
               employer : (data.positions.values[i].company !== undefined 
                 ? data.positions.values[i].company.name 
                 : ''),
@@ -124,12 +133,14 @@ module.exports = function (schema, opts) {
               end : end
             })
           }
+          account.employment = emps
         }
 
         // employment 
         account.education = account.education || []
 
         if (data.educations !== undefined) {
+          var edus = []
           for (var i in data.educations.values) {
             var start = '';
             var end = '';
@@ -158,7 +169,7 @@ module.exports = function (schema, opts) {
                 1
                 )
             }
-            account.education.push({
+            edus.push({
               school : data.educations.values[i].schoolName,
               major : data.educations.values[i].fieldOfStudy,
               degree : data.educations.values[i].degree,
@@ -166,7 +177,7 @@ module.exports = function (schema, opts) {
               end : end
             })
           }
-
+          account.education = edus
         }
 
       } catch (error) {
@@ -175,6 +186,7 @@ module.exports = function (schema, opts) {
       }
 
       account.save(function (err) {
+        console.log('saved linkedin data', account)
         callback(err, account)
       })
 
