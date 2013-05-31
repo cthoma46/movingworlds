@@ -17,7 +17,7 @@ section#profile_status
     div.completeness
       div.progress_bar(title='Please fill out: #{user.incomplete}')
         p You're profile is 
-          strong #{(user.completion * 100)} %  
+          strong #{Math.round(user.completion * 100)} %  
           | complete 
       div.bar
         div.bar_inner(style="width:" + ( (user.completion * 100) + "%" ))
