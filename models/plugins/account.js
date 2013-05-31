@@ -26,6 +26,7 @@ module.exports = function (schema, opts) {
     inviteCoupon :    { type : String, default : _.randomString },
     recommendedBy :   { type : String },
     published :       { type : Boolean, default : false },
+    featured :        { type : Boolean, default : false },
   })
 
   schema
