@@ -68,6 +68,13 @@ block content
               data-value=filter.environment
               )
               include forms/environment_combo
+        //- ul 
+          li 
+            label Search for: 
+            a.chunky_btn.small(href='/search/opportunity') Opportunities 
+            a.chunky_btn.small(href='/search/experteer') Experteers 
+            a.chunky_btn.small(href='/search/organization') Organizations 
+
     div.col2of2
       section#recommendations
         if (search_result.length)
@@ -79,13 +86,12 @@ block content
             strong #{query.q} 
             | Returned no results.
         if !user.loggedIn
-          div.widget.experteer
-            header
+          div.widget.experteer.right
             section.widget_body
               form(action='/invite', method='post')
                 ul.clearfix
                   li
-                    h3.center See more details, more organizations, and request intros
+                    strong.center See more details, more organizations, and request intros
                 ul.left
                   li 
                     input(
@@ -97,9 +103,7 @@ block content
                     button.chunky_btn.blue(type='submit') Request an invite
                 ul.right
                   li 
-                    span Already have 
-                    br 
-                    span account?
+                    span Have an account? 
                     br 
                     a(href='/login') Log in
         footer.clear
