@@ -1,0 +1,49 @@
+
+# Information for Hosting Organizations
+MovingWorlds helps connect you and your organization directly to professionals from around the world who want to donate their expertise to your organization in exchange for free accommodation (or some other benefit which you can provide)
+
+* * *
+
+## What is an Experteer?
+
+Experteers are professionals that want to donate their expertise to accelerate social impact, and are eager to travel around the world in order to Experteer towards causes they care about in places they want to travel to.
+
+> Our friends at the Inter American Development Bank used MovingWorlds to help setup a database for an impact investing conference.
+
+* * *
+
+## Why not host an Experteer?
+
+Social impact organizations around the world are using MovingWorlds to find expertise to help overcome any business challenge or seize any opportunity.
+
+> Eco Farms in Panama used MovingWorlds to connect to highly-skilled professionals that can design and develop a green research facility and lodge.
+
+* * *
+
+## What to expect from an Experteer
+
+It is important to understand that Experteers are donating their time and skills to your organization. As their work is voluntary, you will need to treat them differently from your other employees and partners. We mandate that you review our ‘Working With Experteers’ training.
+
+For more information, we recommend this interesting article at [World Volunteer Web](http://www.worldvolunteerweb.org/resources/how-to-guides/manage-volunteers/doc/understanding-volunteer-motivations.html)
+
+* * *
+
+## What an Experteer expects from you
+
+Most simply, an Experteer is making a sacrifice to travel around the world to help your organization. As such, the Experteer is hoping (and expecting) for a life-enriching experience that:
+
+1. Is safe, unique, and engaging
+1. Properly uses the Experteers skills to help support a social and/or environmental mission
+1. Does not, any under circumstance, infringe on the Experteers personal rights, liberties, nor freedoms.
+
+* * *
+
+## Managing Expectations with your Experteer
+
+To fully comply with our terms of use, you and the Experteer must agree to the completed [Experteering Planning Guide](https://moving_worlds.s3.amazonaws.com/5df16f1bc290a3ea8e7f8623a55132f5.pdf)
+
+* * *
+
+## Ensuring Safety & High-Impact Experteering Engagements
+
+Safety is your responsibility. By using MovingWorlds, you agree to the [Host’s Guarantee and Conditions](http://staging.movingworlds.org/terms-of-use/host-guarantee-of-conditions.html).

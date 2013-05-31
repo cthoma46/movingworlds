@@ -3,6 +3,8 @@ require('rconsole')
 require('./underscore-mixins')
 require('./models')
 require('./passport')
+var fs = require('fs')
+var markdown = require('markdown').markdown
 var express = require('express')
 var stylus = require('stylus')
 var http = require('http')
@@ -54,8 +56,17 @@ app.configure(function () {
   }
   app.set('moment', moment)
   app.set('port', process.env.PORT || settings.port)
+  app.engine('markdown', function (path, options, next) {
+    fs.readFile(path, 'utf8', function (err, str) {
+      if (err) { 
+        return next(err)
+      }
+      str = markdown.toHTML(str)
+      next(null, str)
+    })
+  })
   app.set('view engine', 'jade')
-  app.set('views', __dirname + '/views/jade')
+  app.set('views', __dirname + '/views')
   app.use(express.favicon(__dirname + '/public/images/favicon.ico'))
   app.use(express.static(__dirname + '/public')) 
   // app.use(express.logger())

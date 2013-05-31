@@ -34,6 +34,19 @@ _.extend(module.exports, {
       error : 'Something bad happened'
     })
   },
+  page : function (pageName, title) {
+    return function (req, res) {
+      return res.render('markdown/' + pageName, function (err, html) {
+        if (err) {
+          console.error(err)
+        }
+        return res.render('markdown-page', { 
+          page : html,
+          title : title, 
+        })
+      })
+    }
+  },
   blog : function (req, res) {
     return res.render('blog', { title : 'Blog', layout : 'layout_blog' })
   },
