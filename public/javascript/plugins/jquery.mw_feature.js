@@ -18,12 +18,12 @@
   defaults = {
     offset: {
       x: 26,
-      y: 50
+      y: 190
     },
     autoStart: 8000,
     dropRate: 1,
     startIndex: 0,
-    popupTemplate: "<div class=\"testemonial_popup\"><header><h2></h2><a href=\"#\" class=\"close_btn\">close</a></header><section class=\"video_testimony\"><iframe id=\"yplayer\" width=\"425\" height=\"216\" src=\"\" frameborder=\"0\" allowfullscreen=\"allowfullscreen\"></iframe></section><section class=\"profile\"><div class=\"avatar\"><div class=\"av_img_container\"><img src=\"images/tmp_avatar1.png\"></div></div><div class=\"profile_info\"><hgroup><h3></h3><h4></h4></hgroup><p></p></div></section><div class=\"popup_arrow\"></div></div>",
+    popupTemplate: "<div class=\"testemonial_popup\"><header><h2></h2><a href=\"#\" class=\"close_btn\">close</a></header><section class=\"profile\"><div class=\"avatar avatar_small\"><img src=\"images/tmp_avatar1.png\" width=\"100%\" height=\"100%\"></div><div class=\"profile_info\"><hgroup><h3></h3><h4></h4></hgroup><p></p></div></section><div class=\"popup_arrow\"></div></div>",
     markerTemplate: "<div class=\"marker\"></div>"
   };
   MwFeature.prototype = {
@@ -99,8 +99,8 @@
         $(".testemonial_popup h3").text(_this.markerData[index].h3);
         $(".testemonial_popup h4").text(_this.markerData[index].h4);
         $(".testemonial_popup p").text(_this.markerData[index].description);
-        $(".testemonial_popup img").attr("src", _this.markerData[index].image);
-        $("#yplayer").attr("src", "http://www.youtube.com/embed/" + _this.markerData[index].video_id + "?controls=1&showinfo=0");
+        $(".testemonial_popup .avatar img").attr("src", _this.markerData[index].image); 
+        // $(".testemonial_popup .map img").attr("src", "http://maps.googleapis.com/maps/api/staticmap?center="+_this.markerData[index].city+","+_this.markerData[index].country+"&zoom=7&size=425x220&sensor=false&markers=icon:http://staging.movingworlds.org/images/icn_map_marker.png%7C"+_this.markerData[index].city+","+_this.markerData[index].country);
         $(_this.popup).attr("style", "").css({
           left: xPos + "px",
           top: yPos + "px"
