@@ -2,7 +2,6 @@ var mongoose = require('mongoose')
 var Account = mongoose.model('account')
 var passport = require('passport')
 var home = require('./home') 
-var generic = require('./generic');
 var acc = require('./account-pages') 
 var invite = require('./invite') 
 var x = require('../middleware/access')
@@ -21,7 +20,7 @@ module.exports = function (app) {
     console.notice(req.method, req.url, req.user.loggedIn)
     next()
   })
-  
+
   app.get('/auth/linkedin/callback',  passport.authenticate('linkedin', { 
     failureRedirect : '/login' 
   }), function (req, res) {
