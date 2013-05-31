@@ -172,7 +172,7 @@ header#page_head nav input{vertical-align:top;font-family:Helvetica,Arial,sans-s
 header#page_head nav:focus{background:#fff}
 footer#page_foot{position:relative;border-top:1px solid #bfbfbf;box-shadow:0 1px 0 #fff inset;padding-top:10px;margin-top:30px;clear:both;}
 footer#page_foot #translate{position:absolute;left:0;top:16px;width:150px}
-footer#page_foot nav#site_map{position:absolute;left:300px;top:16px;width:350px;font:700 14px "Lato",Helvetica,Arial,sans-serif;}
+footer#page_foot nav#site_map{font:700 14px "Lato",Helvetica,Arial,sans-serif;}
 footer#page_foot nav#site_map li{padding:0 5px}
 footer#page_foot nav#site_map li+li{border-left:1px solid #bfbfbf}
 footer#page_foot nav#site_map a{color:#6cc2e9;text-decoration:none;}
