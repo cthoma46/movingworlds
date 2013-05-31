@@ -31,7 +31,7 @@ module.exports = function (app) {
   require( './api')(app)
   app.get( '/404',                    home[404])
   app.get( '/500',                    home[500])
-  app.get( '/',                       home)
+  app.get( '/',                       m.getFeaturedData, home)
   app.get( '/home',                   home)
   app.get( '/org',                    home.org)
   
@@ -51,6 +51,8 @@ module.exports = function (app) {
   
   app.get( '/publish',                x.all,        m.publish, m.save)
   app.get( '/unpublish',              x.all,        m.unpublish, m.save)
+  app.get( '/feature',                x.all,        m.feature, m.save)
+  app.get( '/unfeature',              x.all,        m.unfeature, m.save)
   
   app.post('/payment/basic',          x.exp,        m.charge.basic, m.charge)
   app.post('/payment/premium',        x.exp,        m.charge.premium, m.charge)
