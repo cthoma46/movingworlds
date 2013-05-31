@@ -4,7 +4,7 @@ var request = require('request')
 
 function setupGeo (opts) {
   opts = opts || {}
-  opts.timeout = opts.timeout || process.env.yahooTimeout || 2500
+  opts.timeout = opts.timeout || process.env.geocodeTimeout || 2500
 
   return function geo (keywords, callback) {
     if (cacheGeoCode[keywords]) {
