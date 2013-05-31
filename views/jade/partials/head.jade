@@ -19,6 +19,8 @@ header#page_head
             li: a(href='/setup/company') Company Info
             li: a(href='/opportunity') Add Opportunity
             li: a(href='/setup/review') Account Review
+
+          li: a#change-password(href='#') Change Password
           li: a(href='/profile/' + user.id) Profile
           li: p.detail &nbsp;
           li: a(href='/logout') Logout    
@@ -47,3 +49,17 @@ header#page_head
             form(action='/search/opportunity', method='get')
               input(type='search', name='q')
               button(type='submit') search
+
+div#password-form.hidden.modal(role='dialog')
+  header
+    h2 Change password
+  div.modal_body 
+    form(action='/setup', method='post')
+      ul
+        //- li Old password
+        li: input(type='password', name='password', placeholder='Old password')
+        //- li New password
+        li: input(type='password', name='newpass', placeholder='New password')
+        //- li Confirm
+        li: input(type='password', name='confirm', placeholder='Confirm')
+        li: button.big.smooth_btn(type='submit') Save
