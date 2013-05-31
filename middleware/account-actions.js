@@ -5,8 +5,60 @@ var Account = mongoose.model('account')
 var bcrypt = require('bcrypt')
 var fs = require('fs')
 var mail = require('../mail')
-
+var geo = require('../geo')()
 var account = {}
+
+account.getFeaturedData = function (req, res, next) {
+  Account
+    .find({ featured : true })
+    .select('city country description model avatar industry')
+    .exec(function (err, docs) {
+      if (err) {
+        console.error(err)
+        return next()
+      }
+      var ii = docs.length + 1
+      docs = docs.map(function (doc) { 
+        var obj = {
+          description : doc.description,
+          video_id : "xlV6LS3vc7M",
+          image : doc.avatar || "/images/icn_avatar_organization.png",
+          h4 : doc.model,
+          h3 : doc.city + ', ' + doc.country,
+          h2 : doc.industry,
+          y : "240",
+          x : "740",
+          type : doc.model.slice(0,3),
+          city : doc.city,
+          country : doc.country
+        } 
+        geo(doc.city + ', ' + doc.country, function (err, data) {
+          if (err) {
+            console.error(err)
+          }
+          // our frontend map is about 1100 x 500
+          obj.location = data.results[0].geometry.location
+          obj.x = (180 - obj.location.lng) / 360
+          obj.x = 1 - obj.x
+          obj.y = (90 - obj.location.lat) / 180
+          obj.x = String(Math.round(obj.x * 1000)+75)
+          obj.y = String(Math.round(obj.y * 525)+75)
+
+          console.log(obj)
+          then()
+        })
+        return obj
+      })
+      then()
+      function then () {
+        if (!--ii) {
+          res.locals({ featuredOpportunities : docs })
+          return next()
+        }
+      }
+    })
+  ;
+}
 
 account.searchPage = function (req, res, next) {
   req.query.filter = req.query.filter || {}
@@ -17,6 +69,16 @@ account.searchPage = function (req, res, next) {
     res.locals({ filter : req.query.filter })
     searchRequest(req, res, next)
   })
+}
+
+account.feature = function (req, res, next) {
+  req.user.featured = true
+  next()
+}
+
+account.unfeature = function (req, res, next) {
+  req.user.featured = false
+  next()
 }
 
 account.publish = function (req, res, next) {
@@ -37,7 +99,9 @@ account.save = function (req, res, next) {
   req.user.merge(req.body)
   req.user.save(function (error) {
     if (error) {
-      return next(error)
+      console.error(error)
+      req.flash('error', 'An account with that email already exists.')
+      return res.redirect(req.body.next || 'back')
     }
     return res.redirect(req.body.next || 'back')
   })
