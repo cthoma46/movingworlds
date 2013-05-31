@@ -41,8 +41,8 @@ account.getFeaturedData = function (req, res, next) {
           obj.x = (180 - obj.location.lng) / 360
           obj.x = 1 - obj.x
           obj.y = (90 - obj.location.lat) / 180
-          obj.x = String(Math.round(obj.x * 1000)+75)
-          obj.y = String(Math.round(obj.y * 525)+75)
+          obj.x = String(Math.round(obj.x * 1160)+1)
+          obj.y = String(Math.round(obj.y * 600)+1)
 
           console.log(obj)
           then()
