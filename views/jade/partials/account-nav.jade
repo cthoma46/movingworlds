@@ -11,8 +11,6 @@ section#profile_status
   if (user.city || user.country)
     p #{user.city}, #{user.country}
 
-  p.clearfix
-
   if (user.completion < 0.98)
     div.completeness
       div.progress_bar(title='Please fill out: #{user.incomplete}')
