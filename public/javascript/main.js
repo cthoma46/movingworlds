@@ -11,6 +11,9 @@ $(document).ready(function() {
     el.val(value)
   })
 
+  $('#change-password').on('click', function (ev) {
+    $('#password-form').MwModal({});
+  })
 
   if ($("#flash_message").length) {
     $("#flash_message").MwModal({});
