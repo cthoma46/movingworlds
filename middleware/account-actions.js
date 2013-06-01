@@ -10,7 +10,8 @@ var account = {}
 
 account.getFeaturedData = function (req, res, next) {
   Account
-    .find({ featured : true })
+    // .find({ featured : true })
+    .find()
     .select('city country description model avatar industry')
     .exec(function (err, docs) {
       if (err) {
@@ -41,8 +42,8 @@ account.getFeaturedData = function (req, res, next) {
           obj.x = (180 - obj.location.lng) / 360
           obj.x = 1 - obj.x
           obj.y = (90 - obj.location.lat) / 180
-          obj.x = String(Math.round(obj.x * 1160)+1)
-          obj.y = String(Math.round(obj.y * 600)+1)
+          obj.x = String(Math.round(obj.x * 875)+120)
+          obj.y = String(Math.round(obj.y * 505)+65)
 
           console.log(obj)
           then()
@@ -100,7 +101,7 @@ account.save = function (req, res, next) {
   req.user.save(function (error) {
     if (error) {
       console.error(error)
-      req.flash('error', 'An account with that email already exists.')
+      req.flash('error', error.toString())
       return res.redirect(req.body.next || 'back')
     }
     return res.redirect(req.body.next || 'back')

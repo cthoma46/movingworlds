@@ -43,7 +43,7 @@ module.exports = {
           if (err) {
             console.error(err, 'message', message)
             req.flash('error', err.message)
-            return res.redirect('back')
+            // return res.redirect('back')
           }
           user = new User()
           user.email = email
@@ -76,7 +76,7 @@ module.exports = {
               if (err) {
                 console.error(err, 'message', message)
                 req.flash('error', err.message)
-                return res.redirect('back')
+                // return res.redirect('back')
               }
               req.flash('modal', inviteSentModal[0])
               req.flash('modal', inviteSentModal[1])

@@ -413,8 +413,8 @@ nav.email_options label{font:12px "Lato",Helvetica,Arial,sans-serif;text-transfo
 .stack_630 footer{width:630px;height:25px;background:transparent url("/images/bg_stack630_bottom.png") 0 bottom no-repeat}
 .widget{position:relative;width:298px;height:139px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;background:linear-gradient(top,#e8e8e8 0%,#fff 100%);filter:progid:DXImageTransform.Microsoft.gradient( startColorstr="#e8e8e8", endColorstr="#ffffff",GradientType=0 );-moz-box-shadow:0 1px 0 #fff;-webkit-box-shadow:0 1px 0 #fff;box-shadow:0 1px 0 #fff;border:1px solid #bfbfbf;float:left;margin:0 15px 15px 0;}
 .widget.last{margin-right:0}
-.widget header{position:relative;width:253px;-webkit-border-radius:5px 5px 0 0;-moz-border-radius:5px 5px 0 0;border-radius:5px 5px 0 0;margin:-1px 0 0 -1px;padding:8px 0 6px 45px;-moz-box-shadow:0 1px 0 rgba(255,255,255,0.4) inset;-webkit-box-shadow:0 1px 0 rgba(255,255,255,0.4) inset;box-shadow:0 1px 0 rgba(255,255,255,0.4) inset;border-width:1px;border-style:solid;}
-.widget header h3{color:#fff;font-size:15px}
+.widget header{position:relative;width:253px;height:21px;-webkit-border-radius:5px 5px 0 0;-moz-border-radius:5px 5px 0 0;border-radius:5px 5px 0 0;margin:-1px 0 0 -1px;padding:8px 0 6px 45px;-moz-box-shadow:0 1px 0 rgba(255,255,255,0.4) inset;-webkit-box-shadow:0 1px 0 rgba(255,255,255,0.4) inset;box-shadow:0 1px 0 rgba(255,255,255,0.4) inset;border-width:1px;border-style:solid;}
+.widget header h3{height:21px;overflow:hidden;color:#fff;font-size:15px}
 .widget.experteer header{background-color:#3f9fe9;border-color:#327fba;}
 .widget.experteer header h3{text-shadow:0 1px 1px #1e4b6e}
 .widget.organization header{background-color:#e96c6c;border-color:#bb4141;}
@@ -430,7 +430,7 @@ nav.email_options label{font:12px "Lato",Helvetica,Arial,sans-serif;text-transfo
 .widget .widget_body li strong{color:#404040}
 .widget .widget_body nav{position:absolute;bottom:10px;right:10px;}
 .widget .widget_body nav li+li{margin-left:10px !important}
-.widget .widget_body label{display:inline-block;margin-right:5px}
+.widget .widget_body label{margin-right:5px}
 .opportunity+.opportunity{margin-top:10px}
 .opportunity{position:relative;clear:both;font-size:12px;line-height:14px;}
 .opportunity .avatar{float:left}

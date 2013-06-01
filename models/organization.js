@@ -2,10 +2,10 @@
 var mongoose = require('mongoose')
 var plugins = require('./plugins')
 var Lang = require('../lang') 
-var positionKeys = Object.keys(Lang.en.Organization.Positions)
+var positionKeys = Lang.en.Organization.Positions 
 var sizeKeys = Object.keys(Lang.en.Organization.Sizes)
 var statusKeys = Object.keys(Lang.en.Organization.Statuses)
-var typeKeys = Object.keys(Lang.en.Organization.Types)
+var typeKeys = Lang.en.Organization.Types 
 
 var Organization = new mongoose.Schema({
   orgName :       { type : String },
@@ -16,7 +16,7 @@ var Organization = new mongoose.Schema({
   orgPosition :   { type : String, enum : positionKeys },
   orgSize :       { type : String, default : 'earlyStartup', enum : sizeKeys },
   orgStatus :     { type : String, default : 'off', enum : statusKeys },
-  orgType :       { type : String, default : 'profit', enum : typeKeys }
+  orgType :       { type : String, enum : typeKeys }
 }, { 
   strict : 'throw', 
   collection : 'accounts', 
@@ -41,9 +41,9 @@ Organization.virtual('name').get(function () {
  * Position in the organization that the user of this account holds
  * @return {String}
  */
-Organization.virtual('position').get(function () { 
-  return Lang.en.Organization.Positions[this.orgPosition]
-})
+// Organization.virtual('position').get(function () { 
+  // return Lang.en.Organization.Positions[this.orgPosition]
+// })
 
 /**
  * Size of the Organization
@@ -67,9 +67,9 @@ Organization.virtual('status').get(function () {
  * Type of organization
  * @return {String}
  */
-Organization.virtual('type').get(function () { 
-  return Lang.en.Organization.Types[this.orgType]
-})
+// Organization.virtual('type').get(function () { 
+  // return Lang.en.Organization.Types[this.orgType]
+// })
 
 /**
  * Check is the profile is considered completely registered

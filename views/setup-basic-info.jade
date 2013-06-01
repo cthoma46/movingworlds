@@ -12,7 +12,7 @@ block content
           li= error
     section.stack_960
       header
-        h2 Basic Information
+        h2 Step 1: Basic Information
       form(id='step1', action='/setup', method='post', enctype='multipart/form-data')
 
         if (!user.hash)
@@ -55,10 +55,17 @@ block content
         section.stack_body 
           fieldset 
             ul
+
               if (user.model === 'experteer')
-                li
-                  p Connect your account with LinkedIn 
-                  a(href='/auth/linkedin').linkedin_signup 
+                if (!user.linkedinId)
+                  li
+                    p.disclaimer Connect your account with LinkedIn 
+                    a(href='/auth/linkedin').linkedin_signup 
+                else
+                  li
+                    p.disclaimer Your account is connected to linkedin 
+                    a(href='/auth/linkedin').chunky_btn.small Resync with LinkedIn 
+
               li.half
                 label(for='firstname') First Name
                 input(
@@ -141,8 +148,8 @@ block content
                   )
               li.half 
                 label Upload your Photo
-                div.avatar.avatar-small
-                  img(src=user.avatar || '/images/icn_avatar_experteer.png')
+                //- div.avatar.avatar-small
+                  //- img(src=user.avatar || '/images/icn_avatar_experteer.png')
                 input(type='file', id='avatar', name='avatar')
 
             ul

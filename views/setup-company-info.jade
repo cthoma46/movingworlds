@@ -10,7 +10,7 @@ block content
 
     section.stack_960
       header
-        h2 Company Information
+        h2 Step 2: Company Information
       div.stack_body.clearfix
         form(id="rep_step2", action="/setup", method="post", enctype="multipart/form-data")
           fieldset.col1of2.split
@@ -33,14 +33,7 @@ block content
                   class="combobox",
                   data-value=user.orgType
                   )
-                  option(value="profit") For profit company
-                  option(value="profit-org") For profit (Social) Enterprise
-                  option(value="non-profit") Non-profit (Social) Enterprise / NGO
-                  option(value="cooperative") Cooperative
-                  option(value="educational") Educational Institute
-                  option(value="research_institute") Research Institute
-                  option(value="government_agency") Government Agency
-                  option(value="other") Other
+                  include forms/orgTypes
                 input(type='hidden', id='type_value', value=user.orgType.key)
 
               li
@@ -111,12 +104,7 @@ block content
                   class="combobox",
                   data-value=user.orgPosition
                   )
-                  option(value="founder") (co) Founder
-                  option(value="director") Director
-                  option(value="manager") Manager
-                  option(value="employee") Employee (other)
-                  option(value="legal_rep") Legal representative
-                  option(value="other") Other
+                  include forms/orgPositions
               li
                 label(for="linksUrl") Website Url
                   span example: http://www.mywebsite.com
