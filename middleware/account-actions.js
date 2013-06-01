@@ -10,8 +10,7 @@ var account = {}
 
 account.getFeaturedData = function (req, res, next) {
   Account
-    // .find({ featured : true })
-    .find()
+    .find({ featured : true })
     .select('city country description model avatar industry')
     .exec(function (err, docs) {
       if (err) {
