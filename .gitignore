@@ -11,3 +11,4 @@ public/avatars/*.png
 public/avatars/*.jpg
 public/avatars/*.jpeg
 build/
+node_modules/
