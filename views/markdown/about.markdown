@@ -11,8 +11,6 @@
 ### What We Do:
 **MovingWorlds connects people that want to change the world with organizations that are changing it.**
 
-![](https://moving_worlds.s3.amazonaws.com/f8db06893a5e9045fb69a76a7d1a08cb.png)
-
 Our Global Experteering Network empowers people to donate     their expertise to social impact organizations abroad: accelerating social progress while creating life-enriching experiences - something we call Experteering.
 
 MovingWorlds works like a dating site. Professionals and organizations create profiles, and then MovingWorlds suggests matches. It then provides guidance to help make sure the matches are safe and high quality. If you want to learn more, please review our [resources](/resources), and also read our [FAQ](/faq)s.
