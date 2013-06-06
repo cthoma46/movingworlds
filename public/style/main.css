@@ -8,7 +8,7 @@ body{font:14px Helvetica,Arial,sans-serif;line-height:1.4em;color:#404040;*font-
 p{font:14px Helvetica,Arial,sans-serif;line-height:1.5em;color:#404040;margin-bottom:10px}
 p img,figure{margin-bottom:20px}
 figcaption{color:#999;font-size:.8em}
-blockquote,q{quotes:none;font:italic 1em/1em Georgia serif;color:#444;font-size:16px}
+blockquote,q{quotes:none;font:italic 1em/1em Georgia serif;color:#444;font-size:16px;margin-bottom:10px}
 blockquote:before,blockquote:after,q:before,q:after{content:none}
 blockquote.pullquote_right,blockquote.pullquote_left{float:right;width:40%;margin:1.5em 1em .5em}
 blockquote.pullquote_left{float:left}
@@ -41,7 +41,7 @@ a.disabled,a:active.disabled{pointer-events:none;cursor:default}
 a:hover{text-decoration:underline}
 a:hover,a:active{outline:0}
 a:link{-webkit-tap-highlight-color:#ff5e99}
-ul,ol{padding-left:1.5em;box-sizing:border-box;}
+ul,ol{padding-left:1.5em;margin-bottom:10px;box-sizing:border-box;}
 ul.unstyled,ol.unstyled{list-style-type:none;padding:0}
 ul{list-style-type:disc}
 ol{list-style-type:decimal}
@@ -185,18 +185,20 @@ footer#page_foot .disclaimer{margin-top:45px;color:#bfbfbf;font-size:10px;font-s
 footer#page_foot nav.socials{position:absolute;right:0}
 #content{margin-top:-30px;}
 #content *{box-sizing:border-box}
-#content header{padding-top:30px;padding-bottom:60px;margin-bottom:30px;background:transparent url("../images/gfx_dotmap.png") 0 0 repeat-x;background-position:0 -50px;box-shadow:0 2px 10px rgba(0,0,0,0.6);}
+#content header #dotmap{padding:30px 0 60px}
 #content header h2{text-transform:uppercase}
 #content header .content{padding-left:30px}
 #content p{padding-right:10px}
-#content .section{margin-top:30px}
+#content .section{padding-top:30px}
 #content #scrollTop{position:fixed;right:30px;bottom:10px}
 #content ul.answers > li{margin-top:15px}
 #content ul.partners .partner{background:#fff;border:1px solid #bfbfbf;border-radius:3px;padding:10px;margin:10px;min-height:272px;}
-#content ul.partners .partner a.logo{height:100px;display:block;border-bottom:1px solid #bfbfbf;margin-bottom:10px}
-#feature{background:#fff url("/images/bg_feature.png") 0 0 repeat;margin-top:-30px;height:530px;}
+#content ul.partners .partner a.logo{height:101px;display:block;border-bottom:1px solid #bfbfbf;margin-bottom:10px}
+.dotmap-bg{background:#fff url("/images/bg_feature.png") 0 0 repeat}
+#dotmap{background:transparent url("/images/gfx_dotmap.png") 50% -60px repeat;max-width:1160px;margin:0 auto}
+#feature{margin-top:-30px;height:530px;}
 #feature h1{font-size:39px;text-align:center;color:#245b75;padding-top:20px;font-weight:900;text-shadow:0 1px 0 #fff;border:none;-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none}
-#feature #dotmap{position:relative;background:transparent url("/images/gfx_dotmap.png") 50% -60px repeat;width:1160px;height:530px;margin:0 auto;}
+#feature #dotmap{position:relative;height:530px;}
 #feature #dotmap .marker{opacity:0;position:absolute;background:transparent url("/images/spt_aux_icons.png") 0 0 no-repeat;width:16px;height:20px;cursor:pointer;}
 #feature #dotmap .marker.experteer_icn{background-position:0 0}
 #feature #dotmap .marker.org_icn{background-position:0 -21px}
