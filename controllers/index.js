@@ -66,6 +66,7 @@ module.exports = function (app) {
   app.get( '/opportunity/:id/delete', x.org,    opp.delete, home)
   app.get( '/profile/:_id/:_id2?',    acc.profile)
   app.get( '/about',                  home.page('about', 'About Movingworlds'))
+  app.get( '/pricing',                home.page('pricing', 'Pricing'))
   app.get( '/partners',               home.page('partners', 'Partners'))
   app.get( '/faq',                    home.page('faq', 'Frequently Asked Questions'))
   app.get( '/resources',              home.page('resources', 'Resources'))

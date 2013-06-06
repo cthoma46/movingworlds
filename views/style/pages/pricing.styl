@@ -1,0 +1,99 @@
+green = rgb(157, 183, 58)
+green_dark = rgb(67, 82, 12)
+
+blue = rgb(73, 154, 194)
+blue_dark = rgb(35, 72, 97)
+blue_v_light = rgb(197, 211, 219)
+
+details_height = 270px
+
+#pricing
+	header
+		h1
+			margin-bottom: 0.2em
+		h3
+			color: mw_blue
+	#dotmap
+		background-position-y: -40px
+
+	#plans
+		margin-top: default_margin
+
+		.ribbon
+			top: -40px
+			margin-bottom: -40px
+
+		.callout
+			text-align: center
+			margin: default_margin
+
+		.plan
+			background: rgba(255, 255, 255, 0.7)
+
+			header
+				border-radius: 10px 10px 0 0
+				text-align: center
+				color: white
+				padding 5px 0
+
+				h2
+					color: white
+					font-size: 2.3em
+					small
+						font-size: 50%
+				h3
+					color: blue_v_light
+				h2, h3
+					text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+					margin: 5px 0
+
+			.details
+				border: 2px solid blue_dark
+				border-radius: 0 0 10px 10px
+				padding: 10px
+				height: details_height
+				position: relative
+
+				button
+					font-size: 20px
+					position: absolute
+					bottom: default_margin
+					absCenter(220px)
+
+			&.basic, &.plus
+				margin-top: default_margin
+				margin-bottom: default_margin
+				header
+					grad(green, green_dark)
+				.details
+					height: details_height - default_margin
+
+			&.basic 
+				margin-left: default_margin
+				header
+					border-radius: 10px 0 0 0
+				.details
+					border-radius: 0 0 0 10px
+					border-right: none
+
+			&.plus 
+				margin-right: default_margin
+				header
+					border-radius: 0 10px 0 0
+				.details
+					border-radius: 0 0 10px 0
+					border-left: none
+
+			&.premium 
+				background: white
+				header
+					grad(blue, blue_dark)
+				.details button
+					font-size: 24px
+					absCenter(250px)
+					bottom: default_margin - 2
+
+	// shift the lightbulb thing up a few pixels
+	.icon-stack
+		position: relative
+		top: -5px

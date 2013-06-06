@@ -1,0 +1,26 @@
+ribbon_size = 10px
+wrap_color = rgb(130, 112, 61)
+
+.ribbon
+	position: relative
+	grad(yellow, dark_yellow)
+	margin: 0 (default_margin - ribbon_size * 2)
+	padding: 5px 50px
+	bxsh(0 0 8px)
+
+	&:before, &:after
+		content: " "
+		width: 0
+		height: 0
+		position: absolute
+		top: -1 * ribbon_size
+		border-style: solid
+		border-width: (ribbon_size / 2) ribbon_size
+
+	&:before
+		left: 0
+		border-color: transparent wrap_color wrap_color transparent
+
+	&:after
+		right: 0
+		border-color: transparent transparent wrap_color wrap_color

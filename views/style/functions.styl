@@ -23,6 +23,10 @@ grad(color1, color2)
 	background: linear-gradient(top,  color1 0%,color2 100%);
 	filter: unquote("progid:DXImageTransform.Microsoft.gradient( startColorstr="+color1+", endColorstr="+color2+",GradientType=0 );")
 	
+absCenter(width)
+	left: 50%
+	width: width
+	margin-left: -(width / 2)
 	
 arrow( size, color, direction )
 	width: 0;
