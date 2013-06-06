@@ -36,7 +36,7 @@ _.extend(module.exports, {
   },
   page : function (pageName, title) {
     return function (req, res) {
-      return res.render('content/' + pageName, { title: title})
+      return res.render('content/' + pageName, { title: title, locals: { headless: 'true' } })
     }
   },
   blog : function (req, res) {

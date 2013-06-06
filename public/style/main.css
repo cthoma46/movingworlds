@@ -8,6 +8,7 @@ html{overflow-y:scroll;-webkit-font-smoothing:antialiased;font-size:100%;-webkit
 body{font:14px Helvetica,Arial,sans-serif;line-height:1.4em;color:#404040;*font-size:small;*font:x-small;background-color:#f9f9f9;margin-bottom:30px}
 p{font:14px Helvetica,Arial,sans-serif;line-height:1.5em;color:#404040;margin-bottom:10px}
 p img,figure{margin-bottom:20px}
+.section{padding-top:30px}
 figcaption{color:#999;font-size:.8em}
 blockquote,q{quotes:none;font:italic 1em/1em Georgia serif;color:#444;font-size:16px;margin-bottom:10px}
 blockquote:before,blockquote:after,q:before,q:after{content:none}
@@ -199,7 +200,6 @@ footer#page_foot nav.socials{position:absolute;right:0}
 #content header h2{text-transform:uppercase}
 #content header .content{padding-left:30px}
 #content p{padding-right:10px}
-#content .section{padding-top:30px}
 #content #scrollTop{position:fixed;right:30px;bottom:10px}
 #content ul.answers > li{margin-top:15px}
 #content ul.partners .partner{background:#fff;border:1px solid #bfbfbf;border-radius:3px;padding:10px;margin:10px;min-height:272px;}
@@ -207,30 +207,31 @@ footer#page_foot nav.socials{position:absolute;right:0}
 #pricing header h1{margin-bottom:.2em}
 #pricing header h3{color:#3c82a2}
 #pricing #dotmap{background-position-y:-40px}
-#pricing #plans{margin-top:30px;}
-#pricing #plans .ribbon{top:-40px;margin-bottom:-40px}
-#pricing #plans .callout{text-align:center;margin:30px}
-#pricing #plans .plan{background:rgba(255,255,255,0.7);}
-#pricing #plans .plan header{border-radius:10px 10px 0 0;text-align:center;color:#fff;padding:5px 0;}
-#pricing #plans .plan header h2{color:#fff;font-size:2.3em;}
-#pricing #plans .plan header h2 small{font-size:50%}
-#pricing #plans .plan header h3{color:#c5d3db}
-#pricing #plans .plan header h2,#pricing #plans .plan header h3{text-shadow:0 -1px 0 rgba(0,0,0,0.5);margin:5px 0}
-#pricing #plans .plan .details{border:2px solid #234861;border-radius:0 0 10px 10px;padding:10px;height:270px;position:relative;}
-#pricing #plans .plan .details button{font-size:20px;position:absolute;bottom:30px;left:50%;width:220px;margin-left:-110px}
-#pricing #plans .plan.basic,#pricing #plans .plan.plus{margin-top:30px;margin-bottom:30px;}
-#pricing #plans .plan.basic header,#pricing #plans .plan.plus header{background:#9db73a;background:-moz-linear-gradient(top,#9db73a 0%,#43520c 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#9db73a),color-stop(100%,#43520c));background:-webkit-linear-gradient(top,#9db73a 0%,#43520c 100%);background:-o-linear-gradient(top,#9db73a 0%,#43520c 100%);background:-ms-linear-gradient(top,#9db73a 0%,#43520c 100%);background:linear-gradient(top,#9db73a 0%,#43520c 100%);filter:progid:DXImageTransform.Microsoft.gradient( startColorstr=#9db73a, endColorstr=#43520c,GradientType=0 );}
-#pricing #plans .plan.basic .details,#pricing #plans .plan.plus .details{height:240px}
-#pricing #plans .plan.basic{margin-left:30px;}
-#pricing #plans .plan.basic header{border-radius:10px 0 0 0}
-#pricing #plans .plan.basic .details{border-radius:0 0 0 10px;border-right:none}
-#pricing #plans .plan.plus{margin-right:30px;}
-#pricing #plans .plan.plus header{border-radius:0 10px 0 0}
-#pricing #plans .plan.plus .details{border-radius:0 0 10px 0;border-left:none}
-#pricing #plans .plan.premium{background:#fff;}
-#pricing #plans .plan.premium header{background:#499ac2;background:-moz-linear-gradient(top,#499ac2 0%,#234861 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#499ac2),color-stop(100%,#234861));background:-webkit-linear-gradient(top,#499ac2 0%,#234861 100%);background:-o-linear-gradient(top,#499ac2 0%,#234861 100%);background:-ms-linear-gradient(top,#499ac2 0%,#234861 100%);background:linear-gradient(top,#499ac2 0%,#234861 100%);filter:progid:DXImageTransform.Microsoft.gradient( startColorstr=#499ac2, endColorstr=#234861,GradientType=0 );}
-#pricing #plans .plan.premium .details button{font-size:24px;left:50%;width:250px;margin-left:-125px;bottom:28px}
-#pricing .icon-stack{position:relative;top:-5px}
+#pricing #plans{margin-top:30px}
+#bulb{position:relative;top:-5px}
+#plans h3{color:#3c82a2}
+#plans .ribbon{top:-40px;margin-bottom:-40px}
+#plans .callout{text-align:center;margin:30px}
+#plans .plan{background:rgba(255,255,255,0.7);}
+#plans .plan header{border:none;border-radius:10px 10px 0 0;text-align:center;color:#fff;padding:5px 0;}
+#plans .plan header h2{color:#fff;font-size:2.3em;}
+#plans .plan header h2 small{font-size:50%}
+#plans .plan header h3{color:#c5d3db}
+#plans .plan header h2,#plans .plan header h3{text-shadow:0 -1px 0 rgba(0,0,0,0.5);margin:5px 0}
+#plans .plan .details{border:2px solid #234861;border-radius:0 0 10px 10px;padding:10px;height:270px;position:relative;}
+#plans .plan .details button,#plans .plan .details a{font-size:20px;position:absolute;bottom:30px;left:50%;width:220px;margin-left:-110px}
+#plans .plan.basic,#plans .plan.plus{margin-top:30px;margin-bottom:30px;}
+#plans .plan.basic header,#plans .plan.plus header{background:#9db73a;background:-moz-linear-gradient(top,#9db73a 0%,#43520c 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#9db73a),color-stop(100%,#43520c));background:-webkit-linear-gradient(top,#9db73a 0%,#43520c 100%);background:-o-linear-gradient(top,#9db73a 0%,#43520c 100%);background:-ms-linear-gradient(top,#9db73a 0%,#43520c 100%);background:linear-gradient(top,#9db73a 0%,#43520c 100%);filter:progid:DXImageTransform.Microsoft.gradient( startColorstr=#9db73a, endColorstr=#43520c,GradientType=0 );}
+#plans .plan.basic .details,#plans .plan.plus .details{height:240px}
+#plans .plan.basic{margin-left:30px;}
+#plans .plan.basic header{border-radius:10px 0 0 0}
+#plans .plan.basic .details{border-radius:0 0 0 10px;border-right:none}
+#plans .plan.plus{margin-right:30px;}
+#plans .plan.plus header{border-radius:0 10px 0 0}
+#plans .plan.plus .details{border-radius:0 0 10px 0;border-left:none}
+#plans .plan.premium{background:#fff;}
+#plans .plan.premium header{background:#499ac2;background:-moz-linear-gradient(top,#499ac2 0%,#234861 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#499ac2),color-stop(100%,#234861));background:-webkit-linear-gradient(top,#499ac2 0%,#234861 100%);background:-o-linear-gradient(top,#499ac2 0%,#234861 100%);background:-ms-linear-gradient(top,#499ac2 0%,#234861 100%);background:linear-gradient(top,#499ac2 0%,#234861 100%);filter:progid:DXImageTransform.Microsoft.gradient( startColorstr=#499ac2, endColorstr=#234861,GradientType=0 );}
+#plans .plan.premium .details button,#plans .plan.premium .details a{font-size:24px;left:50%;width:250px;margin-left:-125px;bottom:28px}
 .dotmap-bg{background:#fff url("/images/bg_feature.png") 0 0 repeat}
 #dotmap{background:transparent url("/images/gfx_dotmap.png") 50% -60px repeat;max-width:1160px;margin:0 auto}
 #feature{margin-top:-30px;height:530px;}
