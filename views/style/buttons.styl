@@ -81,7 +81,7 @@ button[disabled],
 	text-decoration: none
 	text-transform: uppercase
 	text-shadow: 0 1px 0 #FFFFFF
-	font-size: 11px
+	font-size: 12px
 	color: #808080
 	letter-spacing: 1px
 	cursor: pointer
@@ -93,39 +93,32 @@ button[disabled],
 	&.round
 		bdrz(30px)
 	&.select
-		&:after {
+		&:after
 			content: url('/images/icn_select_arrow.png');
 			width: 12px;
 			height: 15px;
 			overflow:hidden
 			margin-left: 5px
-		}
+	&.blue
+		background-position: 0 -52px
+		border-color: #368bb2
+		color: #FFF
+		text-shadow: 0 1px 0 #226889
+		&:hover, &.on
+			background-position: 0 -78px
+			padding: 8px 15px 6px
+			color: #e5e5e5
+			bxsh(0 1px 3px #226889 inset\, 0 1px 0px #FFFFFF)
+	&:hover, &.on 
+		text-decoration: none
+		background-position: 0 -26px
+		padding: 8px 15px 6px
+		color: #808080
+		bxsh(0 1px 3px rgba(0,0,0,.45) inset\, 0 1px 0px #FFFFFF)
 
-.chunky_btn:hover, 
-.chunky_btn.on, 
-.chunky_btn.blue:hover, 
-.chunky_btn.blue.on
-	text-decoration: none
-	background-position: 0 -26px
-	padding: 8px 15px 6px
-	color: #808080
-	bxsh(0 1px 3px rgba(0,0,0,.45) inset\, 0 1px 0px #FFFFFF)
-
-.chunky_btn.blue
-	background-position: 0 -52px
-	border-color: #368bb2
-	color: #FFF
-	text-shadow: 0 1px 0 #226889
-
-.chunky_btn.blue:hover, 
-.chunky_btn.blue.on
-	background-position: 0 -78px
-	padding: 8px 15px 6px
-	color: #e5e5e5
-	bxsh(0 1px 3px #226889 inset\, 0 1px 0px #FFFFFF)
-
-.chunky_btn.round
-	bdrz(20px)
+.btn-block
+	display: block
+	text-align: center
 
 .x_btn
 	text-indent: -9999px

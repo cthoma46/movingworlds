@@ -14,7 +14,7 @@ block content
       h1 Travel and donate your skills abroad
 
   div.wrapper.clearfix
-    div.layout_960
+    div.layout_960.pure-g
       #invite_wrapper
         form#invite_form(action='/invite', method='post').validate
           label(for='email') Sign-up for an invite to MovingWorlds
@@ -23,20 +23,21 @@ block content
             button#submit_btn(type='submit') Invite Me!
           p.form_help.center MovingWorlds is an invite only community. Submit your email and we’ll send you an invite as soon as we can.
         #alert.hidden
-      div.col1of2.split
-        div#intro_video!= video
-      div#welcome.col2of2.split
+      .pure-u-1-2
+        #intro_video!= video
+      #welcome.pure-u-1-2
         h3.experteering_icon What is MovingWorlds?
         p This is more than a Global Experteering Network. It's a movement. It's an opportunity to use your skills to make the world a better place. Sign up for an invite. Create a profile. Find the best place to donate your expertise. Go Experteering. You will change the world, and the world will change you.
-        p
-          a(href='/faq', title='learn more about experteering').chunky_btn Learn more about MovingWorlds
+        p: a(href='/faq', title='learn more about experteering').chunky_btn Learn more about MovingWorlds
         div#welcome_bg_gfx
-      section#org_cta.clearfix
-        div.col1of2.split
-          p Do you represent an Organization? Find support for any business challenge, anywhere in the world.
-        div.col2of2.split
-          a(href='/org', title='learn more about experteering').chunky_btn Learn how Experteering can help your business
-      nav#mw_steps.clearfix
+      #org_cta.pure-u-1.well
+        .pure-u-1-2
+          .opportunity_icon
+            h3 Do you represent an Organization?
+            | Find support for any business challenge, anywhere in the world.
+        .pure-u-1-2
+          a(href='/org', title='learn more about experteering').chunky_btn.btn-block.org Learn how Experteering can help your business
+      nav#mw_steps.pure-u-1
         ul.step_icons
           li.invite_step
           li.arrow
