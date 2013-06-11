@@ -23,19 +23,18 @@ block content
             button#submit_btn(type='submit') Invite Me!
           p.form_help.center MovingWorlds is an invite only community. Submit your email and we’ll send you an invite as soon as we can.
         #alert.hidden
-      div.col1of2.split
-        div#intro_video!= video
-      div#welcome.col2of2.split
-        h3.experteering_icon What is MovingWorlds?
+      .pure-u-1-2
+        #intro_video!= video
+      #welcome.pure-u-1-2
+        h3.opportunity_icon What is MovingWorlds?
         p No matter your business challenge, if your company exists to make the world a better place, we can help. Our network of professionals are eager to donate their expertise in exchange for an experience they can be proud of. Get started by signing up for early access, and we’ll invite you as soon as we can. Once invited, post your specific business challenge(s), and we’ll connect you to a professional that wants to donate their time to help your organization build a better world.
-        p
-          a(href="/faq", title="learn more about experteering").chunky_btn Learn more about MovingWorlds
+        p: a(href="/faq", title="learn more about experteering").chunky_btn Learn more about MovingWorlds
         div#welcome_bg_gfx
-      section#org_cta.clearfix
-        div.col1of2.split
-          p Are you a person looking to donate your expertise?
-        div.col2of2.split
-          a(href="/org", title="learn more about experteering").chunky_btn Find opportunities around the world
+      #org_cta.pure-u-1.well
+        .pure-u-3-5
+          h3.experteering_icon Are you a person looking to donate your expertise?
+        .pure-u-2-5
+          a(href="/", title="learn more about experteering").chunky_btn.btn-block Find opportunities around the world
       nav#mw_steps.clearfix
         ul.step_icons
           li.invite_step
@@ -57,13 +56,13 @@ block content
             hgroup
               h4 Step 2
               h5 Create a Profile
-            p   Once you are invited, tell us about your organization, your social impact, and your location.
+            p Once you are invited, tell us about your organization, your social impact, and your location.
           li.opportunity_step
             div.icon
             hgroup
               h4 Step 3
               h5 Post Opportunities
-            p   Add specific business needs and recruit professionals on the profile.  Then, like a dating site, we connect you together and guide you through a hosted conversation to make a plan.
+            p Add specific business needs and recruit professionals on the profile.  Then, like a dating site, we connect you together and guide you through a hosted conversation to make a plan.
           li.support_step
             div.icon
             hgroup

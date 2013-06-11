@@ -36,15 +36,7 @@ _.extend(module.exports, {
   },
   page : function (pageName, title) {
     return function (req, res) {
-      return res.render('markdown/' + pageName, function (err, html) {
-        if (err) {
-          console.error(err)
-        }
-        return res.render('markdown-page', { 
-          page : html,
-          title : title, 
-        })
-      })
+      return res.render('content/' + pageName, { title: title, locals: { headless: 'true' } })
     }
   },
   blog : function (req, res) {

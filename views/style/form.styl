@@ -1,3 +1,10 @@
+// TODO: clean this bad boy up!
+// lots of stuff doesn't belong here and is probably unused.
+
+[class^="pure-input-"],
+[class*=" pure-input-"]
+	display: inline-block
+
 form
 	margin: 0
 	line-height: 1em
@@ -14,7 +21,6 @@ form
 		padding: 0
 		li
 			position: relative
-			min-height: 45px
 			display: block
 			margin-bottom: 15px
 			clear:both
@@ -46,11 +52,10 @@ form
 			color: blue
 			margin: 0
 			padding: 0
-			//line-height: 5px !important
 			vertical-align: text-top;
 
 	button, input, select, textarea
-		font-family: Arial, sans-serif
+		font-family: default_fonts
 		font-size: 100%
 		margin: 0
 		vertical-align: baseline
@@ -72,13 +77,11 @@ form
 	.ui-autocomplete-input,
 	textarea
 		margin: 0
-		width: 100%
 		box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		-webkit-box-sizing: border-box;
-		display:block
-		padding: 8px 10px 6px
 		color: #505050
+		font-family: default_fonts
 		font-size: 12px
 		font-weight: normal
 		box-shadow: 0 1px 3px rgba(0,0,0,.43) inset
@@ -255,17 +258,6 @@ Copyright (c) 2012 Reactive Apps, Ronnie Garcia
 		height: 3px;
 		width: 0;
 
-
-// DATPICKER
-.datepicker, .liveDatepicker
-	position: relative
-	// padding-right: 8px
-	.ui-datepicker-trigger
-		position: absolute
-		bottom:0
-		right: -2px;
-
-
 	// SLIDER
 .slider_container
 	label
@@ -314,8 +306,7 @@ ul.tagit
 	margin-right: inherit;
 	min-height: 28px
 	li
-		display: block;
-		float: left;
+		display: inline-block;
 		margin: 0
 		// margin: 2px 5px 2px 0;
 	li.tagit-new
@@ -325,7 +316,7 @@ ul.tagit
 	li.tagit-choice
 		position: relative;
 		height: 22px
-		margin: 1px 25px 0 0
+		margin: 3px 25px 0 0
 		padding-left: 15px;
 		background: transparent url('/images/bg_tag.png') 0 0 no-repeat
 		font: 12px Arial, sans-serif

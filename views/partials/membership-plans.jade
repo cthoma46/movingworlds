@@ -1,0 +1,69 @@
+#plans.pure-g
+	.pure-u-1-3
+		.basic.plan
+			header
+				h2 $99
+					small /YEAR
+				h3 Basic Account
+			.details
+				ul
+					li Full community features
+					li Unlimited access to training and resources
+				if (user.plan === 9900) 
+					button.smooth_btn.green.on Your plan 
+				else if (typeof headless !== 'undefined')
+					button.smooth_btn.green Get Access Now
+				else
+					button#button-basic.smooth_btn.green Choose Plan
+					form#form-basic(action='/payment/basic', method='post')
+
+	.pure-u-1-3
+		.premium.plan
+			header
+				h2 $199
+					small /YEAR
+				h3 Premium Account
+			.details
+				ul
+					li 60 days of premium travel insurance
+					li 1 hour of Experteering coaching and matching consulting
+					li Full community features
+					li Unlimited access to training and resources
+				.callout: h3
+					i.icon-fire 
+					| Most Popular!
+				if (user.plan === 19900) 
+					button.smooth_btn.blue.on Your plan 
+				else if (typeof headless !== 'undefined')
+					button.smooth_btn.blue(href="") Get Access Now
+				else
+					button#button-premium.smooth_btn.blue Choose Plan
+					form#form-premium(action='/payment/premium', method='post')
+
+
+
+	.pure-u-1-3
+		.plus.plan
+			header
+				h2 $699
+					small /YEAR
+				h3 Premium Plus Account
+			.details
+				ul
+					li Personalized travel agent
+					li 90 days of premium travel insurance
+					li Unlimited Experteering coaching and premium concierge service
+					li Full community features
+					li Unlimited access to training and resources
+				if (user.plan === 69900) 
+					button.smooth_btn.green.on Your plan 
+				else if (typeof headless !== 'undefined')
+					button.smooth_btn.green Get Access Now
+				else
+					button#button-plus.smooth_btn.green Choose Plan
+					form#form-plus(action='/payment/plus', method='post')
+
+	.pure-u-1.ribbon
+			i.icon-key.icon-3x.icon-blue.pull-left
+			h3 The MovingWorlds Guarantee:
+			strong We GUARANTEE you will find an opportunity to donate your expertise that you'll love, or your money back!

@@ -1,10 +1,17 @@
 
+// Pure CSS: A set of small, responsive CSS modules that you can use in every web project.
+// we're using just the base (contains Normalize.css) and grids components for now.
+// http://purecss.io
+@import "http://yui.yahooapis.com/combo?pure/0.1.0/base-min.css&pure/0.1.0/grids-min.css&pure/0.1.0/forms-min.css"
+
+@import "font-awesome.css"
+
 @import "vars"
 @import "functions"
 
 //HTML STYLES
 @import "reset"
-@import "typeography"
+@import "typography"
 @import "table"
 @import "form"
 
@@ -14,13 +21,14 @@
 @import "footer"
 
 // PAGE STYLES
+@import "pages/content"
+@import "pages/pricing"
 @import "pages/home"
 @import "pages/login"
 @import "pages/profile_details"
 @import "pages/register"
 @import "pages/finalization"
 @import "pages/landing"
-
 
 //EXTRAS
 @import "icons"
@@ -29,6 +37,7 @@
 @import "plugins"
 @import "helpers"
 @import "messages"
+@import "ribbon"
 
 //EXTRAS
 @import "ie"	

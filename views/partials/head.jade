@@ -54,7 +54,7 @@ div#password-form.hidden.modal(role='dialog')
   header
     h2 Change password
   div.modal_body 
-    form(action='/setup', method='post')
+    form.pure-form.pure-form-stacked(action='/setup', method='post')
       ul
         //- li Old password
         li: input(type='password', name='password', placeholder='Old password')

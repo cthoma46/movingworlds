@@ -13,164 +13,134 @@ block content
     section.stack_960
       header
         h2 Step 1: Basic Information
-      form(id='step1', action='/setup', method='post', enctype='multipart/form-data')
+      form.pure-form.pure-form-stacked(id='step1', action='/setup', method='post', enctype='multipart/form-data')
 
         if (!user.hash)
           section.stack_body.role_boxes.clearfix
-            a.experteer_box(
-              href='/setup/experteer', 
-              class=(user.model === 'experteer' ? 'on' : '')
-              )
-              div.icon
-              h4 I want to go Experteering:
-              p travel & donate my expertise at an organization abroad
-            a.organization_box(
-              href='/setup/organization', 
-              class=(user.model === 'organization' ? 'on' : '')
-              )
-              div.icon
-              h4 I want to be connected to an Experteer
-              p and receive free professional support for my organization
-            p.clearfix &nbsp; 
-            fieldset.col1of2.split
-              ul
+            .pure-u-1.pure-cozy
+              a.experteer_box.pure-u-1-2(href='/setup/experteer', class=(user.model === 'experteer' ? 'on' : ''))
+                div.icon
+                h4 I want to go Experteering:
+                p travel &amp; donate my expertise at an organization abroad
+              a.organization_box.pure-u-1-2(href='/setup/organization', class=(user.model === 'organization' ? 'on' : ''))
+                div.icon
+                h4 I want to be connected to an Experteer
+                p and receive free professional support for my organization
+            .pure-u-1.pure-cozy
+              .pure-u-1-2
+                label(for='password') Password
+                input(type='password'
+                      id='password'
+                      name='password'
+                      tabindex='8')
+              .pure-u-1-2
+                label(for='confirm') Confirm Password
+                input(type='password'
+                      id='confirm'
+                      name='confirm'
+                      tabindex='9')
+        section.stack_body.pure-g
+          fieldset.pure-u-1.disclaimer
+            if (user.model === 'experteer')
+              if (!user.linkedinId)
+                | Connect your account with LinkedIn 
+                a(href='/auth/linkedin').linkedin_signup 
+              else
+                | Your account is connected to linkedin 
+                a(href='/auth/linkedin').chunky_btn.small Resync with LinkedIn 
+          .pure-u-1.pure-cozy
+            .pure-u-2-5
+              label(for='firstname') First Name
+              input.pure-input-1(
+                type='text'
+                id='firstname' 
+                name='firstname'
+                tabindex='1'
+                value=user.firstname)
+            .pure-u-2-5
+              label(for='lastname') Last Name
+              input.pure-input-1(
+                type='text'
+                id='lastname'
+                name='lastname'
+                tabindex='2'
+                value=user.lastname)
+            .pure-u-1-5
+              label Gender
+              ul.inline.unstyled.gender
                 li
-                  label(for='password') Password
-                  input(
-                    type='password', 
-                    id='password', 
-                    name='password', 
-                    tabindex='8'
-                    )
-            fieldset.col2of2.split
-              ul
+                  input(type='radio'
+                        id='male'
+                        name='gender'
+                        value='male'
+                        tabindex='5'
+                        checked=user.gender=='male')
+                  label(for='male') Male
                 li
-                  label(for='confirm') Confirm Password
-                  input(
-                    type='password', 
-                    id='confirm', 
-                    name='confirm', 
-                    tabindex='9'
-                    )
-        section.stack_body 
-          fieldset 
-            ul
+                  input(type='radio'
+                        id='female' 
+                        name='gender'
+                        value='female'
+                        tabindex='6'
+                        checked=user.gender=='female')
+                  label(for='female') Female
+          .pure-u-1.pure-cozy
+            .pure-u-2-5
+              label(for='email') Email
+              input.pure-input-1(
+                type='text'
+                id='email'
+                name='email'
+                tabindex='3'
+                value=user.email)
+            .pure-u-2-5
+              label(for='city') City
+              input.pure-input-1(
+                type='text'
+                id='city'
+                name='city' 
+                tabindex='3'
+                value=user.city)
+            .pure-u-1-5
+              label(for='country') Country
+              select.data-select-value.pure-input-1(
+                id='country'
+                name='country'
+                tabindex='4'
+                data-value=user.country)
+                include forms/countries_combo
+          .pure-u-1.pure-cozy
+            .pure-u-2-5
+              label Birthday
+              .datepicker
+                input.pure-input-1.date(
+                  type='text'
+                  name='birthday'
+                  data-months='1'
+                  data-years='2'
+                  value=user.birthday)
+            .pure-u-3-5
+              label Upload your Photo
+              //- div.avatar.avatar-small
+                //- img(src=user.avatar || '/images/icn_avatar_experteer.png')
+              input.pure-input-1(type='file', id='avatar', name='avatar')
 
-              if (user.model === 'experteer')
-                if (!user.linkedinId)
-                  li
-                    p.disclaimer Connect your account with LinkedIn 
-                    a(href='/auth/linkedin').linkedin_signup 
-                else
-                  li
-                    p.disclaimer Your account is connected to linkedin 
-                    a(href='/auth/linkedin').chunky_btn.small Resync with LinkedIn 
+          fieldset.pure-u-1
+            .pure-u-1-2.field-container
+              input(
+                type='checkbox', 
+                id='agree', 
+                name='agree', 
+                checked=user.agree === true, 
+                tabindex='11'
+                ).required
+              label(for='agree')
+                | I agree to MovingWorlds
+                a(href='/terms_conditions', target='_blank') 
+                  | terms and conditions
 
-              li.half
-                label(for='firstname') First Name
-                input(
-                  type='text', 
-                  id='firstname', 
-                  name='firstname', 
-                  tabindex='1', 
-                  value=user.firstname
-                  )
-              li.half
-                label(for='lastname') Last Name
-                input(
-                  type='text', 
-                  id='lastname', 
-                  name='lastname', 
-                  tabindex='2', 
-                  value=user.lastname
-                  )
-            ul
-              li.half
-                label(for='email') Email
-                input(
-                  type='text', 
-                  id='email', 
-                  name='email', 
-                  tabindex='3', 
-                  value=user.email
-                  )
-              li.half.field-container
-                label Gender
-                ul
-                  li
-                    input(
-                      type='radio', 
-                      id='male', 
-                      name='gender', 
-                      value='male', 
-                      tabindex='5', 
-                      checked=user.gender=='male'
-                      )
-                    label(for='male') Male
-                  li
-                    input(
-                      type='radio', 
-                      id='female', 
-                      name='gender', 
-                      value='female', 
-                      tabindex='6', 
-                      checked=user.gender=='female'
-                      )
-                    label(for='female') Female
-            ul
-              li.half
-                label(for='city') City
-                input(
-                  type='text', 
-                  id='city', 
-                  name='city', 
-                  tabindex='3', 
-                  value=user.city
-                  )
-              li.half
-                label(for='country') Country
-                select.data-select-value(
-                  id='country', 
-                  name='country', 
-                  tabindex='4', 
-                  data-value=user.country
-                  )
-                  include forms/countries_combo
-            ul
-              li.half.datepicker
-                label Birthday
-                input.date(
-                  type='text', 
-                  name='birthday', 
-                  data-months='1', 
-                  data-years='2', 
-                  value=user.birthday
-                  )
-              li.half 
-                label Upload your Photo
-                //- div.avatar.avatar-small
-                  //- img(src=user.avatar || '/images/icn_avatar_experteer.png')
-                input(type='file', id='avatar', name='avatar')
-
-            ul
-              li.half.field-container
-                input(
-                  type='checkbox', 
-                  id='agree', 
-                  name='agree', 
-                  checked=user.agree === true, 
-                  tabindex='11'
-                  ).required
-                label(for='agree')
-                  | I agree to MovingWorlds
-                  a(href='/terms_conditions', target='_blank') 
-                    | terms and conditions
-
-          //- fieldset.col2of2.split
-            ul
-
-          if !user.hash
-            input(type='hidden', name='next', value='/setup/preferences')
+          //- if !user.hash
+          input(type='hidden', name='next', value='/setup/preferences')
 
           nav.progress.center.clear
             button(type='submit')#next.big.smooth_btn Save

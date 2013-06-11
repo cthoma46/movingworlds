@@ -13,121 +13,106 @@ block content
       header
         h2 Step 3: Professional Skills
       section(class="stack_body clearfix step3")
-        form( action="/setup", method="post")
-          fieldset.col1of2.split
-            ul
-              li.slider_container.clearfix
-                label.slider_label Years of work experience
-                  span #{user.experienceYears || 0}
-                div.data-select-value.slider#experienceYears(
-                  data-min="0", 
-                  data-max="30", 
-                  data-value=user.experienceYears || 0
-                  )
-                input(
-                  type="hidden", 
-                  name="experienceYears", 
-                  value=user.experienceYears || 0, 
-                  )
-          fieldset.col2of2.split
-            ul
-              li
-                label(for="industry") Industry
-                select.data-select-value(
-                  id="industry", 
-                  name="industry", 
-                  class="combobox", 
-                  data-value=user.industry
-                  )
-                  include forms/industry_combo
-          h3.clear Work History
-          hr
-          div#work_history.clone_container(data-template="work_template")
+        form.pure-form.pure-form-stacked( action="/setup", method="post")
+          .pure-u-1.pure-cozy
+            .pure-u-1-2.slider_container
+              label.slider_label Years of work experience
+                span #{user.experienceYears || 0}
+              div.data-select-value.slider#experienceYears(
+                data-min="0", 
+                data-max="30", 
+                data-value=user.experienceYears || 0
+                )
+              input(
+                type="hidden", 
+                name="experienceYears", 
+                value=user.experienceYears || 0, 
+                )
+            .pure-u-1-2
+              label(for="industry") Industry
+              select.data-select-value(
+                id="industry", 
+                name="industry", 
+                class="combobox", 
+                data-value=user.industry
+                )
+                include forms/industry_combo
+          #work_history.clone_container(data-template="work_template")
+            legend
+              h3 Work History
             each emp, i in user.employment
               if emp
-                fieldset.clearfix
-                  //- input(type="hidden", name="employerId["+i+"]", value=emp._id)
-                  ul.col1of2.split
-                    li
-                      label(for="employment["+i+"][employer]") Employer
-                      input(type="text", id="employment["+i+"][employer]", name="employment["+i+"][employer]", value=emp.employer )
-                    //-li
-                      label(for="city["+i+"]") City
-                      input( type="text", id="city["+i+"]", name="city["+i+"]", value=emp.city )
-                  ul.col2of2.split
-                    li
-                      label(for="employment["+i+"][position]") Position
-                      input( type="text", id="employment["+i+"][position]", name="employment["+i+"][position]", value=emp.position  )
-                    li.half
-                      input( type="checkbox", id="employment["+i+"][current]", name="employment["+i+"][current]", value="true", checked=emp.current)
-                      label(for="employment["+i+"][current]") I currently work here
-                    li.half
-                      a(href="").delete_btn.chunky_btn.small.right delete
+                include forms/work_item
+            button.chunky_btn.regular.add_btn.right
+              i.icon-plus
+              |  Add New Employment
 
-          h3.clear Education
-          hr
-          div#education_history.clone_container(data-template="education_template")
+          #education_history.clone_container(data-template="education_template")
+            legend
+              h3 Education
             each edu, i in user.education
               if edu
-                fieldset.clearfix
-                  //- input(type="hidden", name="educationId["+i+"]", value=edu._id)
-                  ul.col1of2.split
-                      li
-                        label(for="education["+i+"][school]") School Name
-                        input( type="text", id="education["+i+"][school]", name="education["+i+"][school]", value=edu.school )
-                      li
-                        label(for="education["+i+"][degree]") Degree
-                        input( type="text", id="education["+i+"][degree]", name="education["+i+"][degree]", value=edu.degree)
-                  ul.col2of2.split
-                    li
-                      label(for="education["+i+"][major]") Field of study
-                        span seperate multiple values with commas
-                      input( type="text", id="education["+i+"][major]", name="education["+i+"][major]", class="tags", value=edu.major  )
-                    li.half.datepicker
-                      label(for="education["+i+"][start]") Start Date
-                      -var start = (edu.start) ? settings.moment( edu.start ).format('MMMM D, YYYY') : ''
-                      input( type="text", id="education["+i+"][start]", name="education["+i+"][start]", value=start, class="date" )
-                    li.half.datepicker
-                      label(for="education["+i+"][end]") End Date
-                      -var end = (edu.end) ? settings.moment( edu.end ).format('MMMM D, YYYY') : ''
-                      input( type="text", id="education["+i+"][end]", name="education["+i+"][end]", value=end, class="date"  )
-                  p
-                    a(href="").delete_btn.chunky_btn.small.right delete
+                include forms/education_item
+            button.chunky_btn.regular.add_btn.right
+              i.icon-plus
+              |  Add New Education
 
           //- if !user.industry
-            input(type='hidden', name='next', value='/setup/payment')
+          input(type='hidden', name='next', value='/setup/plan')
 
-          nav#progress
-            a(href="/setup/payment")#skip.big.smooth_btn.gray Skip
-            button(type="submit")#next.big.smooth_btn Save
+          nav#progress.pure-u-1
+            a(href="/setup/plan")#skip.big.smooth_btn.gray Skip
+            | &nbsp;
+            button(type="submit")#next.big.smooth_btn Save &amp; Continue
       footer
 
 
   script#work_template(type="text/template")
-    //- | <input type="hidden", name="employerId[##]", value="" />
-    | <fieldset class="clearfix">
-    | <ul class="col1of2 split">
-    |   <li><label for="employment[##][employer]">Employer</label><input type="text" id="employment[##][employer]" name="employment[##][employer]", placeholder="Enter organization name here"></li>
-    |   <li style="display:none"><label for="employment[##][city]">City</label><input type="text" id="employment[##][city]" name="employment[##][city]"></li>
-    | </ul>
-    | <ul class="col2of2 split">
-    |   <li><label for="employment[##][position]">Position</label><input type="text" id="employment[##][position]" name="employment[##][position]", placeholder="Your title / role in the organization"></li>
-    |   <li class="half"><input type="checkbox" id="employment[##][current]" name="employment[##][current]" value="true" ><label for="employment[##][current]">I currently work here</label></li>
-    |   <li class="half"><a href="#" class="delete_btn chunky_btn small right hidden">delete</a></li>
-    | </ul>
-    | </fieldset>
+    | <div class="pure-u-1 pure-cozy">
+    | <div class="pure-u-1-3">
+    |   <label for="employment[##][employer]">Employer</label>
+    |   <input type="text" class="pure-input-1" id="employment[##][employer]" name="employment[##][employer]">
+    | </div><div class="pure-u-1-3">
+    |   <label for="employment[##][position]">Position</label>
+    |   <input type="text" class="pure-input-1" id="employment[##][position]" name="employment[##][position]">
+    | </div><div class="pure-u-1-3">
+    |   <label>Status</label>
+    |   <button type="button" class="delete_btn chunky_btn right"><i class="icon-remove"></i></button>
+    |   <input type="checkbox" class="pure-input-1" id="employment[##][current]" name="employment[##][current]" value="true">
+    |   <label for="employment[##][current]">I currently work here</label>
+    | </div>
+    | </div>
 
   script#education_template(type="text/template")
-    //- | <input type="hidden", name="educationId[##]", value="" />
-    | <fieldset class="clearfix">
-    | <ul class="col1of2 split">
-    |   <li><label for="education[##][school]">School Name</label><input type="text" id="education[##][school]" name="education[##][school]" ></li>
-    |   <li><label for="education[##][degree]">Degree</label><input type="text" id="education[##][degree]" name="education[##][degree]" placeholder="e.g. Master in Enviromental Management"></li>
-    | </ul>
-    | <ul class="col2of2 split">
-    |   <li><label for="education[##][major]">Field of study<span>Enter your fields of study, comma-separated</span></label><input type="text" id="education[##][major]" name="education[##][major]" class="tags"></li>
-    |   <li class="half datepicker"><label for="education[##][start]">Start Date</label><input type="text" id="education[##][start]" name="education[##][start]" class="date"></li>
-    |   <li class="half datepicker"><label for="education[##][end]">End Date</label><input type="text" id="education[##][end]" name="education[##][end]" class="date"></li>
-    | </ul>
-    | <p class=""><a href="#" class="delete_btn chunky_btn small right hidden">delete</a></p>
-    | </fieldset>
+    | <div class="pure-u-1">
+    | <div class="pure-u-11-12 pure-cozy">
+    | <div class="pure-u-1-2">
+    |   <label for="education[##][school]">School Name</label>
+    |   <input type="text" class="pure-input-1" id="education[##][school]" name="education[##][school]">
+    | </div><div class="pure-u-1-2">
+    |   <label for="education[##][degree]">Degree</label>
+    |   <input type="text" class="pure-input-1" id="education[##][degree]" name="education[##][degree]">
+    | </div><div class="pure-u-1-2">
+    |   <label for="education[##][major]">Fields of study
+    |     <span>seperate multiple values with commas</span>
+    |   </label>
+    |   <input type="text" class="pure-input-1 tags" id="education[##][major]" name="education[##][major]">
+    | </div><div class="pure-u-1-2">
+    |   <label>Dates of Study</label>
+    |   <div class="dates row-icon">
+    |     <div class="datepicker pure-u-1-2 full">
+    |       <input type="text" class="pure-input-1 date" name="experteerStart"> 
+    |     </div>
+    |     <div class="icon cozy">
+    |       <i class="icon-arrow-right"></i>
+    |     </div>
+    |     <div class="datepicker pure-u-1-2">
+    |       <input type="text" class="pure-input-1 date" name="experteerEnd">
+    |     </div>
+    |   </div>
+    | </div>
+    | </div><div class="pure-u-1-12">
+    |   <label>&nbsp;</label>
+    |   <button class="delete_btn chunky_btn right"><i class="icon-remove"></i></button>
+    | </div>
+    | </div>

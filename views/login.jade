@@ -3,42 +3,40 @@ extends layouts/layout
 block append scripts
 
 block content
-	div.layout_630
-		if ('undefined' !== typeof errors && errors.length)
-			ul.error
-				each error in errors
-					li= error
-		h2.center Login to MovingWorlds
-		hr
-		section#login_area.col1of2.split
-			form( action="/login", method="post")
-				-if(typeof redirect != 'undefined')
-					input(type="hidden", name="redirect", value= redirect)
-				fieldset
-					ul
-						li
-							label(for="email") Email
-							input(type="email", id="email", name="email")
-						li
-							label(for="password") Password
-							input(type="password", id="password", name="password")
-						li
-							button(type="submit").chunky_btn.round Sign In
-							span.check.right
-								input( type="checkbox", id="remember", name="remember", value="true" )
-								label(for="remember") Remember me
-		section.social_connects.col2of2.split
-			ul.no_style
-				li
-					a(href="/auth/linkedin").linkedin_connect Connect with LinkedIn
-				//- li
-				//- 	a(href="/auth/google").google_plus_connect Connect with Google_plus
-				//- li
-				//-	a(href="/auth/facebook").facebook_connect Connect with Facebook
-		hr.clear
-		h2.center Not a Member?
-		p.center Sign-up for an invite to MovingWorlds
-		form( action="/invite", method="post")#invite
-			.field-wrap
-				input( type="email", id="email", name="email", placeholder="Enter your email address" )
-				button(type="submit").chunky_btn.blue Get Invite
+	div.layout_630.pure-g
+			if ('undefined' !== typeof errors && errors.length)
+				ul.error
+					each error in errors
+						li= error
+			h2.center.pure-u-1 Login to MovingWorlds
+			hr
+			form.pure-form.pure-form-stacked.pure-cozy(action="/login", method="post")
+				section#login_area.pure-u-1-2
+					-if(typeof redirect != 'undefined')
+						input(type="hidden", name="redirect", value= redirect)
+					label(for="email") Email
+					input.pure-input-1(type="email", id="email", name="email")
+					.section
+						label(for="password") Password
+						input.pure-input-1(type="password", id="password", name="password")
+					.section
+						button(type="submit").chunky_btn.round Sign In
+						span.check.right
+							input( type="checkbox", id="remember", name="remember", value="true" )
+							label(for="remember") Remember me
+				section.social_connects.pure-u-1-2
+					ul.no_style
+						li: a(href="/auth/linkedin").linkedin_connect
+							i.icon-linkedin
+							| Connect with LinkedIn
+						//- li
+						//- 	a(href="/auth/google").google_plus_connect Connect with Google_plus
+						//- li
+						//-	a(href="/auth/facebook").facebook_connect Connect with Facebook
+			hr.clear
+			.pure-u-1
+				h2.center Not a Member?
+				p.center Sign-up for an invite to MovingWorlds
+				form.pure-form( action="/invite", method="post")#invite
+					input.pure-u-3-4( type="email", id="email", name="email", placeholder="Enter your email address" )
+					button.pure-u-1-4.center(type="submit").chunky_btn.blue Get Invite

@@ -1,0 +1,19 @@
+extends layouts/layout
+
+//-
+	template for static content pages, like About and FAQs.
+	puts a full-width header block across the top with the MW map in the background
+	and a standard-width content block beneath it. content pages simply populate
+	these two blocks and we're good to go.
+	NOTE: Using PureCSS grids for kickass layouts. http://purecss.io
+
+block content
+	-var headless = true
+
+	#content.pure-g-r
+		header.dotmap-bg.pure-u-1
+			#dotmap.layout_960
+				block header
+		.wrapper.clearfix
+			.pure-u-1.layout_960
+				block contents
