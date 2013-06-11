@@ -24,7 +24,7 @@
 
 .col1of2, .col2of2, .col1of3, .col2of3, .col3of3
 	float: left
-	margin-right: 30px
+	margin-right: default_margin
 	width: 300px
 
 .col2of2, .col3of3
@@ -32,4 +32,79 @@
 
 
 .col1of2, .col3of3
-	margin-right: 30px
+	margin-right: default_margin
+
+// LISTS
+ul, ol
+	padding-left: 1.5em
+	margin-bottom: 10px
+	box-sizing: border-box
+
+	&.unstyled
+		list-style-type: none
+		padding: 0
+	
+	&.inline li
+		display: inline-block;
+		margin-right: 10px
+		&:last-child
+			margin-right: 0
+
+ul
+	list-style-type: disc
+
+ol
+	list-style-type: decimal
+
+nav ul, ul.no_style
+	list-style: none
+	margin: 0
+	padding: 0
+
+nav ul, ul.no_style
+	margin-bottom: 20px
+
+nav ul li
+	float: left
+
+
+menu ul
+	margin: 0
+	list-style: none
+	li 
+		margin-bottom: 10px
+
+// cozy padding on generic items
+:not(ul).cozy
+:not(ol).cozy
+	padding cozy_padding cozy_padding*2
+ul.cozy, ol.cozy
+	li 
+		padding cozy_padding 0
+
+// compact padding on generic items
+:not(ul).compact
+:not(ol).compact
+	padding compact_padding compact_padding*2
+ul.compact, ol.compact
+	li 
+		padding compact_padding 0
+
+// GRID PADDING
+// put a little space in your pure grid.
+[class^="pure-u-"], 
+[class*=" pure-u-"]
+	box-sizing: border-box
+	.pure-cozy > &
+		padding-right: default_margin
+		padding-bottom: default_margin
+	.pure-compact > &
+		padding-right: (default_margin / 2)
+		padding-bottom: (default_margin / 2)
+	.pure-cozy > &:last-child, 
+	.pure-compact > &:last-child
+		padding-right: 0
+
+// no padding on every other 1/2-width unit
+.pure-u-1-2:nth-of-type(2)
+	padding-right: 0

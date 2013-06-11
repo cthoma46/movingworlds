@@ -177,51 +177,6 @@ a:hover, a:active
 a:link
 	-webkit-tap-highlight-color: #ff5e99
 
-// LISTS
-ul, ol
-	padding-left: 1.5em
-	margin-bottom: 10px
-	box-sizing: border-box
-	&.unstyled
-		list-style-type: none
-		padding: 0
-
-ul
-	list-style-type: disc
-
-ol
-	list-style-type: decimal
-
-nav ul, ul.no_style
-	list-style: none
-	margin: 0
-	padding: 0
-
-nav ul, ul.no_style
-	margin-bottom: 20px
-
-nav ul li
-	float: left
-
-
-menu ul
-	margin: 0
-	list-style: none
-	li 
-		margin-bottom: 10px
-
-:not(ul,ol).cozy
-	padding cozy_padding cozy_padding*2
-ul.cozy, ol.cozy
-	li 
-		padding cozy_padding 0
-
-:not(ul,ol).compact
-	padding compact_padding compact_padding*2
-ul.compact, ol.compact
-	li 
-		padding compact_padding 0
-
 .uppercase
 	text-transform uppercase
 .lowercase
@@ -237,10 +192,12 @@ ul.compact, ol.compact
 
 .row-icon
 	display: table
-	> * 
+	& > * 
 		display: table-cell
 		vertical-align: top
 		padding-right: 10px
+		&:last-child, &.full
+			padding-right: 0
 	.icon
 		width: 0
 	.content
