@@ -19,7 +19,7 @@ html.no-js(lang='en')
     link(href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900', rel='stylesheet')
     link(href='/style/main.css', rel='stylesheet')
     link(href='/favicon.ico', rel='icon', type='image/x-icon')
-  -bodyId = (typeof page_id != 'undefined') ? page_id : title.toLowerCase()
+  -bodyId = (typeof page_id != 'undefined') ? page_id : title.toLowerCase().replace(/\s/g, '-')
   body(id=bodyId)
 
     include ../partials/head
