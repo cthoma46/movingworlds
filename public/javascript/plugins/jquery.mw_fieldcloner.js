@@ -28,7 +28,7 @@
 					removeTemplate( $(this).parents(settings.childType).first() );
 				})
 
-				$this.find(addBtnClass).click( function(e){
+				$this.find(settings.addBtnClass).click( function(e){
 					e.preventDefault();
 					// just add a new template to the element
 					addTemplate();
