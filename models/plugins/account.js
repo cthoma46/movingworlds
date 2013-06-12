@@ -12,7 +12,7 @@ module.exports = function (schema, opts) {
     birthday :        { type : Date, get : _.dateFormat },
     agree :           { type : Boolean },
     conduct :         { type : Boolean },
-    plan :            { type : Number, default : 0 },
+    plan :            { type : String, default : 0 },
     activity :        { type : Array, default : [] },
     industry :        { type : String, default : '' },
     headline :        { type : String, default : '' },

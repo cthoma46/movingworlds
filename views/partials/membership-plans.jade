@@ -1,7 +1,7 @@
 #plans.pure-g
 	.pure-u-1-3
 		.basic.plan
-			header
+			header.gradient.green
 				h2 $99
 					small /YEAR
 				h3 Basic Account
@@ -9,7 +9,7 @@
 				ul
 					li Full community features
 					li Unlimited access to training and resources
-				if (user.plan === 9900) 
+				if (user.plan === 'BASIC') 
 					button.smooth_btn.green.on Your plan 
 				else if (typeof headless !== 'undefined')
 					button.smooth_btn.green Get Access Now
@@ -19,7 +19,7 @@
 
 	.pure-u-1-3
 		.premium.plan
-			header
+			header.gradient.blue
 				h2 $199
 					small /YEAR
 				h3 Premium Account
@@ -32,7 +32,7 @@
 				.callout: h3
 					i.icon-fire 
 					| Most Popular!
-				if (user.plan === 19900) 
+				if (user.plan === 'PREMIUM') 
 					button.smooth_btn.blue.on Your plan 
 				else if (typeof headless !== 'undefined')
 					button.smooth_btn.blue(href="") Get Access Now
@@ -44,7 +44,7 @@
 
 	.pure-u-1-3
 		.plus.plan
-			header
+			header.gradient.green
 				h2 $699
 					small /YEAR
 				h3 Premium Plus Account
@@ -55,7 +55,7 @@
 					li Unlimited Experteering coaching and premium concierge service
 					li Full community features
 					li Unlimited access to training and resources
-				if (user.plan === 69900) 
+				if (user.plan === 'PLUS') 
 					button.smooth_btn.green.on Your plan 
 				else if (typeof headless !== 'undefined')
 					button.smooth_btn.green Get Access Now

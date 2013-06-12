@@ -24,7 +24,7 @@
           return methods.close();
         });
       }
-      $(".modal_close_btn").click(function(e) {
+      $(".close").click(function(e) {
         return methods.close();
       });
       return $modal = this.css({

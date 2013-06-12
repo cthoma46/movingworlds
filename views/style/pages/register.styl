@@ -139,3 +139,40 @@ nav#progress
 			font-size: 20px
 			color: #808080
 
+#password-form
+	.middle
+		padding-top: default_margin
+		&:last-of-type
+			padding-bottom: default_margin
+	input
+		font-size: 20px
+
+#payment-modal
+	text-align: left
+	input
+		font-size: 20px
+	form
+		margin-bottom: -(default_margin)
+
+	.message
+		padding: 0
+		label
+			margin-bottom: 10px
+			color: red
+			&:empty
+				display: none
+
+	.expires
+		padding-right: 0
+		input
+			display: inline
+			padding-left: 8px
+			padding-right: 8px
+		input:first-of-type
+			text-align: right
+			border-radius: 3px 0 0 3px
+		input:last-of-type
+			border-radius: 0 3px 3px 0
+	.cvc
+		padding-right: 0
+

@@ -271,10 +271,11 @@ account.intro = function (req, res, next) {
 
 account.charge = function (req, res, next) {
   var params = {
-    cents : req.body.cents || 9900,
+    plan: req.body.plan,
+    coupon: req.body.coupon,
     stripeToken : req.body.stripeToken
   }
-  req.user.charge(params, function (error, response) {
+  req.user.subscribe(params, function (error, response) {
     console.log('Stripe Response', error, response)
     if (error) {
       req.flash('error', error.toString())
@@ -284,27 +285,11 @@ account.charge = function (req, res, next) {
       if (err) {
         console.error('Stripe processed CC but it wasnt saved locally.')
       }
-      req.flash('success', 'Payment processed successfully')
+      req.flash('success', 'Successfully subscribed to ' + req.body.plan + ' plan!')
       return res.redirect('/landing')
     })
   })
 }
-
-account.charge.basic = function (req, res, next) {
-  req.body.cents = 9900
-  next()
-}
-
-account.charge.premium = function (req, res, next) {
-  req.body.cents = 19900
-  next()
-}
-
-account.charge.plus = function (req, res, next) {
-  req.body.cents = 69900
-  next()
-}
-
 
 function saveAvatar (files, user) {
   if (files && files.avatar && files.avatar.length > 0) {

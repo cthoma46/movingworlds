@@ -8,40 +8,19 @@
 	width: 500px
 	margin: -250px 0 0 -250px
 	opacity: 0
-	background-color: rgba(23, 28, 38, .75)
+	background-color: white //rgba(23, 28, 38, .75)
 	border: 1px solid #171c26
-	bdrz(5px)
+	bdrz(10px)
 	bxsh(0 2px 5px rgba(0,0,0,.40))
 
 	header
-		position: relative
-		height: 29px
-		border-bottom: 1px solid #171c26
-		background-color: rgba(23, 28, 38, .75)
-		bdrz(5px 5px 0 0)
-		// bxsh(0 1px 0 rgba(255,255,255,.20) inset\, 0 1px 0 rgba(255,255,255,.20))
-		padding: 9px 10px 0 20px
-		h2
-			color: #FFF
-			text-shadow: 0 1px 0 #000000
-		.modal_close_btn
-			position: absolute
-			right: 10px
-			top: 10px
-			display: block
-			width: 20px
-			height: 20px
-			text-indent: -9999px
-			background: transparent url('/images/spt_aux_icons.png') -16px 0 no-repeat
-			float: right
-			&:hover
-				background-position: -16px -20px
+		padding: 10px
 
-	.modal_body
+	.modal-body
 		text-align: center
 		overflow-y: auto
-		max-height: 400px
-		padding: 30px
+		max-height: 420px
+		padding: default_margin
 		color: #FFF
 		h3
 			text-transform: none
@@ -53,25 +32,9 @@
 			font-size: 12px
 			font-weight: bold
 
-	footer
-		padding: 14px 15px 15px
-		margin-bottom: 0
-		text-align: right
-		bdrz(0 0 5px 5px)
-		bxsh(0 1px 0 rgba(255,255,255,.40) inset)
-		*zoom: 1
-		&:before, &:after
-			display: table
-			content: ""
-		&:after
-			clear: both
-
-
-	.col1of2, .modal .col2of2
-		width: 250px
-
-	.col1of2
-		margin-left: -1px
+	.modal-footer
+		padding: 10px default_margin
+		background: #CCC
 
 	nav.socials
 		text-align: center

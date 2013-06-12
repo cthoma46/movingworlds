@@ -40,23 +40,6 @@ details_height = 270px
 	.plan
 		background: rgba(255, 255, 255, 0.7)
 
-		header
-			border: none
-			border-radius: 10px 10px 0 0
-			text-align: center
-			color: white
-			padding 5px 0
-
-			h2
-				color: white
-				font-size: 2.3em
-				small
-					font-size: 50%
-			h3
-				color: blue_v_light
-			h2, h3
-				text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
-				margin: 5px 0
 
 		.details
 			border: 2px solid blue_dark
@@ -74,8 +57,6 @@ details_height = 270px
 		&.basic, &.plus
 			margin-top: default_margin
 			margin-bottom: default_margin
-			header
-				grad(green, green_dark)
 			.details
 				height: details_height - default_margin
 
@@ -97,9 +78,35 @@ details_height = 270px
 
 		&.premium 
 			background: white
-			header
-				grad(blue, blue_dark)
 			.details button, .details a
 				font-size: 24px
 				absCenter(250px)
 				bottom: default_margin - 2
+
+header.gradient
+	position: relative
+	border: none
+	border-radius: 10px 10px 0 0
+	// grad() WHAT?
+	text-align: center
+	color: white
+	padding 5px 0
+
+	&.green
+		border: none
+		grad(green, green_dark)
+	&.blue
+		border: none
+		grad(blue, blue_dark)
+
+	h2
+		color: white !important
+		font-size: 2.3em
+		small
+			font-size: 50%
+	h3
+		color: blue_v_light !important
+	h2, h3
+		text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+		margin: 5px 0
+

@@ -50,16 +50,73 @@ header#page_head
               input(type='search', name='q')
               button(type='submit') search
 
-div#password-form.hidden.modal(role='dialog')
-  header
-    h2 Change password
-  div.modal_body 
+#password-form.hidden.modal(role='dialog')
+  header.gradient.blue
+    h2 Change Password
+  .modal_body 
     form.pure-form.pure-form-stacked(action='/setup', method='post')
-      ul
-        //- li Old password
-        li: input(type='password', name='password', placeholder='Old password')
-        //- li New password
-        li: input(type='password', name='newpass', placeholder='New password')
-        //- li Confirm
-        li: input(type='password', name='confirm', placeholder='Confirm')
-        li: button.big.smooth_btn(type='submit') Save
+      .pure-u-1-2.middle
+        input.pure-input-1(type='password', name='password', placeholder='Old password', required)
+      .pure-u-1-2.middle
+        input.pure-input-1(type='password', name='newpass', placeholder='New password', required)
+      .pure-u-1-2.middle
+        input.pure-input-1(type='password', name='confirm', placeholder='Confirm', required)
+      .pure-u-1-2.middle
+        button.chunky_btn.blue.pure-input-1(type='submit') Update
+
+#payment-modal.hidden.modal
+  header.gradient.blue
+    a.close: i.icon-remove
+    h2#plan
+    h3#price
+  .modal-body
+    form#payment-form.pure-form.pure-form-stacked.pure-g.pure-cozy(action='/payment', method='post', autocomplete='on')
+      input(type='hidden', name='plan', id='planName')
+      .pure-u-1.message
+        label.payment-errors
+      .pure-u-2-3.number
+        label Card number
+        input.pure-input-1(type="text", size="20"
+          data-stripe="number"
+          placeholder='xxxx xxxx xxxx xxxx'
+          autocomplete='cc-number'
+          required)
+      .pure-u-1-3.expires
+        label Expires
+        input.pure-input-1-2(type='text', size='2'
+          data-stripe='exp-month'
+          placeholder='MM'
+          autocompletetype='cc-exp-month'
+          required)
+        input.pure-input-1-2(type='text', size='2', 
+          data-stripe='exp-year'
+          placeholder='YY'
+          autocomplete='cc-exp-year'
+          required)
+      .pure-u-2-3.name
+        label Name on card
+        input.pure-input-1(type='text', size='20', 
+          data-stripe='name'
+          autocomplete='name'
+          required)
+      .pure-u-1-3.cvc
+        label Card Code
+        input.pure-input-1(type='password', maxlength='4', 
+          data-stripe='cvc' 
+          placeholder='CVC'
+          autocomplete='off'
+          required)
+      .pure-u-2-3.coupon
+        label Coupon Code
+        input#coupon.pure-input-1(type='text', placeholder='You lucky dog', name='coupon', autocomplete='off')
+      .pure-u-1-3
+        label &nbsp;
+        button.chunky_btn.blue.pure-input-1(type='submit') Pay 
+  .modal-footer
+    h3 MovingWorlds Guarantee
+    p yadda yadda yadda
+
+
+
+
+

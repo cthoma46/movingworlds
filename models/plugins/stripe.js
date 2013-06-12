@@ -76,5 +76,47 @@ module.exports = function (schema, opts) {
     })
   })
 
+  schema.method('subscribe', function(options, next) {
+    if(!options.plan) {
+      return next(new Error('options.plan is required'))
+    }
+    else if(!process.settings.plans[options.plan]) {
+      return next(new Error('unrecognized value for options.plan: ' + options.plan))
+    }
+    if(!options.stripeToken) {
+      return next(new Error('options.stripeToken is required'))
+    } 
+    var account = this;
+    account.getStripeId(options.stripeToken, function (err, stripeId) {
+      if (err) {
+        return next(err)
+      } 
+      var params = { 
+        plan: options.plan.toUpperCase()
+      }
+      if (options.coupon)
+        params.coupon = options.coupon;
+      stripe
+        .customers
+        .update_subscription(stripeId, params, function (error, response) {
+          console.log(response)
+          if (error) {
+            return next(error)
+          }
+          if (response.status === 'trialing' || response.status === 'active') {
+            account.plan = response.plan.id
+            account.markModified('plan')
+            account.stripeCharges = account.stripeCharges || []
+            account.stripeCharges.push(response)
+            account.markModified('stripeCharges')
+            account.save()
+            return next()
+          }
+          return next(new Error('Sorry, please try again or contact us'))
+        })
+      ;
+    })
+  })
+
 }
 
