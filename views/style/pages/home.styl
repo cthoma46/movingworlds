@@ -112,71 +112,24 @@
 .testemonial_popup.left_side .popup_arrow
 	background-position: -36px -20px
 
-#invite_wrapper
+#invite_request
 	position: relative
 	top: -70px
-	width: 678px
-	margin: 0 auto -30px
-	label
-		display: block
-		font-family: 'Lato', sans-serif
-		text-transform: none
-		color: #3c82a2
-		font-size: 22px
-		letter-spacing: 0
-		font-weight: 900
-		line-height: 20px
-		margin-bottom: 10px
-		text-indent: 40px
-		&.error
-			display: none !important
-			// position: absolute
-			// top: 15px
-			// left: 60px
-			// color: #FFF
-			// // padding: 0
-			// text-indent: 0
-			// font-size: 12px
-		
-		
-	.field_wrap
-		width: 678px
-		height: 72px
-		background: transparent url('/images/spt_invite_form.png') 0 -94px no-repeat
-		padding: 12px 46px 0
-		line-height: 0
-		input[type="email"]
-			color: #4d4d4d
-			display: block
-			float: left
-			background: transparent url('/images/spt_invite_form.png') -37px 0px no-repeat !important
-			width: 451px
-			height: 45px
-			border: none
-			padding: 0 0 0 20px
-			margin-right: 10px
-			font-size: 20px
-			&:focus
-				background-position: -37px -47px !important
-				outline: none
-		button
-			display: block
-			float: left
-			background: transparent url('/images/spt_invite_form.png') -493px 0px no-repeat
-			width: 128px
-			height: 45px
-			border: none
-			font-family: 'Lato', sans-serif
-			color: #FFF
-			font-size: 19px
-			text-transform: uppercase
-			font-weight: 400
-			text-shadow: 0 1px 0 #226889
-			&:hover
-				padding-top: 7px
-				height: 45px
-				color: #E6E6E6
-				background-position: -493px -47px
+	form
+		.wrapper
+			padding: 10px
+			border: 1px solid rgb(23, 36, 47)
+			grad(rgb(37, 72, 96), rgb(25, 49, 63))
+			bxsh(0 1px 0 white(0.8) inset\, 0px 3px 6px black(0.5))
+			bdrz(5px)
+			div:first-child
+				padding-right: 10px
+			input, button
+				font-size: 20px
+				padding: 8px 15px
+				border-color: rgb(23, 36, 47)
+			button:hover
+				padding: 9px 15px 7px
 
 #intro_video
 	background: transparent url('/images/bg_intro_video.png') 0 0 no-repeat
@@ -210,6 +163,7 @@
 			text-align: center
 			h4
 				font-size: 21px
+				padding-bottom: 5px
 			h5
 				font-size: 17px
 				text-transform: none;

@@ -15,12 +15,14 @@ block content
 
   div.wrapper.clearfix
     div.layout_960.pure-g
-      #invite_wrapper
-        form#invite_form(action='/invite', method='post').validate
-          label(for='email') Sign-up for an invite to MovingWorlds
-          .field_wrap
-            input(type='email', name='email', autocapitalize='off', autocorrect='off', placeholder='Email').required
-            button#submit_btn(type='submit') Invite Me!
+      #invite_request.pure-u-3-4.middle
+        form.validate.pure-form(action='/invite', method='post')
+          h2.center Request an invite to MovingWorlds
+          .pure-u-1.wrapper
+            .pure-u-3-4
+              input.pure-input-1(type='email', name='email', autocapitalize='off', autocorrect='off', placeholder='Email Address', required)
+            .pure-u-1-4
+              button#submit_btn.pure-input-1.chunky_btn.blue(type='submit') Invite Me!
           p.form_help.center MovingWorlds is an invite only community. Submit your email and we’ll send you an invite as soon as we can.
         #alert.hidden
       .pure-u-1-2
