@@ -78,6 +78,7 @@ menu ul
 :not(ul).cozy
 :not(ol).cozy
 	padding cozy_padding cozy_padding*2
+// and it works a little differently for lists
 ul.cozy, ol.cozy
 	li 
 		padding cozy_padding 0
@@ -92,19 +93,33 @@ ul.compact, ol.compact
 
 // GRID PADDING
 // put a little space in your pure grid.
-[class^="pure-u-"], 
-[class*=" pure-u-"]
+[class*="pure-u-"]
 	box-sizing: border-box
+
+	// the cozy unit itself gets no padding
+	// (to account for child padding-bottom)
+	&.pure-cozy
+	&.pure-compact
+		padding: 0 !important
+	
+	// comfortable padding on all direct descendants
 	.pure-cozy > &
 		padding-right: default_margin
 		padding-bottom: default_margin
+	// slightly less comfortable padding
 	.pure-compact > &
 		padding-right: (default_margin / 2)
 		padding-bottom: (default_margin / 2)
-	.pure-cozy > &:last-child, 
-	.pure-compact > &:last-child
+	// clear padding on last descendant
+	.pure-cozy > &:last-of-type
+	.pure-compact > &:last-of-type
 		padding-right: 0
 
+// ensure that full-width units are just so.		
+.pure-u-1
+	width: 100%
+	padding-right: 0 !important
+
 // no padding on every other 1/2-width unit
-.pure-u-1-2:nth-of-type(2)
+.pure-u-1-2:nth-of-type(2n)
 	padding-right: 0

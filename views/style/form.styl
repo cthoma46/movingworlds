@@ -16,6 +16,9 @@
 			&:hover
 				padding: 0.5em 0
 
+	input, select
+		font-size: 20px
+
 	// container for form actions, right-aligned by default.
 	.actions
 		text-align: right
@@ -24,8 +27,16 @@
 	// if it is direct descendant of form then put nice border and spacing.
 	> .actions
 		margin-top: default_margin
-		padding-top: default_margin
+		padding: default_margin 0 0
 		border-top: 1px solid #e5e5e5
+	.pure-cozy + .actions
+		margin-top: 0
+
+	// that fancy arrow in date ranges
+	.dates .icon
+		vertical-align: middle
+		font-size: 20px
+		color: #808080
 
 form
 	margin: 0
@@ -41,10 +52,10 @@ form
 		list-style: none
 		margin: 0
 		padding: 0
+		color: #333
 		li
 			position: relative
 			display: block
-			margin-bottom: 15px
 			clear:both
 			ul
 				li
@@ -74,7 +85,8 @@ form
 			color: blue
 			margin: 0
 			padding: 0
-			vertical-align: text-top;
+			vertical-align: bottom
+			line-height: normal
 
 	button, input, select, textarea
 		font-family: default_fonts

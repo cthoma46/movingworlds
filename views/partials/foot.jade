@@ -30,10 +30,10 @@ footer#page_foot.layout_960
 	p.disclaimer Copyright &copy; MovingWorlds 2012
 
 if typeof modal !== 'undefined' && modal.length
-	div.modal.autoplay
-		header
+	.modal.autoplay
+		header.gradient.blue
 			h2.center= modal[0]
-			a(href="#").modal_close_btn X
-		div.modal_body
+			a(href="#").close: i.icon-remove
+		.modal-body
 			h3= modal[1]
 			!= modal[2]

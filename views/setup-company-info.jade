@@ -12,159 +12,106 @@ block content
       header
         h2 Step 2: Company Information
       div.stack_body.clearfix
-        form(id="rep_step2", action="/setup", method="post", enctype="multipart/form-data")
-          fieldset.col1of2.split
-            ul
-              li
-                label(for="orgName") Organization Name
-                input(
-                  type="text", 
-                  id="orgName", 
-                  name="orgName", 
-                  tabindex="1", 
-                  value=user.orgName
-                  )
-              li
-                label(for="orgType") Organization Type
-                select.data-select-value(
-                  id="orgType", 
-                  name="orgType", 
-                  tabindex="2", 
-                  class="combobox",
-                  data-value=user.orgType
-                  )
-                  include forms/orgTypes
-                input(type='hidden', id='type_value', value=user.orgType.key)
+        form.pure-form.pure-form-stacked.pure-cozy.pure-g(id="rep_step2", action="/setup", method="post", enctype="multipart/form-data")
+          .pure-u-1-2
+            label(for="orgName") Organization Name
+            input#orgName.pure-input-1(type="text", name="orgName", value=user.orgName)
+          
+          .pure-u-1-2
+            label(for="linksUrl") Website Url
+              span example: http://www.mywebsite.com
+            input#linksUrl.pure-input-1(type="text", name="linksUrl", value=user.linksUrl)
+          
+          .pure-u-1-2
+            label(for="orgType") Organization Type
+            select#orgType.data-select-value(
+              name="orgType", 
+              class="combobox",
+              data-value=user.orgType)
+              include forms/orgTypes
+            input(type='hidden', id='type_value', value=user.orgType)
+          
+          .pure-u-1-2
+            label(for="orgSize") Organization Size
+            select#orgSize.data-select-value(
+              name="orgSize", 
+              class="combobox",
+              data-value=user.orgSize)
+              option(value="earlyStartup") Startup (founder(s) only)
+              option(value="startup") Startup (2 - 5 persons)
+              option(value="small") Small enterprise (5 - 10 persons)
+              option(value="medium") Medium sized enterprise (10 - 100 persons)
+              option(value="large") Large enterprise (100+ persons)
+            input(type='hidden', id='size_value', value=user.orgSize)
+          
+          .pure-u-1-2
+            label(for="orgPosition") How do you represent this organization?
+            select#orgPosition.data-select-value( 
+              name="orgPosition", 
+              class="combobox",
+              data-value=user.orgPosition)
+              include forms/orgPositions
+          
+          .pure-u-1-2
+            label(for="industry") Industry
+            select#industry.data-select-value(
+              id="industry", 
+              class="combobox",
+              data-value=user.industry)
+              include forms/industry_combo
+          
+          .pure-u-1.pure-cozy
+            .pure-u-1-2
+              label Is your company legally registered?
+              ul.inline.unstyled
+                li
+                  input#orgRegisteredYes(
+                    type="radio", 
+                    name="orgRegistered", 
+                    value="yes", 
+                    checked=user.orgRegistered === 'yes')
+                  label(for="orgRegisteredYes") Yes
+                li
+                  input#orgRegisteredNo(
+                    type="radio",  
+                    name="orgRegistered", 
+                    value="no", 
+                    checked=user.orgRegistered === 'no')
+                  label(for="orgRegisteredNo") No
+            .pure-u-1-4
+              label(for="orgRegisteredLocation") Location Registered
+              input#orgRegisteredLocation.pure-input-1(
+                type="text", 
+                name="orgRegisteredLocation", 
+                value=user.orgRegisteredLocation)
+            .pure-u-1-4
+              label(for="orgRegisteredYear") Year Registered
+              input#orgRegisteredYear.pure-input-1(
+                type="text", 
+                name="orgRegisteredYear", 
+                value=user.orgRegisteredYear)
+          
+          .pure-u-1.pure-cozy
+            .pure-u-1-2
+              label Upload your Company Logo
+              div.avatar
+                .av_img_container
+                  img(width="80", height="80"
+                      src=user.avatar || '/images/icn_avatar_organization.png')
+              input#avatar.pure-input-1(type="file", name="avatar", value="upload image")
+            .pure-u-1-2
+              label(for="introduction") Description
+                span max 500 characters
+              textarea#description.pure-input-1(
+                name="description"
+                placeholder="What does your Organization do?"
+                )=user.description
+            .pure-u-1
+              input#conduct(type="checkbox", name="conduct", checked=user.conduct === true)
+              label(for="conduct")
+                | I agree to the&nbsp;
+                a(href="/rules_conduct", target="_blank") rules of conduct
 
-              li
-                label(for="orgSize") Organization Size
-                select.data-select-value(
-                  id="orgSize", 
-                  name="orgSize", 
-                  tabindex="3", 
-                  class="combobox",
-                  data-value=user.orgSize
-                  )
-                  option(value="earlyStartup") Startup (founder(s) only)
-                  option(value="startup") Startup (2 - 5 persons)
-                  option(value="small") Small enterprise (5 - 10 persons)
-                  option(value="medium") Medium sized enterprise (10 - 100 persons)
-                  option(value="large") Large enterprise (100+ persons)
-                input(type='hidden', id='size_value', value=user.orgSize.key)
-
-              li
-                label Is your company legally registered?
-                ul
-                  li
-                    input(
-                      type="radio", 
-                      id="orgRegistered", 
-                      name="orgRegistered", 
-                      value="yes", 
-                      tabindex="4", 
-                      checked=user.orgRegistered === 'yes'
-                      )
-                    label(for="orgRegistered") Yes
-                  li
-                    input(
-                      type="radio", 
-                      id="orgRegistered", 
-                      name="orgRegistered", 
-                      value="no", 
-                      tabindex="5", 
-                      checked=user.orgRegistered === 'no'
-                      )
-                    label(for="orgRegistered") No
-              li
-                ul
-                  li.half
-                    label(for="orgRegisteredLocation") Location Registered
-                    input(
-                      type="text", 
-                      id="orgRegisteredLocation", 
-                      name="orgRegisteredLocation", 
-                      tabindex="6", 
-                      value=user.orgRegisteredLocation
-                      )
-                  li.half
-                    label(for="orgRegisteredYear") Year Registered
-                    input(
-                      type="text", 
-                      id="orgRegisteredYear", 
-                      name="orgRegisteredYear", 
-                      tabindex="7", 
-                      value=user.orgRegisteredYear
-                      )
-              li
-                label(for="orgPosition") I represent this organization as its
-                select.data-select-value(
-                  id="orgPosition", 
-                  name="orgPosition", 
-                  tabindex="8", 
-                  class="combobox",
-                  data-value=user.orgPosition
-                  )
-                  include forms/orgPositions
-              li
-                label(for="linksUrl") Website Url
-                  span example: http://www.mywebsite.com
-                input(
-                  type="text", 
-                  id="linksUrl", 
-                  name="linksUrl", 
-                  tabindex="9", 
-                  value=user.linksUrl
-                  )
-          fieldset.col2of2.split
-            ul
-              li#upload_avatar
-                label Upload your Company Logo
-                div.avatar
-                  .av_img_container
-                    img(
-                      src=user.avatar ||'/images/icn_avatar_organization.png', 
-                      width="80", 
-                      height="80"
-                      )
-                input(
-                  type="file", 
-                  id="avatar", 
-                  name="avatar", 
-                  tabindex="14", 
-                  value="upload image"
-                  )
-              li
-                label(for="introduction") Description
-                  span max 500 characters
-                textarea(
-                  id="description", 
-                  name="description", 
-                  placeholder="What does your Organization do?"
-                  )=user.description
-              li
-                label(for="industry") Industry
-                select.data-select-value(
-                  id="industry", 
-                  name="industry", 
-                  class="combobox",
-                  data-value=user.industry
-                  )
-                  include forms/industry_combo
-              li.field-container
-                input(
-                  type="checkbox", 
-                  id="conduct", 
-                  name="conduct", 
-                  checked=user.conduct === true, 
-                  tabindex="11"
-                  ).required
-                label(for="agree")
-                  | I agree to the&nbsp;
-                  a(href="/rules_conduct", target="_blank") rules of conduct
-
-          //- if !user.orgName
-            input(type='hidden', name='next', value='/setup/opportunity')
-
-          nav#progress
-            button(type="submit")#next.big.smooth_btn Save
+          - var actions = { prev: '/setup/basic', next: '/setup/opportunity' }
+          include partials/setup-actions
       footer

@@ -58,7 +58,7 @@ module.exports = function (app) {
   app.get( '/setup/plan',             x.exp,        acc.setupPlan)
   app.get( '/setup/company',          x.org,        acc.setupCompany)
   app.get( '/setup/review',           x.org,        acc.setupReview)
-  app.get( '/opportunity',            x.org,    opp.create, acc.setupOpportunity)
+  app.get( '/setup/opportunity',      x.org,    opp.create, acc.setupOpportunity)
   app.post('/opportunity/:id',        x.org,    opp.edit, acc.setupOpportunity)
   app.get( '/opportunity/:id',        x.org,    opp.read, acc.setupOpportunity)
   app.get( '/opportunity/:id/delete', x.org,    opp.delete, home)

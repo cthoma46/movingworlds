@@ -13,34 +13,22 @@ block content
     section.stack_960
       header
         h2 Step 1: Basic Information
-      form.pure-form.pure-form-stacked(id='step1', action='/setup', method='post', enctype='multipart/form-data')
-
-        if (!user.hash)
-          section.stack_body.role_boxes.clearfix
-            .pure-u-1.pure-cozy
-              a.experteer_box.pure-u-1-2(href='/setup/experteer', class=(user.model === 'experteer' ? 'on' : ''))
-                div.icon
-                h4 I want to go Experteering:
-                p travel &amp; donate my expertise at an organization abroad
-              a.organization_box.pure-u-1-2(href='/setup/organization', class=(user.model === 'organization' ? 'on' : ''))
-                div.icon
-                h4 I want to be connected to an Experteer
-                p and receive free professional support for my organization
-            .pure-u-1.pure-cozy
-              .pure-u-1-2
+      section.stack_body
+        form.pure-form.pure-form-stacked.pure-g(id='step1', action='/setup', method='post', enctype='multipart/form-data')
+          if (!user.hash)
+            .pure-u-1.pure-cozy.role_boxes
+              .pure-u-2-5
                 label(for='password') Password
-                input(type='password'
-                      id='password'
-                      name='password'
-                      tabindex='8')
-              .pure-u-1-2
+                input#password.pure-input-1(type='password', name='password')
+              .pure-u-2-5
                 label(for='confirm') Confirm Password
-                input(type='password'
-                      id='confirm'
-                      name='confirm'
-                      tabindex='9')
-        section.stack_body.pure-g
-          fieldset.pure-u-1.disclaimer
+                input#confirm.pure-input-1(type='password', name='confirm')
+              .pure-u-1-5
+                label &nbsp;
+                label 6 character minimum.
+                label Pick a good one.
+          
+          .pure-u-1.disclaimer
             if (user.model === 'experteer')
               if (!user.linkedinId)
                 | Connect your account with LinkedIn 
@@ -48,67 +36,36 @@ block content
               else
                 | Your account is connected to linkedin 
                 a(href='/auth/linkedin').chunky_btn.small Resync with LinkedIn 
+          
           .pure-u-1.pure-cozy
             .pure-u-2-5
               label(for='firstname') First Name
-              input.pure-input-1(
-                type='text'
-                id='firstname' 
-                name='firstname'
-                tabindex='1'
-                value=user.firstname)
+              input#firstname.pure-input-1(type='text', name='firstname', value=user.firstname)
             .pure-u-2-5
               label(for='lastname') Last Name
-              input.pure-input-1(
-                type='text'
-                id='lastname'
-                name='lastname'
-                tabindex='2'
-                value=user.lastname)
+              input#lastname.pure-input-1(type='text', name='lastname', value=user.lastname)
             .pure-u-1-5
               label Gender
               ul.inline.unstyled.gender
                 li
-                  input(type='radio'
-                        id='male'
-                        name='gender'
-                        value='male'
-                        tabindex='5'
-                        checked=user.gender=='male')
+                  input#male(type='radio', name='gender', value='male', checked=(user.gender == 'male'))
                   label(for='male') Male
                 li
-                  input(type='radio'
-                        id='female' 
-                        name='gender'
-                        value='female'
-                        tabindex='6'
-                        checked=user.gender=='female')
+                  input#female(type='radio', name='gender', value='female', checked=(user.gender == 'female'))
                   label(for='female') Female
+          
           .pure-u-1.pure-cozy
             .pure-u-2-5
               label(for='email') Email
-              input.pure-input-1(
-                type='text'
-                id='email'
-                name='email'
-                tabindex='3'
-                value=user.email)
+              input#email.pure-input-1(type='text', name='email', value=user.email)
             .pure-u-2-5
               label(for='city') City
-              input.pure-input-1(
-                type='text'
-                id='city'
-                name='city' 
-                tabindex='3'
-                value=user.city)
+              input#city.pure-input-1(type='text', name='city', value=user.city)
             .pure-u-1-5
               label(for='country') Country
-              select.data-select-value.pure-input-1(
-                id='country'
-                name='country'
-                tabindex='4'
-                data-value=user.country)
+              select#country.data-select-value.pure-input-1(name='country', data-value=user.country)
                 include forms/countries_combo
+          
           .pure-u-1.pure-cozy
             .pure-u-2-5
               label Birthday
@@ -125,21 +82,14 @@ block content
                 //- img(src=user.avatar || '/images/icn_avatar_experteer.png')
               input.pure-input-1(type='file', id='avatar', name='avatar')
 
-          fieldset.pure-u-1
-            .pure-u-1-2.field-container
-              input(
-                type='checkbox', 
-                id='agree', 
-                name='agree',
-                checked=user.agree === true, 
-                tabindex='11'
-                ).required
-              label(for='agree')
-                | I agree to MovingWorlds
-                a(href='/terms_conditions', target='_blank') 
-                  | terms and conditions
+          .pure-u-1
+            input#agree.required(type='checkbox', name='agree', checked=user.agree === true)
+            label(for='agree')
+              | I agree to 
+              a(href='/terms_conditions', target='_blank') MovingWorlds terms and conditions
 
           - var actions = { next: '/setup/preferences' }
+          - if (user.model === 'organization') { actions.next = '/setup/company' }
           include partials/setup-actions
       footer
         
