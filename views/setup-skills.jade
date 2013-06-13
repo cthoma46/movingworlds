@@ -43,9 +43,10 @@ block content
             each emp, i in user.employment
               if emp
                 include forms/work_item
-            button.chunky_btn.regular.add_btn.right
-              i.icon-plus
-              |  Add New Employment
+            .actions
+              button.chunky_btn.regular.add_btn
+                i.icon-plus
+                |  Add New Employment
 
           #education_history.clone_container(data-template="education_template")
             legend
@@ -53,17 +54,14 @@ block content
             each edu, i in user.education
               if edu
                 include forms/education_item
-            button.chunky_btn.regular.add_btn.right
-              i.icon-plus
-              |  Add New Education
+            .actions
+              button.chunky_btn.regular.add_btn
+                i.icon-plus
+                |  Add New Education
 
-          //- if !user.industry
-          input(type='hidden', name='next', value='/setup/plan')
+          - var actions = { next: '/setup/plan', prev: '/setup/preferences' }
+          include partials/setup-actions
 
-          nav#progress.pure-u-1
-            a(href="/setup/plan")#skip.big.smooth_btn.gray Skip
-            | &nbsp;
-            button(type="submit")#next.big.smooth_btn Save &amp; Continue
       footer
 
 
@@ -78,7 +76,7 @@ block content
     | </div><div class="pure-u-1-3">
     |   <label>Status</label>
     |   <button type="button" class="delete_btn chunky_btn right"><i class="icon-remove"></i></button>
-    |   <input type="checkbox" class="pure-input-1" id="employment[##][current]" name="employment[##][current]" value="true">
+    |   <input type="checkbox" id="employment[##][current]" name="employment[##][current]" value="true">
     |   <label for="employment[##][current]">I currently work here</label>
     | </div>
     | </div>

@@ -18,7 +18,6 @@ block content
           | amazing organizations that need your expertise.
 
         form.pure-form.pure-form-stacked.pure-g(action='/setup', method='post', enctype='multipart/form-data')
-          input(type='hidden', name='next', value='/setup/skills')
           .pure-u-1.pure-cozy
             .pure-control-group.pure-u-1-2
               label
@@ -107,9 +106,6 @@ block content
                 placeholder='E.g: I love to work on musical projects, the combination of music and teaching makes me tick!'
                 )=user.experteerMotivation
 
-          nav#progress.pure-u-1
-            a(href='/setup/skills')#skip.big.smooth_btn.gray Skip 
-            | &nbsp; 
-            button(type='submit')#next.big.smooth_btn Save &amp; Continue
-            
+          - var actions = { next: '/setup/skills', prev: '/setup/basic' }
+          include partials/setup-actions
       footer

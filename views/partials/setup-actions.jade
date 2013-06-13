@@ -1,0 +1,13 @@
+.actions
+	if actions.next
+		input(type='hidden', name='next', value='#{actions.next}')
+
+	if actions.prev
+		a#prev.big.chunky_btn.left(href='#{actions.prev}') 
+			i.icon-chevron-left
+			|  Previous
+
+	button#save.big.chunky_btn Save
+	button#next.big.chunky_btn.blue 
+		| Save &amp; Continue 
+		i.icon-chevron-right

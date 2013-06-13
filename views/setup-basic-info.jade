@@ -130,7 +130,7 @@ block content
               input(
                 type='checkbox', 
                 id='agree', 
-                name='agree', 
+                name='agree',
                 checked=user.agree === true, 
                 tabindex='11'
                 ).required
@@ -139,10 +139,7 @@ block content
                 a(href='/terms_conditions', target='_blank') 
                   | terms and conditions
 
-          //- if !user.hash
-          input(type='hidden', name='next', value='/setup/preferences')
-
-          nav.progress.center.clear
-            button(type='submit')#next.big.smooth_btn Save
+          - var actions = { next: '/setup/preferences' }
+          include partials/setup-actions
       footer
         
