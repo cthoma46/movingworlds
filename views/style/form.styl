@@ -42,6 +42,53 @@ form
 	margin: 0
 	line-height: 1em
 
+	// RADIOS AND CHECKBOXES
+	input[type="radio"],
+	input[type="checkbox"]
+		box-sizing: border-box
+		position: absolute
+		opacity: 0
+
+		& + label
+			display: inline
+			line-height: 21px
+			text-indent: 5px
+			text-transform: none
+			color: inherit
+			font-size: 16px
+
+			&:before
+				content: ""
+				display: inline-block
+				width: 23px
+				height: 18px
+				background: url('/images/spt_form.png') no-repeat 0 0
+				margin-bottom: 1px
+				vertical-align: middle
+
+		&:focus + label
+			outline: dotted 1px
+
+		&:disabled + label
+			opacity: .5
+			cursor: default
+
+	input[type="checkbox"]
+		&:not(:checked):hover + label::before
+			background-position: 0 -18px
+
+		&:checked + label::before
+			background-position: 0 -36px
+
+	input[type="radio"]
+		& + label::before
+			background-position: -23px 0
+
+		&:not(:checked):hover + label::before
+			background-position: -23px -18px
+
+		&:checked + label::before
+			background-position: -23px -36px
 	fieldset
 		margin: 0 0 20px 0
 		font-size: 14px
@@ -116,7 +163,6 @@ form
 		-webkit-box-sizing: border-box;
 		color: #505050
 		font-family: default_fonts
-		font-size: 12px
 		font-weight: normal
 		box-shadow: 0 1px 3px rgba(0,0,0,.43) inset
 		border: none
@@ -174,56 +220,6 @@ form
 
 	::-moz-placeholder
 		color: gray
-
-	// RADIOS AND CHECKBOXES
-	input[type="radio"],
-	input[type="checkbox"]
-		box-sizing: border-box
-		position: absolute
-		opacity: 0
-
-	input[type="radio"] + label, input[type="radio"] + label a ,
-	input[type="checkbox"] + label, input[type="checkbox"] + label a
-		display: inline
-		line-height: 21px
-		text-indent: 5px
-		text-transform: none
-		color: inherit
-		font-size: 16px
-
-	input[type="radio"] + label::before ,
-	input[type="checkbox"] + label::before
-		content: ""
-		display: inline-block
-		width: 23px
-		height: 18px
-		background: url('/images/spt_form.png') no-repeat 0 0
-		margin-bottom: 1px
-		vertical-align: middle
-
-	input[type="radio"]:focus + label,
-	input[type="checkbox"]:focus + label
-		outline: dotted 1px
-
-	input[type="radio"]:disabled + label,
-	input[type="checkbox"]:disabled + label
-		opacity: .5
-		cursor: default
-
-	input[type="checkbox"]:not(:checked):hover + label::before
-		background-position: 0 -18px
-
-	input[type="checkbox"]:checked + label::before
-		background-position: 0 -36px
-
-	input[type="radio"] + label::before
-		background-position: -23px 0
-
-	input[type="radio"]:not(:checked):hover + label::before
-		background-position: -23px -18px
-
-	input[type="radio"]:checked + label::before
-		background-position: -23px -36px
 
 	button, input[type="button"], input[type="reset"], input[type="submit"]
 		cursor: pointer
