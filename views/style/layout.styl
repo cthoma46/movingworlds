@@ -42,7 +42,8 @@ ul, ol
 
 	&.unstyled
 		list-style-type: none
-		padding: 0
+		padding-left: 0
+		padding-right: 0
 	
 	&.inline li
 		display: inline-block;
@@ -100,7 +101,8 @@ ul.compact, ol.compact
 	// (to account for child padding-bottom)
 	&.pure-cozy
 	&.pure-compact
-		padding: 0 !important
+		padding-right: 0 !important
+		padding-bottom: 0 !important
 	
 	// comfortable padding on all direct descendants
 	.pure-cozy > &
@@ -110,14 +112,22 @@ ul.compact, ol.compact
 	.pure-compact > &
 		padding-right: (default_margin / 2)
 		padding-bottom: (default_margin / 2)
+
 	// clear padding on last descendant
 	.pure-cozy > &:last-of-type
 	.pure-compact > &:last-of-type
 		padding-right: 0
 
+
+.pure-cozy > .pure-u-1-2
+	&:nth-of-type(2n + 1)
+		padding-right: (default_margin / 2)
+	&:nth-of-type(2n)
+		padding-right: 0
+		padding-left: (default_margin / 2)
+
 // ensure that full-width units are just so.		
 .pure-u-1
-	width: 100%
 	padding-right: 0 !important
 
 // no padding on every other 1/2-width unit

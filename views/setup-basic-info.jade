@@ -17,6 +17,7 @@ block content
         form.pure-form.pure-form-stacked.pure-g(id='step1', action='/setup', method='post', enctype='multipart/form-data')
           if (!user.hash)
             .pure-u-1.pure-cozy.role_boxes
+              legend: h3 Welcome to MovingWorlds! Please choose a password.
               .pure-u-2-5
                 label(for='password') Password
                 input#password.pure-input-1(type='password', name='password')

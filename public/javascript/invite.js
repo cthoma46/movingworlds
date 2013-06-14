@@ -4,7 +4,7 @@ $(document).ready(function() {
   if ($(".modal.autoplay").length > 0) {
     $(".modal.autoplay").MwModal({});
   }
-  return $("form.validate").validate({
+  $("form.validate").validate({
     errorPlacement: function(error, element) {
       if (element.closest('.field-container').length > 0) {
         return error.appendTo(element.closest('.field-container'));
@@ -12,5 +12,11 @@ $(document).ready(function() {
         return error.insertAfter(element);
       }
     }
+  });
+
+  // basic radio button functionality for the big account type buttons
+  $('.btn-radio').click(function (evt) {
+    $('.btn-radio.on').removeClass('on')
+    $(this).addClass('on')
   });
 });

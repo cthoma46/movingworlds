@@ -8,44 +8,63 @@ block append scripts
 
 block content
   div.layout_630.clearfix
-    h2.center= headline
-    p.center= body
+    h1.center= headline
+    h3.center= body
     section#invite_area
       hr.clear
-      form(action="/invite_extras", method="post")#invite_extras.validate
-        input(type="hidden", id="email", name="email", value=user.email)
-        fildeset.col1of2
-          ul
-            li.field-container
-              label(for="model") I'd like to
-              select(id="model", name="model", class="combobox", tabindex="1").required
-                option(value="") Choose One
-                option(value="experteer") Go Experteering
-                option(value="organization") Be connected to an Experteer (for my organization)
-            li
-              label(for="firstname") First Name
-              input(type="text", id="firstname", name="firstname", value=user.firstname, tabindex="3", minlength="2").required
-            li
-              button(type="submit", data-toggle="modal", data-target="#modal").chunky_btn.round Invite Me
-        fildeset.col2of2
-          ul
-            li.field-container
-              label(for="recommendedBy") How did you hear about us?
-              select(id="recommendedBy", name="recommendedBy", class="combobox", tabindex="2").required
-                option(value="") Choose One
-                option(value="advertisement")  Advertisement
-                option(value="email") Email/Newsletter
-                option(value="facebook") Facebook
-                option(value="google") Google+
-                option(value="twitter") Twitter
-                option(value="friend") Family or Friend
-                option(value="press") Press
-                option(value="search") Search
-                option(value="another website") Another website
-                option(value="other") Other
-            li
-              label(for="lastname") Last Name
-              input(type="text", id="lastname", name="lastname", value=user.lastname, tabindex="4", minlength="2").required
-            //- li.experteer_only.hidden
-            //-   label(for="availability") When do you want to go Experteering?
-            //-   input( type="text", id="availability", name="availability" )
+      form(action="/invite_extras", method="post")#invite_extras.validate.pure-form.pure-form-stacked.pure-g
+        .pure-u-1.choose-model.pure-cozy
+          h2 I want to:
+          .pure-u-1-2.experteer
+            input#experteer(type="radio", name="model", value="experteer", required)
+            label(for='experteer', required).chunky_btn.blue.pure-input-1.btn-radio
+              h3
+                .icon-stack.experteer-icon.left.icon-2x
+                  i.icon-globe.icon-base
+                  i.icon-location-arrow
+                | Become an Experteer
+              p Travel the world and
+                br 
+                | donate my expertise
+          .pure-u-1-2.opportunity
+            input#opportunity(type="radio", name="model", value="organization", required)
+            label(for='opportunity', required).chunky_btn.red.pure-input-1.btn-radio
+              h3
+                .icon-stack.opportunity-icon.left.icon-2x
+                  i.icon-globe.icon-base
+                  i.icon-map-marker
+                | Host an Experteer
+              p Find expert support 
+                br
+                | for my organization
+
+        .pure-u-1.pure-cozy
+          .pure-u-1-2
+            label(for="firstname") First Name
+            input#firstname.pure-input-1(type="text", name="firstname", value=user.firstname, minlength="2").required
+
+          .pure-u-1-2
+            label(for="lastname") Last Name
+            input#lastnmae.pure-input-1(type="text", name="lastname", value=user.lastname, minlength="2").required
+
+          .pure-u-1-2
+            label(for="email") Email Address
+            input#email.pure-input-1(type="email", name="email", value=user.email)
+
+          .pure-u-1-2
+            label(for="recommendedBy") How did you hear about us?
+            select(id="recommendedBy", name="recommendedBy", class="combobox", tabindex="2")
+              option(value="") Choose One
+              option(value="advertisement")  Advertisement
+              option(value="email") Email/Newsletter
+              option(value="facebook") Facebook
+              option(value="google") Google+
+              option(value="twitter") Twitter
+              option(value="friend") Family or Friend
+              option(value="press") Press
+              option(value="search") Search
+              option(value="another website") Another website
+              option(value="other") Other
+
+        .actions
+          button(type="submit", data-toggle="modal", data-target="#modal").chunky_btn.blue Request an Invitation

@@ -14,8 +14,8 @@ var settings = require('../settings')
 var inviteRequestedSubject = 'You requested an invitation to MovingWorlds' 
 var inviteSubject = 'Your invitation from MovingWorlds'
 var savingError = 'There was a problem saving your information.'
-var inviteStepOneHeadline = 'Thank you for your interest in MovingWorlds!'
-var inviteStepOneMessage = 'We\'ll review your invitation request and be in touch soon. You can speed up your invite process by telling us a little more about yourself.'
+var inviteStepOneHeadline = 'Get Started!'
+var inviteStepOneMessage = 'Please give us a little more information about yourself so that we can properly invite you to MovingWorlds.'
 var invalidEmail = 'Please enter a valid email address'
 var inviteAlreadyRequested = 'You have already requested an invite. If you don\'t remember your account or need a new invite email, please let us know at info@movingworlds.org'
 var inviteSentModal = []
@@ -30,12 +30,13 @@ module.exports = {
       req.flash('error', invalidEmail)
       return res.redirect('/login')
     }
-    User.find({ email : email }).count().exec(function (err, total) {
+    User.findOne({ email : email }).exec(function (err, user) {
+      console.log(user)
       if (err) { 
         req.flash('error', err)
         return res.redirect('back')
       }
-      if (total === 0) {
+      if (user == null) {
         mail('invitation-request', { 
           to : email,
           subject : inviteRequestedSubject
@@ -53,8 +54,7 @@ module.exports = {
           })
         })
       } else {
-        req.flash('info', inviteAlreadyRequested)
-        return res.redirect('back')
+        return renderInvitePage(req, res, user)
       }
     })
   }, 
