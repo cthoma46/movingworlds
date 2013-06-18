@@ -1,7 +1,7 @@
 extends layouts/layout
 
 block append scripts
-    script(src='/javascript/setup.js')
+  script(src='/javascript/setup.js')
 
 block content
   div.layout_960
@@ -157,7 +157,8 @@ block content
               select.data-select-value(
                 multiple=true
                 name='opportunity[supportArea]'
-                data-value=opportunity.supportArea)
+                data-value=opportunity.supportArea
+                data-placeholder='Choose some areas...')
                 include forms/area_support_combo
             
             .pure-u-1.pure-cozy.section
@@ -183,18 +184,20 @@ block content
               .pure-u-1-2
                   label(for='languages') Favored Languages
                     span max 3
-                  input#languages.tags(
-                    type='text' 
+                  select#languages.data-select-value(
                     name='opportunity[languages]' 
-                    data-max='3'
-                    value=opportunity.languages)
+                    data-max-options='3'
+                    data-value=opportunity.languages
+                    data-placeholder='Pick some languages...'
+                    multiple)
+                    include forms/languages_combo
               .pure-u-1-2
                   label Development impact
                   select#impact.data-select-value.pure-input-1( 
                     name='opportunity[impact]'
                     data-value=opportunity.impact
                     value=opportunity.impact)
-                    include forms/impact_combo.jade
+                    include forms/impact_combo
 
           - var actions = { prev: '/setup/company', next: '/setup/review' }
           include partials/setup-actions

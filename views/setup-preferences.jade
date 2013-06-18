@@ -21,33 +21,23 @@ block content
           .pure-u-1.pure-cozy
             .pure-control-group.pure-u-1-2
               label
-                h4 Industries
-                | Where do you have experience?
+                h4 Industry
+                | Where do you have the most experience?
               select.data-select-value(
                 id='industry', 
                 name='industry', 
                 data-value=user.industry
-                ).combobox
+                data-placeholder='Choose an industry...')
                 include forms/industry_combo
 
             .pure-control-group.pure-u-1-2
               label
-                h4 Causes
-                | Choose up to 5 causes and impact areas you care about.
-              select.data-select-value(
-                name='experteerImpact', 
-                data-value=user.experteerImpact.join(',')
-                )
-                include forms/impact_combo 
-
-            .pure-control-group.pure-u-1-2
-              label
-                h4 Organizations
-                | Which type of organizations do you want to empower?
+                h4 Organization
+                | Which type of organization do you want to empower?
               select.data-select-value(
                 name='experteerEnvironment', 
-                data-value=user.experteerEnvironment.join(',')
-                ).combobox
+                data-value=user.experteerEnvironment
+                data-disable-search='true')
                 include forms/orgTypes
 
             .pure-control-group.pure-u-1-2
@@ -56,21 +46,45 @@ block content
                 | Where would you like to go?
               select.data-select-value(
                 name='experteerCountries', 
-                data-value=user.experteerCountries.join(','),
-                ).combobox
+                data-value=user.experteerCountries
+                data-placeholder='Add some countries...'
+                multiple).combobox
                 include forms/countries_combo
 
-          .pure-u-1.pure-control-group.pure-cozy
+            .pure-control-group.pure-u-1-2
               label
-                h4 Expertise
-                | What areas do you want to help with?
+                h4 Spoken Languages
+                | What languages are you conversational in?
               select.data-select-value(
-                name='supportArea', 
-                data-value=user.supportArea.join(',')
-                ).combobox
-                include forms/area_support_combo
+                name='languages'
+                data-value=user.languages
+                data-placeholder='Pick your languages...'
+                multiple)
+                include forms/languages_combo
 
-          .pure-u-1.pure-cozy.section
+            .pure-control-group.pure-u-1
+              label
+                h4 Causes
+                | Choose up to 5 causes and impact areas you care about.
+              select.data-select-value(
+                name='experteerImpact', 
+                data-value=user.experteerImpact
+                data-placeholder='Add a cause...'
+                multiple
+                )
+                include forms/impact_combo 
+
+            .pure-u-1.pure-control-group
+                label
+                  h4 Expertise
+                  | What areas do you want to help with?
+                select.data-select-value(
+                  name='supportArea', 
+                  data-value=user.supportArea
+                  data-placeholder='Choose some areas...'
+                  multiple).combobox
+                  include forms/area_support_combo
+
             .pure-control-group.pure-u-1-2
               label
                 h4 Availability
@@ -91,13 +105,7 @@ block content
                 | How long would you like to experteer for?
               input.pure-input-1(type='text', name='')
 
-            .pure-control-group.pure-u-1-2
-              label
-                h4 Spoken Languages
-                | What languages are you conversational in?
-              input.pure-input-1.tags(type='text', name='languages', value=user.languages)
-
-            .pure-control-group.pure-u-1-2
+            .pure-control-group.pure-u-1
               label
                 h4 The Big Why
                 | Why do you want to go Experteering and what do you hope to learn?

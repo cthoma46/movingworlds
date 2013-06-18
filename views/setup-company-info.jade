@@ -27,7 +27,8 @@ block content
             select#orgType.data-select-value(
               name="orgType", 
               class="combobox",
-              data-value=user.orgType)
+              data-value=user.orgType
+              data-disable-search='true')
               include forms/orgTypes
             input(type='hidden', id='type_value', value=user.orgType)
           
@@ -36,7 +37,8 @@ block content
             select#orgSize.data-select-value(
               name="orgSize", 
               class="combobox",
-              data-value=user.orgSize)
+              data-value=user.orgSize
+              data-disable-search='true')
               option(value="earlyStartup") Startup (founder(s) only)
               option(value="startup") Startup (2 - 5 persons)
               option(value="small") Small enterprise (5 - 10 persons)
@@ -60,31 +62,32 @@ block content
               data-value=user.industry)
               include forms/industry_combo
           
-          .pure-u-1.pure-cozy
+          .pure-u-1-2
+            //- .pure-u-1-2
+            label Is your company legally registered?
+            ul.inline.unstyled
+              li
+                input#orgRegisteredYes(
+                  type="radio", 
+                  name="orgRegistered", 
+                  value="yes", 
+                  checked=user.orgRegistered === 'yes')
+                label(for="orgRegisteredYes") Yes
+              li
+                input#orgRegisteredNo(
+                  type="radio",  
+                  name="orgRegistered", 
+                  value="no", 
+                  checked=user.orgRegistered === 'no')
+                label(for="orgRegisteredNo") No
+          .pure-u-1-2.pure-cozy
             .pure-u-1-2
-              label Is your company legally registered?
-              ul.inline.unstyled
-                li
-                  input#orgRegisteredYes(
-                    type="radio", 
-                    name="orgRegistered", 
-                    value="yes", 
-                    checked=user.orgRegistered === 'yes')
-                  label(for="orgRegisteredYes") Yes
-                li
-                  input#orgRegisteredNo(
-                    type="radio",  
-                    name="orgRegistered", 
-                    value="no", 
-                    checked=user.orgRegistered === 'no')
-                  label(for="orgRegisteredNo") No
-            .pure-u-1-4
               label(for="orgRegisteredLocation") Location Registered
               input#orgRegisteredLocation.pure-input-1(
                 type="text", 
                 name="orgRegisteredLocation", 
                 value=user.orgRegisteredLocation)
-            .pure-u-1-4
+            .pure-u-1-2
               label(for="orgRegisteredYear") Year Registered
               input#orgRegisteredYear.pure-input-1(
                 type="text", 
