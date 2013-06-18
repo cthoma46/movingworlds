@@ -1,0 +1,13 @@
+{
+  "name": "movingworlds",
+  "version": "0.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "chosen": "~0.9.15"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ]
+}

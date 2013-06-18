@@ -2,6 +2,8 @@
 
 $(document).ready(function() {
 
+  $('select').chosen()
+
   // clear the NEXT value if user clicks Save instead of Save & Continue.
   // form still submits and saves data but reloads current page instead of
   // transitioning to next step.

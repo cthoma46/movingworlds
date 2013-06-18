@@ -1,18 +1,48 @@
+// sets width and height properties, if provided
+size(w=false, h=false)
+	if w
+		width: w
+	if h
+		height: h
+
+// sets width and height to the same size
+square(s)
+	size(s, s)
+
+// convenience for black with alpha channel
+black(alpha=1)
+	rgba(0, 0, 0, alpha)
+
+// convenience for white with alpha channel
+white(alpha=1)
+	rgba(255, 255, 255, alpha)
+
+// cross-browser border-radius
 bdrz()
 	-webkit-border-radius arguments
 	-moz-border-radius arguments
 	border-radius arguments
 	
+// cross-browser box-shadow
 bxsh()
 	-moz-box-shadow arguments
 	-webkit-box-shadow arguments
 	box-shadow arguments
  
+// cross-browser box-sizing
+box-sizing()
+	-moz-box-sizing: arguments
+	-ms-box-sizing: arguments
+	-webkit-box-sizing: arguments
+	-khtml-box-sizing: arguments
+	box-sizing: arguments 
+
+// nifty box-shadow highlight
 highlight(alpha=1)
-	-moz-box-shadow 0 1px 0 rgba(255, 255, 255, alpha) inset
-	-webkit-box-shadow 0 1px 0 rgba(255, 255, 255, alpha) inset
-	box-shadow 0 1px 0 rgba(255, 255, 255, alpha) inset
+	bxsh(0 1px 0 rgba(255, 255, 255, alpha) inset)
 	
+// simple gradient between two colors
+// TODO: support for fancy gradients with multiple stops
 grad(color1, color2)
 	background: color1;
 	background: -moz-linear-gradient(top,  color1 0%, color2 100%);
@@ -22,12 +52,31 @@ grad(color1, color2)
 	background: -ms-linear-gradient(top,  color1 0%,color2 100%);
 	background: linear-gradient(top,  color1 0%,color2 100%);
 	filter: unquote("progid:DXImageTransform.Microsoft.gradient( startColorstr="+color1+", endColorstr="+color2+",GradientType=0 );")
-	
-absCenter(width)
+
+// horizontally centers an element using absolute positioning and negative half-width margin trick.
+absCenter(width, height=false)
+	position: absolute
 	left: 50%
 	width: width
+	if height
+		// if height is given then set that property too
+		height: height
 	margin-left: -(width / 2)
+
+// vertically middle-aligns an element using absolute positioning and negative half-height margin trick
+absMiddle(width, height=false)
+	position: absolute
+	top: 50%
+	if height
+		// if height is given then set size and use height for positioning
+		size(width, height)
+		margin-top: -(height / 2)
+	else
+		// otherwise, make it a square
+		square(width)
+		margin-top: -(width / 2)
 	
+// create a CSS arrow??
 arrow( size, color, direction )
 	width: 0;
 	height: 0;	
