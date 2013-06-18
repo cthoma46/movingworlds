@@ -9,7 +9,6 @@
 	// bigger buttons by default, comfortable padding
 	button, a[class*='btn']
 		font-size: large_font
-		padding: 0.5em 1em
 		// if buttons have pure-input-* then clear horizontal padding
 		&[class*="pure-input-"]
 			padding: 0.5em 0
@@ -23,7 +22,7 @@
 	.actions
 		text-align: right
 		> button + button
-			margin-left: 10px
+			margin-left: (default_margin / 2)
 	// if it is direct descendant of form then put nice border and spacing.
 	> .actions
 		margin-top: default_margin
@@ -89,6 +88,7 @@ form
 
 		&:checked + label::before
 			background-position: -23px -36px
+
 	fieldset
 		margin: 0 0 20px 0
 		font-size: 14px

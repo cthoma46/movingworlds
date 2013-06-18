@@ -15,7 +15,7 @@ block content
       form(action="/invite_extras", method="post")#invite_extras.validate.pure-form.pure-form-stacked.pure-g
         .pure-u-1.choose-model.pure-cozy
           h2 I want to:
-          .pure-u-1-2.experteer
+          .pure-u-1-2.experteer.field-container
             input#experteer(type="radio", name="model", value="experteer", required)
             label(for='experteer', required).chunky_btn.blue.pure-input-1.btn-radio
               h3
@@ -53,9 +53,9 @@ block content
 
           .pure-u-1-2
             label(for="recommendedBy") How did you hear about us?
-            select(id="recommendedBy", name="recommendedBy", class="combobox", tabindex="2")
-              option(value="") Choose One
-              option(value="advertisement")  Advertisement
+            select(id="recommendedBy", name="recommendedBy", data-disable-search='true')
+              option(value="") Choose one...
+              option(value="advertisement") Advertisement
               option(value="email") Email/Newsletter
               option(value="facebook") Facebook
               option(value="google") Google+

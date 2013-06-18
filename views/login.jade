@@ -15,10 +15,10 @@ block content
 					-if(typeof redirect != 'undefined')
 						input(type="hidden", name="redirect", value= redirect)
 					label(for="email") Email
-					input.pure-input-1(type="email", id="email", name="email")
+					input.pure-input-1(type="email", id="email", name="email", required)
 					.section
 						label(for="password") Password
-						input.pure-input-1(type="password", id="password", name="password")
+						input.pure-input-1(type="password", id="password", name="password", required)
 					.section
 						button(type="submit").chunky_btn.round Sign In
 						span.check.right
