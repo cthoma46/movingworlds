@@ -41,10 +41,15 @@ mongoose.connect(settings.dbUri, function (err) {
 })
 
 app.configure(function () {
+  // app.locals
+  /* Application local variables are provided to all templates rendered 
+   * within the application. This is useful for providing helper functions 
+   * to templates, as well as app-level data. */
   app.locals(settings.locals)
   app.locals.pretty = false
   app.locals.youtube = youtube
   app.locals.moment = moment
+  app.locals._ = require('underscore')
   app.locals.extractYoutubeId = function (url) {
     var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/
     var match = url.match(regExp);
@@ -54,8 +59,16 @@ app.configure(function () {
       return null
     }
   }
+
+  // settings
+  // see: http://expressjs.com/api.html#app-settings
   app.set('moment', moment)
   app.set('port', process.env.PORT || settings.port)
+  app.set('view engine', 'jade')
+  app.set('views', __dirname + '/views')
+
+  // Define custom template engines.
+  // By default will require() the engine based on the file extension.
   app.engine('markdown', function (path, options, next) {
     fs.readFile(path, 'utf8', function (err, str) {
       if (err) { 
@@ -65,8 +78,9 @@ app.configure(function () {
       next(null, str)
     })
   })
-  app.set('view engine', 'jade')
-  app.set('views', __dirname + '/views')
+
+  // ** middleware **
+  // invoked sequentially, can modify response based on request.
   app.use(express.favicon(__dirname + '/public/images/favicon.ico'))
   app.use(express.static(__dirname + '/public')) 
   // app.use(express.logger())

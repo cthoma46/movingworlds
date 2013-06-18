@@ -11,23 +11,28 @@ var activity = require('../middleware/activity')
 
 module.exports = function (app) { 
 
-  app.all('*', function (req, res, next) {
-    req.user = req.user || new Account()
-    next()
-  }, 
-  m.defaults, 
-  function (req, res, next) { 
-    console.notice(req.method, req.url, req.user.loggedIn)
-    next()
-  })
+  // a little something that matches all HTTP verbs:
+  // ensure the user variable is defined.
+  app.all('*', 
+    function (req, res, next) {
+      req.user = req.user || new Account()
+      next()
+    }, 
+    m.defaults, 
+    function (req, res, next) { 
+      console.notice(req.method, req.url, req.user.loggedIn)
+      next()
+    })
 
-  app.get('/auth/linkedin/callback',  passport.authenticate('linkedin', { 
-    failureRedirect : '/login' 
-  }), function (req, res) {
+  // LinkedIn authentication callback
+  app.get('/auth/linkedin/callback', 
+    passport.authenticate('linkedin', { failureRedirect : '/login' }),
+    function (req, res) {
       return res.redirect(req.session.returnTo || '/setup/basic')
     }
   )
 
+  // application routes!
   app.get( '/auth/linkedin',          passport.authenticate('linkedin'))
   require( './api')(app)
   app.get( '/404',                    home[404])
