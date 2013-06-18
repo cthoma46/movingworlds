@@ -28,7 +28,7 @@ block content
               name="orgType", 
               class="combobox",
               data-value=user.orgType
-              data-disable-search='true')
+              data-disable-search)
               include forms/orgTypes
             input(type='hidden', id='type_value', value=user.orgType)
           
@@ -38,7 +38,7 @@ block content
               name="orgSize", 
               class="combobox",
               data-value=user.orgSize
-              data-disable-search='true')
+              data-disable-search)
               option(value="earlyStartup") Startup (founder(s) only)
               option(value="startup") Startup (2 - 5 persons)
               option(value="small") Small enterprise (5 - 10 persons)
@@ -51,7 +51,8 @@ block content
             select#orgPosition.data-select-value( 
               name="orgPosition", 
               class="combobox",
-              data-value=user.orgPosition)
+              data-value=user.orgPosition
+              data-disable-search)
               include forms/orgPositions
           
           .pure-u-1-2

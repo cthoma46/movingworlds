@@ -3,6 +3,7 @@ $sprite = url('/images/chosen-sprite.png') no-repeat
 /* @group Base */
 .chzn-container
   font-size: large_font
+  font-family: default_fonts
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -62,18 +63,6 @@ $sprite = url('/images/chosen-sprite.png') no-repeat
       -ms-text-overflow: ellipsis;
       text-overflow: ellipsis;
 
-    abbr 
-      display: block;
-      position: absolute;
-      right: 26px;
-      top: 6px;
-      width: 12px;
-      height: 12px;
-      font-size: 1px;
-      background:  -42px 1px no-repeat;
-      &:hover
-        background-position: -42px -10px;
-
     div
       position: absolute;
       right: 0;
@@ -82,13 +71,19 @@ $sprite = url('/images/chosen-sprite.png') no-repeat
       height: 100%;
       width: 18px;
 
-    i
+    i, abbr
       absMiddle(20px)
-      right: 3px
       color: #757575
+      &:hover
+        color: #363636
 
+    i
+      right: 3px
       &:before
         content: '\f0d7'
+
+    abbr
+      right: 30px
 
   &.chzn-with-drop i:before
     content: '\f0d8'

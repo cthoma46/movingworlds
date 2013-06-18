@@ -16,64 +16,35 @@ block content
         header
           h6.right.gray #{search_result.length} found
           h2 Search 
-      form#search-form(action='#', method='get')
-        ul
-          li
-            input(type='text', name='q', value=query.q)
-          li
-            button.col1of2.chunky_btn.blue(type='submit', form='search-form') 
-              | Search
-          li.half
-            label Number of Results
-            select.data-select-value(
-              name='limit', 
-              data-value=query.limit
-              )
-              option(value=4) 4
-              option(value=10) 10
-              option(value=25) 25
-              option(value=50) 50
-          li.half
-            label Location
-            select.data-select-value(
-              name='filter[country]', 
-              data-value=query.filter.country
-              )
-              include forms/countries_combo
-          li
-            label Industry
-            select.data-select-value(
-              name='filter[industry]', 
-              data-value=query.filter.industry
-              )
-              include forms/industry_combo
-          li
-            label Desired Impact
-            select.data-select-value(
-              name='filter[impactArea]', 
-              data-value=filter.impactArea
-              )
-              include forms/impact_combo
-          li
-            label Support Area
-            select.data-select-value(
-              name='filter[supportArea]', 
-              data-value=filter.supportArea
-              )
-              include forms/area_support_combo
-          li
-            label Environment
-            select.data-select-value(
-              name='filter[environment]', 
-              data-value=filter.environment
-              )
-              include forms/environment_combo
-        //- ul 
-          li 
-            label Search for: 
-            a.chunky_btn.small(href='/search/opportunity') Opportunities 
-            a.chunky_btn.small(href='/search/experteer') Experteers 
-            a.chunky_btn.small(href='/search/organization') Organizations 
+      form#search-form.pure-form.pure-form-stacked.pure-compact(action='#', method='get')
+        .pure-u-1
+          label Search Term
+          input.pure-input-1(type='text', name='q', value=query.q)
+        .pure-u-1
+          label Location
+          select.data-select-value(
+            name='filter[country]'
+            data-value=query.filter.country
+            data-single-deselect)
+            include forms/countries_combo
+        .pure-u-1
+          label Type of Impact
+          select.data-select-value(
+            name='filter[impactArea]'
+            data-value=filter.impactArea
+            data-single-deselect)
+            include forms/impact_combo
+        .pure-u-1
+          label Support Area
+          select.data-select-value(
+            name='filter[supportArea]', 
+            data-value=filter.supportArea
+            data-single-deselect)
+            include forms/area_support_combo
+        .pure-u-1
+          button.chunky_btn.blue.pure-input-1(type='submit')
+            i.icon-search
+            | &nbsp;Search
 
     div.col2of2
       section#recommendations
