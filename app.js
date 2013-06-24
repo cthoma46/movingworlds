@@ -35,7 +35,7 @@ function methodOverrideGET (key) {
 
 mongoose.connect(settings.dbUri, function (err) {
   if (err) {
-    console.alert('COULD NOT CONNECT TO DB at: ' + settings.dbUri + '\n', err)
+    console.error('COULD NOT CONNECT TO DB at: ' + settings.dbUri + '\n', err)
   }
 })
 
