@@ -20,7 +20,7 @@ module.exports = function (app) {
     }, 
     m.defaults, 
     function (req, res, next) { 
-      console.notice(req.method, req.url, req.user.loggedIn)
+      console.log(req.method, req.url, req.user.loggedIn)
       next()
     })
 

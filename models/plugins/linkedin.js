@@ -2,7 +2,7 @@
 module.exports = function (schema, opts) {
 
   schema.statics.upsertLinkedInUser = function (data, email, callback) {
-    console.notice('upsertLinkedInUser', arguments)
+    console.log('upsertLinkedInUser', arguments)
     this
       .findOne({ $or : [ { linkedinId : data.id }, { email : email } ] })
       .exec(function (err, account) {

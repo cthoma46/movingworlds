@@ -12,3 +12,4 @@ public/avatars/*.jpg
 public/avatars/*.jpeg
 build/
 components/
+node_modules/

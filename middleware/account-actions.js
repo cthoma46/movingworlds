@@ -263,7 +263,7 @@ account.intro = function (req, res, next) {
     return res.redirect('back')
   }
   function success (result, msg) {
-    console.notice(result, msg)
+    console.log(result, msg)
     req.flash('success', msg)
     return res.redirect('back')
   }

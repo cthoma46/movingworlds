@@ -1,4 +1,3 @@
-require('rconsole')
 var mongoose = require('mongoose')
 var troop = require('mongoose-troop')
 var plugins = require('./plugins')

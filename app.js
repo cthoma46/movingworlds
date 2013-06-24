@@ -1,5 +1,4 @@
 var settings = process.settings = require('./settings')
-require('rconsole')
 require('./underscore-mixins')
 require('./models')
 require('./passport')
