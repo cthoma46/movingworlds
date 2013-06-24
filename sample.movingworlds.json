@@ -5,7 +5,7 @@
   "port" : 3000,
   "profile" : 0,
   "debug" : 0,
-  "dbUri" : "mongodb://localhost:27000/movingworlds",
+  "dbUri" : "mongodb://localhost/movingworlds",
   "database" : { 
     "host" : "",
     "name" : "",
@@ -17,6 +17,11 @@
   "session" : { 
     "expire" : 1200000,
     "secret" : "!M0v1ng!"
+  },
+  "plans" : {
+    "basic" : 9900,
+    "premium" : 19900,
+    "plus" : 69900
   },
   "apiKeys" : { 
     "stripe" : {

@@ -8,11 +8,12 @@ Globally install relevant node packages:
 Locally install MovingWorlds node dependencies (from package.json):
 `npm install`
 
-Copy config file to final resting place:
-`sudo cp sample.movingworlds.conf /etc/movingworlds.conf`
+Copy configuration file to final resting place:
+`mkdir -p /opt/movingworlds`
+`sudo cp sample.movingworlds.json /opt/movingworlds/movingworlds.json`
 
 Modify config file to fit your dev environment:
-`sudo vi /etc/movingworlds.conf` 
+`sudo vi /opt/movingworlds/movingworlds.json` 
 
 
 ## Development
@@ -21,4 +22,4 @@ Compile client side .styl files:
 `make all`
 
 Initialize app:
-`supervisor -n error app.coffee`
+`supervisor -n error app`
