@@ -1,8 +1,10 @@
+option(value="Any / all")="Any / all"
 
 optgroup(label="REGIONS")
 	each region in lang.en.Regions
 		option(value=region)=region
 
 optgroup(label="COUNTRIES")
+
 	each val in lang.en.Countries
 		option(value=val)=val
