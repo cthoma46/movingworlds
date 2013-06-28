@@ -117,6 +117,11 @@ account.searchRequest = function (req, res, next) {
       params.model = 'opportunity'  
     }
   }
+
+
+  console.log(JSON.stringify(params, null, 4));
+  console.log(JSON.stringify(query, null, 4));
+
   var modelName = params.model
   query.filter = query.filter || {}
   query.limit = query.limit || 10
@@ -130,25 +135,25 @@ account.searchRequest = function (req, res, next) {
   // search
   var db = mongoose.model(modelName)
     .search((!!query.q) ? query.q : params.model)
-    .where('model').equals(params.model)
+    .where('model').equals(params.model);
   // post search filter
   Object.keys(query.filter).forEach(function (key) {
     if (query.filter[key].length) {
       db.where(key).equals(query.filter[key])
     }
-  })
-  db.where('published').equals(true)
+  });
+  //db.where('published').equals(true);
   db
     .skip(query.limit * (query.page - 1))
     .limit(query.limit)
-    .populate('organization')
+    .populate('organization');
   if (params.count) {
-    db.count()
+    db.count();
   }
   db.exec(function (err, docs) {
     if (err || !docs) {
-      console.error(err, docs)
-      return next()
+      console.error(err, docs);
+      return next();
     }
     if (params.count) {
       var data = {
@@ -156,24 +161,24 @@ account.searchRequest = function (req, res, next) {
         pages : Math.ceil(docs / query.limit),
         nextPage : false,
         previousPage : false
-      }
-      data.previousPage = data.page - 1
-      data.nextPage = data.page + 1
+      };
+      data.previousPage = data.page - 1;
+      data.nextPage = data.page + 1;
       if (data.nextPage > data.pages) {
-        data.nextPage = false
+        data.nextPage = false;
       }
-      console.log(data)
-      res.locals(data)
-      return next()
+      console.log(data);
+      res.locals(data);
+      return next();
     } else if (params.model === 'opportunity') {
       docs = docs.map(function (doc) {
-        doc.model = 'organization'
-        doc.size = doc.organization.size
-        return doc
+        doc.model = 'organization';
+        doc.size = doc.organization.size;
+        return doc;
       })
     } 
-    res.locals({ search_result : docs })
-    return next()
+    res.locals({ search_result : docs });
+    return next();
   })
 }
 
