@@ -21,6 +21,13 @@ block content
           label Search Term
           input.pure-input-1(type='text', name='q', value=query.q)
         .pure-u-1
+          label I am looking for an
+          select.data-select-value(
+          name='filter[model]'
+          data-value=filter.model
+          data-single-deselect)
+            include forms/model_combo
+        .pure-u-1
           label Location
           select.data-select-value(
             name='filter[country]'
@@ -37,7 +44,7 @@ block content
         .pure-u-1
           label Support Area
           select.data-select-value(
-            name='filter[supportArea]', 
+            name='filter[supportArea]',
             data-value=filter.supportArea
             data-single-deselect)
             include forms/area_support_combo
@@ -52,8 +59,8 @@ block content
           for card, i in search_result
             -card.buttonView = true
             include partials/card
-        else 
-          em 
+        else
+          em
             strong #{query.q} 
             | Returned no results.
         if !user.loggedIn
@@ -64,18 +71,18 @@ block content
                   li
                     strong.center See more details, more organizations, and request intros
                 ul.left
-                  li 
+                  li
                     input(
-                      type='text', 
-                      placeholder='Enter your email', 
+                      type='text',
+                      placeholder='Enter your email',
                       name='email'
-                      ) 
+                      )
                   li
                     button.chunky_btn.blue(type='submit') Request an invite
                 ul.right
-                  li 
+                  li
                     span Have an account? 
-                    br 
+                    br
                     a(href='/login') Log in
         footer.clear
           if (typeof page !== 'undefined' && typeof pages !== 'undefined')
@@ -84,9 +91,9 @@ block content
                 li
                   a.previous(
                     data-page=previousPage,
-                    href='#', 
-                    class=(previousPage ? '' : 'disabled' ) 
-                    ) 
+                    href='#',
+                    class=(previousPage ? '' : 'disabled' )
+                    )
                 li.page_info
                   | #{page} 
                   em of 
@@ -96,4 +103,4 @@ block content
                     data-page=nextPage,
                     href='#',
                     class=(nextPage ? '' : 'disabled' )
-                    ) 
+                    )
